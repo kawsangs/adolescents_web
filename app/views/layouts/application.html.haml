@@ -7,6 +7,7 @@
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_importmap_tags
 
     %link{:crossorigin => "anonymous", :href => "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css", :rel => "stylesheet"}
 
@@ -15,6 +16,12 @@
   %body
     = render "shared/flash_message"
 
-    %p.notice= notice
-    %p.alert= alert
-    = yield
+    .sb-nav-fixed
+      = render "shared/topbar"
+
+      #layoutSidenav
+        #layoutSidenav_nav
+          = render "shared/sidebar"
+        #layoutSidenav_content
+          %main
+            = yield

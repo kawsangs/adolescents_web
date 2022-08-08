@@ -1,0 +1,29 @@
+%nav#sidenavAccordion.sb-sidenav.accordion.sb-sidenav-light
+  .sb-sidenav-menu
+    .nav
+      / .sb-sidenav-menu-heading Core
+      / %a.nav-link{:href => "index.html"}
+      /   .sb-nav-link-icon
+      /     %i.fas.fa-tachometer-alt
+      /   Dashboard
+
+      .sb-sidenav-menu-heading Interface
+
+      = link_to users_path, class: ['nav-link', css_active_class('users')] do
+        .sb-nav-link-icon
+          %i.fa-solid.fa-users
+        = t('sidebar.users')
+
+      / %a.nav-link.collapsed{"aria-controls" => "collapseLayouts", "aria-expanded" => "false", "data-bs-target" => "#collapseLayouts", "data-bs-toggle" => "collapse", :href => "#"}
+      /   .sb-nav-link-icon
+      /     %i.fas.fa-columns
+      /   Layouts
+      /   .sb-sidenav-collapse-arrow
+      /     %i.fas.fa-angle-down
+      / #collapseLayouts.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" => "#sidenavAccordion"}
+      /   %nav.sb-sidenav-menu-nested.nav
+      /     %a.nav-link{:href => "layout-static.html"} Static Navigation
+      /     %a.nav-link{:href => "layout-sidenav-light.html"} Light Sidenav
+
+  .sb-sidenav-footer
+    .small= "Version: #{ENV['APP_VERSION'] || 'development'}"

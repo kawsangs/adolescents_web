@@ -261,6 +261,8 @@ GEM
     ruby_parser (3.19.1)
       sexp_processor (~> 4.16)
     rubyzip (2.3.2)
+    sass-rails (6.0.0)
+      sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -341,6 +343,7 @@ DEPENDENCIES
   rspec-rails
   rubocop-performance
   rubocop-rails
+  sass-rails (~> 6.0.0)
   selenium-webdriver
   shoulda-matchers
   simple_form (~> 5.1.0)
