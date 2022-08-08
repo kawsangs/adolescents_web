@@ -1,0 +1,133 @@
+.devise-form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: scroll;
+  }
+
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    flex-grow: 1;
+
+    .logo {
+      width: 300px;
+    }
+
+    .logo-wrapper {
+      border-right: 1px solid #E2E2E2;
+      padding: 1.5rem;
+    }
+
+    .logo-image-wrapper {
+      padding-top: 1.5rem;
+    }
+
+    .title {
+      width: 400px;
+      margin: 0 auto;
+    }
+  }
+
+  .form-wrapper {
+    width: 366px;
+    padding-right: 0.25rem;
+  }
+
+  .footer {
+    font-size: 13px;
+    background-color: #ececec;
+
+    a {
+      color: #555;
+      text-decoration: none;
+    }
+
+    .footer-logo {
+      height: 50px;
+    }
+  }
+
+  .line {
+    border: 1px solid #17a2b8;
+    height: 0;
+    margin: 30px 0;
+  }
+
+  .or-label {
+    padding: 16px 8px;
+  }
+
+  .qr-code {
+    &-img {
+      width: 120px;
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .devise-form {
+    display: block;
+    overflow-y: scroll;
+
+    .column {
+      display: block;
+      height: auto;
+      overflow-y: hidden;
+      min-height: 100%;
+    }
+
+    .medium-width {
+      width: 100%;
+      display: block;
+    }
+
+    .wrapper {
+      padding-top: 20px;
+      padding-bottom: 82px;
+
+      .logo {
+        width: 35%;
+      }
+
+      .logo-wrapper {
+        padding: 3rem;
+        margin-right: 0 !important;
+      }
+
+      .logo-image-wrapper {
+        padding-top: 0;
+      }
+
+      .title {
+        width: 100%;
+        padding: 5px 20px;
+      }
+    }
+
+    .stackholders,
+    .stackholders-lg {
+      display: block !important;
+    }
+
+    .implemented-by {
+      margin-top: 30px;
+    }
+
+    .footer {
+      height: 82px;
+      margin-top: -82px;
+    }
+
+    .form-wrapper {
+      width: 100%;
+      padding: 30px 30px;
+    }
+  }
+}

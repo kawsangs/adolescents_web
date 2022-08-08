@@ -1,0 +1,23 @@
+.form-wrapper#login_form
+  %h2.font-weight-normal.text-center.my-4
+    ចូលប្រើ / Sign in
+
+  = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+
+    .mb-3= f.input :email, required: false, autofocus: true, input_html: { autocomplete: "email" }
+
+    .mb-3= f.input :password, required: false, input_html: { autocomplete: "current-password" }
+
+    .mb-3= f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+
+    .mb-3.actions.form-group
+      = f.submit t("devise.sign_in"), class: 'btn btn-primary w-100 mb-2'
+
+  .text-end.mb-3
+    .form-group
+      = render "devise/shared/links"
+
+    .form-group
+      %span.fs-xs
+        = t("sidebar.version") + ': '
+        = ENV['APP_VERSION'] || 'development'
