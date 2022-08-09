@@ -17,4 +17,6 @@ Rails.application.routes.draw do
       put :restore
     end
   end
+
+  resource :locale, only: [:update]
 end
