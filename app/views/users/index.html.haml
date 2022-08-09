@@ -1,1 +1,46 @@
-users list
+.container-fluid.px-4.facilities{}
+  = render 'shared/header_title', title: t('user.users')
+
+  .d-flex.justify-content-end
+    = render "shared/buttons/add_new_button", url: new_user_path, name: t("user.user")
+
+  = render 'nav_tabs'
+  = render 'filter'
+  = render "shared/no_data", items: @users
+
+  - if @users.present?
+    = render "shared/pagination_title", objects: @users
+
+    .table-responsive
+      %table.table.table-hover.pretty
+        %thead
+          %tr
+            %th #
+            %th= sortable "email", t("user.email")
+            %th= t('user.status')
+            %th= t('user.role')
+            %th= t('shared.created_at')
+            %th= t('shared.updated_at')
+            %th= t('user.last_sign_in_at')
+            %th
+
+        %tbody
+          - @users.each_with_index do |user, index|
+            %tr{class: ("disabled-bg" unless user.actived?)}
+              %td= @pagy.from + index
+              %td= user.email
+              %td= user.role.try(:titlecase)
+              %td.status{ class: user.status }
+                = t("user.#{user.status}")
+              %td= timeago(user.created_at).html_safe
+              %td= timeago(user.updated_at).html_safe
+              %td= timeago(user.last_sign_in_at).html_safe
+              %td
+                .d-flex.justify-content-end{'data-controller': "users"}
+                  = render 'action_buttons', user: user
+
+    - if @pagy.pages > 1
+      .pagy-wrapper.justify-content-lg-end.justify-content-center
+        != pagy_bootstrap_compact_nav(@pagy)
+
+= render "shared/modals/confirm_delete_modal"

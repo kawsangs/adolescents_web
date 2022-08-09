@@ -1,0 +1,27 @@
+km:
+  shared:
+    no_data_found: មិនមានទិន្នន័យ
+    use_plus_to_add_item: សូមប្រើប៊ូតុង (+) ដើម្បីបន្ថែមទិន្នន័យ!
+    edit: កែតម្រូវ
+    delete: លុប
+    cancel: បោះបង់
+    save: រក្សាទុក
+    back: ត្រលប់ក្រោយ
+    done: រួចរាល់
+    reset: កំណត់ឡើងវិញ
+    add_new: បន្ថែម%{name}ថ្មី
+    created_at: កាលបរិច្ឆេទបង្កើត
+    updated_at: កាលបរិច្ឆេទធ្វើបច្ចុប្បន្នភាព
+    are_you_sure_to_delete: តើអ្នកប្រាកដជាលុប%{type} <b>%{name}</b> នេះមែនទេ?
+    yes_delete: បាទ/ចាស, លុប!
+    confirm_delete: បញ្ជាក់ការលុបការ %{name}
+    restore: ស្តារឡើងវិញ
+    archive: Archive
+    activate: បើកដំណើរការគណនី
+    deactivate: បិទដំណើរការគណនី
+    code: លេខកូដ
+    name: ឈ្មោះ
+    pagination_title: "បង្ហាញទិន្ន័យ <b>%{from}</b> - <b>%{to}</b> នៃចំនួនសរុប <b>%{total}</b>"
+    all: ទាំងអស់
+    copied: បានថតចម្លង
+    email: អ៊ីម៉ែល

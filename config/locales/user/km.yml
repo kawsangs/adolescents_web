@@ -1,0 +1,20 @@
+km:
+  user:
+    users: គណនីប្រើប្រាស់
+    user: គណនីប្រើប្រាស់
+    status: ស្ថានភាព
+    last_sign_in_at: ចូលចុងក្រោយនៅ
+    role: តួនាទី
+    email: អ៊ីមែល
+    new_user: បន្ថែមគណនីប្រើប្រាស់ថ្មី
+    edit_user: កែតម្រូវគណនីប្រើប្រាស់ថ្មី
+    copy_confirm_link: ថតចម្លងតំណភ្ជាប់
+    copied: ត្រូវបានថតចម្លង!
+    all: ទាំងអស់
+    archived: Archived
+    archive_successfully: "អ្នកប្រើប្រាស់ %{email} ត្រូវបាន archived ដោយជោគជ័យ!"
+    restore_successfully: "អ្នកប្រើប្រាស់ %{email} ត្រូវបានស្តារដោយជោគជ័យ!"
+    resend_confirmation: ផ្ញើតំណភ្ជាប់ម្តងទៀត
+    resend_confirmation_successfully: ផ្ញើតំណភ្ជាប់ម្តងទៀតដោយជោគជ័យ!
+    locale_km: ខ្មែរ
+    locale_en: English

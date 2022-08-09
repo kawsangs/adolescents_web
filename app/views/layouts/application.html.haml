@@ -13,7 +13,7 @@
 
     = favicon_link_tag asset_path('favicon.png')
 
-  %body
+  %body{id: css_class_name}
     = render "shared/flash_message"
 
     .sb-nav-fixed

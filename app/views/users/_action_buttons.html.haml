@@ -1,0 +1,38 @@
+- if user.deleted?
+  / Restore
+  = link_to restore_user_path(user), class: "btn btn-circle btn-sm btn-outline-warning me-1", data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top', turbo_method: :put }, title: t('shared.restore') do
+    %i.fas.fa-trash-restore
+
+  / Really destroy
+  - if policy(user).destroy?
+    = render 'shared/buttons/delete_button', object: user, message: { type: t('user.user'), name: user.email, url: user_path(user) }
+  - else
+    %button.disabled.btn.btn-circle.btn-sm.btn-outline-danger.me-1{data: {'bs-toggle': 'tooltip', 'bs-placement': 'top', title: t('user.cannnot_be_deleted')}}
+      %i.fas.fa-trash-alt
+
+- else
+  - if policy(user).archive?
+    - unless user.confirmed?
+      / Resend confirmation
+      = link_to resend_confirmation_user_path(user), class: "btn btn-circle btn-sm btn-outline-success me-1", data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top', turbo_method: :post }, title: t('user.resend_confirmation') do
+        %i.fas.fa-share-square
+
+      / Copy confirm link
+      %div{'data-controller': "users"}
+        %input.confirm-link{ value: confirmation_url(user, confirmation_token: user.confirmation_token), 'data-users-target' => 'link', readonly: true }
+
+        %button.me-1{ class: "btn btn-circle btn-sm btn-outline-secondary me-1 btn-copy", data: { action: "click->users#copyConfirmationLink", 'bs-toggle': 'tooltip', 'bs-placement': 'top', label: t('shared.copied') }, title: t('user.copy_confirm_link')}
+          %i.far.fa-copy
+
+    / Deactivate / Activate
+    - if policy(user).update? && user.confirmed?
+      - title = user.actived? ? t("shared.deactivate") : t("shared.activate")
+      = link_to user_path(user, user: {actived: !user.actived}), class: "btn btn-circle btn-sm btn-outline-info me-1", data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top', turbo_method: :put }, title: title do
+        %i.fas{class: (user.actived? ? "fa-eye" : "fa-eye-slash")}
+
+    / Edit
+    = render 'shared/buttons/edit_button', object: user, url: edit_user_path(user)
+
+    / Archive
+    = link_to archive_user_path(user), class: "btn btn-circle btn-sm btn-outline-danger", data: {'bs-toggle': 'tooltip', 'bs-placement': 'top', turbo_method: :put}, title: t('shared.archive') do
+      %i.fas.fa-user-times
