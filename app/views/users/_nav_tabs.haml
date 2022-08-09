@@ -1,0 +1,6 @@
+%ul.nav.nav-tabs
+  %li.nav-item
+    %a.nav-link{ href: users_path, class: ('active' if params[:archived].blank?) }= t("user.all")
+
+  %li.nav-item
+    %a.nav-link{href: users_path(archived: true), class: ('active' if params[:archived].present?)}= t("user.archived")

@@ -1,0 +1,7 @@
+%form{ action: users_path, method: 'get' }
+  .input-group.my-2.search-input
+    = text_field_tag(:email, params[:email], class: 'form-control', placeholder: t('user.email'))
+    %span.input-group-text
+      %i.fas.fa-search
+
+  = hidden_field_tag :archived, params[:archived]

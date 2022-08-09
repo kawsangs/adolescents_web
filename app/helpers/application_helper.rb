@@ -22,4 +22,11 @@ module ApplicationHelper
   def css_active_class(controller_name)
     return "active" if request.path.split("/")[1] == controller_name
   end
+
+  def system_locales
+    [
+      { code: "km", label: I18n.t("user.locale_km"), image: "khmer.png" },
+      { code: "en", label: I18n.t("user.locale_en"), image: "english.png" }
+    ]
+  end
 end

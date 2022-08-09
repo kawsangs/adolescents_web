@@ -1,0 +1,20 @@
+en:
+  user:
+    users: Users
+    user: User
+    status: Status
+    last_sign_in_at: Last sign in at
+    role: Role
+    email: Email
+    new_user: New user
+    edit_user: Edit user
+    copy_confirm_link: Copy confirm link
+    copied: Copied!
+    all: All
+    archived: Archived
+    archive_successfully: "User %{email} is archived successfully!"
+    restore_successfully: "User %{email} is restored successfully!"
+    resend_confirmation: Resend confirmation
+    resend_confirmation_successfully: Resend the confirmation successfully!
+    locale_km: ខ្មែរ
+    locale_en: English

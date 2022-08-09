@@ -1,0 +1,31 @@
+#users-index {
+  .confirm-link {
+    position: absolute;
+    left: -100%;
+    opacity: 0;
+  }
+
+  .status {
+    color: orange;
+  }
+
+  .status.actived {
+    color: green;
+  }
+
+  .status.locked {
+    color: red;
+  }
+
+  .status.deactivated {
+    color: #dc3545;
+  }
+
+  .status.archived {
+    color: #6c757d;
+  }
+}
+
+button > * {
+  pointer-events: none;
+}

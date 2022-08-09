@@ -1,0 +1,27 @@
+en:
+  shared:
+    no_data_found: No data found
+    use_plus_to_add_item: Please use (+) button to add items!
+    edit: Edit
+    delete: Delete
+    cancel: Cancel
+    save: Save
+    back: Back
+    done: Done
+    reset: Reset
+    add_new: Add new %{name}
+    created_at: Created at
+    updated_at: Updated at
+    are_you_sure_to_delete: Are you sure to delete the %{type} <b>%{name}</b>?
+    yes_delete: Yes, Delete!
+    confirm_delete: Confirm delete %{name}
+    restore: Restore
+    archive: Archive
+    activate: Activate
+    deactivate: Deactivate
+    code: Code
+    name: Name
+    pagination_title: "Displaying items <b>%{from}</b> - <b>%{to}</b> of <b>%{total}</b> in total"
+    all: All
+    copied: Copied
+    email: Email
