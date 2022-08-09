@@ -6,10 +6,15 @@ class ApplicationController < ActionController::Base
   rescue_from ::Pundit::NotAuthorizedError, with: :render_unauthorized
 
   before_action :authenticate_user!
+  before_action :set_locale
 
   layout :set_layout
 
   private
+    def set_locale
+      I18n.locale = current_user.try(:locale).presence || I18n.default_locale
+    end
+
     def set_layout
       devise_controller? ? "layouts/minimal" : "layouts/application"
     end

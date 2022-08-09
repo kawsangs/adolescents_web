@@ -1,0 +1,19 @@
+%ul.navbar-nav.ms-auto.ms-md-0.me-3.me-lg-4{'data-controller' => 'topbar' }
+
+  %li.nav-item.dropdown
+    %a#localeDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
+      - locale = system_locales.select { |l| l[:code] == I18n.locale.to_s }.first
+
+      = image_tag locale[:image], alt: locale[:label], size: "24x24"
+      %span.text-gray-600.small= locale[:label]
+
+    %ul.dropdown-menu.dropdown-menu-end{ "aria-labelledby" => "localeDropdown" }
+      - system_locales.each_with_index do |locale, index|
+        %li
+          = link_to locale_path(locale: locale[:code]), method: :put, data: { remote: true, controller: 'topbar', action: "ajax:success->topbar#reloadPage" }, class: 'btn dropdown-item' do
+            = image_tag locale[:image], alt: locale[:label], size: "24x24"
+            = locale[:label]
+
+        - if index < system_locales.length - 1
+          %li
+            %hr.dropdown-divider
