@@ -8,5 +8,10 @@ module Users::Filter
       scope = scope.only_deleted if params[:archived] == "true"
       scope
     end
+
+    def self.from_omniauth(access_token)
+      data = access_token.info
+      User.where(email: data["email"]).first
+    end
   end
 end
