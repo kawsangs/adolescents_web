@@ -23,6 +23,9 @@
 
     .mb-3= f.input :remember_me, as: :boolean if devise_mapping.rememberable?
 
+    - unless Rails.env.development?
+      .mb-3= recaptcha_tags
+
     .mb-3.actions.form-group
       = f.submit t("devise.sign_in"), class: 'btn btn-primary w-100 mb-2'
 
