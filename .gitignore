@@ -68,3 +68,8 @@ yarn-debug.log*
 
 .DS_Store
 app.env
+
+/*.json
+public/uploads/*
+
+/config/master.key

@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     match "/verify_otp" => "sessions#show", via: :get
   end
 
+  use_doorkeeper do
+    controllers token_info: "token_info"
+  end
+
   # Defines the root path route ("/")
   root "users#index"
 
