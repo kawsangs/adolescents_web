@@ -136,6 +136,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_15_070646) do
     t.integer "sign_in_type", default: 1
     t.string "otp_token"
     t.datetime "otp_sent_at"
+    t.integer "gf_user_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

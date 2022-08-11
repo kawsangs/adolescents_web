@@ -63,6 +63,8 @@ gem "recaptcha", "~> 5.10.0"
 gem "doorkeeper", "~> 5.5.4"
 gem "awesome_nested_set", "~> 3.5.0"
 gem "audited", "~> 5.0"
+gem "sidekiq", "~> 6.5.4"
+gem "httparty", "~> 0.20.0"
 
 gem "sentry-ruby"
 gem "sentry-rails"
@@ -98,4 +100,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
   gem "shoulda-matchers"
+  gem "rspec-sidekiq"
 end

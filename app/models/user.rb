@@ -29,12 +29,17 @@
 #  sign_in_type           :integer          default("system")
 #  otp_token              :string
 #  otp_sent_at            :datetime
+#  gf_user_id             :integer
 #
 class User < ApplicationRecord
+  acts_as_paranoid
+
   include Users::Filter
   include Users::OtpConcern
+  # include Users::Confirmable
+  include Users::GrafanaConcern
 
-  acts_as_paranoid
+  attr_accessor :skip_callback
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -43,7 +48,8 @@ class User < ApplicationRecord
 
   enum role: {
     primary_admin: 1,
-    admin: 2
+    admin: 2,
+    staff: 3
   }
 
   enum sign_in_type: {
@@ -56,7 +62,7 @@ class User < ApplicationRecord
 
   # Constant
   SYSTEM = "system"
-  ROLES = [["Admin", "admin"]]
+  ROLES = [["Admin", "admin"], ["Staff/Officer", "staff"]]
 
   has_many :access_grants,
              class_name: "Doorkeeper::AccessGrant",
@@ -75,6 +81,10 @@ class User < ApplicationRecord
     return "deactivated" unless actived?
 
     "pending"
+  end
+
+  def display_name
+    email.split("@").first.upcase
   end
 
   private
