@@ -23,5 +23,7 @@ module App
     config.i18n.fallbacks = [:en]
     config.i18n.available_locales = [:en, :km]
     config.i18n.default_locale = :km
+
+    config.paths["config/routes.rb"] << Rails.root.join("config/routes/api.rb")
   end
 end

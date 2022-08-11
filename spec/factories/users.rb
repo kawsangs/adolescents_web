@@ -29,5 +29,9 @@
 #
 FactoryBot.define do
   factory :user do
+    email         { FFaker::Internet.email }
+    password      { FFaker::Internet.password }
+    role          { "admin" }
+    confirmed_at  { DateTime.now }
   end
 end
