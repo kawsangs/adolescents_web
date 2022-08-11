@@ -61,6 +61,8 @@ gem "omniauth-google-oauth2", "~> 1.0.1"
 gem "omniauth-facebook", "~> 9.0.0"
 gem "recaptcha", "~> 5.10.0"
 gem "doorkeeper", "~> 5.5.4"
+gem "awesome_nested_set", "~> 3.5.0"
+gem "audited", "~> 5.0"
 
 gem "sentry-ruby"
 gem "sentry-rails"

@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   end
 
   resource :locale, only: [:update]
+  resources :api_keys
 end
