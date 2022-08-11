@@ -26,3 +26,4 @@ en:
     copied: Copied
     email: Email
     status: Status
+    unauthorized_alert_message: You are not authorized to perform this action.
