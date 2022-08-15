@@ -61,6 +61,8 @@ gem "omniauth-google-oauth2", "~> 1.0.1"
 gem "omniauth-facebook", "~> 9.0.0"
 gem "recaptcha", "~> 5.10.0"
 gem "doorkeeper", "~> 5.5.4"
+gem "awesome_nested_set", "~> 3.5.0"
+gem "audited", "~> 5.0"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -72,6 +74,7 @@ group :development, :test do
   gem "ffaker"
   gem "rspec-rails"
   gem "database_cleaner-active_record"
+  gem "byebug"
 end
 
 group :development do
