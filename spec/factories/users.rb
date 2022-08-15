@@ -26,6 +26,7 @@
 #  locale                 :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  gf_user_id             :integer
 #
 FactoryBot.define do
   factory :user do
@@ -33,5 +34,18 @@ FactoryBot.define do
     password      { FFaker::Internet.password }
     role          { "admin" }
     confirmed_at  { DateTime.now }
+    skip_callback { true }
+
+    trait :allow_callback do
+      skip_callback { false }
+    end
+
+    trait :primary_admin do
+      role { "primary_admin" }
+    end
+
+    trait :staff do
+      role { "staff" }
+    end
   end
 end
