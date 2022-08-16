@@ -93,6 +93,10 @@ gem "caxlsx_rails", "~> 0.6.3"
 gem "jquery-rails", "~> 4.5.0"
 gem "pumi", require: "pumi/rails"
 
+# For error tracking alert
+gem "sentry-ruby"
+gem "sentry-rails"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
