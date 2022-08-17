@@ -131,7 +131,7 @@
     }
   }
 }
-
+// ---------otp
 .input {
   width: 36px;
   height: 45px;
@@ -148,4 +148,53 @@ input.input::-webkit-inner-spin-button {
 input.input[type=number] {
   -moz-appearance: textfield;
   appearance: textfield;
+
+// ------------------------stackholder
+
+$font-size: 1em;
+$height: 80px;
+.stackholders {
+  .text-funded,
+  .text-implemented {
+    font-size: $font-size;
+  }
+
+  .img-funded {
+    height: $height;
+  }
+
+  .img-implemented {
+    height: $height / 2;
+  }
+
+  .img-implemented-wrapper {
+    height: $height;
+    & > a:not(:last-child) {
+      margin-right: 15px;
+    }
+  }
+}
+
+$font-size-lg: 1.2em;
+$height-lg: 65px;
+.stackholders-lg {
+  .text-funded,
+  .text-implemented {
+    font-size: $font-size-lg;
+  }
+
+  .img-funded {
+    height: $height-lg *2;
+  }
+
+  .img-implemented {
+    height: $height-lg;
+  }
+
+  .img-implemented-wrapper {
+    height: $height-lg *2;
+    & > a:not(:last-child) {
+      margin-right: 15px;
+    }
+  }
 }

@@ -1,0 +1,18 @@
+.logo-wrapper.d-flex.flex-column.justify-content-center.p-5.me-5
+  = link_to t("devise.login"), url_for(anchor: :login_form), class: "btn btn-primary position-absolute d-lg-none", style: "top: 30px; right: 30px;"
+
+  %h3.title.mb-3.text-center
+    = ENV['APP_NAME'] || "សុខភាពខ្ញុំ"
+    %div
+      = "(My Health)"
+
+  .logo-image-wrapper.flex-row.text-center.justify-content-conter
+    = image_tag 'my_health.png', size: '200x200'
+
+  %footer.mt-4
+    = render 'devise/shared/stakeholder'
+
+  .text-center
+    = link_to "Download Mobile App?", "https://play.google.com/store/apps/details?id=org.instedd.ilabsea.myjourneys", class: 'btn btn-link', target: '_blank'
+  .text-center
+    = image_tag "qr_code.png", size: '100x100'
