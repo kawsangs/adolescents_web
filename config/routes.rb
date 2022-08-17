@@ -26,7 +26,12 @@ Rails.application.routes.draw do
 
   resource :locale, only: [:update]
 
-  resources :api_keys
+  resources :api_keys do
+    member do
+      put :archive
+      put :restore
+    end
+  end
 
   if Rails.env.production?
     # Sidekiq

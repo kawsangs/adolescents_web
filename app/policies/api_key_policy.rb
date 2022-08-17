@@ -15,8 +15,16 @@ class ApiKeyPolicy < ApplicationPolicy
     create?
   end
 
-  def destroy?
+  def archive?
     create?
+  end
+
+  def restore?
+    record.deleted?
+  end
+
+  def destroy?
+    archive? && record.deleted?
   end
 
   class Scope < Scope

@@ -9,9 +9,11 @@
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  deleted_at :datetime
 #
 class ApiKey < ApplicationRecord
   audited only: :actived
+  acts_as_paranoid
 
   # Association
   belongs_to :user
@@ -20,12 +22,15 @@ class ApiKey < ApplicationRecord
   before_create :generate_api_key
 
   def status
+    return "archived" if deleted?
+
     actived? ? "actived" : "deactivated"
   end
 
   def self.filter(params)
     scope = all
     scope = scope.where("LOWER(name) LIKE ?", "%#{params[:name].downcase}%") if params[:name].present?
+    scope = scope.only_deleted if params[:archived] == "true"
     scope
   end
 

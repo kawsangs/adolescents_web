@@ -1,0 +1,20 @@
+- if api_key.deleted?
+  / Restore
+  = link_to restore_api_key_path(api_key), class: "btn btn-circle btn-sm btn-outline-warning me-1", data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top', turbo_method: :put }, title: t('shared.restore') do
+    %i.fas.fa-trash-restore
+
+  = render 'shared/buttons/delete_button', object: api_key,  message: { type: t('api_key.api_key'), name: api_key.name, url: api_key_path(api_key) }
+
+- else
+  / Deactivate / Activate
+  - if policy(api_key).update?
+    - title = api_key.actived? ? t("shared.deactivate") : t("shared.activate")
+    = link_to api_key_path(api_key, api_key: {actived: !api_key.actived}), class: "btn btn-circle btn-sm btn-outline-info me-1", data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top', turbo_method: :put }, title: title do
+      %i.fas{class: (api_key.actived? ? "fa-eye" : "fa-eye-slash")}
+
+
+  = render 'shared/buttons/edit_button', object: api_key, url: edit_api_key_path(api_key)
+
+  / Archive
+  = link_to archive_api_key_path(api_key), class: "btn btn-circle btn-sm btn-outline-danger", data: {'bs-toggle': 'tooltip', 'bs-placement': 'top', turbo_method: :put}, title: t('shared.archive') do
+    %i.fas.fa-user-times

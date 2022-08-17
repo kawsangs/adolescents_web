@@ -1,6 +1,6 @@
 module Samples
   class Visitor < Base
-    def self.load(count=1)
+    def self.load(count = 1)
       count.times.each do |i|
         ::Visitor.create(
           device_id: "abc_#{rand(1..5)}",
@@ -30,9 +30,9 @@ module Samples
 
     def self.platforms
       [
-        { name: 'android' },
-        { name: 'ios' },
-        { name: 'web' }
+        { name: "android" },
+        { name: "ios" },
+        { name: "web" }
       ]
     end
   end
