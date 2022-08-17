@@ -8,5 +8,5 @@
 #  updated_at :datetime         not null
 #
 class Platform < ApplicationRecord
-  has_many :visitors
+  has_many :visits
 end

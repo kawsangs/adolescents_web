@@ -1,8 +1,8 @@
 module Samples
-  class Visitor < Base
+  class Visit < Base
     def self.load(count = 1)
       count.times.each do |i|
-        ::Visitor.create(
+        ::Visit.create(
           device_id: "abc_#{rand(1..5)}",
           visit_date: rand(1.year).seconds.ago,
           page_attributes: pages.sample,

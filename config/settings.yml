@@ -1,0 +1,1 @@
+max_download_visit_record: <%= ENV.fetch('MAX_DOWNLOAD_VISIT_RECORD') { 10000 }.to_i %>

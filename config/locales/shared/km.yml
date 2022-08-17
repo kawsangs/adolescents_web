@@ -27,5 +27,6 @@ km:
     email: អ៊ីម៉ែល
     status: ស្ថានភាព
     unauthorized_alert_message: អ្នកមិនត្រូវបានអនុញ្ញាតឱ្យអនុវត្តសកម្មភាពនេះទេ
-    all: ទាំងអស់
     archived: Archived
+    download_excel: ទាញយកជា Excel
+    file_size_is_too_big: ទំហំឯកសារធំពេកសូមច្រោះវា!
