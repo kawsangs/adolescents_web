@@ -32,6 +32,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :visits
+
   if Rails.env.production?
     # Sidekiq
     authenticate :user, lambda { |u| u.primary_admin? } do

@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: visitors
+# Table name: visits
 #
 #  id          :uuid             not null, primary key
 #  device_id   :string
@@ -10,9 +10,11 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
-class Visitor < ApplicationRecord
+class Visit < ApplicationRecord
   belongs_to :page
   belongs_to :platform
+
+  delegate :name, to: :page, prefix: true
 
   accepts_nested_attributes_for :page, reject_if: lambda { |attributes|
     attributes["code"].blank?

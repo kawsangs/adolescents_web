@@ -1,0 +1,37 @@
+.container-fluid.px-4{'data-controller' => 'indicators'}
+  .d-flex
+    .flex-grow-1= render 'shared/header_title', title: t('visit.visits')
+
+    - if policy(Visit).index?
+      .d-flex.align-items-center
+        %a.btn.btn-warning.btn-sm.shadow-sm{ href: visits_path(format: :xlsx), target: '_blank' }
+          %i.fas.fa-download
+          = t('shared.download_excel')
+
+  = render "shared/no_data", items: @visits
+
+  - if @visits.present?
+    = render "shared/pagination_title", objects: @visits
+
+    .table-responsive
+      %table.table.table-hover.pretty
+        %thead
+          %tr
+            %th #
+            %th= t('visit.device_id')
+            %th= t('visit.page')
+            %th= t('visit.visit_date')
+            %th= t('shared.created_at')
+
+        %tbody
+          - @visits.each_with_index do |visit, index|
+            %tr
+              %td= @pagy.from + index
+              %td= visit.device_id
+              %td= visit.page_name
+              %td= timeago(visit.visit_date).html_safe
+              %td= timeago(visit.created_at).html_safe
+
+    - if @pagy.pages > 1
+      .d-flex.pagy-wrapper.justify-content-lg-end.justify-content-center
+        != pagy_bootstrap_nav(@pagy)

@@ -16,5 +16,5 @@
 class Page < ApplicationRecord
   acts_as_nested_set
 
-  has_many :visitors
+  has_many :visits
 end
