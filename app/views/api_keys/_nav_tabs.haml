@@ -1,0 +1,6 @@
+%ul.nav.nav-tabs
+  %li.nav-item
+    %a.nav-link{ href: api_keys_path, class: ('active' if params[:archived].blank?) }= t("shared.all")
+
+  %li.nav-item
+    %a.nav-link{href: api_keys_path(archived: true), class: ('active' if params[:archived].present?)}= t("shared.archived")

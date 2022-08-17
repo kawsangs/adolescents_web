@@ -4,3 +4,5 @@ km:
     api_keys: Api keys
     new_api_key: Api key ថ្មី
     edit_api_key: កែតម្រូវ Api key
+    archive_successfully: "Api key %{name} ត្រូវបាន archived ដោយជោគជ័យ!"
+    restore_successfully: "Api key %{name} ត្រូវបានស្តារដោយជោគជ័យ!"
