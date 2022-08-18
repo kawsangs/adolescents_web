@@ -36,6 +36,8 @@ Rails.application.routes.draw do
 
   resource :about, only: [:show]
 
+  resource :about, only: [:show]
+
   if Rails.env.production?
     # Sidekiq
     authenticate :user, lambda { |u| u.primary_admin? } do
