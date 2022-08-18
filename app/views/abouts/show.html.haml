@@ -1,0 +1,25 @@
+#content.pb-2
+  .w-75.view-center
+    - unless signed_in?
+      = link_to 'Back', root_path, class: 'btn btn-link'
+
+    %nav.text-center.mb-4{ class: ('mt-3' if signed_in?) }
+      .container-fluid
+        %h3 កម្មវិធីសុខភាពរបស់ខ្ញុំ
+        %h4 (My Health Application)
+
+    %p កម្មវិធីអ៊ែប សុខភាពរបស់ខ្ញុំ បានកសាងឡើងដោយបណ្តាញទូរសព្ទ័ជំនួយកុមារកម្ពុជា (CHC) និងអ៊ែបវិស្វករ Kawsang ដែលជាផលិតផលក្រោមកម្មវិធី change_me។ កម្មវិធីអ៊ែបនេះគឺជាប្រភពព័ត៌មានជាសាធារណៈមួយដែលបង្កើតឡើងសម្រាប់ប្រើប្រាស់ដោយមិនមានការគិតថ្លៃ និងមានបំណងឲ្យប្រើប្រាស់ស្របតាមគោលបំណងរបស់អ៊ែប។
+
+    %h5.text-center
+      %strong ក្រោមជំនួយថវិកាដោយ / Funded By
+
+    .w-100.text-center
+      = image_tag('spotlight_one_line.png', class: 'spotlight-logo')
+
+    %h5.text-center.my-3
+      %strong សហការណ៍ផលិតដោយ / Implemented By
+
+    .d-flex.justify-content-center.mb-5
+      %div.mx-2= image_tag('kawsang_logo.png', class: 'small-logo')
+      %div= image_tag('chc.png', class: 'small-logo')
+
