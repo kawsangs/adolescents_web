@@ -32,16 +32,10 @@
           %i.fa-solid.fa-eye
         = t('sidebar.visits')
 
-      / %a.nav-link.collapsed{"aria-controls" => "collapseLayouts", "aria-expanded" => "false", "data-bs-target" => "#collapseLayouts", "data-bs-toggle" => "collapse", :href => "#"}
-      /   .sb-nav-link-icon
-      /     %i.fas.fa-columns
-      /   Layouts
-      /   .sb-sidenav-collapse-arrow
-      /     %i.fas.fa-angle-down
-      / #collapseLayouts.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" => "#sidenavAccordion"}
-      /   %nav.sb-sidenav-menu-nested.nav
-      /     %a.nav-link{:href => "layout-static.html"} Static Navigation
-      /     %a.nav-link{:href => "layout-sidenav-light.html"} Light Sidenav
+      = link_to about_path, class: ['nav-link', css_active_class('about')] do
+        .sb-nav-link-icon
+          %i.fa-solid.fa-circle-exclamation
+        = t('sidebar.about')
 
   .sb-sidenav-footer
     .small= "Version: #{ENV['APP_VERSION'] || 'development'}"

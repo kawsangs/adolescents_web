@@ -33,6 +33,8 @@
     .form-group
       = render "devise/shared/links"
 
+      .mb-3= link_to t('about.about_us'), about_path, class: 'btn btn-link pr-0'
+
     .form-group
       %span.fs-xs
         = t("sidebar.version") + ': '
