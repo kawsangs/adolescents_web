@@ -1,5 +1,5 @@
 class ApiKeysController < ApplicationController
-  before_action :set_api_key, only: %i[ edit update destroy ]
+  before_action :set_api_key, only: %i[ edit update archive]
 
   def index
     @pagy, @api_keys = pagy(authorize ApiKey.filter(filter_params))
@@ -34,11 +34,25 @@ class ApiKeysController < ApplicationController
     end
   end
 
-  def destroy
+  def archive
     @api_key.destroy
 
+    redirect_to api_keys_url, status: :see_other, notice: I18n.t("api_key.archive_successfully", name: @api_key.name)
+  end
+
+  def restore
+    @api_key = authorize ApiKey.only_deleted.find(params[:id])
+    @api_key.restore
+
+    redirect_to api_keys_url, notice: I18n.t("api_key.restore_successfully", name: @api_key.name)
+  end
+
+  def destroy
+    @api_key = authorize ApiKey.only_deleted.find(params[:id])
+    @api_key.really_destroy!
+
     respond_to do |format|
-      format.html { redirect_to api_keys_url, notice: "Api key was successfully destroyed." }
+      format.html { redirect_to api_keys_url(archived: true), notice: "Api key was successfully destroyed." }
       format.turbo_stream { redirect_to api_keys_url, status: :see_other, notice: "Api key was successfully destroyed." }
     end
   end
@@ -50,7 +64,7 @@ class ApiKeysController < ApplicationController
     end
 
     def filter_params
-      params.permit(:name)
+      params.permit(:name, :archived)
     end
 
     def set_api_key
