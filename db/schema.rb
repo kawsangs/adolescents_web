@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_17_064359) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_17_080036) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -142,7 +142,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_17_064359) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  create_table "visitors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "visits", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "device_id"
     t.uuid "page_id"
     t.uuid "platform_id"

@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: visitors
+# Table name: visits
 #
 #  id          :uuid             not null, primary key
 #  device_id   :string
@@ -11,6 +11,6 @@
 #  updated_at  :datetime         not null
 #
 FactoryBot.define do
-  factory :visitor do
+  factory :visit do
   end
 end

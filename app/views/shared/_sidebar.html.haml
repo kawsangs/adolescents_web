@@ -27,6 +27,11 @@
             %i.fa-solid.fa-key
           = t('sidebar.api_keys')
 
+      = link_to visits_path, class: ['nav-link', css_active_class('visits')] do
+        .sb-nav-link-icon
+          %i.fa-solid.fa-eye
+        = t('sidebar.visits')
+
       / %a.nav-link.collapsed{"aria-controls" => "collapseLayouts", "aria-expanded" => "false", "data-bs-target" => "#collapseLayouts", "data-bs-toggle" => "collapse", :href => "#"}
       /   .sb-nav-link-icon
       /     %i.fas.fa-columns

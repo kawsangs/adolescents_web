@@ -27,5 +27,6 @@ en:
     email: Email
     status: Status
     unauthorized_alert_message: You are not authorized to perform this action.
-    all: All
     archived: Archived
+    download_excel: Download Excel
+    file_size_is_too_big: The file size is too big, please filter it!
