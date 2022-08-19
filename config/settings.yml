@@ -1,1 +1,12 @@
+host: <%= ENV['SETTINGS__SMTP__HOST'] %>
+
+smtp:
+  address: <%= ENV['SETTINGS__SMTP__ADDRESS'] %>
+  domain: <%= ENV['SETTINGS__SMTP__DOMAIN'] %>
+  port: <%= ENV['SETTINGS__SMTP__PORT'] %>
+  user_name: <%= ENV['SETTINGS__SMTP__USER_NAME'] %>
+  password: <%= ENV['SETTINGS__SMTP__PASSWORD'] %>
+  authentication: <%= ENV['SETTINGS__SMTP__AUTHENTICATION'] %>
+  enable_starttls_auto: <%= ENV['SETTINGS__SMTP__ENABLE_STARTTLS_AUTO'] %>
+
 max_download_visit_record: <%= ENV.fetch('MAX_DOWNLOAD_VISIT_RECORD') { 10000 }.to_i %>
