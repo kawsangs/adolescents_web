@@ -40,7 +40,7 @@
 
                 = timeago(user.last_sign_in_at).html_safe
               %td
-                .d-flex.justify-content-end{'data-controller': "users"}
+                .d-flex.justify-content-end
                   = render 'action_buttons', user: user
 
     - if @pagy.pages > 1
