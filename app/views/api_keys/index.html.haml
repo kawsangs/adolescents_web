@@ -28,7 +28,12 @@
             %tr
               %td= @pagy.from + index
               %td= api_key.name
-              %td= api_key.api_key
+              %td
+                .d-flex
+                  = api_key.api_key
+                  / Copy key
+                  = render "shared/buttons/copy_button", value: api_key.api_key, tooltip_title: t('api_key.copy_api_key')
+
               %td.status{ class: api_key.status }
                 = t("api_key.#{api_key.status}")
               %td

@@ -1,11 +1,11 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = [ "link" ]
+  static targets = [ "value" ]
 
-  copyConfirmationLink(event) {
+  copy(event) {
     event.preventDefault();
-    this.linkTarget.select();
+    this.valueTarget.select();
     document.execCommand("copy");
 
     this.showTooltip(event);

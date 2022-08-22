@@ -6,3 +6,4 @@ en:
     edit_api_key: Edit Api key
     archive_successfully: "Api key %{name} is archived successfully!"
     restore_successfully: "Api key %{name} is restored successfully!"
+    copy_api_key: Copy Api key
