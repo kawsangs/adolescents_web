@@ -1,7 +1,7 @@
 %ul.navbar-nav.ms-auto.ms-md-0.me-3.me-lg-4{'data-controller' => 'topbar' }
 
   %li.nav-item.dropdown
-    %a#localeDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
+    %a#localeDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button", "data-locale": I18n.locale}
       - locale = system_locales.select { |l| l[:code] == I18n.locale.to_s }.first
 
       = image_tag locale[:image], alt: locale[:label], size: "24x24"
