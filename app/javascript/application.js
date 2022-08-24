@@ -7,13 +7,17 @@ import Rails from '@rails/ujs'
 import "popper"
 import "bootstrap"
 
+import jquery from 'jquery'
+window.$ = jquery
+
 import "controllers"
+
+import timeago from "timeago"
+import tooltip from "tooltip"
 
 Rails.start();
 
 document.addEventListener('turbo:load', () => {
-  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl)
-  })
+  timeago.init();
+  tooltip.init();
 });

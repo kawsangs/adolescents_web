@@ -1,13 +1,14 @@
-.container-fluid.px-4{'data-controller' => 'indicators'}
+.container-fluid.px-4{'data-controller' => 'visits'}
   .d-flex
     .flex-grow-1= render 'shared/header_title', title: t('visit.visits')
 
     - if policy(Visit).index?
       .d-flex.align-items-center
-        %a.btn.btn-warning.btn-sm.shadow-sm{ href: visits_path(format: :xlsx), target: '_blank' }
+        %a.btn.btn-warning.btn-sm.shadow-sm{ href: visits_path(params.permit(:start_date, :end_date).merge(format: :xlsx)), target: '_blank' }
           %i.fas.fa-download
           = t('shared.download_excel')
 
+  = render "filter_date"
   = render "shared/no_data", items: @visits
 
   - if @visits.present?
