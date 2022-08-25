@@ -1,9 +1,8 @@
-%form.form-search.d-flex{ action: visits_path, method: 'get' }
-  .me-3.mb-2{style: 'min-width: 280px;'}
-    #daterange.form-control.pointer.d-flex.align-items-center
-      %span{'data-placeholder' => t('visit.search_by_visit_date')}
-      .flex-grow-1
-      %i.fa.fa-calendar.ms-2
+.me-3.mb-2{style: 'min-width: 280px;'}
+  #daterange.form-control.pointer.d-flex.align-items-center
+    %span{'data-placeholder' => t('visit.search_by_visit_date')}
+    .flex-grow-1
+    %i.fa.fa-calendar.ms-2
 
-    %input.start-date{ type: 'hidden', name: 'start_date', value: params[:start_date] }
-    %input.end-date{ type: 'hidden', name: 'end_date', value: params[:end_date] }
+  %input.start-date{ type: 'hidden', name: 'start_date', value: params[:start_date] }
+  %input.end-date{ type: 'hidden', name: 'end_date', value: params[:end_date] }

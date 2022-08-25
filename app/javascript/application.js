@@ -14,10 +14,12 @@ import "controllers"
 
 import timeago from "timeago"
 import tooltip from "tooltip"
+import selectPicker from "select_picker"
 
 Rails.start();
 
 document.addEventListener('turbo:load', () => {
   timeago.init();
   tooltip.init();
+  selectPicker.init();
 });
