@@ -30,6 +30,7 @@
 #  otp_token              :string
 #  otp_sent_at            :datetime
 #  gf_user_id             :integer
+#  sign_in_type           :integer          default("system")
 #
 class User < ApplicationRecord
   acts_as_paranoid

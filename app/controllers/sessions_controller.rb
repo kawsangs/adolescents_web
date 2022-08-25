@@ -1,5 +1,6 @@
 class SessionsController < Devise::SessionsController
   append_before_action :assert_otp_token_passed, only: :verify_otp
+  prepend_after_action :set_sign_in_type, only: [:create]
 
   # GET /sign_in/new
   def new
@@ -56,6 +57,10 @@ class SessionsController < Devise::SessionsController
 
     def param_email
       params.require(:user).permit(:email)
+    end
+
+    def set_sign_in_type
+      resource.update_column(:sign_in_type, User::SYSTEM)
     end
 
     def set_sign_in_type
