@@ -18,3 +18,4 @@ en:
     resend_confirmation_successfully: Resend the confirmation successfully!
     locale_km: ខ្មែរ
     locale_en: English
+    last_sign_in_via: Last sign in via %{type}

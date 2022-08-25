@@ -18,3 +18,4 @@ km:
     resend_confirmation_successfully: ផ្ញើតំណភ្ជាប់ម្តងទៀតដោយជោគជ័យ!
     locale_km: ខ្មែរ
     locale_en: English
+    last_sign_in_via: ចូលចុងក្រោយតាមរយៈ %{type}

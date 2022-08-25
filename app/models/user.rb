@@ -27,6 +27,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  gf_user_id             :integer
+#  sign_in_type           :integer          default("system")
 #
 class User < ApplicationRecord
   acts_as_paranoid
@@ -48,6 +49,14 @@ class User < ApplicationRecord
     staff: 3
   }
 
+  enum sign_in_type: {
+    system: 1,
+    google_oauth2: 2,
+    facebook: 3,
+  }
+
+  # Constant
+  SYSTEM = "system"
   ROLES = [["Admin", "admin"], ["Staff/Officer", "staff"]]
 
   has_many :access_grants,
