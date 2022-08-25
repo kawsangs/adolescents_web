@@ -26,6 +26,7 @@
 #  locale                 :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  sign_in_type           :integer          default("system")
 #
 require "rails_helper"
 

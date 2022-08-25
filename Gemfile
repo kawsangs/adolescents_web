@@ -74,6 +74,7 @@ group :development, :test do
   gem "ffaker"
   gem "rspec-rails"
   gem "database_cleaner-active_record"
+  gem "byebug"
 end
 
 group :development do

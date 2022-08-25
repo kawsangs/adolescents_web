@@ -26,6 +26,7 @@
 #  locale                 :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  sign_in_type           :integer          default("system")
 #
 class User < ApplicationRecord
   include Users::Filter
@@ -43,6 +44,14 @@ class User < ApplicationRecord
     admin: 2
   }
 
+  enum sign_in_type: {
+    system: 1,
+    google_oauth2: 2,
+    facebook: 3,
+  }
+
+  # Constant
+  SYSTEM = "system"
   ROLES = [["Admin", "admin"]]
 
   def status

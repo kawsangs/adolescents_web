@@ -26,6 +26,7 @@
 #  locale                 :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  sign_in_type           :integer          default("system")
 #
 FactoryBot.define do
   factory :user do
