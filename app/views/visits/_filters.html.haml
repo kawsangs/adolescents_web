@@ -1,0 +1,9 @@
+%form.form-search.d-flex{ action: visits_path, method: 'get' }
+  = render 'filter_page'
+  .me-2
+  = render 'filter_date'
+
+  %div
+    %button.btn.btn-primary.ml-md-2{type: :submit}
+      %i.fas.fa-search
+      %span.d-none.d-lg-inline= t('shared.search')

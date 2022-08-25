@@ -27,10 +27,11 @@
             %i.fa-solid.fa-key
           = t('sidebar.api_keys')
 
-      = link_to visits_path, class: ['nav-link', css_active_class('visits')] do
-        .sb-nav-link-icon
-          %i.fa-solid.fa-eye
-        = t('sidebar.visits')
+      - if policy(Visit).index?
+        = link_to visits_path, class: ['nav-link', css_active_class('visits')] do
+          .sb-nav-link-icon
+            %i.fa-solid.fa-eye
+          = t('sidebar.visits')
 
       = link_to about_path, class: ['nav-link', css_active_class('about')] do
         .sb-nav-link-icon

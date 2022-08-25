@@ -1,4 +1,6 @@
 class VisitsController < ApplicationController
+  helper_method :filter_params
+
   def index
     respond_to do |format|
       format.html {
@@ -20,6 +22,6 @@ class VisitsController < ApplicationController
 
   private
     def filter_params
-      params.permit(:start_date, :end_date)
+      params.permit(:start_date, :end_date, page_ids: [])
     end
 end
