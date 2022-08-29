@@ -7,7 +7,7 @@ RSpec.describe "Api::V1::VisitsController", type: :request do
     let(:api_key) { create(:api_key) }
     let(:json_response) { JSON.parse(response.body) }
     let(:valid_params) { {
-      divise_id: "123abc", visit_date: Time.now,
+      device_id: "123abc", visit_date: Time.now,
       page_attributes: { code: "page_one", name: "Page one", parent_code: nil },
       platform_attributes: { name: "android" }
     }}
@@ -17,16 +17,12 @@ RSpec.describe "Api::V1::VisitsController", type: :request do
       post "/api/v1/visits", params: { visit: valid_params }, headers:
     end
 
-    it "create a visit" do
-      expect(Visit.count).to eq(1)
+    it "add a visit job" do
+      expect(VisitJob.jobs.count).to eq(1)
     end
 
-    it "create a page" do
-      expect(Page.count).to eq(1)
-    end
-
-    it "create a platform" do
-      expect(Platform.count).to eq(1)
+    it "render status created" do
+      expect(response.status).to eq(201)
     end
   end
 end
