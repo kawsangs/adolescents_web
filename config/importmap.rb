@@ -14,6 +14,7 @@ pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
 # Common util
 pin "timeago", to: "commons/timeago", preload: true
 pin "tooltip", to: "commons/tooltip", preload: true
+pin "alert", to: "commons/alert", preload: true
 pin "select_picker", to: "commons/select_picker", preload: true
 
 pin_all_from "app/javascript/controllers", under: "controllers"
