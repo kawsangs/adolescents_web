@@ -1,0 +1,14 @@
+en:
+  facility:
+    facility: Facility
+    facilities: Facilities
+    name: Name
+    address: Address
+    emails: Emails
+    websites: Websites
+    facebook_pages: Facebook pages
+    telegram_username: Telegram username
+    description: Description
+    new_facility: New facility
+    edit_facility: Edit facility
+    business_hours: Business hours

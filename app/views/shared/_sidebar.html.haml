@@ -27,6 +27,12 @@
             %i.fa-solid.fa-key
           = t('sidebar.api_keys')
 
+      - if policy(Facility).index?
+        = link_to facilities_path, class: ['nav-link', css_active_class('facilities')] do
+          .sb-nav-link-icon
+            %i.fa-solid.fa-house-medical
+          = t('sidebar.facilities')
+
       - if policy(Visit).index?
         = link_to visits_path, class: ['nav-link', css_active_class('visits')] do
           .sb-nav-link-icon

@@ -38,6 +38,8 @@ Rails.application.routes.draw do
 
   resources :app_users, only: [:index]
 
+  resources :facilities
+
   get "/privacy-policy", to: "privacy_policies#show"
   get "/terms-and-conditions", to: "terms_and_conditions#show"
 
