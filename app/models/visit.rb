@@ -44,6 +44,7 @@ class Visit < ApplicationRecord
   def self.filter(params = {})
     scope = all
     scope = scope.where("visit_date BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
+    scope = scope.where(page_id: params[:page_ids]) if params[:page_ids].present?
     scope
   end
 end
