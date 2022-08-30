@@ -1,0 +1,11 @@
+- value ||= ''
+- tooltip_title ||= 'Copy'
+
+/ Space separated
+- button_css_class ||= 'btn-default'
+
+%div{'data-controller': "copies"}
+  %input.confirm-link{ value: value, 'data-copies-target' => 'value', readonly: true }
+
+  %button.me-1{ class: "btn btn-sm me-1 btn-copy #{button_css_class}", data: { action: "click->copies#copy", 'bs-toggle': 'tooltip', 'bs-placement': 'top', label: t('shared.copied') }, title: tooltip_title}
+    %i.far.fa-copy
