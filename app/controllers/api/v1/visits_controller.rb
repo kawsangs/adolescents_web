@@ -2,13 +2,9 @@ module Api
   module V1
     class VisitsController < ApiController
       def create
-        visit = Visit.new(visit_params)
+        VisitJob.perform_async(visit_params)
 
-        if visit.save
-          render json: visit, status: :created
-        else
-          render json: { error: visit.errors }, status: :unprocessable_entity
-        end
+        head :created
       end
 
       private
