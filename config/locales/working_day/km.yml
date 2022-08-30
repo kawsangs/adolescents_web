@@ -1,0 +1,14 @@
+km:
+  working_day:
+    sunday: អាទិត្យ
+    monday: ច័ន្ទ
+    tuesday: អង្គារ
+    wednesday: ពុធ
+    thursday: ព្រហស្ស
+    friday: សុក្រ
+    saturday: សៅរ៍
+    open_at: ម៉ោងបើក
+    close_at: ម៉ោងបិទ
+    add_hour: ថែមម៉ោង
+    open: បើក
+    close: បិទ

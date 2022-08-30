@@ -1,0 +1,13 @@
+%fieldset.working-hour.mb-1
+  .d-flex
+    .me-1.open-at{style: 'width: 150px'}
+      = f.input :open_at, label: false, collection: hour_list, selected: f.object.open_at, input_html: { class: 'selectpicker', "data-none-selected-text" => t('working_day.open_at'), 'data-working-days-target': 'openAt', 'data-action': 'working-days#onChangeOpenAt' }
+
+    .me-1.dash -
+    .me-1.close-at{style: 'width: 150px'}
+      = f.input :close_at, label: false, collection: hour_list, selected: f.object.close_at, input_html: { class: 'selectpicker', "data-none-selected-text" => t('working_day.close_at'), 'data-working-days-target': 'closeAt', 'data-action': 'working-days#onChangeCloseAt' }
+
+    .me-1.btn-remove-hour.d-none{'data-controller' => 'working-hours'}
+      = f.hidden_field :_destroy
+      %button.btn{type: 'button', 'data-working-hours-target': 'btnRemoveHour', 'data-action': 'working-hours#removeField'}
+        %i.fa-solid.fa-xmark

@@ -27,3 +27,4 @@ pin "daterangepicker", to: "https://ga.jspm.io/npm:daterangepicker@3.1.0/dateran
 
 # It is in betta vesion, and it supports bootstrap 5
 pin "bootstrap-select", to: "https://ga.jspm.io/npm:bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.js"
+pin "@yaireo/tagify", to: "https://ga.jspm.io/npm:@yaireo/tagify@4.16.4/dist/tagify.min.js"
