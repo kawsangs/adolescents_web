@@ -1,0 +1,9 @@
+km:
+  app_user:
+    app_user: App user
+    app_users: App users
+    gender: Gender
+    age: age
+    province: Province
+    registered_at: Registered at
+    search_by_registered_at: Search by registered at

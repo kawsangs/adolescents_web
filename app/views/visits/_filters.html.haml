@@ -1,7 +1,7 @@
 %form.form-search.d-flex{ action: visits_path, method: 'get' }
   = render 'filter_page'
   .me-2
-  = render 'filter_date'
+  = render 'shared/filters/filter_date', placeholder: t('visit.search_by_visit_date')
 
   %div
     %button.btn.btn-primary.ml-md-2{type: :submit}

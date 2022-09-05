@@ -7,6 +7,7 @@ module Samples
     def self.load_samples
       ::Samples::User.load
       ::Samples::Visit.load
+      ::Samples::AppUser.load
     end
   end
 end

@@ -33,6 +33,12 @@
             %i.fa-solid.fa-eye
           = t('sidebar.visits')
 
+      - if policy(AppUser).index?
+        = link_to app_users_path, class: ['nav-link', css_active_class('app_users')] do
+          .sb-nav-link-icon
+            %i.fa-solid.fa-mobile-retro
+          = t('sidebar.app_users')
+
       = link_to about_path, class: ['nav-link', css_active_class('about')] do
         .sb-nav-link-icon
           %i.fa-solid.fa-circle-exclamation
