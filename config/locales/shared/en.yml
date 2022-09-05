@@ -30,3 +30,4 @@ en:
     archived: Archived
     download_excel: Download Excel
     file_size_is_too_big: The file size is too big, please filter it!
+    device_id: Device ID
