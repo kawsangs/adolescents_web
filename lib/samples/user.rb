@@ -2,7 +2,7 @@
 
 module Samples
   class User < Base
-    def self.load
+    def load
       users = [
         { email: "admin@kawsang.com", role: :primary_admin }
       ]

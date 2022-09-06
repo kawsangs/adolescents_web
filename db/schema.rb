@@ -66,8 +66,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_070209) do
     t.index ["user_id", "user_type"], name: "user_index"
   end
 
-  create_table "characteristics", force: :cascade do |t|
-    t.string "name"
+  create_table "characteristics", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "code"
+    t.string "name_en"
+    t.string "name_km"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
