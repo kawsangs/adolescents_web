@@ -1,6 +1,6 @@
 module Samples
   class AppUser < Base
-    def self.load(count = 1)
+    def load(count = 1)
       count.times.each do |i|
         ::AppUser.create(
           gender: ::AppUser::GENDERS.sample,
@@ -13,12 +13,13 @@ module Samples
       end
     end
 
-    def self.app_user_characteristics
-      [
-        { characteristic_attributes: { name: "Poor card" } },
-        { characteristic_attributes: { name: "Minority" } },
-        { characteristic_attributes: { name: "Disability" } }
-      ]
-    end
+    private
+      def app_user_characteristics
+        [
+          { characteristic_attributes: { code: "PO" } },
+          { characteristic_attributes: { code: "MI" } },
+          { characteristic_attributes: { code: "DI" } }
+        ]
+      end
   end
 end
