@@ -9,7 +9,7 @@ RSpec.describe VisitJob, type: :job do
     }}
 
     before {
-      subject.perform(valid_params)
+      subject.perform(valid_params.as_json)
     }
 
     it "create a visit" do
