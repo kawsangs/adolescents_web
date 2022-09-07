@@ -7,3 +7,4 @@ km:
     province: Province
     registered_at: Registered at
     search_by_registered_at: Search by registered at
+    anonymous: Anonymous user

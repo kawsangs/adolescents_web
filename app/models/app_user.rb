@@ -15,7 +15,13 @@ class AppUser < ApplicationRecord
   GENDERS = %w(male female lgbt unknown)
 
   # Validation
-  validates :gender, presence: true, inclusion: { in: GENDERS }
+  validates :gender, presence: true, unless: :anonymous?
+  validates :gender, inclusion: { in: GENDERS, allow_nil: true }
+
+  validates :age, presence: true
+  validates :province_id, presence: true, unless: :anonymous?
+  validates :device_id, presence: true
+  validates :registered_at, presence: true
 
   # Association
   has_many :app_user_characteristics, dependent: :destroy
@@ -23,6 +29,10 @@ class AppUser < ApplicationRecord
 
   # Nested attributes
   accepts_nested_attributes_for :app_user_characteristics
+
+  def anonymous?
+    age == -1
+  end
 
   def province
     @province ||= Pumi::Province.find_by_id province_id
