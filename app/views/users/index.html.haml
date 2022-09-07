@@ -1,9 +1,8 @@
-.container-fluid.px-4.facilities{}
+= content_for :header_title_right_col do
+  = render "shared/buttons/add_new_button", url: new_user_path, name: t("user.user")
+
+.container-fluid.px-4
   = render 'shared/header_title', title: t('user.users')
-
-  .d-flex.justify-content-end
-    = render "shared/buttons/add_new_button", url: new_user_path, name: t("user.user")
-
   = render 'nav_tabs'
   = render 'filter'
   = render "shared/no_data", items: @users

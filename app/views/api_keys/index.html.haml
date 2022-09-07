@@ -1,11 +1,8 @@
+= content_for :header_title_right_col do
+  = render "shared/buttons/add_new_button", url: new_api_key_path, name: t("api_key.api_key") if policy(ApiKey).create?
+
 .container-fluid.px-4{'data-controller' => 'indicators'}
-  .d-flex
-    .flex-grow-1= render 'shared/header_title', title: t('api_key.api_keys')
-
-    - if policy(ApiKey).create?
-      .d-flex.align-items-end
-        = render "shared/buttons/add_new_button", url: new_api_key_path, name: t("api_key.api_key")
-
+  = render 'shared/header_title', title: t('api_key.api_keys')
   = render "nav_tabs"
   = render "filter"
   = render "shared/no_data", items: @api_keys

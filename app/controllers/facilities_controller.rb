@@ -27,20 +27,23 @@ class FacilitiesController < ApplicationController
 
   def update
     if @facility.update(facility_params)
-      redirect_to facilities_url, notice: "facility was successfully updated."
+      redirect_to facilities_url, notice: "Facility was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
+    @facility.destroy
+
+    redirect_to facilities_url, notice: "Facility was successfully destroyed."
   end
 
   private
     def facility_params
       params.require(:facility).permit(
-        :name, :address, :emails, :websites, :facebook_pages,
-        :telegram_username, :description,
+        :name, :address, :latitude, :longitude, :tels, :emails, :websites,
+        :facebook_pages, :telegram_username, :description,
         working_days_attributes: [ :id, :day, :open, :_destroy,
           working_hours_attributes: [:id, :open_at, :close_at, :_destroy]
         ]
@@ -48,7 +51,7 @@ class FacilitiesController < ApplicationController
     end
 
     def filter_params
-      params.permit(:name)
+      params.permit(:name, :batch_code)
     end
 
     def set_facility

@@ -3,12 +3,18 @@ import selectPicker from "select_picker"
 import Tagify from "@yaireo/tagify"
 
 export default class extends Controller {
-  static targets = [ "email", "website", "fbpage" ]
+  static targets = [ "email", "website", "fbpage", "tel" ]
 
   connect() {
     this._initEmailTagify();
     this._initWebsiteTagify(this.websiteTarget);
     this._initWebsiteTagify(this.fbpageTarget);
+    this._initTelTagify();
+  }
+
+  _initTelTagify() {
+    new Tagify(this.telTarget, {
+    })
   }
 
   _initEmailTagify() {
@@ -28,6 +34,7 @@ export default class extends Controller {
     this._reassignValue($(this.emailTarget));
     this._reassignValue($(this.websiteTarget));
     this._reassignValue($(this.fbpageTarget));
+    this._reassignValue($(this.telTarget));
   }
 
   _reassignValue(target) {

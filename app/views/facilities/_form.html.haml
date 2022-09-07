@@ -2,6 +2,9 @@
   = simple_form_for @facility, html: {'data-action': 'facilities#submitForm'} do |f|
     .mb-3= f.input :name, label: t('facility.name')
     .mb-3= f.input :address, label: t('facility.address')
+    .mb-3= f.input :latitude, label: t('facility.latitude')
+    .mb-3= f.input :longitude, label: t('facility.longitude')
+    .mb-3= f.input :tels, label: t('facility.tels'), input_html: {'data-facilities-target': 'tel', value: f.object.tels.join(', ')}
     .mb-3= f.input :emails, label: t('facility.emails'), input_html: {'data-facilities-target': 'email', value: f.object.emails.join(', ')}
 
     .mb-3= f.input :websites, label: t('facility.websites'), input_html: {'data-facilities-target': 'website', value: f.object.websites.join(', ')}

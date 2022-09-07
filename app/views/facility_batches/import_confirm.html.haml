@@ -1,0 +1,32 @@
+.container-fluid.px-4.facilities
+  = render "progress_arrow_header", progress_num: 2
+
+  = simple_form_for @facility_batch do |f|
+    = f.hidden_field :code, value: @facility_batch.code
+    = f.hidden_field :total_count
+    = f.hidden_field :valid_count
+    = f.hidden_field :province_count
+    = f.hidden_field :filename
+
+    .d-flex.align-items-center{style: 'flex-wrap: wrap-reverse;'}
+      .flex-grow-1
+        %div= t("facility_batch.short_description", total_count: @facility_batch.total_count, valid_count: @facility_batch.valid_count).html_safe
+
+        %small.text-muted
+          = t('facility_batch.valid_data_in_province', province_count: @facility_batch.province_count).html_safe
+
+      .d-flex.mb-2
+        / Back button
+        = render "shared/buttons/back_button", url: new_facility_batch_path
+
+        / Yes confirm button
+        - tooltip_title = @facility_batch.valid_count.positive? ? "" : t("facility_batch.at_least_one_scorecard")
+
+        %span{ 'data-bs-toggle' => 'tooltip', title: tooltip_title }
+          %button.btn.btn-primary.btn-sm{'data-bs-toggle' => 'modal', 'data-bs-target' => '#confirmModal', type: 'button', class: ('disabled' if @facility_batch.valid_count.zero?)}= t('facility_batch._yes')
+
+
+    / Facility list rendering
+    = render 'form_facilities', f: f
+    / Yes Confirm modal
+    = render 'modal_import_confirm', f: f

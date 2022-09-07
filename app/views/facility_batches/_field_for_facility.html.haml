@@ -1,0 +1,26 @@
+= f.hidden_field :name
+= f.hidden_field :address
+= f.hidden_field :latitude
+= f.hidden_field :longitude
+
+- f.object.tels.each do |tel|
+  = f.hidden_field :tels, multiple: true, value: tel
+
+- f.object.emails.each do |email|
+  = f.hidden_field :emails, multiple: true, value: email
+
+- f.object.websites.each do |website|
+  = f.hidden_field :websites, multiple: true, value: website
+
+- f.object.facebook_pages.each do |facebook_page|
+  = f.hidden_field :facebook_pages, multiple: true, value: facebook_page
+
+= f.hidden_field :telegram_username
+= f.hidden_field :_destroy, value: (f.object.valid? ? nil : 1)
+
+= f.fields_for :working_days, f.object.working_days do |wd|
+  = wd.hidden_field :day
+  = wd.hidden_field :open
+  = wd.fields_for :working_hours, wd.object.working_hours do |wh|
+    = wh.hidden_field :open_at
+    = wh.hidden_field :close_at

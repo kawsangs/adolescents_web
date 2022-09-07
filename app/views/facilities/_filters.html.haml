@@ -1,0 +1,10 @@
+%form.mb-2{ action: facilities_path, method: 'get' }
+  .d-flex.align-items-center
+    - list = FacilityBatch.all.map{ |batch| ["#{batch.code}(#{display_datetime(batch.created_at)})", batch.code]}
+
+    = select_tag :batch_code, options_for_select(list, params[:batch_code]), class: 'form-select filter-input', prompt: t("facility.any_facility_batch")
+
+    %div.ms-3
+      %button.btn.btn-primary.ml-md-2{type: :submit}
+        %i.fas.fa-search
+        %span.d-none.d-lg-inline= t('shared.search')

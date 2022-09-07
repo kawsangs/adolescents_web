@@ -1,7 +1,5 @@
 .container-fluid.px-4{'data-controller' => 'app-users'}
-  .d-flex
-    .flex-grow-1= render 'shared/header_title', title: t('app_user.app_users')
-
+  = render 'shared/header_title', title: t('app_user.app_users')
   = render "filters"
   = render "shared/no_data", items: @app_users
 
