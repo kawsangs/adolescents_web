@@ -24,9 +24,18 @@
           - @app_users.each_with_index do |app_user, index|
             %tr
               %td= @pagy.from + index
-              %td= app_user.gender
-              %td= app_user.age
-              %td= app_user.province.try("name_#{I18n.locale}")
+              %td
+                - if app_user.anonymous?
+                  %span{'data-bs-toggle': 'tooltip', title: t('app_user.anonymous')}
+                    %i.fa-solid.fa-user-secret
+                - else
+                  = app_user.gender
+
+              %td
+                = app_user.age unless app_user.anonymous?
+
+              %td
+                = app_user.province["name_#{I18n.locale}"] unless app_user.anonymous?
               %td= app_user.device_id
               %td= timeago(app_user.registered_at).html_safe
               %td= timeago(app_user.created_at).html_safe

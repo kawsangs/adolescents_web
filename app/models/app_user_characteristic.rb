@@ -11,11 +11,11 @@
 class AppUserCharacteristic < ApplicationRecord
   # Association
   belongs_to :app_user
-  belongs_to :characteristic
+  belongs_to :characteristic, optional: true
 
   # Nested attributes
   accepts_nested_attributes_for :characteristic, reject_if: lambda { |attributes|
-    attributes["name"].blank?
+    attributes["code"].blank?
   }
 
   def characteristic_attributes=(attribute)
