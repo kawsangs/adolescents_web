@@ -4,6 +4,7 @@
 #
 #  id                :uuid             not null, primary key
 #  name              :string
+#  tels              :string           default([]), is an Array
 #  address           :string
 #  emails            :string           default([]), is an Array
 #  websites          :string           default([]), is an Array
@@ -13,12 +14,12 @@
 #  latitude          :float
 #  longitude         :float
 #  facility_batch_id :uuid
-#  service_id        :uuid
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #
 class Facility < ApplicationRecord
   # Association
+  belongs_to :facility_batch, optional: true
   has_many :working_days, dependent: :destroy
 
   # Valiation
@@ -30,6 +31,7 @@ class Facility < ApplicationRecord
   def self.filter(params = {})
     scope = all
     scope = scope.where(name: params[:name]) if params[:name].present?
+    scope = scope.joins(:facility_batch).where("facility_batches.code = ?", params[:batch_code]) if params[:batch_code].present?
     scope
   end
 end

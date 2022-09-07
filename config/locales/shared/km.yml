@@ -11,7 +11,7 @@ km:
     reset: កំណត់ឡើងវិញ
     add_new: បន្ថែម%{name}ថ្មី
     created_at: កាលបរិច្ឆេទបង្កើត
-    updated_at: កាលបរិច្ឆេទធ្វើបច្ចុប្បន្នភាព
+    updated_at: កាលបរិច្ឆេទ update
     are_you_sure_to_delete: តើអ្នកប្រាកដជាលុប%{type} <b>%{name}</b> នេះមែនទេ?
     yes_delete: បាទ/ចាស, លុប!
     confirm_delete: បញ្ជាក់ការលុបការ %{name}
@@ -31,3 +31,4 @@ km:
     download_excel: ទាញយកជា Excel
     file_size_is_too_big: ទំហំឯកសារធំពេកសូមច្រោះវា!
     device_id: ID ឧបករណ៍
+    reason: មូលហេតុ

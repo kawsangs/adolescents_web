@@ -76,6 +76,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_093812) do
 
   create_table "facilities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
+    t.string "tels", default: [], array: true
     t.string "address"
     t.string "emails", default: [], array: true
     t.string "websites", default: [], array: true
@@ -85,7 +86,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_093812) do
     t.float "latitude"
     t.float "longitude"
     t.uuid "facility_batch_id"
-    t.uuid "service_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "facility_batches", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "code"
+    t.integer "total_count", default: 0
+    t.integer "valid_count", default: 0
+    t.integer "province_count", default: 0
+    t.string "filename"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

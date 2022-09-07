@@ -65,6 +65,9 @@ class User < ApplicationRecord
   SYSTEM = "system"
   ROLES = [["Admin", "admin"], ["Staff/Officer", "staff"]]
 
+  # Association
+  has_many :facility_batches
+
   has_many :access_grants,
              class_name: "Doorkeeper::AccessGrant",
              foreign_key: :resource_owner_id,

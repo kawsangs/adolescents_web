@@ -4,6 +4,7 @@ en:
     facilities: Facilities
     name: Name
     address: Address
+    tels: Telephones
     emails: Emails
     websites: Websites
     facebook_pages: Facebook pages
@@ -12,3 +13,7 @@ en:
     new_facility: New facility
     edit_facility: Edit facility
     business_hours: Business hours
+    open: Open
+    close: Close
+    any_facility_batch: Any facility batch
+    lat_lng: Lat/Lng

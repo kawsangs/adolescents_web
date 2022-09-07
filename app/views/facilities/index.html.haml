@@ -1,9 +1,9 @@
+= content_for :header_title_right_col do
+  = render "new_buttons"
+
 .container-fluid.px-4.facilities
   = render 'shared/header_title', title: t('facility.facilities')
-
-  .d-flex.justify-content-end
-    = render "shared/buttons/add_new_button", url: new_facility_path, name: t("facility.facility")
-
+  = render "filters"
   = render "shared/no_data", items: @facilities
 
   - if @facilities.present?
@@ -16,6 +16,8 @@
             %th #
             %th= t('facility.name')
             %th= t('facility.address')
+            %th= t('facility.lat_lng')
+            %th= t('facility.tels')
             %th= t('facility.emails')
             %th= t('facility.websites')
             %th= t('facility.facebook_pages')
@@ -31,6 +33,8 @@
               %td= @pagy.from + index
               %td= facility.name
               %td= facility.address
+              %td= "#{facility.latitude}, #{facility.longitude}"
+              %td= facility.tels.join(', ')
               %td= facility.emails.join(', ')
               %td= facility.websites.join(', ')
               %td= facility.facebook_pages.join(', ')
