@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_05_070209) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_07_093812) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -172,12 +172,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_070209) do
   end
 
   create_table "visits", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "device_id"
     t.uuid "page_id"
     t.uuid "platform_id"
     t.datetime "visit_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "app_user_id"
   end
 
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
