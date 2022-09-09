@@ -21,14 +21,25 @@ RSpec.describe "Api::V1::AppUsersController", type: :request do
 
     let(:headers) { { "ACCEPT" => "application/json", "Authorization" => "Apikey #{api_key.api_key}" } }
 
-    it "creates an app user" do
-      expect { post "/api/v1/app_users", params: { app_user: valid_params }, headers: }
-            .to change { AppUser.count }.by 1
+    describe "POST #create" do
+      it "creates an app user" do
+        expect { post "/api/v1/app_users", params: { app_user: valid_params }, headers: }
+              .to change { AppUser.count }.by 1
+      end
+
+      it "creates 3 user characteristics" do
+        expect { post "/api/v1/app_users", params: { app_user: valid_params }, headers: }
+              .to change { AppUserCharacteristic.count }.by 3
+      end
     end
 
-    it "creates 3 user characteristics" do
-      expect { post "/api/v1/app_users", params: { app_user: valid_params }, headers: }
-            .to change { AppUserCharacteristic.count }.by 3
+    describe "PUT #update" do
+      let!(:anonymous_user) { create(:app_user, :anonymous) }
+
+      it "updates the app user" do
+        expect { put "/api/v1/app_users/#{anonymous_user.id}", params: { app_user: valid_params }, headers: }
+              .to change { anonymous_user.reload.age }.from(-1).to(20)
+      end
     end
   end
 end

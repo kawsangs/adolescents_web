@@ -13,5 +13,12 @@
 #
 FactoryBot.define do
   factory :app_user do
+    trait :anonymous do
+      gender { nil }
+      age { -1 }
+      province_id  { nil }
+      registered_at { DateTime.yesterday }
+      device_id { "123" }
+    end
   end
 end
