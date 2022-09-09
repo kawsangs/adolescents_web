@@ -27,6 +27,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  gf_user_id             :integer
+#  sign_in_type           :integer          default("system")
 #
 FactoryBot.define do
   factory :user do

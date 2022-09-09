@@ -34,7 +34,12 @@
                 = t("user.#{user.status}")
               %td= timeago(user.created_at).html_safe
               %td= timeago(user.updated_at).html_safe
-              %td= timeago(user.last_sign_in_at).html_safe
+              %td
+                - if user.last_sign_in_at
+                  %span{'data-bs-toggle': 'tooltip', title: t('user.last_sign_in_via', type: user.sign_in_type)}
+                    = image_tag "#{user.sign_in_type}", width: 16
+
+                  = timeago(user.last_sign_in_at).html_safe
               %td
                 .d-flex.justify-content-end
                   = render 'action_buttons', user: user
