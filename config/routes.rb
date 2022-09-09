@@ -37,7 +37,7 @@ Rails.application.routes.draw do
 
   resource :about, only: [:show]
 
-  resource :about, only: [:show]
+  resources :app_users, only: [:index]
 
   get "/privacy-policy", to: "privacy_policies#show"
   get "/terms-and-conditions", to: "terms_and_conditions#show"

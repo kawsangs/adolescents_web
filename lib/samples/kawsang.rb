@@ -5,8 +5,15 @@ require_relative "sample"
 module Samples
   class Kawsang
     def self.load_samples
-      ::Samples::User.load
-      ::Samples::Visit.load
+      ::Samples::Characteristic.new.load
+      ::Samples::User.new.load
+      ::Samples::Visit.new.load
+      ::Samples::AppUser.new.load
+    end
+
+    def self.load_references
+      ::Samples::Characteristic.new.load
+      ::Samples::User.new.load
     end
   end
 end

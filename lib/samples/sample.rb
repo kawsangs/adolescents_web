@@ -2,3 +2,5 @@
 require_relative "base"
 require_relative "user"
 require_relative "visit"
+require_relative "app_user"
+require_relative "characteristic"

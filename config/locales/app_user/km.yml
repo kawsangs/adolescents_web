@@ -1,0 +1,10 @@
+km:
+  app_user:
+    app_user: គណនីពី Mobile App
+    app_users: គណនីពី Mobile App
+    gender: យែនដឺ
+    age: អាយុ
+    province: ខេត្ត
+    registered_at: កាលបរិច្ឆេទចុះឈ្មោះ
+    search_by_registered_at: ស្វែងរកតាមកាលបរិច្ឆេទចុះឈ្មោះ
+    anonymous: អ្នកប្រើប្រាស់អនាមិក
