@@ -3,7 +3,7 @@ module Samples
     def load(count = 1)
       count.times.each do |i|
         ::Visit.create(
-          device_id: "abc_#{rand(1..5)}",
+          app_user_id: ::AppUser.all.sample.id,
           visit_date: rand(1.year).seconds.ago,
           page_attributes: pages.sample,
           platform_attributes: platforms.sample
