@@ -24,7 +24,7 @@
           - @visits.each_with_index do |visit, index|
             %tr
               %td= @pagy.from + index
-              %td= visit.device_id
+              %td= visit.app_user.device_id
               %td= visit.page_name
               %td= timeago(visit.visit_date).html_safe
               %td= timeago(visit.created_at).html_safe
