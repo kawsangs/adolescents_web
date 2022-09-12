@@ -42,6 +42,10 @@ class AppUser < ApplicationRecord
   def self.filter(params = {})
     scope = all
     scope = scope.where("registered_at BETWEEN ? AND ?", DateTime.parse(params[:start_date]).beginning_of_day, DateTime.parse(params[:end_date]).end_of_day) if params[:start_date].present? && params[:end_date].present?
+    scope = scope.where(province_id: params[:province_ids]) if params[:province_ids].present?
+    scope = scope.where(gender: params[:genders]) if params[:genders].present?
+    scope = scope.where("age BETWEEN ? AND ?", params[:start_age], params[:end_age]) if params[:start_age].present? && params[:end_age].present?
+    scope = scope.joins(:app_user_characteristics).where("app_user_characteristics.characteristic_id": params[:characteristic_ids]) if params[:characteristic_ids].present?
     scope
   end
 end

@@ -1,10 +1,22 @@
 km:
   app_user:
-    app_user: គណនីពី Mobile App
-    app_users: គណនីពី Mobile App
-    gender: យែនដឺ
+    app_user: អ្នកប្រើប្រាស់ App
+    app_users: អ្នកប្រើប្រាស់ App
+    gender: យែនឌ័រ
     age: អាយុ
     province: ខេត្ត
     registered_at: កាលបរិច្ឆេទចុះឈ្មោះ
     search_by_registered_at: ស្វែងរកតាមកាលបរិច្ឆេទចុះឈ្មោះ
     anonymous: អ្នកប្រើប្រាស់អនាមិក
+    male: ប្រុស
+    female: ស្រី
+    lgbt: LGBT+
+    unknown: អត់ដឹង
+    provinces_selected: ខេត្តត្រូវបានជ្រើសរើស
+    any_province: គ្រប់ខេត្ត
+    genders_selected: យេនឌ័រត្រូវបានជ្រើសរើស
+    any_gender: គ្រប់យេនឌ័រ
+    characteristic: ស្ថានភាព
+    characteristics_selected: ស្ថានភាពត្រូវបានជ្រើសរើស
+    any_characteristic: គ្រប់ស្ថានភាព
+    age_range: អាយុចាប់ពី start_age ដល់ end_age

@@ -8,3 +8,15 @@ km:
     registered_at: Registered at
     search_by_registered_at: Search by registered at
     anonymous: Anonymous user
+    male: Male
+    female: Female
+    lgbt: LGBT
+    unknown: Unknown
+    provinces_selected: provinces selected
+    any_province: Any province
+    genders_selected: genders selected
+    any_gender: Any gender
+    characteristic: Characteristic
+    characteristics_selected: characteristics selected
+    any_characteristic: Any characteristic
+    age_range: Age is from start_age to end_age

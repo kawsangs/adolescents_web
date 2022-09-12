@@ -1,3 +1,6 @@
+= content_for :header_title_right_col do
+  = render "shared/buttons/download_button", url: app_users_path(filter_params.merge(format: :xlsx))
+
 .container-fluid.px-4{'data-controller' => 'app-users'}
   = render 'shared/header_title', title: t('app_user.app_users')
   = render "filters"
@@ -14,6 +17,7 @@
             %th= t('app_user.gender')
             %th= t('app_user.age')
             %th= t('app_user.province')
+            %th= t('app_user.characteristic')
             %th= t('shared.device_id')
             %th= t('app_user.registered_at')
             %th= t('shared.created_at')
@@ -27,13 +31,14 @@
                   %span{'data-bs-toggle': 'tooltip', title: t('app_user.anonymous')}
                     %i.fa-solid.fa-user-secret
                 - else
-                  = app_user.gender
+                  = t("app_user.#{app_user.gender}")
 
               %td
                 = app_user.age unless app_user.anonymous?
 
               %td
                 = app_user.province["name_#{I18n.locale}"] unless app_user.anonymous?
+              %td= app_user.characteristics.map(&:"name_#{I18n.locale}").join(', ')
               %td= app_user.device_id
               %td= timeago(app_user.registered_at).html_safe
               %td= timeago(app_user.created_at).html_safe
