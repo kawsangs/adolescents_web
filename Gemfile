@@ -106,6 +106,9 @@ gem "roo", "~> 2.9.0"
 # Strip space
 gem "strip_attributes", "~> 1.13.0"
 
+# Serializer
+gem "active_model_serializers", "~> 0.10.13"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

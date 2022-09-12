@@ -21,12 +21,20 @@ class Facility < ApplicationRecord
   # Association
   belongs_to :facility_batch, optional: true
   has_many :working_days, dependent: :destroy
+  has_many :facility_services
+  has_many :services, through: :facility_services
 
   # Valiation
   validates :name, presence: true
 
   # Nested Attribute
   accepts_nested_attributes_for :working_days, allow_destroy: true
+
+  def services_attributes=(attributes)
+    names = attributes.values.select { |a| a["_destroy"] != "1" }.pluck("name").compact_blank
+
+    self.service_ids = names.map { |name| Service.find_or_create_by(name:) }.collect(&:id)
+  end
 
   def self.filter(params = {})
     scope = all

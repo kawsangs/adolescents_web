@@ -22,6 +22,7 @@
             %th= t('facility.websites')
             %th= t('facility.facebook_pages')
             %th= t('facility.telegram_username')
+            %th= t('facility.services')
             %th= t('facility.description')
             %th= t('shared.created_at')
             %th= t('shared.updated_at')
@@ -39,7 +40,11 @@
               %td= facility.websites.join(', ')
               %td= facility.facebook_pages.join(', ')
               %td= facility.telegram_username
-              %td= facility.description
+              %td= facility.services.map(&:name).join(', ')
+              %td
+                .text-truncate{ style: 'width: 200px;' }
+                  = facility.description
+
               %td= timeago(facility.created_at).html_safe
               %td= timeago(facility.updated_at).html_safe
               %td

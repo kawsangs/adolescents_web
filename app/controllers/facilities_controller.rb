@@ -2,7 +2,7 @@ class FacilitiesController < ApplicationController
   before_action :set_facility, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pagy, @facilities = pagy(authorize Facility.filter(filter_params))
+    @pagy, @facilities = pagy(authorize Facility.filter(filter_params).includes(:services))
   end
 
   def show
@@ -46,7 +46,8 @@ class FacilitiesController < ApplicationController
         :facebook_pages, :telegram_username, :description,
         working_days_attributes: [ :id, :day, :open, :_destroy,
           working_hours_attributes: [:id, :open_at, :close_at, :_destroy]
-        ]
+        ],
+        services_attributes: [:name, :_destroy]
       )
     end
 
