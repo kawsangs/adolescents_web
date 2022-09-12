@@ -1,8 +1,12 @@
+= f.hidden_field :_destroy, value: (f.object.valid? ? nil : 1)
 = f.hidden_field :name
+
+/ Address
 = f.hidden_field :address
 = f.hidden_field :latitude
 = f.hidden_field :longitude
 
+/ Contacts
 - f.object.tels.each do |tel|
   = f.hidden_field :tels, multiple: true, value: tel
 
@@ -16,11 +20,18 @@
   = f.hidden_field :facebook_pages, multiple: true, value: facebook_page
 
 = f.hidden_field :telegram_username
-= f.hidden_field :_destroy, value: (f.object.valid? ? nil : 1)
 
+/ Description
+= f.hidden_field :description
+
+/ Business Hour
 = f.fields_for :working_days, f.object.working_days do |wd|
   = wd.hidden_field :day
   = wd.hidden_field :open
   = wd.fields_for :working_hours, wd.object.working_hours do |wh|
     = wh.hidden_field :open_at
     = wh.hidden_field :close_at
+
+/ Service
+= f.fields_for :services, f.object.services do |sf|
+  = sf.hidden_field :name

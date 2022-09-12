@@ -1,18 +1,37 @@
 .w-75.view-center{'data-controller': 'facilities'}
   = simple_form_for @facility, html: {'data-action': 'facilities#submitForm'} do |f|
     .mb-3= f.input :name, label: t('facility.name')
+
+    / Address
     .mb-3= f.input :address, label: t('facility.address')
     .mb-3= f.input :latitude, label: t('facility.latitude')
     .mb-3= f.input :longitude, label: t('facility.longitude')
+
+    / Contacts
     .mb-3= f.input :tels, label: t('facility.tels'), input_html: {'data-facilities-target': 'tel', value: f.object.tels.join(', ')}
     .mb-3= f.input :emails, label: t('facility.emails'), input_html: {'data-facilities-target': 'email', value: f.object.emails.join(', ')}
 
     .mb-3= f.input :websites, label: t('facility.websites'), input_html: {'data-facilities-target': 'website', value: f.object.websites.join(', ')}
 
     .mb-3= f.input :facebook_pages, label: t('facility.facebook_pages'), input_html: { 'data-facilities-target': 'fbpage', value: f.object.facebook_pages.join(', ') }
+
     .mb-3= f.input :telegram_username, label: t('facility.telegram_username')
+
+    / Description
     .mb-3= f.input :description, label: t('facility.description')
 
+    / Services
+    .mb-3{ 'data-controller': 'services' }
+      %label= t('facility.services')
+
+      .d-flex.flex-wrap.service-wrappers
+        = f.fields_for :services, @facility.services do |builder|
+          = render "service_fields", f: builder
+
+        .btnAddField
+          = link_to_add_fields t('facility.add_service'), f, :services, 'services-target': 'btnAddService', 'action': 'services#appendField'
+
+    / Business hours
     .mb-3.form-control
       .mb-3
         %strong= t('facility.business_hours')

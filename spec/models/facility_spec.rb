@@ -22,6 +22,8 @@ require "rails_helper"
 RSpec.describe Facility, type: :model do
   it { is_expected.to belong_to(:facility_batch).optional }
   it { is_expected.to have_many(:working_days).dependent(:destroy) }
+  it { is_expected.to have_many(:facility_services) }
+  it { is_expected.to have_many(:services).through(:facility_services) }
 
   it { is_expected.to validate_presence_of(:name) }
 end
