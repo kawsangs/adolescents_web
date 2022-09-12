@@ -1,0 +1,22 @@
+#app_users-index {
+  #slider-round {
+    height: 10px;
+
+    .noUi-handle:after, .noUi-handle:before {
+      content: none;
+    }
+  }
+
+  #slider-round .noUi-connect {
+    background: #3FB8AF;
+  }
+
+  #slider-round .noUi-handle {
+    height: 18px;
+    width: 18px;
+    top: -5px;
+    right: -9px; /* half the width */
+    border-radius: 9px;
+  }
+
+}

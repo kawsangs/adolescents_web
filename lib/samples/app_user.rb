@@ -8,7 +8,7 @@ module Samples
           province_id: format("%02d", rand(1..25)),
           device_id: "abc_#{rand(1..10)}",
           registered_at: rand(1.month).seconds.ago,
-          app_user_characteristics_attributes: app_user_characteristics
+          app_user_characteristics_attributes: app_user_characteristics.take(rand(1..3))
         )
       end
     end
