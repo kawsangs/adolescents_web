@@ -7,7 +7,17 @@ module Api
         if app_user.save
           render json: app_user, status: :created
         else
-          render json: { errors: app.app_user.errors }, status: :unprocessable_entity
+          render json: { errors: app_user.errors }, status: :unprocessable_entity
+        end
+      end
+
+      def update
+        app_user = AppUser.find(params[:id])
+
+        if app_user.update(app_user_params)
+          render json: app_user, status: :updated
+        else
+          render json: { errors: app_user.errors }, status: :unprocessable_entity
         end
       end
 
