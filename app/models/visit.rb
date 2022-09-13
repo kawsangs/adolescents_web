@@ -14,6 +14,7 @@ class Visit < ApplicationRecord
   # Association
   belongs_to :page
   belongs_to :platform
+  belongs_to :app_user
 
   # Delegation
   delegate :name, to: :page, prefix: true

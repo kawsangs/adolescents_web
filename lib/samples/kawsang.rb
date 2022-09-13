@@ -7,8 +7,8 @@ module Samples
     def self.load_samples
       ::Samples::Characteristic.new.load
       ::Samples::User.new.load
-      ::Samples::Visit.new.load
       ::Samples::AppUser.new.load
+      ::Samples::Visit.new.load
     end
 
     def self.load_references
