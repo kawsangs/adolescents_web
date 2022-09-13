@@ -13,8 +13,7 @@ export default class extends Controller {
   }
 
   _initTelTagify() {
-    new Tagify(this.telTarget, {
-    })
+    new Tagify(this.telTarget)
   }
 
   _initEmailTagify() {

@@ -56,13 +56,8 @@ class FacilityBatchesController < ApplicationController
           :name, :address, :telegram_username, :description,
           :latitude, :longitude, :_destroy,
           tels: [], emails: [], websites: [], facebook_pages: [],
-          working_days_attributes: [
-            :day, :open,
-            working_hours_attributes: [
-              :open_at, :close_at
-            ]
-          ]
-
+          working_days_attributes: [ :day, :open, working_hours_attributes: [ :open_at, :close_at ] ],
+          services_attributes: [:name]
         ]
       ).merge({
         user_id: current_user.id

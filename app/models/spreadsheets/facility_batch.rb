@@ -27,7 +27,8 @@ module Spreadsheets
         description: row["description"],
         working_days_attributes: working_days_attributes(row),
         latitude: row["latitude"],
-        longitude: row["longitude"]
+        longitude: row["longitude"],
+        services_attributes: services_attributes(row)
       })
     end
 
@@ -51,14 +52,20 @@ module Spreadsheets
 
           next unless open_at.present? && close_at.present?
 
-          days.push({
-            day:,
-            open: true,
-            working_hours_attributes: [ { open_at:, close_at: } ]
-          })
+          days.push({ day:, open: true, working_hours_attributes: [ { open_at:, close_at: } ] })
         end
 
         days
+      end
+
+      def services_attributes(row)
+        services = {}
+
+        string_to_array(row["services"]).each_with_index do |name, index|
+          services[index.to_s] = { name: }
+        end
+
+        services
       end
   end
 end
