@@ -1,7 +1,34 @@
-%form.form-search.d-flex{ action: app_users_path, method: 'get' }
-  = render 'shared/filters/filter_date', placeholder: t('app_user.search_by_registered_at')
+%form.form-search.accordion{ action: app_users_path, method: 'get' }
+  .d-flex
+    = render 'shared/filters/filter_date', placeholder: t('app_user.search_by_registered_at')
+    %div.ms-3
+      %button.btn.btm-sm{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-bs-target" => "#collapseOne", "data-bs-toggle" => "collapse", :type => "button", "data-action": "app-users#handleLocalStorage"}
+        %span.d-none.d-lg-inline= t('shared.advance_search')
+        %i.fas.fa-angle-down
 
-  %div
-    %button.btn.btn-primary.ml-md-2{type: :submit}
-      %i.fas.fa-search
-      %span.d-none.d-lg-inline= t('shared.search')
+  #collapseOne.accordion-collapse.collapse
+    .d-flex.mb-2
+      / Filter by provinces
+      .filter-input.tooltips.me-1{ 'data-bs-toggle' => 'tooltip' }
+        = select_tag 'province_ids[]', options_for_select(Pumi::Province.all.map { |p| [p["name_#{I18n.locale}"], p.id] }, params[:province_ids]), multiple: true, "data-live-search" => "true", "data-count-selected-text" => "{0} #{t('app_user.provinces_selected')}", "data-selected-text-format" => "count > 1", "data-none-selected-text" => t("app_user.any_province"), class: 'selectpicker form-control'
+
+      / Filter by genders
+      .filter-input.tooltips.me-1{ 'data-bs-toggle' => 'tooltip' }
+        = select_tag 'genders[]', options_for_select(AppUser::GENDERS.map{|g| [t("app_user.#{g}"), g]}, params[:genders]), multiple: true, "data-count-selected-text" => "{0} #{t('app_user.genders_selected')}", "data-selected-text-format" => "count > 1", "data-none-selected-text" => t("app_user.any_gender"), class: 'selectpicker form-control'
+
+      / Filter by charateristic
+      .filter-input.tooltips.me-3{ 'data-bs-toggle' => 'tooltip' }
+        = select_tag 'characteristic_ids[]', options_for_select(Characteristic.pluck(:"name_#{I18n.locale}", :id), params[:characteristic_ids]), multiple: true, "data-count-selected-text" => "{0} #{t('app_user.characteristics_selected')}", "data-selected-text-format" => "count > 1", "data-none-selected-text" => t("app_user.any_characteristic"), class: 'selectpicker form-control'
+
+      %div
+        #age-range-label.text-center.mb-1= t('app_user.age_range')
+
+        #slider-round{ style: 'width: 250px;' }
+
+        %input#start-age{ type: 'hidden', name: 'start_age', value: params[:start_age] }
+        %input#end-age{ type: 'hidden', name: 'end_age', value: params[:end_age] }
+
+      .ms-3
+        %button.btn.btn-primary.ml-md-2{type: :submit, style: 'width: 82px;'}
+          %i.fas.fa-search
+          %span.d-none.d-lg-inline= t('shared.apply')
