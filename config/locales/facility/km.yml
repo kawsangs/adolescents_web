@@ -1,0 +1,19 @@
+en:
+  facility:
+    facility: គ្លីនិក
+    facilities: គ្លីនិក
+    name: ឈ្មោះ
+    address: អាស័យដ្ឋាន
+    tels: លេខទូរស័ព្ទ
+    emails: អ៊ីមែល
+    websites: គេហទំព័រ
+    facebook_pages: ទំព័រ Facebook
+    telegram_username: ឈ្មោះគណនី តេលេក្រាម
+    description: បរិយាយ
+    new_facility: គ្លីនិកថ្មី
+    edit_facility: កែសម្រួលគ្លីនិក
+    business_hours: ម៉ោងធ្វើការ
+    open: បើក
+    close: បិទ
+    any_facility_batch: គ្រប់ Batch
+    lat_lng: Lat/Lng

@@ -74,6 +74,33 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_093812) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "facilities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "tels", default: [], array: true
+    t.string "address"
+    t.string "emails", default: [], array: true
+    t.string "websites", default: [], array: true
+    t.string "facebook_pages", default: [], array: true
+    t.string "telegram_username"
+    t.text "description"
+    t.float "latitude"
+    t.float "longitude"
+    t.uuid "facility_batch_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "facility_batches", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "code"
+    t.integer "total_count", default: 0
+    t.integer "valid_count", default: 0
+    t.integer "province_count", default: 0
+    t.string "filename"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "oauth_access_grants", force: :cascade do |t|
     t.bigint "resource_owner_id", null: false
     t.bigint "application_id", null: false
@@ -175,6 +202,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_093812) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "app_user_id"
+  end
+
+  create_table "working_days", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "facility_id"
+    t.integer "day", default: 0
+    t.boolean "open", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "working_hours", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "working_day_id"
+    t.integer "open_at"
+    t.integer "close_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"

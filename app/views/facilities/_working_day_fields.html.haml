@@ -1,0 +1,19 @@
+.working-day{ 'data-controller': 'working-days', 'data-working-days-target' => 'workingDay' }
+  .d-flex.mb-2
+    %div{style: 'width: 80px;'}
+      = f.input :day, as: :hidden
+      = t("working_day.#{f.object.day}")
+
+    %div{style: 'width: 80px;'}
+      = f.input :open, label: t('working_day.open'), input_html: {class: 'form-check-input', 'data-working-days-target': 'open', 'data-action': 'working-days#handleOpenSwitch'}, wrapper_html: { class: 'form-switch ps-0'}
+
+    .working-hours.d-flex
+      %div
+        - hours = f.object.working_hours.presence || f.object.working_hours.new
+
+        = f.fields_for :working_hours, hours do |builder|
+          = render 'working_hour_fields', f: builder
+
+      .add-hour
+        = link_to_add_fields t('working_day.add_hour'), f, :working_hours, 'working-days-target': 'btnAddHour', 'action': 'working-days#appendField'
+

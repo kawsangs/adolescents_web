@@ -12,13 +12,26 @@ module ApplicationHelper
     link_to title, { sort: column, direction: }, { class: css_class }
   end
 
-  def timeago(date)
+  def timeago(date, type = "date")
     return "" unless date.present?
 
-    str = "<span class='timeago' data-date='#{I18n.l(date, format: "%Y-%m-%d")}'>"
+    dis_date = type == "date" ? display_date(date) : display_datetime(date)
+    str = "<span class='timeago' data-date='#{dis_date}'>"
     str += time_ago_in_words(date)
     str += "</span>"
     str
+  end
+
+  def display_date(date)
+    return "" unless date.present?
+
+    I18n.l(date, format: :yyyy_mm_dd)
+  end
+
+  def display_datetime(date)
+    return "" unless date.present?
+
+    I18n.l(date, format: :yyyy_mm_dd_time)
   end
 
   def css_active_class(controller_name)
@@ -30,5 +43,16 @@ module ApplicationHelper
       { code: "km", label: I18n.t("user.locale_km"), image: "khmer.png" },
       { code: "en", label: I18n.t("user.locale_en"), image: "english.png" }
     ]
+  end
+
+  def link_to_add_fields(name, f, association, option = {})
+    new_object = f.object.send(association).klass.new
+    id = new_object.object_id
+
+    fields = f.fields_for(association, new_object, child_index: id) do |builder|
+      render(association.to_s.singularize + "_fields", f: builder, option:)
+    end
+
+    link_to(name, "#", class: "add_#{association} btn", data: { id:, fields: fields.gsub("\n", "") }.merge(option))
   end
 end

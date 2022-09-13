@@ -1,0 +1,8 @@
+#facilities-new, #facilities-create,
+#facilities-edit, #facilities-update {
+  .working-day.closed {
+    .working-hours {
+      display: none !important;
+    }
+  }
+}

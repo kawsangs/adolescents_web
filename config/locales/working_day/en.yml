@@ -1,0 +1,14 @@
+en:
+  working_day:
+    sunday: Sunday
+    monday: Monday
+    tuesday: Tuesday
+    wednesday: Wednesday
+    thursday: Thursday
+    friday: Friday
+    saturday: Saturday
+    open_at: Open at
+    close_at: Close at
+    add_hour: Add hours
+    open: Open
+    close: Close

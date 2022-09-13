@@ -1,9 +1,8 @@
+= content_for :header_title_right_col do
+  = render "download_button"
+
 .container-fluid.px-4{'data-controller' => 'visits'}
-  .d-flex
-    .flex-grow-1= render 'shared/header_title', title: t('visit.visits')
-
-    = render "download_button"
-
+  = render 'shared/header_title', title: t('visit.visits')
   = render "filters"
   = render "shared/no_data", items: @visits
 

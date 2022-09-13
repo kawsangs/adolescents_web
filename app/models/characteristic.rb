@@ -4,7 +4,8 @@
 #
 #  id         :uuid             not null, primary key
 #  code       :string
-#  name       :string
+#  name_en    :string
+#  name_km    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

@@ -33,7 +33,7 @@ export default (function() {
   function setTooltip(e) {
     let tooltipDom = $(e.target).parents('.tooltips');
 
-    if (!!tooltipDom) {
+    if (!!tooltipDom.length) {
       let title = buildTitle(tooltipDom);
 
       handleDisplayTooltip(title, tooltipDom);

@@ -1,0 +1,28 @@
+.w-75.view-center{'data-controller': 'facilities'}
+  = simple_form_for @facility, html: {'data-action': 'facilities#submitForm'} do |f|
+    .mb-3= f.input :name, label: t('facility.name')
+    .mb-3= f.input :address, label: t('facility.address')
+    .mb-3= f.input :latitude, label: t('facility.latitude')
+    .mb-3= f.input :longitude, label: t('facility.longitude')
+    .mb-3= f.input :tels, label: t('facility.tels'), input_html: {'data-facilities-target': 'tel', value: f.object.tels.join(', ')}
+    .mb-3= f.input :emails, label: t('facility.emails'), input_html: {'data-facilities-target': 'email', value: f.object.emails.join(', ')}
+
+    .mb-3= f.input :websites, label: t('facility.websites'), input_html: {'data-facilities-target': 'website', value: f.object.websites.join(', ')}
+
+    .mb-3= f.input :facebook_pages, label: t('facility.facebook_pages'), input_html: { 'data-facilities-target': 'fbpage', value: f.object.facebook_pages.join(', ') }
+    .mb-3= f.input :telegram_username, label: t('facility.telegram_username')
+    .mb-3= f.input :description, label: t('facility.description')
+
+    .mb-3.form-control
+      .mb-3
+        %strong= t('facility.business_hours')
+
+      - WorkingDay.days.keys.each do |day|
+        - working_day = f.object.working_days.select { |d| d.day == day }.first || f.object.working_days.new(day: day)
+
+        = f.fields_for :working_days, working_day do |builder|
+          = render 'working_day_fields', f: builder
+
+    .actions
+      = link_to t('shared.cancel'), facilities_path, class: 'btn btn-secondary me-1'
+      = f.submit t('shared.save'), class: 'btn btn-primary'

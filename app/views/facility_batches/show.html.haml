@@ -1,0 +1,14 @@
+.container-fluid.px-4
+  = render "progress_arrow_header", progress_num: 3
+
+  .card.shadow.my-4.w-50.m-auto
+    .card-body.text-center
+      %h2.h3.mb-3= t('facility_batch.congratulation')
+
+      .mb-4
+        = t('facility_batch.congratulation_message', total_count: @facility_batch.valid_count, province_count: @facility_batch.province_count, batch_code: @facility_batch.code).html_safe
+
+      .mb-2
+        = link_to facilities_path(batch_code: @facility_batch.code), class: 'btn btn-primary' do
+          %i.far.fa-fw.fa-clipboard
+          %span= t('facility_batch.show_list')
