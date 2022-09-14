@@ -1,0 +1,52 @@
+.d-flex.mobile-notifications-form.flex-md-row.flex-column-reverse{'data-controller': 'mobile-notifiations'}
+  .flex-1.me-md-4
+    = simple_form_for @mobile_notification do |f|
+      .mb-3
+        %label
+          = t('mobile_notification.notification_title')
+          = "(#{t('mobile_notification.max_title')})"
+
+        = f.input :title, label: false, input_html: { maxlength: 64, 'data-action': 'mobile-notifiations#updateTitle' }
+
+        .text-right.small
+          %span.title-count{'data-mobile-notifiations-target': 'titleCount'} 0
+          %span /
+          %span 64
+
+      .mb-3
+        %label
+          = t('mobile_notification.notification_text')
+          = "(#{t('mobile_notification.max_body')})"
+          %abbr.text-danger{title: 'required'} *
+
+        = f.input :body, label: false, input_html: { maxlength: 255, 'data-action': 'mobile-notifiations#updateBody' }
+
+        .text-right.small
+          %span.body-count{'data-mobile-notifiations-target': 'bodyCount'} 0
+          %span /
+          %span 255
+
+      .form-group
+        %label= t('mobile_notification.app_version')
+
+        .tooltips{ 'data-toggle' => 'tooltip', 'data-placement': 'left' }
+          - options = MobileToken.where.not(app_version: nil).pluck(:app_version).uniq
+          = select_tag 'mobile_notification[app_versions][]', options_for_select(options), multiple: true, "data-count-selected-text" => "{0} #{t('mobile_notification.versions_selected')}", "data-selected-text-format" => "count > 1", "data-none-selected-text" => t("mobile_notification.any_version"), class: 'selectpicker form-control'
+
+      .actions.text-right
+        = link_to t('shared.cancel'), mobile_notifications_url, class: 'btn btn-secondary me-1'
+        = f.submit t('mobile_notification.push_notification'), class: 'btn btn-primary'
+
+  %div
+    .preview-background
+      .card-box
+        .d-flex.align-items-center
+          .me-2
+            = image_tag 'my_health.png', size: '18x18', class: 'rounded'
+          .flex-1.small= ENV["APP_NAME"]
+
+
+        .text-wrapper.mt-2
+          .title.text-truncate{'data-mobile-notifiations-target': 'title'}
+          .text-body.text-truncate{'data-mobile-notifiations-target': 'body'}
+
