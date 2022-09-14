@@ -1,8 +1,24 @@
 class FacilitiesController < ApplicationController
+  helper_method :filter_params
   before_action :set_facility, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pagy, @facilities = pagy(authorize Facility.filter(filter_params).includes(:services))
+    respond_to do |format|
+      format.html {
+        @pagy, @facilities = pagy(authorize Facility.filter(filter_params).includes(:services))
+      }
+
+      format.json {
+        @facilities = authorize Facility.filter(filter_params).includes(:services)
+
+        if @facilities.length > Settings.max_download_visit_record
+          flash[:alert] = t("shared.file_size_is_too_big")
+          redirect_to facilities_url
+        else
+          send_data ActiveModelSerializers::SerializableResource.new(@facilities).to_json, type: :json, disposition: "attachment", filename: "facilities_#{Time.new.strftime('%Y%m%d_%H_%M_%S')}.json"
+        end
+      }
+    end
   end
 
   def show

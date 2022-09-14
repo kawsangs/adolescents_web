@@ -3,7 +3,19 @@ class FacilitySerializer < ActiveModel::Serializer
              :telegram_username, :description, :latitude, :longitude, :services,
              :updated_at
 
+  has_many :working_days
+
   def services
     object.services.pluck(:name)
+  end
+
+  class WorkingDaySerializer < ActiveModel::Serializer
+    attributes :day, :open
+
+    has_many :working_hours
+
+    class WorkingHourSerializer < ActiveModel::Serializer
+      attributes :open_at, :close_at
+    end
   end
 end

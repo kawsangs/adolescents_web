@@ -4,11 +4,11 @@ class VisitsController < ApplicationController
   def index
     respond_to do |format|
       format.html {
-        @pagy, @visits = pagy(authorize Visit.filter(filter_params).includes(:page))
+        @pagy, @visits = pagy(authorize Visit.filter(filter_params).includes(:page, :app_user))
       }
 
       format.xlsx {
-        @visits = authorize Visit.filter(filter_params).includes(:page)
+        @visits = authorize Visit.filter(filter_params).includes(:page, :app_user)
 
         if @visits.length > Settings.max_download_visit_record
           flash[:alert] = t("shared.file_size_is_too_big")
