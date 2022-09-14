@@ -2,14 +2,15 @@
 #
 # Table name: app_users
 #
-#  id            :uuid             not null, primary key
-#  gender        :string
-#  age           :integer
-#  province_id   :string
-#  registered_at :datetime
-#  device_id     :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  id               :uuid             not null, primary key
+#  gender           :string
+#  age              :integer
+#  province_id      :string
+#  registered_at    :datetime
+#  device_id        :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  last_accessed_at :datetime
 #
 require "rails_helper"
 
@@ -84,5 +85,11 @@ RSpec.describe AppUser, type: :model do
         expect(subject.errors.messages).not_to include :province_id
       end
     end
+  end
+
+  describe "#before_create, #set_last_accessed_at" do
+    let!(:app_user) { create(:app_user, registered_at: DateTime.now) }
+
+    it { expect(app_user.last_accessed_at).to eq(app_user.registered_at) }
   end
 end

@@ -12,5 +12,9 @@
 #
 FactoryBot.define do
   factory :visit do
+    visit_date { DateTime.yesterday }
+    page
+    platform
+    app_user
   end
 end
