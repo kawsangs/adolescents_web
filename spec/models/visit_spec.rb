@@ -73,4 +73,13 @@ RSpec.describe Visit, type: :model do
       end
     end
   end
+
+  describe "Callback #after_create" do
+    let!(:app_user) { create(:app_user, registered_at: DateTime.yesterday) }
+    let!(:visit) { create(:visit, visit_date: Time.zone.now, app_user:) }
+
+    it "updates app_user last_accessed_at" do
+      expect(app_user.reload.last_accessed_at).to eq(visit.visit_date)
+    end
+  end
 end

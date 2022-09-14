@@ -20,3 +20,4 @@ km:
     characteristics_selected: characteristics selected
     any_characteristic: Any characteristic
     age_range: Age is from start_age to end_age
+    last_accessed_at: Last accessed at

@@ -9,5 +9,6 @@
 #
 FactoryBot.define do
   factory :platform do
+    name { %w(ios android web).sample }
   end
 end
