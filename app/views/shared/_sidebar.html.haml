@@ -51,6 +51,12 @@
             %i.fa-brands.fa-youtube
           = t('sidebar.videos')
 
+      - if policy(MobileNotification).index?
+        = link_to mobile_notifications_path, class: ['nav-link', css_active_class('mobile_notifications')] do
+          .sb-nav-link-icon
+            %i.fa-solid.fa-mobile-retro
+          = t('sidebar.mobile_notifications')
+
       = link_to about_path, class: ['nav-link', css_active_class('about')] do
         .sb-nav-link-icon
           %i.fa-solid.fa-circle-exclamation

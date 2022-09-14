@@ -1,0 +1,36 @@
+= content_for :header_title_right_col do
+  = render "shared/buttons/add_new_button", url: new_mobile_notification_path, title: t('mobile_notifications.new_mobile_notifications')
+
+.container-fluid.px-4
+  = render 'shared/header_title', title: t('mobile_notification.mobile_notifications')
+  = render "shared/no_data", items: @mobile_notifications
+
+  - if @mobile_notifications.present?
+    = render "shared/pagination_title", objects: @mobile_notifications
+
+    .table-responsive
+      %table.table.table-hover.pretty
+        %thead
+          %tr
+            %th #
+            %th= t('mobile_notification.notification_title')
+            %th= t('mobile_notification.notification_text')
+            %th= t('shared.description')
+            %th= t('mobile_notification.app_version')
+            %th= t('shared.created_at')
+            %th
+
+        %tbody
+          - @mobile_notifications.each_with_index do |notification, index|
+            %tr
+              %td= @pagy.from + index
+              %td= notification.title
+              %td= notification.body
+              %td= notification.description
+              %td= notification.app_versions.join(', ').presence || t('mobile_notification.all_version')
+              %td= timeago(notification.created_at).html_safe
+              %td= notification.status_html.html_safe
+
+    - if @pagy.pages > 1
+      .d-flex.pagy-wrapper.justify-content-lg-end.justify-content-center
+        != pagy_bootstrap_nav(@pagy)

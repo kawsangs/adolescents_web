@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   resources :facility_batches, except: [:update, :edit], param: :code
 
   resources :videos
+  resources :mobile_notifications
 
   get "/privacy-policy", to: "privacy_policies#show"
   get "/terms-and-conditions", to: "terms_and_conditions#show"
