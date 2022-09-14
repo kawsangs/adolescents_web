@@ -18,3 +18,6 @@ en:
     any_facility_batch: គ្រប់ Batch
     lat_lng: Lat/Lng
     services: សេវាកម្ម
+    download_json: ទាញយកជា JSON
+    search_by_name: ស្វែងរកតាមឈ្មោះ
+    search_by_batch: ស្វែងរកតាម batch

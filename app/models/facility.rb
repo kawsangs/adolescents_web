@@ -38,7 +38,7 @@ class Facility < ApplicationRecord
 
   def self.filter(params = {})
     scope = all
-    scope = scope.where(name: params[:name]) if params[:name].present?
+    scope = scope.where("name LIKE ?", "%#{params[:name]}%") if params[:name].present?
     scope = scope.joins(:facility_batch).where("facility_batches.code = ?", params[:batch_code]) if params[:batch_code].present?
     scope
   end

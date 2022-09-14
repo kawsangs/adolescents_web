@@ -1,5 +1,6 @@
 = content_for :header_title_right_col do
-  = render "new_buttons"
+  = render "shared/buttons/download_button", label: t('facility.download_json'), url: facilities_path(filter_params.merge(format: :json))
+  .ms-1= render "new_buttons"
 
 .container-fluid.px-4.facilities
   = render 'shared/header_title', title: t('facility.facilities')

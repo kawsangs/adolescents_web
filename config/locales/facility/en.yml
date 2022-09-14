@@ -18,3 +18,6 @@ en:
     any_facility_batch: Any facility batch
     lat_lng: Lat/Lng
     services: Services
+    download_json: Download JSON
+    search_by_name: Search by name
+    search_by_batch: Search by batch
