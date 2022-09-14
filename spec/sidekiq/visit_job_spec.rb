@@ -2,8 +2,9 @@ require "rails_helper"
 
 RSpec.describe VisitJob, type: :job do
   describe "perfom" do
+    let!(:app_user) { create(:app_user, :anonymous) }
     let(:valid_params) { {
-      device_id: "123abc", visit_date: Time.now,
+      app_user_id: app_user.id, visit_date: Time.now,
       page_attributes: { code: "page_one", name: "Page one", parent_code: nil },
       platform_attributes: { name: "android" }
     }}
