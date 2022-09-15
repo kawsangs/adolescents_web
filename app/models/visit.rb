@@ -20,7 +20,7 @@ class Visit < ApplicationRecord
   after_commit :update_app_user_last_accessed, on: [:create]
 
   # Delegation
-  delegate :name, to: :page, prefix: true
+  delegate :name, :code, to: :page, prefix: true, allow_nil: true
 
   # Nested attribute
   accepts_nested_attributes_for :page, reject_if: lambda { |attributes|
@@ -46,6 +46,14 @@ class Visit < ApplicationRecord
 
   def update_app_user_last_accessed
     app_user.update_column(:last_accessed_at, visit_date)
+  end
+
+  def last_visit
+    self.class.joins(:page)
+      .where(app_user_id:)
+      .where("pages.code = ?", page_code)
+      .where("visit_date >= ?", visit_date - 30.minutes)
+      .first
   end
 
   # Class method
