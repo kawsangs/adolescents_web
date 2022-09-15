@@ -1,5 +1,5 @@
 = content_for :header_title_right_col do
-  = render "download_button"
+  = render "shared/buttons/download_button", url: visits_path(filter_params.merge(format: :xlsx))
 
 .container-fluid.px-4{'data-controller' => 'visits'}
   = render 'shared/header_title', title: t('visit.visits')
