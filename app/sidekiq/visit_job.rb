@@ -2,7 +2,8 @@ class VisitJob
   include Sidekiq::Job
 
   def perform(params = {})
-    Visit.create(visit_params(params))
+    visit = Visit.new(visit_params(params))
+    visit.save if visit.last_visit.nil?
   end
 
   private
