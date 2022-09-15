@@ -20,6 +20,7 @@
             %th= t('app_user.characteristic')
             %th= t('shared.device_id')
             %th= t('app_user.registered_at')
+            %th= t('app_user.last_accessed_at')
             %th= t('shared.created_at')
 
         %tbody
@@ -41,6 +42,7 @@
               %td= app_user.characteristics.map(&:"name_#{I18n.locale}").join(', ')
               %td= app_user.device_id
               %td= timeago(app_user.registered_at).html_safe
+              %td= timeago(app_user.last_accessed_at).html_safe
               %td= timeago(app_user.created_at).html_safe
 
     - if @pagy.pages > 1

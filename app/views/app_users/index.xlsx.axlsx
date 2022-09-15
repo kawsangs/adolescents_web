@@ -7,6 +7,7 @@ wb.add_worksheet(name: "App User") do |sheet|
     t("app_user.characteristic"),
     t("shared.device_id"),
     t("app_user.registered_at"),
+    t("app_user.last_accessed_at"),
     t("shared.created_at")
   ]
 
@@ -21,6 +22,7 @@ wb.add_worksheet(name: "App User") do |sheet|
         app_user.characteristics.map(&:"name_#{I18n.locale}").join(", "),
         app_user.device_id,
         I18n.l(app_user.registered_at),
+        I18n.l(app_user.last_accessed_at),
         I18n.l(app_user.created_at)
       ]
     end

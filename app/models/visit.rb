@@ -16,6 +16,9 @@ class Visit < ApplicationRecord
   belongs_to :platform
   belongs_to :app_user
 
+  # Callback
+  after_commit :update_app_user_last_accessed, on: [:create]
+
   # Delegation
   delegate :name, to: :page, prefix: true
 
@@ -39,6 +42,10 @@ class Visit < ApplicationRecord
 
   def platform_attributes=(attribute)
     self.platform = Platform.find_or_create_by(name: attribute[:name]) if attribute[:name].present?
+  end
+
+  def update_app_user_last_accessed
+    app_user.update_column(:last_accessed_at, visit_date)
   end
 
   # Class method

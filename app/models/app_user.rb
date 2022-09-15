@@ -2,14 +2,15 @@
 #
 # Table name: app_users
 #
-#  id            :uuid             not null, primary key
-#  gender        :string
-#  age           :integer
-#  province_id   :string
-#  registered_at :datetime
-#  device_id     :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  id               :uuid             not null, primary key
+#  gender           :string
+#  age              :integer
+#  province_id      :string
+#  registered_at    :datetime
+#  device_id        :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  last_accessed_at :datetime
 #
 class AppUser < ApplicationRecord
   GENDERS = %w(male female lgbt unknown)
@@ -27,6 +28,9 @@ class AppUser < ApplicationRecord
   has_many :app_user_characteristics, dependent: :destroy
   has_many :characteristics, through: :app_user_characteristics
 
+  # Callback
+  before_create :set_last_accessed_at
+
   # Nested attributes
   accepts_nested_attributes_for :app_user_characteristics
 
@@ -36,6 +40,10 @@ class AppUser < ApplicationRecord
 
   def province
     @province ||= Pumi::Province.find_by_id province_id
+  end
+
+  def set_last_accessed_at
+    self.last_accessed_at = registered_at
   end
 
   # Class method
