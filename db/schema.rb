@@ -109,6 +109,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_023812) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "locations", id: :string, force: :cascade do |t|
+    t.string "name_en", null: false
+    t.string "name_km", null: false
+    t.string "kind", null: false
+    t.string "parent_id"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "oauth_access_grants", force: :cascade do |t|
     t.bigint "resource_owner_id", null: false
     t.bigint "application_id", null: false
