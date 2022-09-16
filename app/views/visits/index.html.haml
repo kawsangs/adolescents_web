@@ -16,6 +16,7 @@
             %th #
             %th= t('visit.device_id')
             %th= t('visit.page')
+            %th= t('facility.facility')
             %th= t('visit.visit_date')
             %th= t('shared.created_at')
 
@@ -25,6 +26,7 @@
               %td= @pagy.from + index
               %td= visit.app_user.device_id
               %td= visit.page_name
+              %td= visit.facility_name
               %td= timeago(visit.visit_date).html_safe
               %td= timeago(visit.created_at).html_safe
 

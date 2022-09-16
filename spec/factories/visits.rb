@@ -9,6 +9,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  app_user_id :uuid
+#  facility_id :uuid
 #
 FactoryBot.define do
   factory :visit do

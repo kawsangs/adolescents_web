@@ -9,18 +9,21 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  app_user_id :uuid
+#  facility_id :uuid
 #
 class Visit < ApplicationRecord
   # Association
   belongs_to :page
   belongs_to :platform
   belongs_to :app_user
+  belongs_to :facility, optional: true
 
   # Callback
   after_commit :update_app_user_last_accessed, on: [:create]
 
   # Delegation
   delegate :name, :code, to: :page, prefix: true, allow_nil: true
+  delegate :name, to: :facility, prefix: true, allow_nil: true
 
   # Nested attribute
   accepts_nested_attributes_for :page, reject_if: lambda { |attributes|
@@ -51,6 +54,7 @@ class Visit < ApplicationRecord
   def last_visit
     self.class.joins(:page)
       .where(app_user_id:)
+      .where(facility_id:)
       .where("pages.code = ?", page_code)
       .where("visit_date >= ?", visit_date - 30.minutes)
       .first

@@ -19,5 +19,15 @@
 #
 FactoryBot.define do
   factory :facility do
+    name    { FFaker::Name.name }
+    tels    { [FFaker::PhoneNumber.phone_number] }
+    address { FFaker::Address.street_address }
+    emails  { [FFaker::Internet.email] }
+    websites  { [FFaker::Internet.http_url] }
+    facebook_pages  { [FFaker::Internet.http_url] }
+    telegram_username { "abc" }
+    description { FFaker::Book.description }
+    latitude  { FFaker::Geolocation.lat }
+    longitude { FFaker::Geolocation.lng }
   end
 end

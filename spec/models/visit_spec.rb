@@ -9,6 +9,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  app_user_id :uuid
+#  facility_id :uuid
 #
 require "rails_helper"
 
@@ -150,6 +151,35 @@ RSpec.describe Visit, type: :model do
         }
 
         it "returns nil" do
+          expect(subject.last_visit).to be_nil
+        end
+      end
+    end
+
+    context "clinic" do
+      let!(:facility) { create(:facility) }
+      let!(:page) { create(:page, code: "clinic") }
+      let(:valid_params) { {
+        app_user_id: app_user.id, visit_date: Time.now,
+        facility_id: facility.id,
+        page_attributes: { code: "clinic", name: "Clinic", parent_code: nil },
+        platform_attributes: { name: "android" }
+      }}
+
+      subject { described_class.new(valid_params) }
+
+      context "within 30mn" do
+        let!(:visit) { create(:visit, app_user:, page:, facility:, visit_date: (DateTime.now - 5.minute)) }
+
+        it "returns nil" do
+          expect(subject.last_visit).not_to be_nil
+        end
+      end
+
+      context "over 30mn" do
+        let!(:visit) { create(:visit, app_user:, page:, facility:, visit_date: (DateTime.now - 31.minute)) }
+
+        it "returns object" do
           expect(subject.last_visit).to be_nil
         end
       end
