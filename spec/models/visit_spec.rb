@@ -2,13 +2,16 @@
 #
 # Table name: visits
 #
-#  id          :uuid             not null, primary key
-#  page_id     :uuid
-#  platform_id :uuid
-#  visit_date  :datetime
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  app_user_id :uuid
+#  id            :uuid             not null, primary key
+#  page_id       :uuid
+#  platform_id   :uuid
+#  visit_date    :datetime
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  app_user_id   :uuid
+#  facility_id   :uuid
+#  pageable_id   :uuid
+#  pageable_type :integer
 #
 require "rails_helper"
 
@@ -49,6 +52,25 @@ RSpec.describe Visit, type: :model do
 
       it "create 2 new pages" do
         expect { visit.page_attributes=(page_attr) }.to change { Page.count }.by 2
+      end
+    end
+
+    context "Clinic detail page with pageable_id and pageable_type" do
+      let!(:facility) { create(:facility) }
+      let!(:page_attr) { { code: "clinic_detail", name: "Clinic detail", parent_code: "" } }
+      let!(:visit) { create(:visit, pageable_id: facility.id, pageable_type: "Facility", page_attributes: page_attr) }
+
+      it "assigns pageable to facility" do
+        expect(visit.pageable).to eq facility
+      end
+    end
+
+    context "Clinic page without pageable_id and pageable_type" do
+      let!(:page_attr) { { code: "clinic", name: "Clinic", parent_code: "" } }
+      let!(:visit) { create(:visit, pageable_id: "", pageable_type: "", page_attributes: page_attr) }
+
+      it "assigns pageable to facility" do
+        expect(visit.pageable).to eq visit.page
       end
     end
   end
@@ -100,10 +122,9 @@ RSpec.describe Visit, type: :model do
     end
 
     context "second visit with visit_date within 30mn" do
-      let(:visit) { create(:visit, app_user:, page:, visit_date: (DateTime.now - 5.minute)) }
-
       context "on the same page" do
-        let(:page) { create(:page, code: "page_one") }
+        let!(:page)  { create(:page, code: "page_one") }
+        let!(:visit) { create(:visit, app_user:, page:, visit_date: (DateTime.now - 5.minute)) }
 
         before {
           subject.visit_date = visit.visit_date + 5.minutes
@@ -115,10 +136,11 @@ RSpec.describe Visit, type: :model do
       end
 
       context "different page" do
-        let(:page) { create(:page, code: "page_zero") }
+        let!(:page)  { create(:page, code: "page_zero") }
+        let!(:visit) { create(:visit, app_user:, page:, visit_date: (DateTime.now - 25.minute)) }
 
         before {
-          subject.visit_date = visit.visit_date + 5.minutes
+          subject.visit_date = visit.visit_date + 25.minutes
         }
 
         it "returns nil" do
@@ -128,10 +150,9 @@ RSpec.describe Visit, type: :model do
     end
 
     context "second visit with visit_date >= 30mn" do
-      let(:visit) { create(:visit, app_user:, page:, visit_date: (DateTime.now - 30.minute)) }
-
       context "on the same page" do
-        let(:page) { create(:page, code: "page_one") }
+        let!(:page) { create(:page, code: "page_one") }
+        let!(:visit) { create(:visit, app_user:, page:, visit_date: (DateTime.now - 30.minute)) }
 
         before {
           subject.visit_date = visit.visit_date + 31.minutes
@@ -143,7 +164,8 @@ RSpec.describe Visit, type: :model do
       end
 
       context "different page" do
-        let(:page) { create(:page, code: "page_zero") }
+        let!(:page) { create(:page, code: "page_zero") }
+        let!(:visit) { create(:visit, app_user:, page:, visit_date: (DateTime.now - 30.minute)) }
 
         before {
           subject.visit_date = visit.visit_date + 31.minutes

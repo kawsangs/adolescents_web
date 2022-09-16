@@ -2,12 +2,15 @@ module Samples
   class Visit < Base
     def load(count = 1)
       count.times.each do |i|
-        ::Visit.create(
+        visit = ::Visit.new(
           app_user_id: ::AppUser.all.sample.id,
           visit_date: rand(1.year).seconds.ago,
           page_attributes: pages.sample,
           platform_attributes: platforms.sample
         )
+        visit.pageable = Facility.all.sample if visit.page.code == "clinic_detail"
+        visit.pageable = Video.all.sample if visit.page.code == "video_detail"
+        visit.save
       end
     end
 
@@ -25,7 +28,11 @@ module Samples
           { code: "page_five", name: "Page 5", parent_code: "" },
           { code: "page_five_one", name: "Page 5.1", parent_code: "page_five" },
           { code: "page_six", name: "Page 6", parent_code: "" },
-          { code: "page_six_one", name: "Page 6.1", parent_code: "page_six" }
+          { code: "page_six_one", name: "Page 6.1", parent_code: "page_six" },
+          { code: "clinic", name: "Clinic", parent_code: "" },
+          { code: "clinic_detail", name: "Clinic detail", parent_code: "clinic" },
+          { code: "video", name: "Video", parent_code: "" },
+          { code: "video_detail", name: "Video detail", parent_code: "video" }
         ]
       end
 
