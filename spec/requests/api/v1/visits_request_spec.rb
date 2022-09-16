@@ -8,6 +8,7 @@ RSpec.describe "Api::V1::VisitsController", type: :request do
     let(:json_response) { JSON.parse(response.body) }
     let(:valid_params) { {
       app_user_id: SecureRandom.uuid, visit_date: Time.now,
+      pageable_id: "", pageable_type: "Page",
       page_attributes: { code: "page_one", name: "Page one", parent_code: nil },
       platform_attributes: { name: "android" }
     }}
