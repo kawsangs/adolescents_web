@@ -5,6 +5,7 @@ RSpec.describe VisitJob, type: :job do
     let!(:app_user) { create(:app_user, :anonymous) }
     let(:valid_params) { {
       app_user_id: app_user.id, visit_date: Time.now,
+      pageable_id: "", pageable_type: "Page",
       page_attributes: { code: "page_one", name: "Page one", parent_code: nil },
       platform_attributes: { name: "android" }
     }}

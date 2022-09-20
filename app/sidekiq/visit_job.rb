@@ -10,7 +10,7 @@ class VisitJob
     def visit_params(params)
       ActionController::Parameters.new(params)
         .permit(
-          :app_user_id, :visit_date,
+          :app_user_id, :visit_date, :pageable_id, :pageable_type,
           page_attributes: [:code, :name, :parent_code],
           platform_attributes: [:name]
         )

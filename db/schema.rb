@@ -232,6 +232,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_023812) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "app_user_id"
+    t.uuid "pageable_id"
+    t.integer "pageable_type"
   end
 
   create_table "working_days", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
