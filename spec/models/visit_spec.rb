@@ -82,4 +82,77 @@ RSpec.describe Visit, type: :model do
       expect(app_user.reload.last_accessed_at).to eq(visit.visit_date)
     end
   end
+
+  describe "#last_visit" do
+    let!(:app_user) { create(:app_user, :anonymous) }
+    let(:valid_params) { {
+      app_user_id: app_user.id, visit_date: Time.now,
+      page_attributes: { code: "page_one", name: "Page one", parent_code: nil },
+      platform_attributes: { name: "android" }
+    }}
+
+    subject { described_class.new(valid_params) }
+
+    context "first visit" do
+      it "returns nil" do
+        expect(subject.last_visit).to be_nil
+      end
+    end
+
+    context "second visit with visit_date within 30mn" do
+      let(:visit) { create(:visit, app_user:, page:, visit_date: (DateTime.now - 5.minute)) }
+
+      context "on the same page" do
+        let(:page) { create(:page, code: "page_one") }
+
+        before {
+          subject.visit_date = visit.visit_date + 5.minutes
+        }
+
+        it "returns 1 object" do
+          expect(subject.last_visit).not_to be_nil
+        end
+      end
+
+      context "different page" do
+        let(:page) { create(:page, code: "page_zero") }
+
+        before {
+          subject.visit_date = visit.visit_date + 5.minutes
+        }
+
+        it "returns nil" do
+          expect(subject.last_visit).to be_nil
+        end
+      end
+    end
+
+    context "second visit with visit_date >= 30mn" do
+      let(:visit) { create(:visit, app_user:, page:, visit_date: (DateTime.now - 30.minute)) }
+
+      context "on the same page" do
+        let(:page) { create(:page, code: "page_one") }
+
+        before {
+          subject.visit_date = visit.visit_date + 31.minutes
+        }
+
+        it "returns nil" do
+          expect(subject.last_visit).to be_nil
+        end
+      end
+
+      context "different page" do
+        let(:page) { create(:page, code: "page_zero") }
+
+        before {
+          subject.visit_date = visit.visit_date + 31.minutes
+        }
+
+        it "returns nil" do
+          expect(subject.last_visit).to be_nil
+        end
+      end
+    end
+  end
 end
