@@ -4,7 +4,7 @@ class VisitsController < ApplicationController
   def index
     respond_to do |format|
       format.html {
-        @pagy, @visits = pagy(authorize Visit.filter(filter_params).includes(:page, :app_user))
+        @pagy, @visits = pagy(authorize Visit.filter(filter_params).order(created_at: :desc).includes(:page, :app_user))
       }
 
       format.xlsx {
