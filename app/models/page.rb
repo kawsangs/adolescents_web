@@ -18,4 +18,17 @@ class Page < ApplicationRecord
   acts_as_nested_set
 
   has_many :visits
+
+  before_validation :set_display_name
+
+  private
+    def set_display_name
+      self.display_name ||= name
+    end
+
+    def self.filter(params)
+      scope = all
+      scope = scope.where("LOWER(code) LIKE ? OR name LIKE ? OR display_name LIKE ?", "%#{params[:keyword].downcase}%", "%#{params[:keyword].downcase}%", "%#{params[:keyword].downcase}%") if params[:keyword].present?
+      scope
+    end
 end

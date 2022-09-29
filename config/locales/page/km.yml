@@ -1,0 +1,10 @@
+km:
+  page:
+    page: ទំព័រ
+    pages: ទំព័រ
+    new_page: ទំព័រថ្មី
+    edit_page: កែតម្រូវទំព័រ
+    code: លេខកូដ
+    name: ឈ្មោះ
+    display_name: ឈ្មោះសម្រាប់បង្ហាញ
+    find_by_code_or_name: ស្វែងរកតាមលេខកូដ ឬ ឈ្មោះ

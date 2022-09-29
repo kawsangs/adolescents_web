@@ -47,6 +47,8 @@ Rails.application.routes.draw do
   resources :videos
   resources :mobile_notifications
 
+  resources :pages
+
   get "/privacy-policy", to: "privacy_policies#show"
   get "/terms-and-conditions", to: "terms_and_conditions#show"
 
