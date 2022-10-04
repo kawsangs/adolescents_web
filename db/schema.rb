@@ -116,6 +116,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_023812) do
     t.string "parent_id"
     t.float "latitude"
     t.float "longitude"
+  end
+
+  create_table "mobile_notifications", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.integer "success_count"
+    t.integer "failure_count"
+    t.integer "creator_id"
+    t.string "app_versions", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "mobile_tokens", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "device_id"
+    t.integer "device_type"
+    t.string "token"
+    t.string "app_version"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

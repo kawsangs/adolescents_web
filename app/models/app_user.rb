@@ -27,7 +27,7 @@ class AppUser < ApplicationRecord
   # Association
   has_many :app_user_characteristics, dependent: :destroy
   has_many :characteristics, through: :app_user_characteristics
-  belongs_to :location, foreign_key: :province_id
+  belongs_to :location, foreign_key: :province_id, optional: true
 
   # Callback
   before_create :set_last_accessed_at
