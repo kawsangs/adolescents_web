@@ -109,11 +109,15 @@ gem "strip_attributes", "~> 1.13.0"
 # Serializer
 gem "active_model_serializers", "~> 0.10.13"
 
+# Restrict cross platform access
 gem "rack-cors", "~> 1.1.1"
 
 # Push notification
 gem "googleauth", "1.2.0"
 gem "fcm", "~> 1.0.8"
+
+# File upload
+gem "carrierwave",    "~> 2.2.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

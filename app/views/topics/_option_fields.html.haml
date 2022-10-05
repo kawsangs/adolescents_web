@@ -1,0 +1,16 @@
+%fieldset.option-field{'data-controller': 'options'}
+  .field-wrapper.my-3
+    = f.hidden_field :_destroy
+    = link_to '#', class: "remove_fields btn btn-link", data: { 'options-target': 'btnRemoveOption', action: 'options#removeOption' } do
+      %i.fa.fa-trash-alt.text-danger
+
+    %div.flex-grow-1
+      .d-flex.flex-grow-1
+        .flex-grow-1.me-2
+          = f.input :name, label: t('topic.answer')
+
+        .flex-1.me-2
+          = f.input :move_next, label: t('topic.option_status'), collection: [['Move next', true], ['End question', false]], include_blank: false, selected: f.object.move_next?, input_html: { class: 'form-select', 'data-options-target': 'optionStatus', 'data-action': 'options#handleDisplayMessage' }
+
+      .advance-options.d-flex.me-2{class: ('d-none' if f.object.move_next) }
+        = f.input :message, label: t('topic.message').html_safe, wrapper_html: { class: 'flex-grow-1' }

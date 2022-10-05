@@ -23,15 +23,15 @@ class MobileNotification < ApplicationRecord
   end
 
   def build_content
-    { notification: { title: title, body: body } }
+    { notification: { title:, body: } }
   end
 
   def description
     return nil if success_count.nil?
 
     I18n.t("mobile_notification.description",
-      success_count: success_count,
-      failure_count: failure_count
+      success_count:,
+      failure_count:
     )
   end
 

@@ -1,0 +1,61 @@
+= content_for :header_title_right_col do
+  - if current_user.primary_admin?
+    = render "shared/buttons/download_button", label: t('shared.download_json'), url: topics_path(filter_params.merge(format: :json))
+
+  .ms-1= render "shared/buttons/add_new_button", url: new_topic_path, name: t("topic.topic")
+
+.container-fluid.px-4
+  = render 'shared/header_title', title: t('topic.topics')
+  = render 'filters'
+  = render "shared/no_data", items: @topics
+
+  - if @topics.present?
+    = render "shared/pagination_title", objects: @topics
+
+    .table-responsive
+      %table.table.table-hover.pretty
+        %thead
+          %tr
+            %th #
+            %th= t('topic.name')
+            %th= t('topic.version')
+            %th= t('topic.published_at')
+            %th= t('topic.services')
+            %th= t('shared.audio')
+            %th= t('topic.number_of_question')
+            %th= t('shared.created_at')
+            %th= t('shared.updated_at')
+            %th
+
+        %tbody
+          - @topics.each_with_index do |topic, index|
+            %tr
+              %td= @pagy.from + index
+              %td= topic.name
+              %td
+                = topic.version if topic.version.positive?
+              %td= timeago(topic.published_at, 'datetime').html_safe
+              %td= topic.services.collect(&:name).join(', ')
+              %td
+                = link_to topic.audio_identifier, topic.audio_url, target: "_blank", class: 'btn btn-link p-0 d-block text-truncate' if topic.audio.present?
+
+              %td= topic.questions.length
+              %td= timeago(topic.created_at).html_safe
+              %td= timeago(topic.updated_at).html_safe
+              %td
+                .d-flex.justify-content-end
+                  - if policy(Topic).publish?
+                    %span.me-1{ data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top' }, title: t('shared.publish') }
+                      %button.btn.btn-circle.btn-sm.btn-outline-success{ "data-bs-target" => "#confirmModalPublish", "data-bs-toggle" => "modal", "data-bs-message" => { type: t('topic.topic'), name: topic.name, url: publish_topic_path(topic)}, :type => "button" }
+                        %i.fa-solid.fa-file-export
+
+                  = render 'shared/buttons/edit_button', object: topic, url: edit_topic_path(topic)
+
+                  = render 'shared/buttons/delete_button', object: topic,  message: { type: t('topic.topic'), name: topic.name, url: topic_path(topic) }
+
+    - if @pagy.pages > 1
+      .pagy-wrapper.justify-content-lg-end.justify-content-center
+        != pagy_bootstrap_nav(@pagy)
+
+= render "shared/modals/confirm_delete_modal"
+= render "confirm_publish_modal"

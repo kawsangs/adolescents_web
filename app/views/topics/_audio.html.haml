@@ -1,0 +1,23 @@
+- field ||= :audio
+- errors = f.object.errors[field]
+- label ||= ""
+
+.form-group.file-wrapper.d-flex{ style: 'overflow: hidden', 'data-controller': 'audio'}
+  .w-100{class: ('form-group-invalid' if errors.present?)}
+    - if label.present?
+      %label= label
+    .form-control.file-control-wrapper{ class: [('d-none' if (errors.blank? && f.object[field].present?)), ('is-invalid' if errors.present?)] }
+
+      = f.file_field field, class: 'file-inputbox', accept: ".mp3,audio/*", data: { 'audio-target': 'inputAudio', 'action': 'audio#updateAudio' }
+
+    .invalid-feedback= errors.join('; ')
+
+    - if errors.blank? && f.object[field].present?
+      .remove-file-wrapper
+        .d-flex.align-items-center
+          = f.hidden_field "remove_#{field}".to_sym, class: 'remove-file-checkbox'
+          %a.remove-file-button.text-danger.me-2{ href: '#', 'data-audio-target': 'btnRemoveFile', 'data-action': 'audio#removeAudio' }
+            %i.fa-solid.fa-xmark
+
+          = link_to f.object.audio_url, target: "_blank", class: 'btn btn-link p-0 d-block text-truncate' do
+            = f.object.send("#{field}_identifier")

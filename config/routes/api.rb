@@ -5,6 +5,8 @@ Rails.application.routes.draw do
       resources :app_users, only: [:create, :update]
       resources :facilities, only: [:index]
       resource  :mobile_tokens, only: [:update]
+      resources :topics, only: [:index]
+      resources :services, only: [:index]
 
       get "*path" => "api#routing_error"
     end

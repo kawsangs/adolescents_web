@@ -37,3 +37,8 @@ en:
     search: Search
     download_json: Download JSON
     description: Description
+    publish: Publish
+    audio: Audio
+    confirm_publish: Confirm publish %{name}
+    are_you_sure_to_publish: Are you sure to publish the %{type} <b>%{name}</b>?
+    yes_publish: Yes, Publish!

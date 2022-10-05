@@ -1,0 +1,19 @@
+en:
+  topic:
+    topic: Topic
+    topics: Topics
+    new_topic: New topic
+    edit_topic: Edit topic
+    name: Name
+    version: Version
+    published_at: Published at
+    hint: Hint
+    questions: Questions
+    add_question: + Add question
+    add_option: + Add option
+    value: Value
+    message: "Recommendation Message <abbr>*</abbr>"
+    option_status: Option status
+    answer: Answer
+    services: Services
+    number_of_question: "# of question"

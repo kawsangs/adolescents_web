@@ -23,8 +23,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :locale, only: [:update]
-
   resources :api_keys do
     member do
       put :archive
@@ -32,15 +30,16 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :topics do
+    put :publish, on: :member
+  end
+
+  resource :locale, only: [:update]
   resources :visits
-
   resource :about, only: [:show]
-
   resources :app_users, only: [:index]
-
   resources :facilities
   resources :facility_batches, except: [:update, :edit], param: :code
-
   resources :videos
   resources :mobile_notifications
 

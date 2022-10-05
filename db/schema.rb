@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_19_023812) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_06_044732) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -116,6 +116,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_023812) do
     t.string "parent_id"
     t.float "latitude"
     t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "mobile_notifications", force: :cascade do |t|
@@ -180,6 +182,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_023812) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
+  create_table "options", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "question_id"
+    t.string "name"
+    t.text "message"
+    t.boolean "move_next", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "pages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "code"
     t.string "name"
@@ -190,6 +201,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_023812) do
     t.integer "children_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "display_name"
     t.index ["lft"], name: "index_pages_on_lft"
     t.index ["rgt"], name: "index_pages_on_rgt"
   end
@@ -200,8 +212,36 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_19_023812) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "questions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "code"
+    t.text "name"
+    t.string "type"
+    t.string "hint"
+    t.integer "display_order"
+    t.string "audio"
+    t.uuid "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "services", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "topic_services", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "topic_id"
+    t.uuid "service_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "topics", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.integer "version", default: 0
+    t.datetime "published_at"
+    t.string "audio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

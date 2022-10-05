@@ -11,6 +11,8 @@ class Service < ApplicationRecord
   # Association
   has_many :facility_services
   has_many :facilities, through: :facility_services
+  has_many :topic_services, dependent: :destroy
+  has_many :topics, through: :topic_services
 
   # Validation
   validates :name, presence: true

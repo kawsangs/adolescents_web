@@ -1,0 +1,19 @@
+km:
+  topic:
+    topic: ប្រធានបទ
+    topics: ប្រធានបទ
+    new_topic: ប្រធានបទថ្មី
+    edit_topic: កែតម្រូវប្រធានបទ
+    name: ឈ្មោះ
+    version: ជំនាន់
+    published_at: ចេញផ្សាយនៅ
+    hint: ព័ត៌មានជំនួយ
+    questions: សំណួរ
+    add_question: + បន្ថែមសំនួរ
+    add_option: + បន្ថែមចំលើយ
+    value: តម្លៃ
+    message: "សារណែនាំ <abbr>*</abbr>"
+    option_status: ស្ថានភាពជម្រើស
+    answer: ចម្លើយ
+    services: ប្រភេទសេវារបស់គ្លីនិក
+    number_of_question: "# ចំនួនសំនួរ"

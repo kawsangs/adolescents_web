@@ -1,0 +1,39 @@
+%li{ 'data-controller': 'questions' }
+  %fieldset.fieldset
+    .field-wrapper
+      %button.btn.move{type: :button}
+        %i.fa.fa-arrows-alt
+
+      .d-flex.flex-grow-1
+        .wrapper.d-flex.align-items-center.flex-grow-1
+          %button.btn.collapse-trigger{ type: :button, data: {'questions-target': 'btnCollapseTrigger', action: 'questions#toggleCollapseContent'} }
+            %i.fas.fa-caret-right
+
+          .flex-grow-1
+            = f.hidden_field :type, class: 'field-type', 'data-field' => f.object.to_json
+            = f.hidden_field :display_order, class: 'display-order'
+            = f.text_field :name, placeholder: t('topic.name'), class: 'form-control field-name'
+            - if error_msg = f.object.errors[:name].presence
+              .error-message.text-danger.small= error_msg.join('; ')
+
+            = f.text_field :hint, placeholder: t('topic.hint'), class: "form-control field-definition no-style as-hint"
+
+          .w-25.ms-2
+            = render "audio", field: :audio, f: f
+
+          %button.btn.btn-outline-primary.btn-add-field{ type: 'button', 'data-questions-target': 'btnAddName', 'data-action': 'questions#showChooseDataType'}
+            = t('shared.done')
+
+        .action.d-flex.flex-column.align-items-center.justify-content-center
+          = f.hidden_field :_destroy
+          %a.remove_fields{ href: '#', 'data-questions-target': 'btnRemoveQuestion', 'data-action': 'click->questions#removeQuestion'}
+            %i.fas.fa-trash-alt.text-danger
+
+    = render 'kinds'
+
+    .collapse-content
+      .options-wrapper
+        = f.simple_fields_for :options do |builder|
+          = render 'option_fields', f: builder
+
+        = link_to_add_fields t('topic.add_option'), f, :options, 'questions-target': 'btnAddOption', 'action': 'questions#appendOptionField'
