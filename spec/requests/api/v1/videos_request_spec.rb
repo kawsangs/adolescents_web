@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Api::V1::VideosController", type: :request do
-  describe "GET #inde" do
+  describe "GET #index" do
     let(:api_key) { create(:api_key) }
     let(:header) { { "ACCEPT" => "application/json", "Authorization" => "Apikey #{api_key.api_key}" } }
     let(:json_response) { JSON.parse(response.body) }

@@ -20,7 +20,7 @@
 class FacilitySerializer < ActiveModel::Serializer
   attributes :id, :name, :address, :tels, :emails, :websites, :facebook_pages,
              :telegram_username, :description, :latitude, :longitude, :services,
-             :updated_at
+             :updated_at, :service_ids
 
   has_many :working_days
 

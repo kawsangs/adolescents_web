@@ -14,6 +14,5 @@
 #
 FactoryBot.define do
   factory :mobile_notification do
-    
   end
 end

@@ -12,7 +12,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe MobileNotification, type: :model do
   it { is_expected.to belong_to(:creator).with_foreign_key(:creator_id).class_name("User") }
