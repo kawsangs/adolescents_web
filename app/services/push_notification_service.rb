@@ -1,14 +1,14 @@
 # Message template follow: https://github.com/decision-labs/fcm
 
-require 'googleauth'
+require "googleauth"
 
 class PushNotificationService
   def initialize
-    @success_count = 0;
-    @failure_count = 0;
+    @success_count = 0
+    @failure_count = 0
   end
 
-  def notify(tokens=[], notification = {})
+  def notify(tokens = [], notification = {})
     tokens.each do |token|
       message = { 'token': token }.merge(notification)
       res = fcm.send_v1(message)
@@ -44,11 +44,11 @@ class PushNotificationService
     end
 
     def get_token
-      scope = 'https://www.googleapis.com/auth/firebase.messaging'
+      scope = "https://www.googleapis.com/auth/firebase.messaging"
 
       authorizer = Google::Auth::ServiceAccountCredentials.make_creds(
         json_key_io: File.open(credential_path),
-        scope: scope)
+        scope:)
 
       authorizer.fetch_access_token!["access_token"]
     end

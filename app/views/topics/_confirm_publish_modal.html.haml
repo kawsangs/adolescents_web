@@ -1,0 +1,20 @@
+%div{'data-controller': 'topic-index'}
+  #confirmModalPublish.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :tabindex => "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %h5#exampleModalLabel.modal-title
+            / Message title to replace
+            = t('shared.confirm_publish', name: '_type_')
+
+          %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+
+        .modal-body
+          / Message body to replace
+          = t('shared.are_you_sure_to_publish', type: "_type_", name: '_name_').html_safe
+
+        .modal-footer
+          %button.btn.btn-secondary{"data-bs-dismiss" => "modal", :type => "button"}= t('shared.cancel')
+
+          / Message url to replace
+          = button_to t('shared.yes_publish'), '#', method: :put, class: 'btn btn-warning'

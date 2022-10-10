@@ -1,0 +1,25 @@
+.w-75.view-center{'data-controller': 'topics'}
+  = simple_form_for @topic, html: { class: 'main-form' } do |f|
+    .mb-3= f.input :name
+
+    .mb-3= f.input :service_ids, label: t('topic.services'), input_html: { 'data-topics-target': 'serviceIdsInput', 'data-collection': Service.all.to_json }
+
+    .mb-3
+      %label= t('shared.audio')
+      = render "audio", field: :audio, f: f
+
+    %fieldset
+      %legend.d-inline
+        %span= t('topic.questions')
+        %button.btn.collapse-all-trigger{type: :button, data: {'topics-target': 'btnCollapseAllTrigger', action: 'topics#toggleCollapseAllContent'} }
+          %i.fas.fa-caret-right
+
+      %ol.fields.sortable
+        = f.fields_for :questions, f.object.questions do |builder|
+          = render 'question_fields', f: builder
+
+        = link_to_add_fields t('topic.add_question'), f, :questions, 'topics-target': 'btnAddQuestion', 'action': 'topics#appendField'
+
+      .actions.text-right.mb-3
+        = link_to t('shared.cancel'), topics_path, class: 'btn btn-secondary me-1'
+        = f.submit t('shared.save'), class: 'btn btn-primary'
