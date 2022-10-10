@@ -11,6 +11,9 @@
 #  updated_at  :datetime         not null
 #
 class Option < ApplicationRecord
+  # Association
+  belongs_to :question
+
   # Validation
   validates :name, presence: true, uniqueness: { scope: [:question_id] }
 end
