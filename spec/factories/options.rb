@@ -12,5 +12,9 @@
 #
 FactoryBot.define do
   factory :option do
+    name { FFaker::Name.name }
+    move_next { [true, false].sample }
+    message { FFaker::Name.name unless move_next }
+    question
   end
 end
