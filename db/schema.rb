@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_07_073624) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_07_083921) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "answers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "quiz_id"
+    t.uuid "question_id"
+    t.uuid "option_id"
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "api_keys", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
@@ -220,6 +229,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_07_073624) do
     t.integer "display_order"
     t.string "audio"
     t.uuid "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "quizzes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "app_user_id"
+    t.uuid "topic_id"
+    t.datetime "quizzed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
