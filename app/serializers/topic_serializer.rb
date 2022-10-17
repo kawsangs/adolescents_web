@@ -9,6 +9,7 @@
 #  audio        :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  code         :string
 #
 class TopicSerializer < ActiveModel::Serializer
   attributes :id, :name, :published_at, :service_ids, :audio

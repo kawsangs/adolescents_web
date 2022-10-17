@@ -14,5 +14,16 @@ module Samples
 
         path
       end
+
+      def get_audio(filename)
+        return unless filename.present?
+
+        audio = audios.select { |file| file.split("/").last.split(".mp3").first == "#{filename.split('.mp3').first}" }.first
+        Pathname.new(audio).open if audio.present?
+      end
+
+      def audios
+        @audios ||= Dir.glob(Rails.root.join("lib", "samples", "assets", "audios", "**", "**", "**", "**"))
+      end
   end
 end

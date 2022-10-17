@@ -25,9 +25,10 @@ class AppUser < ApplicationRecord
   validates :registered_at, presence: true
 
   # Association
+  belongs_to :location, foreign_key: :province_id, optional: true
   has_many :app_user_characteristics, dependent: :destroy
   has_many :characteristics, through: :app_user_characteristics
-  belongs_to :location, foreign_key: :province_id, optional: true
+  has_many :quizzes
 
   # Callback
   before_create :set_last_accessed_at
