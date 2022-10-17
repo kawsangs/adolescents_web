@@ -42,3 +42,9 @@ km:
     confirm_publish: បញ្ជាក់ការចេញផ្សាយ %{name}
     are_you_sure_to_publish: តើអ្នកប្រាកដជាចេញផ្សាយ%{type} <b>%{name}</b> នេះជាសាធារណៈមែនទេ?
     yes_publish: បាទ/ចាស, ចេញផ្សាយ!
+    province: ខេត្ត
+    district: ស្រុក
+    commune: ឃុំ
+    village: ភូមិ
+    street: ផ្លូវ
+    house_number: ផ្ទះលេខ

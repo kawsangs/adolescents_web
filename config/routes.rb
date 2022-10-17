@@ -50,6 +50,8 @@ Rails.application.routes.draw do
   get "/privacy-policy", to: "privacy_policies#show"
   get "/terms-and-conditions", to: "terms_and_conditions#show"
 
+  mount Pumi::Engine => "/pumi"
+
   if Rails.env.production?
     # Sidekiq
     authenticate :user, lambda { |u| u.primary_admin? } do

@@ -53,8 +53,8 @@ class FacilityBatchesController < ApplicationController
       params.require(:facility_batch).permit(
         :total_count, :valid_count, :province_count, :filename,
         facilities_attributes: [
-          :name, :address, :telegram_username, :description,
-          :latitude, :longitude, :_destroy,
+          :name, :province_id, :district_id, :commune_id, :village_id, :street, :house_number,
+          :telegram_username, :description, :latitude, :longitude, :_destroy,
           tels: [], emails: [], websites: [], facebook_pages: [],
           working_days_attributes: [ :day, :open, working_hours_attributes: [ :open_at, :close_at ] ],
           services_attributes: [:name]
