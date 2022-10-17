@@ -1,49 +1,14 @@
-%nav#sidenavAccordion.sb-sidenav.accordion.sb-sidenav-light
+%nav#sidenavAccordion.sb-sidenav.accordion.sb-sidenav-light{'data-controller': 'sidebar'}
   .sb-sidenav-menu
     .nav
       - if policy(:grafana).show?
-        .sb-sidenav-menu-heading Core
+        .sb-sidenav-menu-heading= t('sidebar.reports')
         %a.nav-link{href: ENV['GF_DASHBOARD_URL'], target: '_blank'}
           .sb-nav-link-icon
             %i.fas.fa-fw.fa-tachometer-alt
           %span= t("sidebar.dashboard")
 
-      .sb-sidenav-menu-heading Interface
-
-      = link_to users_path, class: ['nav-link', css_active_class('users')] do
-        .sb-nav-link-icon
-          %i.fa-solid.fa-users
-        = t('sidebar.users')
-
-      - if policy(Topic).index?
-        = link_to topics_path, class: ['nav-link', css_active_class('topics')] do
-          .sb-nav-link-icon
-            %i.fa-solid.fa-person-circle-question
-          = t('sidebar.topics')
-
-      - if current_user.primary_admin?
-        = link_to oauth_applications_url, class: ['nav-link'] do
-          .sb-nav-link-icon
-            %i.fa-solid.fa-grip
-          = t('sidebar.oauth_applicatons')
-
-      - if policy(ApiKey).index?
-        = link_to api_keys_path, class: ['nav-link', css_active_class('api_keys')] do
-          .sb-nav-link-icon
-            %i.fa-solid.fa-key
-          = t('sidebar.api_keys')
-
-      - if policy(Facility).index?
-        = link_to facilities_path, class: ['nav-link', css_active_class('facilities')] do
-          .sb-nav-link-icon
-            %i.fa-solid.fa-house-medical
-          = t('sidebar.facilities')
-
-      - if policy(Visit).index?
-        = link_to visits_path, class: ['nav-link', css_active_class('visits')] do
-          .sb-nav-link-icon
-            %i.fa-solid.fa-eye
-          = t('sidebar.visits')
+      .sb-sidenav-menu-heading= t('sidebar.interfaces')
 
       - if policy(AppUser).index?
         = link_to app_users_path, class: ['nav-link', css_active_class('app_users')] do
@@ -51,17 +16,51 @@
             %i.fa-solid.fa-mobile-retro
           = t('sidebar.app_users')
 
-      - if policy(Video).index?
-        = link_to videos_path, class: ['nav-link', css_active_class('videos')] do
+      - if policy(Visit).index?
+        = link_to visits_path, class: ['nav-link', css_active_class('visits')] do
           .sb-nav-link-icon
-            %i.fa-brands.fa-youtube
-          = t('sidebar.videos')
+            %i.fa-solid.fa-eye
+          = t('sidebar.visits')
 
-      - if policy(MobileNotification).index?
-        = link_to mobile_notifications_path, class: ['nav-link', css_active_class('mobile_notifications')] do
-          .sb-nav-link-icon
-            %i.fa-solid.fa-mobile-retro
-          = t('sidebar.mobile_notifications')
+      / Contents
+      %a.nav-link.collapsed{"aria-controls" => "collapseContents", "aria-expanded" => "false", "data-bs-target" => "#collapseContents", "data-bs-toggle" => "collapse", :href => "#"}
+        .sb-nav-link-icon
+          %i.fas.fa-columns
+        = t('sidebar.contents')
+        .sb-sidenav-collapse-arrow
+          %i.fas.fa-angle-down
+
+      #collapseContents.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" => "#sidenavAccordion"}
+        %nav.sb-sidenav-menu-nested.nav
+          - if policy(Facility).index?
+            = link_to t('sidebar.facilities'), facilities_path, class: ['nav-link', css_active_class('facilities')]
+
+          - if policy(Video).index?
+            = link_to t('sidebar.videos'), videos_path, class: ['nav-link', css_active_class('videos')]
+
+          - if policy(Topic).index?
+            = link_to t('sidebar.topics'), topics_path, class: ['nav-link', css_active_class('topics')]
+
+      / Settings
+      %a.nav-link.collapsed{"aria-controls" => "collapseSettings", "aria-expanded" => "false", "data-bs-target" => "#collapseSettings", "data-bs-toggle" => "collapse", :href => "#"}
+        .sb-nav-link-icon
+          %i.fa-solid.fa-wrench
+        = t('sidebar.settings')
+        .sb-sidenav-collapse-arrow
+          %i.fas.fa-angle-down
+
+      #collapseSettings.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" => "#sidenavAccordion"}
+        %nav.sb-sidenav-menu-nested.nav
+          = link_to t('sidebar.users'), users_path, class: ['nav-link', css_active_class('users')]
+
+          - if policy(ApiKey).index?
+            = link_to t('sidebar.api_keys'), api_keys_path, class: ['nav-link', css_active_class('api_keys')]
+
+          - if current_user.primary_admin?
+            = link_to t('sidebar.oauth_applicatons'), oauth_applications_url, class: ['nav-link']
+
+          - if policy(MobileNotification).index?
+            = link_to t('sidebar.mobile_notifications'), mobile_notifications_path, class: ['nav-link', css_active_class('mobile_notifications')]
 
       = link_to about_path, class: ['nav-link', css_active_class('about')] do
         .sb-nav-link-icon
