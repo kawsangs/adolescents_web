@@ -22,6 +22,8 @@ pin "confirm_modal", to: "commons/confirm_modal", preload: true
 # Sortable
 pin "jquerySortable", to: "jquerySortable", preload: true
 
+pin "pumi", to: "pumi_js", preload: true
+
 pin_all_from "app/javascript/controllers", under: "controllers"
 
 pin "jquery", to: "https://ga.jspm.io/npm:jquery@3.6.0/dist/jquery.js"
