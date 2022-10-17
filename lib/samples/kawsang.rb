@@ -10,6 +10,8 @@ module Samples
       ::Samples::User.new.load
       ::Samples::AppUser.new.load
       ::Samples::Visit.new.load
+      ::Samples::Topic.new.load
+      ::Samples::Quiz.new.load
     end
 
     def self.load_references

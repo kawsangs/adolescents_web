@@ -38,7 +38,10 @@ Rails.application.routes.draw do
   resource :locale, only: [:update]
   resources :visits
   resource :about, only: [:show]
-  resources :app_users, only: [:index]
+  resources :app_users, only: [:index] do
+    resources :quizzes, only: [:index, :show]
+  end
+
   resources :facilities
   resources :facility_batches, except: [:update, :edit], param: :code
   resources :videos

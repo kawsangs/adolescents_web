@@ -4,7 +4,7 @@ class AppUsersController < ApplicationController
   def index
     respond_to do |format|
       format.html {
-        @pagy, @app_users = pagy(authorize AppUser.filter(filter_params).includes(app_user_characteristics: :characteristic))
+        @pagy, @app_users = pagy(authorize AppUser.filter(filter_params).includes(:quizzes, app_user_characteristics: :characteristic))
       }
 
       format.xlsx {

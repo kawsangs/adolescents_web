@@ -32,6 +32,7 @@ class Question < ApplicationRecord
   # Callback
   before_create :set_display_order
   before_create :set_field_code, if: -> { name.present? }
+  before_validation :set_type
 
   accepts_nested_attributes_for :options, allow_destroy: true, reject_if: ->(attributes) { attributes["name"].blank? }
 
@@ -42,5 +43,9 @@ class Question < ApplicationRecord
 
     def set_field_code
       self.code ||= name.downcase.split(" ").map { |c| c.gsub!(/[^0-9A-Za-z]/, "") }.join("_")
+    end
+
+    def set_type
+      self.type ||= self.class::TYPES[0]
     end
 end
