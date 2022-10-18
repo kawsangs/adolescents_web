@@ -1,7 +1,7 @@
 / - @facility_batch = FacilityBatch.first
 / = render template: "facility_batches/import_confirm"
 
-.container-fluid.px-4
+.container-fluid.px-4{'data-controller': 'facility-batches'}
   = render "progress_arrow_header"
 
   .w-50.m-auto
@@ -28,7 +28,7 @@
             .card-body
               %span.mr-2 2.
               .form-control.file-control-wrapper
-                = f.file_field :file, accept: ".xls,.xlsx"
+                = f.file_field :file, accept: ".xls,.xlsx", 'data-action': 'facility-batches#toggleSaveButton'
 
           %small= t('facility_batch.excel_file')
 
@@ -50,4 +50,4 @@
         .modal-footer.mt-3
           = link_to t('shared.cancel'), facilities_path, class: 'btn btn-secondary'
 
-          %button.btn.btn-primary{:type => "submit"}= t('shared.done')
+          %button.btn.btn-primary{:type => "submit", disabled: true}= t('shared.done')

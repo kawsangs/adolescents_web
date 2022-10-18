@@ -10,6 +10,7 @@ import "bootstrap"
 import jquery from 'jquery'
 window.$ = jquery
 
+import pumi from "pumi"
 import "controllers"
 
 import timeago from "timeago"
@@ -24,4 +25,5 @@ document.addEventListener('turbo:load', () => {
   tooltip.init();
   alert.init();
   selectPicker.init();
+  pumi.setup();
 });

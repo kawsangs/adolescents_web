@@ -16,9 +16,16 @@
 #  facility_batch_id :uuid
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  province_id       :string
+#  district_id       :string
+#  commune_id        :string
+#  village_id        :string
+#  street            :string
+#  house_number      :string
 #
 class FacilitySerializer < ActiveModel::Serializer
-  attributes :id, :name, :address, :tels, :emails, :websites, :facebook_pages,
+  attributes :id, :name, :addresses, :province_id, :district_id, :commune_id, :village_id,
+             :street, :house_number, :tels, :emails, :websites, :facebook_pages,
              :telegram_username, :description, :latitude, :longitude, :services,
              :updated_at, :service_ids
 
@@ -26,6 +33,10 @@ class FacilitySerializer < ActiveModel::Serializer
 
   def services
     object.services.pluck(:name)
+  end
+
+  def addresses
+    object.addresses
   end
 
   class WorkingDaySerializer < ActiveModel::Serializer

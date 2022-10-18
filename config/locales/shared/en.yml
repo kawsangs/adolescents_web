@@ -42,3 +42,9 @@ en:
     confirm_publish: Confirm publish %{name}
     are_you_sure_to_publish: Are you sure to publish the %{type} <b>%{name}</b>?
     yes_publish: Yes, Publish!
+    province: Province
+    district: District
+    commune: Commune
+    village: Village
+    street: Street
+    house_number: House number

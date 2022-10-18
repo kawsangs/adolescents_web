@@ -4,8 +4,8 @@
 #
 #  id                :uuid             not null, primary key
 #  name              :string
-#  tels              :string           default([]), is an Array
 #  address           :string
+#  tels              :string           default([]), is an Array
 #  emails            :string           default([]), is an Array
 #  websites          :string           default([]), is an Array
 #  facebook_pages    :string           default([]), is an Array
@@ -16,6 +16,12 @@
 #  facility_batch_id :uuid
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  province_id       :string
+#  district_id       :string
+#  commune_id        :string
+#  village_id        :string
+#  street            :string
+#  house_number      :string
 #
 FactoryBot.define do
   factory :facility do

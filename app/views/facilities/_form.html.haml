@@ -3,7 +3,33 @@
     .mb-3= f.input :name, label: t('facility.name')
 
     / Address
-    .mb-3= f.input :address, label: t('facility.address')
+    #province.form-group.mb-3
+      = f.label(:province_id) do
+        = t('shared.province')
+      = f.hidden_field(:province_id)
+      = f.select(:province_id, [], {:include_blank => t("shared.please_select")}, {:data => {:pumi_select_target => "district", :pumi_select_collection_url => pumi.provinces_path, :pumi_select_collection_label_method => "name_#{I18n.locale}", :pumi_select_collection_value_method => "id", :pumi_select_populate_on_load => true, :pumi_select_has_hidden_value => true}, class: 'form-control form-select'})
+
+    #district.form-group.mb-3
+      = f.label(:district_id) do
+        = t('shared.district')
+      = f.hidden_field(:district_id)
+      = f.select(:district_id, [], {:include_blank => t("shared.please_select")}, {:data => {:pumi_select_id => "district", :pumi_select_target => "commune", :pumi_select_collection_url => pumi.districts_path(:province_id => "FILTER"), :pumi_select_collection_url_filter_interpolation_key => "FILTER", :pumi_select_collection_label_method => "name_#{I18n.locale}", :pumi_select_collection_value_method => "id", :pumi_select_disabled_target => "#district", :pumi_select_disabled_class => "my-disabled-class", :pumi_select_has_hidden_value => true}, class: 'form-control form-select'})
+
+    #commune.form-group.mb-3
+      = f.label(:commune_id) do
+        = t('shared.commune')
+      = f.hidden_field(:commune_id)
+      = f.select(:commune_id, [], {:include_blank => t("shared.please_select")}, {:data => {:pumi_select_id => "commune", :pumi_select_target => "village", :pumi_select_collection_url => pumi.communes_path(:district_id => "FILTER"), :pumi_select_collection_url_filter_interpolation_key => "FILTER", :pumi_select_collection_label_method => "name_#{I18n.locale}", :pumi_select_collection_value_method => "id", :pumi_select_disabled_target => "#commune", :pumi_select_disabled_class => "my-disabled-class", :pumi_select_has_hidden_value => true}, class: 'form-control form-select'})
+
+    #village.form-group.mb-3
+      = f.label(:village_id) do
+        = t('shared.village')
+      = f.hidden_field(:village_id)
+      = f.select(:village_id, [], {:include_blank => t("shared.please_select")}, {:data => {:pumi_select_id => "village", :pumi_select_collection_url => pumi.villages_path(:commune_id => "FILTER"), :pumi_select_collection_url_filter_interpolation_key => "FILTER", :pumi_select_collection_label_method => "name_#{I18n.locale}", :pumi_select_collection_value_method => "id", :pumi_select_disabled_target => "#village", :pumi_select_disabled_class => "my-disabled-class", :pumi_select_has_hidden_value => true}, class: 'form-control form-select'})
+
+    .mb-3= f.input :street, label: t('shared.street')
+    .mb-3= f.input :house_number, label: t('shared.house_number')
+
     .mb-3= f.input :latitude, label: t('facility.latitude')
     .mb-3= f.input :longitude, label: t('facility.longitude')
 
