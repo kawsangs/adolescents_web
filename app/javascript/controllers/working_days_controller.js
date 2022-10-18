@@ -1,6 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
-import selectPicker from "select_picker"
-import Tagify from "@yaireo/tagify"
+import selectPicker from "commons/select_picker"
 
 export default class extends Controller {
   static targets = [ "open", "openAt", "closeAt", "workingDay", "btnAddHour" ]

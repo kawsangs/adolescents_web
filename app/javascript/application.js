@@ -10,13 +10,13 @@ import "bootstrap"
 import jquery from 'jquery'
 window.$ = jquery
 
-import pumi from "pumi"
-import "controllers"
+import pumiJs from "libs/pumiJs"
+import timeago from "commons/timeago"
+import tooltip from "commons/tooltip"
+import alert from "commons/alert"
+import selectPicker from "commons/select_picker"
 
-import timeago from "timeago"
-import tooltip from "tooltip"
-import alert from "alert"
-import selectPicker from "select_picker"
+import "controllers"
 
 Rails.start();
 
@@ -25,5 +25,5 @@ document.addEventListener('turbo:load', () => {
   tooltip.init();
   alert.init();
   selectPicker.init();
-  pumi.setup();
+  pumiJs.setup();
 });

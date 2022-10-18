@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
-import datePicker from "filter_date_picker";
+import datePicker from "commons/filter_date_picker";
 import noUiSlider from "nouislider"
 
 export default class extends Controller {

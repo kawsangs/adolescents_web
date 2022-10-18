@@ -36,7 +36,7 @@
               %td
                 - if user.last_sign_in_at
                   %span{'data-bs-toggle': 'tooltip', title: t('user.last_sign_in_via', type: user.sign_in_type)}
-                    = image_tag "#{user.sign_in_type}", width: 16
+                    = image_tag "#{user.sign_in_type}.png", width: 16
 
                   = timeago(user.last_sign_in_at).html_safe
               %td
