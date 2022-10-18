@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
-import jquerySortable from 'jquerySortable';
+import jquerySortable from 'libs/jquerySortable';
 import Tagify from "@yaireo/tagify"
 
 export default class extends Controller {

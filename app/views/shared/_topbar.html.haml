@@ -1,7 +1,7 @@
 %nav.sb-topnav.navbar.navbar-expand.navbar-dark.bg-dark{'data-controller': "sidebar"}
   / Navbar Brand
   %a.navbar-brand.ps-3.text-center{ href: '/' }
-    = image_tag 'my_health.png', height: 40
+    = image_tag 'logo_color.png', height: 40
     = ENV["APP_NAME"]
   / Sidebar Toggle
   %button#sidebarToggle.btn.btn-link.btn-sm.order-1.order-lg-0.me-4.me-lg-0{:href => "#!", data: { action: "click->sidebar#toggle" } }
