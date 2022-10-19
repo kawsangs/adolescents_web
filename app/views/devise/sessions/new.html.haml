@@ -2,13 +2,14 @@
   %h2.font-weight-normal.text-center.my-4
     ចូលប្រើ / Sign in
 
-  = button_to user_google_oauth2_omniauth_authorize_path, method: :post, class: 'btn btn-outline-primary w-100' do
+  = button_to user_google_oauth2_omniauth_authorize_path, method: :post, class: 'btn btn-outline-primary w-100', data: { turbo: "false" } do
     = image_tag 'google.png', style: 'width: 18px;'
     = t('devise.sign_in_with', omniauth: 'Gmail')
 
-  = button_to user_facebook_omniauth_authorize_path, method: :post, class: 'btn btn-outline-primary w-100 mt-2' do
-    %i.fa-brands.fa-facebook{style: 'font-size: 18px;'}
-    = t('devise.sign_in_with', omniauth: 'Facebook')
+  - if User.facebook_login_enabled?
+    = button_to user_facebook_omniauth_authorize_path, method: :post, class: 'btn btn-outline-primary w-100 mt-2', data: { turbo: "false" } do
+      %i.fa-brands.fa-facebook{style: 'font-size: 18px;'}
+      = t('devise.sign_in_with', omniauth: 'Facebook')
 
   .d-flex.flex-row.align-items-center
     .line.flex-grow-1

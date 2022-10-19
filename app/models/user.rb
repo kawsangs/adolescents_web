@@ -91,6 +91,10 @@ class User < ApplicationRecord
     email.split("@").first.upcase
   end
 
+  def self.facebook_login_enabled?
+    ENV["FACEBOOK_LOGIN_ENABLED"] == "true"
+  end
+
   private
     def assign_password
       pwd = Devise.friendly_token
