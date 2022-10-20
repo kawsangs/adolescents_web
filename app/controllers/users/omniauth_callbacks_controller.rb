@@ -1,5 +1,13 @@
 module Users
   class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+    def facebook
+      if User.facebook_login_enabled?
+        all
+      else
+        redirect_to new_user_session_path, alert: "Unauthorized user!"
+      end
+    end
+
     def all
       @user = User.from_omniauth(request.env["omniauth.auth"])
 
@@ -14,6 +22,5 @@ module Users
     end
 
     alias_method :google_oauth2, :all
-    alias_method :facebook, :all
   end
 end

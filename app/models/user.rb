@@ -84,4 +84,8 @@ class User < ApplicationRecord
   def display_name
     email.split("@").first.upcase
   end
+
+  def self.facebook_login_enabled?
+    ENV["FACEBOOK_LOGIN_ENABLED"] == "true"
+  end
 end

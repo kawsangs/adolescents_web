@@ -115,6 +115,7 @@ gem "fcm", "~> 1.0.8"
 
 # File upload
 gem "carrierwave",    "~> 2.2.2"
+gem "fog-aws",        "~> 3.15.0"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
