@@ -1,0 +1,17 @@
+.w-50.view-center
+  = simple_form_for @page do |f|
+    - readonly = !@page.new_record?
+
+    .mb-3= f.input :code, label: t('page.code'), input_html: { readonly: readonly }
+
+    .mb-3= f.input :name, label: t('page.name'), input_html: { readonly: readonly }
+
+    .mb-3= f.input :display_name, label: t('page.display_name')
+
+    .mb-3
+      %label= t('page.parent')
+      = f.select :parent_id, nested_set_options(Page, @page) {|i| "#{'-' * i.level} #{i.name}" }, {}, class: 'form-control form-select', disabled: readonly
+
+    .actions
+      = link_to t('shared.cancel'), pages_path, class: 'btn btn-secondary me-1'
+      = f.submit t('shared.save'), class: 'btn btn-primary'

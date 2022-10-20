@@ -1,0 +1,15 @@
+%tr
+  %td{ style: "padding-left:#{16*page.level}px" }= num
+  %td= page.code
+  %td= page.name
+  %td= page.display_name
+  %td= timeago(page.created_at).html_safe
+  %td= timeago(page.updated_at).html_safe
+  %td
+    .d-flex.justify-content-end
+      = render 'shared/buttons/edit_button', object: page, url: edit_page_path(page)
+
+      = render 'shared/buttons/delete_button', object: page,  message: { type: t('page.page'), name: page.name, url: page_path(page) }
+
+- page.children.each_with_index do |p, i|
+  = render "page", page: p, num: "#{num}.#{i + 1}"
