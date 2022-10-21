@@ -52,14 +52,14 @@ class Facility < ApplicationRecord
 
   # Instant method
   def addresses
-    return nil if village.nil?
+    return nil if commune.nil?
 
-    return "ផ្ទះលេខ#{house_number} ផ្លូវ#{street} #{village.address_km}" if I18n.locale == :km
+    return "ផ្ទះលេខ#{house_number} ផ្លូវ#{street} #{commune.address_km}" if I18n.locale == :km
 
-    "##{house_number}, st. #{stree}, #{village.address_en}"
+    "##{house_number}, st. #{stree}, #{commune.address_en}"
   end
 
-  def village
-    @village ||= Pumi::Village.find_by_id village_id
+  def commune
+    @commune ||= Pumi::Commune.find_by_id commune_id
   end
 end
