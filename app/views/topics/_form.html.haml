@@ -22,4 +22,4 @@
 
       .actions.text-right.mb-3
         = link_to t('shared.cancel'), topics_path, class: 'btn btn-secondary me-1'
-        = f.submit t('shared.save'), class: 'btn btn-primary'
+        = f.submit t('shared.save'), class: 'btn btn-primary', data: { turbo: "false" }

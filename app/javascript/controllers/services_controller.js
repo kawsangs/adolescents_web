@@ -1,6 +1,4 @@
 import { Controller } from "@hotwired/stimulus"
-import selectPicker from "select_picker"
-import Tagify from "@yaireo/tagify"
 
 export default class extends Controller {
   static targets = [ "btnAddService" ]

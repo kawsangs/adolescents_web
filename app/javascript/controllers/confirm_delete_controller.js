@@ -1,8 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
-import confirm_modal from 'confirm_modal';
+import confirmModal from 'commons/confirm_modal';
 
 export default class extends Controller {
   connect() {
-    confirm_modal.init('confirmModal');
+    confirmModal.init('confirmModal');
   }
 }

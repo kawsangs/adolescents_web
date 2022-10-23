@@ -11,21 +11,6 @@ pin "@hotwired/turbo-rails", to: "turbo.min.js", preload: true
 pin "@hotwired/stimulus", to: "stimulus.min.js", preload: true
 pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
 
-# Common util
-pin "timeago", to: "commons/timeago", preload: true
-pin "tooltip", to: "commons/tooltip", preload: true
-pin "alert", to: "commons/alert", preload: true
-pin "select_picker", to: "commons/select_picker", preload: true
-pin "filter_date_picker", to: "commons/filter_date_picker", preload: true
-pin "confirm_modal", to: "commons/confirm_modal", preload: true
-
-# Sortable
-pin "jquerySortable", to: "jquerySortable", preload: true
-
-pin "pumi", to: "pumi_js", preload: true
-
-pin_all_from "app/javascript/controllers", under: "controllers"
-
 pin "jquery", to: "https://ga.jspm.io/npm:jquery@3.6.0/dist/jquery.js"
 pin "moment", to: "https://ga.jspm.io/npm:moment@2.29.4/moment.js"
 pin "moment/min/moment-with-locales.min.js", to: "https://ga.jspm.io/npm:moment@2.29.4/min/moment-with-locales.min.js"
@@ -40,3 +25,7 @@ pin "nouislider", to: "https://ga.jspm.io/npm:nouislider@15.6.1/dist/nouislider.
 pin "typeahead", to: "https://ga.jspm.io/npm:typeahead@0.2.2/typeahead.js"
 pin "dom", to: "https://ga.jspm.io/npm:dom@0.0.2/index.js"
 pin "xtend", to: "https://ga.jspm.io/npm:xtend@1.0.3/index.js"
+
+pin_all_from "app/javascript/libs", under: "libs", preload: true
+pin_all_from "app/javascript/commons", under: "commons", preload: true
+pin_all_from "app/javascript/controllers", under: "controllers"
