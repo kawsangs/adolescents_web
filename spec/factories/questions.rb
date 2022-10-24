@@ -12,6 +12,7 @@
 #  topic_id      :uuid
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  answer        :text
 #
 FactoryBot.define do
   factory :question do

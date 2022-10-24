@@ -12,9 +12,10 @@
 #  topic_id      :uuid
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  answer        :text
 #
 class Question < ApplicationRecord
-  TYPES = %w[Questions::SelectOne].freeze
+  TYPES = %w[Questions::SelectOne Questions::Faq].freeze
 
   # Associations
   belongs_to :topic

@@ -10,10 +10,21 @@ module Samples
           question.update(
             name: row["name"],
             hint: row["hint"],
-            audio: get_audio(row["audio"])
+            audio: get_audio(row["audio"]),
+            answer: row["answer"],
+            type: question_type(row["type"])
           )
         end
       end
+
+      private
+        def question_type(type)
+          types[type.to_s.downcase.to_sym] || types.values.first
+        end
+
+        def types
+          { selectone: "Questions::SelectOne", faq: "Questions::Faq" }
+        end
     end
   end
 end

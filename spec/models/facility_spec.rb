@@ -19,7 +19,6 @@
 #  province_id       :string
 #  district_id       :string
 #  commune_id        :string
-#  village_id        :string
 #  street            :string
 #  house_number      :string
 #

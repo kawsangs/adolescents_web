@@ -16,7 +16,7 @@ module Samples
         {
           question: ques,
           option:,
-          value: option.name
+          value: option.try(:name)
         }
       end
     end

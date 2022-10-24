@@ -125,9 +125,16 @@ export default class extends Controller {
     this._hideCollapseContent(dom);
 
     if (dom.value == "Questions::SelectOne") {
-      this._showCollapseTrigger(dom)
-      this._showOption(dom)
+      this._showCollapseTrigger(dom);
+      this._showOption(dom);
+    } else if (dom.value == "Questions::Faq") {
+      this._showCollapseTrigger(dom);
+      this._showFaqAnswer(dom);
     }
+  }
+
+  _showFaqAnswer(dom) {
+    $(dom).parents('.fieldset').find('.faq-wrapper').show();
   }
 
   _showOption(dom) {
