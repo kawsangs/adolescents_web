@@ -37,3 +37,6 @@
           = render 'option_fields', f: builder
 
         = link_to_add_fields t('topic.add_option'), f, :options, 'questions-target': 'btnAddOption', 'action': 'questions#appendOptionField'
+
+      .faq-wrapper
+        = f.input :answer, label: t('topic.answer')

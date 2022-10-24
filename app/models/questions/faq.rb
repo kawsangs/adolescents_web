@@ -14,8 +14,7 @@
 #  updated_at    :datetime         not null
 #  answer        :text
 #
-require "rails_helper"
-
-RSpec.describe Question, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+module Questions
+  class Faq < Question
+  end
 end
