@@ -24,7 +24,7 @@
 #  house_number      :string
 #
 class FacilitySerializer < ActiveModel::Serializer
-  attributes :id, :name, :addresses, :province_id, :district_id, :commune_id, :village_id,
+  attributes :id, :name, :addresses, :province_id, :district_id, :commune_id,
              :street, :house_number, :tels, :emails, :websites, :facebook_pages,
              :telegram_username, :description, :latitude, :longitude, :services,
              :updated_at, :service_ids

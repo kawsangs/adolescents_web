@@ -16,14 +16,13 @@ module Spreadsheets
     end
 
     def process(row)
-      village = Pumi::Village.find_by_id(row["village_id"])
+      commune = Pumi::Commune.find_by_id(row["commune_id"])
 
       @facilities_attributes.push({
         name: row["name"],
-        province_id: village.try(:province_id),
-        district_id: village.try(:district_id),
-        commune_id: village.try(:commune_id),
-        village_id: village.id,
+        province_id: commune.try(:province_id),
+        district_id: commune.try(:district_id),
+        commune_id: commune.try(:id),
         street: row["street"],
         house_number: row["house_number"],
         tels: string_to_array(row["tels"]),
