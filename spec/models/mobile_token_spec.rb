@@ -4,7 +4,7 @@
 #
 #  id          :uuid             not null, primary key
 #  device_id   :string
-#  device_type :integer
+#  device_type :string
 #  token       :string
 #  app_version :string
 #  created_at  :datetime         not null
