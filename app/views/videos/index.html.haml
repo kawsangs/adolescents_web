@@ -2,7 +2,7 @@
   - if current_user.primary_admin?
     = render "shared/buttons/download_button", url: videos_path(filter_params.merge(format: :json)), label: t('shared.download_json')
 
-  .ms-1= render "shared/buttons/add_new_button", url: new_video_path, name: t('video.video')
+  .ms-1= render "new_buttons"
 
 .container-fluid.px-4
   = render "shared/header_title", title: t("video.videos")
@@ -18,8 +18,8 @@
           %tr
             %th #
             %th= t('video.title')
-            %th= t('video.description')
             %th= t('video.url')
+            %th= t('video.author')
             %th= t('video.category')
             %th= t('shared.created_at')
             %th
@@ -29,8 +29,8 @@
             %tr
               %td= @pagy.from + index
               %td= video.name
-              %td= video.description
               %td= video.url
+              %td= video.author
               %td= video.video_category_name
               %td= timeago(video.created_at).html_safe
               %td

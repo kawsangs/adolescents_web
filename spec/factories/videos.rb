@@ -10,6 +10,8 @@
 #  video_category_id :uuid
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  author            :string
+#  video_batch_id    :uuid
 #
 FactoryBot.define do
   factory :video do

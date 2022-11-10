@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   resources :facilities
   resources :facility_batches, except: [:update, :edit], param: :code
   resources :videos
+  resources :video_batches, except: [:update, :edit], param: :code
   resources :mobile_notifications
 
   resources :pages
