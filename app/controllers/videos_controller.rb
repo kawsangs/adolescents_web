@@ -54,12 +54,12 @@ class VideosController < ApplicationController
 
   private
     def filter_params
-      params.permit(:name, :category)
+      params.permit(:name)
     end
 
     def video_params
       params.require(:video).permit(
-        :name, :url, :category, :description,
+        :name, :url, :category, :author,
         video_category_attributes: [:name]
       )
     end

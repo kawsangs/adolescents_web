@@ -1,5 +1,5 @@
 %form{ action: videos_path, method: 'get' }
   .input-group.my-2.search-input
-    = text_field_tag(:title, params[:title], class: 'form-control', placeholder: t('video.title'))
+    = text_field_tag(:name, params[:name], class: 'form-control', placeholder: t('video.name'))
     %span.input-group-text
       %i.fas.fa-search

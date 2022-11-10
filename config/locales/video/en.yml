@@ -10,3 +10,5 @@ en:
     url: URL
     man: Man
     woman: Woman
+    author: Author
+    name: Name

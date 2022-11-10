@@ -61,6 +61,7 @@ class User < ApplicationRecord
 
   # Association
   has_many :facility_batches
+  has_many :video_batches
 
   has_many :access_grants,
              class_name: "Doorkeeper::AccessGrant",
