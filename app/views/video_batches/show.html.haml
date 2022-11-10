@@ -1,0 +1,14 @@
+.container-fluid.px-4
+  = render "progress_arrow_header", progress_num: 3
+
+  .card.shadow.my-4.w-50.m-auto
+    .card-body.text-center
+      %h2.h3.mb-3= t('video_batch.congratulation')
+
+      .mb-4
+        = t('video_batch.congratulation_message', total_count: @video_batch.valid_count, batch_code: @video_batch.code).html_safe
+
+      .mb-2
+        = link_to videos_path, class: 'btn btn-primary' do
+          %i.far.fa-fw.fa-clipboard
+          %span= t('video_batch.show_list')

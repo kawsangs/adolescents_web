@@ -10,14 +10,16 @@
 #  video_category_id :uuid
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  author            :string
+#  video_batch_id    :uuid
 #
 class Video < ApplicationRecord
   # Association
   belongs_to :video_category, optional: true
+  belongs_to :video_batch, optional: true
 
   # Validation
   validates :name, presence: true
-  validates :description, presence: true
   validates :url, presence: true, format: { with: URI.regexp(%w(http https)) }
 
   # Callback
@@ -34,8 +36,7 @@ class Video < ApplicationRecord
   # Class methods
   def self.filter(params = {})
     scope = all
-    scope = scope.where("title LIKE ?", "%#{params[:name]}%") if params[:name].present?
-    scope = scope.where(category: params[:category]) if params[:category].present?
+    scope = scope.where("name LIKE ?", "%#{params[:name]}%") if params[:name].present?
     scope
   end
 
