@@ -203,25 +203,10 @@
 }
 
 .options-wrapper,
-.result-type-wrapper,
-.field-validation-wrapper {
+.faq-wrapper {
   border-top: 1px solid #ccc;
   display: none;
   padding: 10px;
-}
-
-.field-validation-wrapper {
-  border: none;
-  display: block;
-
-  .add-margin {
-    margin-right: 10px;
-  }
-
-  .label-header {
-    color: green;
-    font-size: 14px;
-  }
 }
 
 .field-option-color-wrapper {

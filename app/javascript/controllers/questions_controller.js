@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = [ "btnAddName", "btnFieldType", "btnAddOption", "btnRemoveQuestion", "btnCollapseTrigger" ]
+  static targets = [ "btnAddName", "btnAddOption", "btnRemoveQuestion", "btnCollapseTrigger" ]
 
   showChooseDataType(event) {
     let dom = $(this.btnAddNameTarget)
@@ -13,13 +13,13 @@ export default class extends Controller {
   }
 
   renderTitleStyle(event) {
-    let dom = $(this.btnFieldTypeTarget);
-    let fieldType = dom.data('field_type');
+    let dom = $(event.target);
+    let fieldType = event.params.fieldType;
 
     this._setFieldNameInputAsTitleStyle(dom);
-    this._assignBtnMove(dom)
-    this._assignFieldType(dom, fieldType)
-    this._handleCollapseContent(dom, fieldType)
+    this._assignBtnMove(dom);
+    this._assignFieldType(dom, fieldType);
+    this._handleCollapseContent(dom, fieldType);
   }
 
   _setFieldNameInputAsTitleStyle(dom) {
@@ -44,7 +44,16 @@ export default class extends Controller {
       this._showArrowDownIcon(dom);
     }
 
+    if (field_type == 'Questions::Faq') {
+      this._showFaqAnswer(dom);
+      this._showArrowDownIcon(dom);
+    }
+
     this._hideFieldTypeList(dom);
+  }
+
+  _showFaqAnswer(dom) {
+    dom.parents('.fieldset').find('.faq-wrapper').show();
   }
 
   _showOption(dom) {
@@ -82,7 +91,7 @@ export default class extends Controller {
   }
 
   toggleCollapseContent(event) {
-    let dom = $(this.btnCollapseTriggerTarget);
+    let dom = $(event.target);
     let content = dom.parents('.fieldset').find('.collapse-content');
     let icon = $(dom.find('i'));
 
