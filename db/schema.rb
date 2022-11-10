@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_21_101227) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_01_104057) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -147,7 +147,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_21_101227) do
 
   create_table "mobile_tokens", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "device_id"
-    t.integer "device_type"
+    t.string "device_type"
     t.string "token"
     t.string "app_version"
     t.datetime "created_at", null: false

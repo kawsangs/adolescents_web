@@ -1,8 +1,8 @@
 module Api
   module V1
     class MobileTokensController < ApiController
-      def update
-        @token = MobileToken.find_or_initialize_by(id: token_params["id"])
+      def create
+        @token = MobileToken.find_or_initialize_by(device_id: token_params["device_id"])
 
         if @token.update(token_params)
           render json: @token
@@ -14,7 +14,7 @@ module Api
       private
         def token_params
           params.require(:mobile_token).permit(
-            :id, :token, :device_id, :device_type, :app_version
+            :token, :device_id, :device_type, :app_version
           )
         end
     end

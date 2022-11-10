@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       resources :visits, only: [:create]
       resources :app_users, only: [:create, :update]
       resources :facilities, only: [:index]
-      resource  :mobile_tokens, only: [:update]
+      resource  :mobile_tokens, only: [:create]
       resources :topics, only: [:index]
       resources :services, only: [:index]
       resources :quizzes, only: [:create]
