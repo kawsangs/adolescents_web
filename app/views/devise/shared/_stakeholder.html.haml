@@ -1,17 +1,29 @@
 .stackholders.d-flex.justify-content-between{ class: local_assigns[:wrapper_class] }
-  .funded-by.text-center.flex-shrink-0.mr-4
-    %p.text-center.text-funded
-      គាំទ្រមូលនិធិដោយ / Funded by
+  .initiated-by.me-4
+    %p.text-center
+      .text-center ផ្ដួចផ្ដើមកសាងឡើងដោយ /
+      .text-center Initiated by
 
-    = link_to '#', target: '_blank' do
-      = image_tag 'spotlight_one_line.png', class: 'img-funded', alt: 'Spotlight Initiative'
-
-  .implemented-by
-    %p.text-center.text-implemented
-      សហការផលិតដោយ / Implemented by
     .d-flex.align-items-center.justify-content-center.flex-wrap.img-implemented-wrapper
-      = link_to '#', target: '_blank' do
-        = image_tag 'chc.png', class: 'img-implemented', alt: 'API'
+      %div.mx-2= image_tag('nydc.png', class: 'img-implemented')
+      %div= image_tag('moeys.png', class: 'img-implemented')
+
+  .funded-by.text-center.flex-shrink-0.me-4
+    %p.text-center
+      .text-center គាំទ្រថវិកាដោយ /
+      .text-center Funded by
+
+    .d-flex.align-items-center.justify-content-center.flex-wrap.img-implemented-wrapper
+      %div.mx-2
+        = image_tag('unfpa.png', class: 'img-implemented')
+      %div= image_tag('people_japan.png', class: 'img-implemented')
+
+  .implemented-by.me-4
+    %p.text-center.text-implemented
+      .text-center សហការផលិតដោយ /
+      .text-center Implemented by
+    .d-flex.align-items-center.justify-content-center.flex-wrap.img-implemented-wrapper
+      = image_tag 'chc.png', class: 'img-implemented', alt: 'API'
 
       = link_to 'https://www.kawsang.com', target: '_blank' do
-        = image_tag 'kawsang_logo.png', class: 'img-implemented', alt: 'Kawsang'
+        = image_tag 'kawsang_logo.png', class: 'img-implemented ms-1', alt: 'Kawsang'
