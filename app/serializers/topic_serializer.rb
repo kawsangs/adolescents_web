@@ -21,7 +21,7 @@ class TopicSerializer < ActiveModel::Serializer
   end
 
   class QuestionSerializer < ActiveModel::Serializer
-    attributes :id, :code, :name, :type, :hint, :display_order, :audio, :topic_id
+    attributes :id, :code, :name, :type, :hint, :display_order, :audio, :topic_id, :answer
 
     has_many :options
 
