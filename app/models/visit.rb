@@ -23,7 +23,8 @@ class Visit < ApplicationRecord
   enum pageable_type: {
     Page: 1,
     Facility: 2,
-    Video: 3
+    Video: 3,
+    Topic: 4
   }
 
   # Callback
