@@ -1,0 +1,5 @@
+%form{ action: services_path, method: 'get' }
+  .input-group.my-2.search-input
+    = text_field_tag(:name, params[:name], class: 'form-control', placeholder: t('service.find_by_name'))
+    %span.input-group-text
+      %i.fas.fa-search

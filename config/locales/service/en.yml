@@ -1,0 +1,7 @@
+en:
+  service:
+    service: Service
+    services: Services
+    find_by_name: Find by name
+    new_service: New service
+    edit_service: Edit service
