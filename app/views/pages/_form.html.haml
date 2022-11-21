@@ -10,7 +10,7 @@
 
     .mb-3
       %label= t('page.parent')
-      = f.select :parent_id, nested_set_options(Page, @page) {|i| "#{'-' * i.level} #{i.name}" }, {}, class: 'form-control form-select', disabled: readonly
+      = f.select :parent_id, nested_set_options(Page, @page) {|i| "#{'-' * i.level} #{i.name}" }, {include_blank: true}, class: 'form-control form-select', disabled: readonly
 
     .actions
       = link_to t('shared.cancel'), pages_path, class: 'btn btn-secondary me-1'

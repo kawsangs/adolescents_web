@@ -1,6 +1,6 @@
 class PagePolicy < ApplicationPolicy
   def index?
-    user.primary_admin? || user.admin?
+    user.primary_admin?
   end
 
   def show?
@@ -8,15 +8,15 @@ class PagePolicy < ApplicationPolicy
   end
 
   def create?
-    user.primary_admin? || user.admin?
+    false
   end
 
   def update?
-    create?
+    user.primary_admin?
   end
 
   def destroy?
-    create?
+    create? && record.visits.length.zero?
   end
 
   class Scope < Scope

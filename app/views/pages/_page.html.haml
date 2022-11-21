@@ -3,6 +3,7 @@
   %td= page.code
   %td= page.name
   %td= page.display_name
+  %td= link_to page.visits.length, visits_path(page_ids: [page.id]), target: "_blank"
   %td= timeago(page.created_at).html_safe
   %td= timeago(page.updated_at).html_safe
   %td

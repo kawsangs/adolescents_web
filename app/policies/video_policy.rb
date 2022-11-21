@@ -1,18 +1,18 @@
 class VideoPolicy < ApplicationPolicy
   def index?
-    true
+    user.primary_admin?
   end
 
   def create?
-    true
+    user.primary_admin?
   end
 
   def update?
-    true
+    create?
   end
 
   def destroy?
-    true
+    create?
   end
 
   class Scope < Scope
