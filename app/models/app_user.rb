@@ -29,6 +29,7 @@ class AppUser < ApplicationRecord
   has_many :app_user_characteristics, dependent: :destroy
   has_many :characteristics, through: :app_user_characteristics
   has_many :quizzes
+  has_many :visits
 
   # Callback
   before_create :set_last_accessed_at
