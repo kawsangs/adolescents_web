@@ -1,4 +1,4 @@
-km:
+en:
   app_user:
     app_user: App user
     app_users: App users
@@ -22,3 +22,4 @@ km:
     age_range: Age is from start_age to end_age
     last_accessed_at: Last accessed at
     number_of_quiz: "# of consulting quiz"
+    number_of_visit: "# of visits"
