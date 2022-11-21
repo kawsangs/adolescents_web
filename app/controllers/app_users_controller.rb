@@ -4,11 +4,11 @@ class AppUsersController < ApplicationController
   def index
     respond_to do |format|
       format.html {
-        @pagy, @app_users = pagy(authorize AppUser.filter(filter_params).includes(:quizzes, app_user_characteristics: :characteristic))
+        @pagy, @app_users = pagy(authorize app_user_query)
       }
 
       format.xlsx {
-        @app_users = authorize authorize AppUser.filter(filter_params).includes(app_user_characteristics: :characteristic)
+        @app_users = authorize app_user_query
 
         if @app_users.length > Settings.max_download_visit_record
           flash[:alert] = t("shared.file_size_is_too_big")
@@ -25,5 +25,11 @@ class AppUsersController < ApplicationController
       params.permit(:start_date, :end_date, :start_age, :end_age,
         province_ids: [], genders: [], characteristic_ids: []
       )
+    end
+
+    def app_user_query
+      AppUser.filter(filter_params)
+             .includes(:quizzes, app_user_characteristics: :characteristic)
+             .order(sort_column + " " + sort_direction)
     end
 end
