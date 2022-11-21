@@ -1,5 +1,5 @@
 = content_for :header_title_right_col do
-  = render "shared/buttons/download_button", url: app_users_path(filter_params.merge(format: :xlsx))
+  = render "shared/buttons/download_button", url: app_users_path(filter_params.merge(format: :xlsx, direction: params[:direction], sort: params[:sort]))
 
 .container-fluid.px-4{'data-controller' => 'app-users'}
   = render 'shared/header_title', title: t('app_user.app_users')
@@ -14,13 +14,13 @@
         %thead
           %tr
             %th #
-            %th= t('app_user.gender')
-            %th= t('app_user.age')
-            %th= t('app_user.province')
+            %th= sortable "gender", t('app_user.gender')
+            %th= sortable "age", t('app_user.age')
+            %th= sortable "province_id", t('app_user.province')
             %th= t('app_user.characteristic')
             %th= t('shared.device_id')
-            %th= t('app_user.registered_at')
-            %th= t('app_user.last_accessed_at')
+            %th= sortable "registered_at", t('app_user.registered_at')
+            %th= sortable "last_accessed_at", t("app_user.last_accessed_at")
             %th= t('app_user.number_of_quiz')
 
         %tbody
