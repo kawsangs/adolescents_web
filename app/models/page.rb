@@ -21,14 +21,16 @@ class Page < ApplicationRecord
 
   before_validation :set_display_name
 
+  def self.filter(params)
+    scope = all
+    scope = scope.where("LOWER(code) LIKE ? OR name LIKE ? OR display_name LIKE ?", "%#{params[:keyword].downcase}%", "%#{params[:keyword].downcase}%", "%#{params[:keyword].downcase}%") if params[:keyword].present?
+    scope
+  end
+
   private
     def set_display_name
       self.display_name ||= name
-    end
-
-    def self.filter(params)
-      scope = all
-      scope = scope.where("LOWER(code) LIKE ? OR name LIKE ? OR display_name LIKE ?", "%#{params[:keyword].downcase}%", "%#{params[:keyword].downcase}%", "%#{params[:keyword].downcase}%") if params[:keyword].present?
-      scope
+      self.name_en ||= name
+      self.name_km ||= name
     end
 end

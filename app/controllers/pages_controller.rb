@@ -45,7 +45,7 @@ class PagesController < ApplicationController
     end
 
     def page_params
-      params.require(:page).permit(:code, :name, :display_name, :parent_id)
+      params.require(:page).permit(:code, :name, :display_name, :parent_id, :name_en, :name_km)
     end
 
     def set_page
