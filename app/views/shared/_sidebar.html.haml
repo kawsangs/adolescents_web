@@ -1,12 +1,17 @@
 %nav#sidenavAccordion.sb-sidenav.accordion.sb-sidenav-light{'data-controller': 'sidebar'}
   .sb-sidenav-menu
     .nav
+      .sb-sidenav-menu-heading= t('sidebar.reports')
       - if policy(:grafana).show?
-        .sb-sidenav-menu-heading= t('sidebar.reports')
         %a.nav-link{href: ENV['GF_DASHBOARD_URL'], target: '_blank'}
           .sb-nav-link-icon
             %i.fas.fa-fw.fa-tachometer-alt
           %span= t("sidebar.dashboard")
+
+        %a.nav-link{href: "https://play.google.com/console/u/0/developers/5029615386963513716/app/4974269071605622809/app-dashboard?timespan=thirtyDays", target: '_blank'}
+          .sb-nav-link-icon
+            %i.fa-brands.fa-google-play
+          %span= t("sidebar.app_install_statistic")
 
       .sb-sidenav-menu-heading= t('sidebar.interfaces')
 
