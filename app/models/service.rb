@@ -16,4 +16,10 @@ class Service < ApplicationRecord
 
   # Validation
   validates :name, presence: true
+
+  def self.filter(params)
+    scope = all
+    scope = scope.where("LOWER(name) LIKE ?", "%#{params[:name].downcase}%") if params[:name].present?
+    scope
+  end
 end
