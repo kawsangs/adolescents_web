@@ -1,5 +1,6 @@
 = content_for :header_title_right_col do
-  = render "shared/buttons/add_new_button", url: new_page_path, name: t("page.page")
+  - if policy(Page).create?
+    = render "shared/buttons/add_new_button", url: new_page_path, name: t("page.page")
 
 .container-fluid.px-4
   = render 'shared/header_title', title: t('page.pages')
@@ -17,6 +18,7 @@
             %th= t('page.code')
             %th= t('page.name')
             %th= t('page.display_name')
+            %th= t('page.number_of_visit')
             %th= t('shared.created_at')
             %th= t('shared.updated_at')
             %th

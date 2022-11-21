@@ -22,24 +22,25 @@
             %i.fa-solid.fa-eye
           = t('sidebar.visits')
 
-      / Contents
-      %a.nav-link.collapsed{"aria-controls" => "collapseContents", "aria-expanded" => "false", "data-bs-target" => "#collapseContents", "data-bs-toggle" => "collapse", :href => "#"}
-        .sb-nav-link-icon
-          %i.fas.fa-columns
-        = t('sidebar.contents')
-        .sb-sidenav-collapse-arrow
-          %i.fas.fa-angle-down
+      - if current_user.primary_admin?
+        / Contents
+        %a.nav-link.collapsed{"aria-controls" => "collapseContents", "aria-expanded" => "false", "data-bs-target" => "#collapseContents", "data-bs-toggle" => "collapse", :href => "#"}
+          .sb-nav-link-icon
+            %i.fas.fa-columns
+          = t('sidebar.contents')
+          .sb-sidenav-collapse-arrow
+            %i.fas.fa-angle-down
 
-      #collapseContents.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" => "#sidenavAccordion"}
-        %nav.sb-sidenav-menu-nested.nav
-          - if policy(Facility).index?
-            = link_to t('sidebar.facilities'), facilities_path, class: ['nav-link', css_active_class('facilities')]
+        #collapseContents.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" => "#sidenavAccordion"}
+          %nav.sb-sidenav-menu-nested.nav
+            - if policy(Facility).index?
+              = link_to t('sidebar.facilities'), facilities_path, class: ['nav-link', css_active_class('facilities')]
 
-          - if policy(Video).index?
-            = link_to t('sidebar.videos'), videos_path, class: ['nav-link', css_active_class('videos')]
+            - if policy(Video).index?
+              = link_to t('sidebar.videos'), videos_path, class: ['nav-link', css_active_class('videos')]
 
-          - if policy(Topic).index?
-            = link_to t('sidebar.topics'), topics_path, class: ['nav-link', css_active_class('topics')]
+            - if policy(Topic).index?
+              = link_to t('sidebar.topics'), topics_path, class: ['nav-link', css_active_class('topics')]
 
       / Settings
       %a.nav-link.collapsed{"aria-controls" => "collapseSettings", "aria-expanded" => "false", "data-bs-target" => "#collapseSettings", "data-bs-toggle" => "collapse", :href => "#"}

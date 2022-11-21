@@ -1,10 +1,10 @@
 class UserPolicy < ApplicationPolicy
   def index?
-    true
+    user.primary_admin? || user.admin?
   end
 
   def show?
-    true
+    user.primary_admin? || user.admin?
   end
 
   def create?
@@ -40,7 +40,9 @@ class UserPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      scope.all
+      return scope.all if user.primary_admin?
+
+      scope.where.not(role: :primary_admin)
     end
   end
 end

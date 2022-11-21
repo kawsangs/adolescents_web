@@ -8,3 +8,4 @@ en:
     name: Name
     display_name: Display name
     find_by_code_or_name: Search by code or name
+    number_of_visit: "# of visits"
