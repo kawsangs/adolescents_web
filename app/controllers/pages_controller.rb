@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   before_action :set_page, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pagy, @pages = pagy(authorize Page.filter(filter_params).order(updated_at: :desc).includes(:children))
+    @pagy, @pages = pagy(authorize Page.filter(filter_params).order(updated_at: :desc).includes(:children, :visits))
   end
 
   def show
