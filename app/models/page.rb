@@ -12,7 +12,6 @@
 #  children_count :integer          default(0), not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  display_name   :string
 #  name_en        :string
 #  name_km        :string
 #
@@ -21,17 +20,17 @@ class Page < ApplicationRecord
 
   has_many :visits
 
-  before_validation :set_display_name
+  before_validation :set_name_km
 
   def self.filter(params)
+    keyword = params[:keyword].to_s.downcase
     scope = all
-    scope = scope.where("LOWER(code) LIKE ? OR name LIKE ? OR display_name LIKE ?", "%#{params[:keyword].downcase}%", "%#{params[:keyword].downcase}%", "%#{params[:keyword].downcase}%") if params[:keyword].present?
+    scope = scope.where("LOWER(code) LIKE ? OR name LIKE ? OR name_km LIKE ? OR name_en LIKE ?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%") if keyword.present?
     scope
   end
 
   private
-    def set_display_name
-      self.display_name ||= name
+    def set_name_km
       self.name_en ||= name
       self.name_km ||= name
     end
