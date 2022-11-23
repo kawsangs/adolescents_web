@@ -5,7 +5,7 @@
       - if policy(:grafana).show?
         %a.nav-link{href: ENV['GF_DASHBOARD_URL'], target: '_blank'}
           .sb-nav-link-icon
-            %i.fas.fa-fw.fa-tachometer-alt
+            %i.fa-solid.fa-chart-column
           %span= t("sidebar.dashboard")
 
         %a.nav-link{href: "https://play.google.com/console/u/0/developers/5029615386963513716/app/4974269071605622809/app-dashboard?timespan=thirtyDays", target: '_blank'}
@@ -16,7 +16,7 @@
       .sb-sidenav-menu-heading= t('sidebar.interfaces')
 
       - if policy(AppUser).index?
-        = link_to app_users_path, class: ['nav-link', css_active_class('app_users')] do
+        = link_to app_users_path, class: ['nav-link', css_active_class('app_users'), ('active' if request.path.split("/")[1].blank?)] do
           .sb-nav-link-icon
             %i.fa-solid.fa-mobile-retro
           = t('sidebar.app_users')
