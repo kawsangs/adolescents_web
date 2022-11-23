@@ -20,6 +20,7 @@
       .filter-input.tooltips.me-3{ 'data-bs-toggle' => 'tooltip' }
         = select_tag 'characteristic_ids[]', options_for_select(Characteristic.pluck(:"name_#{I18n.locale}", :id), params[:characteristic_ids]), multiple: true, "data-count-selected-text" => "{0} #{t('app_user.characteristics_selected')}", "data-selected-text-format" => "count > 1", "data-none-selected-text" => t("app_user.any_characteristic"), class: 'selectpicker form-control'
 
+      / Filter by age range
       %div
         #age-range-label.text-center.mb-1= t('app_user.age_range')
 
