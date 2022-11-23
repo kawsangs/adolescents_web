@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   # Defines the root path route ("/")
-  root "users#index"
+  root "app_users#index"
 
   resources :users do
     member do

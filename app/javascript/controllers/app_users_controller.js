@@ -33,7 +33,7 @@ export default class extends Controller {
     let inputStartAge = document.getElementById('start-age');
     let inputEndAge = document.getElementById('end-age');
     let minAge = 1;
-    let maxAge = 40;
+    let maxAge = 99;
     let self = this;
 
     noUiSlider.create(slider, {
