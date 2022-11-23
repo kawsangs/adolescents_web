@@ -12,7 +12,6 @@
 #  children_count :integer          default(0), not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  display_name   :string
 #  name_en        :string
 #  name_km        :string
 #

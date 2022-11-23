@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_18_081423) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_23_072639) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -215,7 +215,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_18_081423) do
     t.integer "children_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "display_name"
     t.string "name_en"
     t.string "name_km"
     t.index ["lft"], name: "index_pages_on_lft"
