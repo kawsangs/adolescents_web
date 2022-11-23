@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   before_action :set_page, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pages = authorize Page.filter(filter_params).order(updated_at: :desc).includes(:children, :visits)
+    @pages = authorize Page.filter(filter_params).includes(:children, :visits)
   end
 
   def show
@@ -45,7 +45,7 @@ class PagesController < ApplicationController
     end
 
     def page_params
-      params.require(:page).permit(:code, :name, :display_name, :parent_id, :name_en, :name_km)
+      params.require(:page).permit(:code, :name, :parent_id, :name_en, :name_km)
     end
 
     def set_page
