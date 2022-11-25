@@ -21,7 +21,6 @@
             %th= t('shared.device_id')
             %th= sortable "registered_at", t('app_user.registered_at')
             %th= sortable "last_accessed_at", t("app_user.last_accessed_at")
-            %th= t('app_user.number_of_quiz')
             %th= t('app_user.number_of_visit')
 
         %tbody
@@ -44,9 +43,6 @@
               %td= app_user.device_id
               %td= timeago(app_user.registered_at).html_safe
               %td= timeago(app_user.last_accessed_at).html_safe
-              %td
-                = link_to app_user.quizzes.length, app_user_quizzes_path(app_user), class: 'btn btn-link' if app_user.quizzes.length.positive?
-
               %td= app_user.visits.length
 
     - if @pagy.pages > 1
