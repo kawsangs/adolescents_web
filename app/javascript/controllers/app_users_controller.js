@@ -32,7 +32,7 @@ export default class extends Controller {
     let slider = document.getElementById('slider-round');
     let inputStartAge = document.getElementById('start-age');
     let inputEndAge = document.getElementById('end-age');
-    let minAge = 1;
+    let minAge = -1;
     let maxAge = 99;
     let self = this;
 

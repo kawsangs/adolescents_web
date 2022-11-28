@@ -65,31 +65,19 @@ RSpec.describe AppUser, type: :model do
     end
   end
 
-  describe "validation #province_id" do
-    subject { described_class.new(province_id: nil) }
-
-    context "normal user" do
-      it "requires province_id" do
-        allow(subject).to receive(:anonymous?).and_return false
-        subject.valid?
-
-        expect(subject.errors.messages).to include :province_id
-      end
-    end
-
-    context "anonymous" do
-      it "doens't require province_id" do
-        allow(subject).to receive(:anonymous?).and_return true
-        subject.valid?
-
-        expect(subject.errors.messages).not_to include :province_id
-      end
-    end
-  end
-
   describe "#before_create, #set_last_accessed_at" do
     let!(:app_user) { create(:app_user, registered_at: DateTime.now) }
 
     it { expect(app_user.last_accessed_at).to eq(app_user.registered_at) }
+  end
+
+  describe "#before_validation, #set_province_id" do
+    let!(:app_user) { build(:app_user, :anonymous, registered_at: DateTime.now) }
+
+    before {
+      app_user.valid?
+    }
+
+    it { expect(app_user.province_id).to eq(Location::UNKNOWN_PROVINCE_ID) }
   end
 end

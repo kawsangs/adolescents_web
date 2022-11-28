@@ -6,4 +6,10 @@ namespace :app_user do
       app_users.destroy_all
     end
   end
+
+  desc "Set anonymous user to unknown location"
+  task assign_anonymous_to_unknown_location: :environment do
+    anonymouses = AppUser.where(age: -1)
+    anonymouses.update_all(province_id: Location::UNKNOWN_PROVINCE_ID)
+  end
 end
