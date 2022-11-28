@@ -20,7 +20,7 @@ class AppUser < ApplicationRecord
   validates :gender, inclusion: { in: GENDERS, allow_nil: true }
 
   validates :age, presence: true
-  validates :province_id, presence: true, unless: :anonymous?
+  validates :province_id, presence: true
   validates :device_id, presence: true
   validates :registered_at, presence: true
 
@@ -33,6 +33,7 @@ class AppUser < ApplicationRecord
 
   # Callback
   before_create :set_last_accessed_at
+  before_validation :set_province_id
 
   # Nested attributes
   accepts_nested_attributes_for :app_user_characteristics
@@ -47,6 +48,10 @@ class AppUser < ApplicationRecord
 
   def set_last_accessed_at
     self.last_accessed_at = registered_at
+  end
+
+  def set_province_id
+    self.province_id ||= Location::UNKNOWN_PROVINCE_ID
   end
 
   # Class method
