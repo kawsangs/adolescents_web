@@ -11,12 +11,15 @@
 #  app_versions  :string           default([]), is an Array
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  platform      :integer
 #
 class MobileNotification < ApplicationRecord
   validates :body, presence: true
   belongs_to :creator, foreign_key: :creator_id, class_name: "User"
 
   after_commit :push_notification_async, on: [:create]
+
+  enum platform: MobileToken.platforms
 
   def push_notification_async
     MobileNotificationJob.perform_async(id)

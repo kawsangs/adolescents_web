@@ -16,10 +16,7 @@
 class AppUser < ApplicationRecord
   GENDERS = %w(male female lgbt unknown)
 
-  enum platform: {
-    android: 1,
-    ios: 2
-  }
+  enum platform: MobileToken.platforms
 
   # Validation
   validates :gender, presence: true, unless: :anonymous?

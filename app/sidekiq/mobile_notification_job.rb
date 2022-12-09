@@ -4,7 +4,7 @@ class MobileNotificationJob
   def perform(notification_id)
     @notification = MobileNotification.find_by(id: notification_id)
 
-    tokens = MobileToken.filter({ app_versions: @notification.app_versions }).pluck(:token)
+    tokens = MobileToken.filter(platform: @notification.platform).pluck(:token)
     res = PushNotificationService.new.notify(tokens, @notification.build_content)
 
     @notification.update(

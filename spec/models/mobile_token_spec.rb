@@ -9,6 +9,7 @@
 #  app_version :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  platform    :integer          default("android")
 #
 require "rails_helper"
 
