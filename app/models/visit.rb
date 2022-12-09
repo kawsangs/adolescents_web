@@ -4,7 +4,6 @@
 #
 #  id            :uuid             not null, primary key
 #  page_id       :uuid
-#  platform_id   :uuid
 #  visit_date    :datetime
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
@@ -15,7 +14,6 @@
 class Visit < ApplicationRecord
   # Association
   belongs_to :page
-  belongs_to :platform
   belongs_to :app_user
   belongs_to :pageable, polymorphic: true, optional: true
 
@@ -34,14 +32,11 @@ class Visit < ApplicationRecord
   # Delegation
   delegate :name, :code, to: :page, prefix: true, allow_nil: true
   delegate :name, to: :pageable, prefix: true, allow_nil: true
+  delegate :platform, to: :app_user, prefix: false, allow_nil: true
 
   # Nested attribute
   accepts_nested_attributes_for :page, reject_if: lambda { |attributes|
     attributes["code"].blank?
-  }
-
-  accepts_nested_attributes_for :platform, reject_if: lambda { |attributes|
-    attributes["name"].blank?
   }
 
   # Instant method
@@ -56,10 +51,6 @@ class Visit < ApplicationRecord
 
   def set_pageable
     self.pageable ||= page
-  end
-
-  def platform_attributes=(attribute)
-    self.platform = Platform.find_or_create_by(name: attribute[:name]) if attribute[:name].present?
   end
 
   def update_app_user_last_accessed
@@ -77,6 +68,7 @@ class Visit < ApplicationRecord
     scope = all
     scope = scope.where("visit_date BETWEEN ? AND ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
     scope = scope.where(page_id: params[:page_ids]) if params[:page_ids].present?
+    scope = scope.joins(:app_user).where('app_users.platform': params[:platform]) if params[:platform].present?
     scope
   end
 end

@@ -22,7 +22,7 @@ class AppUsersController < ApplicationController
 
   private
     def filter_params
-      params.permit(:start_date, :end_date, :start_age, :end_age,
+      params.permit(:start_date, :end_date, :start_age, :end_age, :platform,
         province_ids: [], genders: [], characteristic_ids: []
       )
     end

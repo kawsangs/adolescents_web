@@ -1,13 +1,14 @@
 %form.form-search.accordion{ action: app_users_path, method: 'get' }
   .d-flex
     = render 'shared/filters/filter_date', placeholder: t('app_user.search_by_registered_at')
-    %div.ms-3
+
+    .ms-3
       %button.btn.btm-sm{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-bs-target" => "#collapseOne", "data-bs-toggle" => "collapse", :type => "button", "data-action": "app-users#handleLocalStorage"}
         %span.d-none.d-lg-inline= t('shared.advance_search')
         %i.fas.fa-angle-down
 
-  #collapseOne.accordion-collapse.collapse
-    .d-flex.mb-2
+  #collapseOne.accordion-collapse.collapse.collapse-filter
+    .d-flex.m-2
       / Filter by provinces
       .filter-input.tooltips.me-1{ 'data-bs-toggle' => 'tooltip' }
         = select_tag 'province_ids[]', options_for_select(Location.pumi_provinces, params[:province_ids]), multiple: true, "data-live-search" => "true", "data-count-selected-text" => "{0} #{t('app_user.provinces_selected')}", "data-selected-text-format" => "count > 1", "data-none-selected-text" => t("app_user.any_province"), class: 'selectpicker form-control'
@@ -29,7 +30,12 @@
         %input#start-age{ type: 'hidden', name: 'start_age', value: params[:start_age] }
         %input#end-age{ type: 'hidden', name: 'end_age', value: params[:end_age] }
 
+    .d-flex.m-2
+      / Filter by platform
+      = render 'shared/filters/filter_platform'
+
+      / Search button
       .ms-3
         %button.btn.btn-primary.ml-md-2{type: :submit, style: 'width: 82px;'}
           %i.fas.fa-search
-          %span.d-none.d-lg-inline= t('shared.apply')
+          %span.d-none.d-lg-inline= t('shared.search')

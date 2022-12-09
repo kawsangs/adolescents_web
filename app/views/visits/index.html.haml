@@ -7,7 +7,7 @@
   = render "shared/no_data", items: @visits
 
   - if @visits.present?
-    = render "shared/pagination_title", objects: @visits
+    .mt-2= render "shared/pagination_title", objects: @visits
 
     .table-responsive
       %table.table.table-hover.pretty
@@ -17,6 +17,7 @@
             %th= t('visit.device_id')
             %th= t('visit.page')
             %th= t('visit.pageable')
+            %th= t('visit.platform')
             %th= t('visit.visit_date')
             %th= t('shared.created_at')
 
@@ -27,6 +28,7 @@
               %td= visit.app_user.device_id
               %td= visit.page_name
               %td= visit.pageable_name
+              %td.text-capitalize= visit.platform
               %td= timeago(visit.visit_date).html_safe
               %td= timeago(visit.created_at).html_safe
 
