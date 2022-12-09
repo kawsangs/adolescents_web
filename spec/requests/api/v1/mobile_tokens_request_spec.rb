@@ -7,7 +7,7 @@ RSpec.describe "Api::V1::MobileTokensController", type: :request do
     let(:headers) { { "ACCEPT" => "application/json", "Authorization" => "Apikey #{api_key.api_key}" } }
 
     context "new device_id" do
-      let(:params) { { token: "abcd", device_id: "a1b2", device_type: "mobile", app_version: "1.0.1" } }
+      let(:params) { { token: "abcd", device_id: "a1b2", device_type: "mobile", app_version: "1.0.1", platform: "ios" } }
 
       it "creates a mobile_token" do
         expect {
