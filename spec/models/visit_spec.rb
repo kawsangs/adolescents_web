@@ -4,7 +4,6 @@
 #
 #  id            :uuid             not null, primary key
 #  page_id       :uuid
-#  platform_id   :uuid
 #  visit_date    :datetime
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
@@ -74,27 +73,6 @@ RSpec.describe Visit, type: :model do
     end
   end
 
-  describe "platform_attributes=(attribute)" do
-    context "new platform" do
-      let(:platform_attr) { { name: "android" } }
-      let(:visit) { build(:visit) }
-
-      it "creates a new platform" do
-        expect { visit.platform_attributes=(platform_attr) }.to change { Platform.count }.by 1
-      end
-    end
-
-    context "existing platform" do
-      let!(:platform) { create(:platform, name: "android") }
-      let(:platform_attr) { { name: "android" } }
-      let(:visit) { build(:visit) }
-
-      it "uses existing platform" do
-        expect { visit.platform_attributes=(platform_attr) }.to change { Platform.count }.by 0
-      end
-    end
-  end
-
   describe "Callback #after_create" do
     let!(:app_user) { create(:app_user, registered_at: DateTime.yesterday) }
     let!(:visit) { create(:visit, visit_date: Time.zone.now, app_user:) }
@@ -109,7 +87,6 @@ RSpec.describe Visit, type: :model do
     let(:valid_params) { {
       app_user_id: app_user.id, visit_date: Time.now,
       page_attributes: { code: "page_one", name: "Page one", parent_code: nil },
-      platform_attributes: { name: "android" }
     }}
 
     subject { described_class.new(valid_params) }

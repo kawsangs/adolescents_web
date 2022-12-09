@@ -4,7 +4,6 @@
 #
 #  id            :uuid             not null, primary key
 #  page_id       :uuid
-#  platform_id   :uuid
 #  visit_date    :datetime
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
@@ -16,7 +15,6 @@ FactoryBot.define do
   factory :visit do
     visit_date { DateTime.yesterday }
     page
-    platform
     app_user
   end
 end

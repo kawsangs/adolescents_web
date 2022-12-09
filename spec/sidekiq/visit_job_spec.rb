@@ -6,8 +6,7 @@ RSpec.describe VisitJob, type: :job do
     let(:valid_params) { {
       app_user_id: app_user.id, visit_date: Time.now,
       pageable_id: "", pageable_type: "Page",
-      page_attributes: { code: "page_one", name: "Page one", parent_code: nil },
-      platform_attributes: { name: "android" }
+      page_attributes: { code: "page_one", name: "Page one", parent_code: nil }
     }}
 
     context "new visit" do
@@ -21,10 +20,6 @@ RSpec.describe VisitJob, type: :job do
 
       it "create a page" do
         expect(Page.count).to eq(1)
-      end
-
-      it "create a platform" do
-        expect(Platform.count).to eq(1)
       end
     end
 

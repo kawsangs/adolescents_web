@@ -1,9 +1,19 @@
-%form.form-search.d-flex{ action: visits_path, method: 'get' }
-  = render 'filter_page'
-  .me-2
-  = render 'shared/filters/filter_date', placeholder: t('visit.search_by_visit_date')
+%form.form-search.accordion{ action: visits_path, method: 'get' }
+  .d-flex
+    = render 'shared/filters/filter_date', placeholder: t('visit.search_by_visit_date')
 
-  .ms-3
-    %button.btn.btn-primary.ml-md-2{type: :submit}
-      %i.fas.fa-search
-      %span.d-none.d-lg-inline= t('shared.search')
+    %div.ms-3
+      %button.btn.btm-sm{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-bs-target" => "#collapseOne", "data-bs-toggle" => "collapse", :type => "button", "data-action": "visits#handleLocalStorage"}
+        %span.d-none.d-lg-inline= t('shared.advance_search')
+        %i.fas.fa-angle-down
+
+  #collapseOne.accordion-collapse.collapse.collapse-filter
+    .d-flex.m-2
+      .me-1= render 'filter_page'
+
+      = render 'shared/filters/filter_platform'
+
+      .ms-3
+        %button.btn.btn-primary.ml-md-2{type: :submit}
+          %i.fas.fa-search
+          %span.d-none.d-lg-inline= t('shared.search')
