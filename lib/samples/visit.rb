@@ -12,8 +12,7 @@ module Samples
         ::Visit.create(
           app_user_id: ::AppUser.all.sample.id,
           visit_date: rand(1.year).seconds.ago,
-          page_attributes: { code: "app_visit", name: "App visit", parent_code: "" },
-          platform_attributes: platforms.sample
+          page_attributes: { code: "app_visit", name: "App visit", parent_code: "" }
         )
       end
 
@@ -21,8 +20,7 @@ module Samples
         visit = ::Visit.new(
           app_user_id: ::AppUser.all.sample.id,
           visit_date: rand(1.year).seconds.ago,
-          page_attributes: pages.sample.slice("code", "name", "parent_code").symbolize_keys,
-          platform_attributes: platforms.sample
+          page_attributes: pages.sample.slice("code", "name", "parent_code").symbolize_keys
         )
         visit.pageable = Facility.all.sample if visit.page.code == "clinic_detail"
         visit.pageable = Video.all.sample if visit.page.code == "video_detail"
@@ -36,14 +34,6 @@ module Samples
       def get_root_pages
         data = JSON.parse(File.read(file_path("categories.json")))
         data.select { |d| d["parent_code"].nil? }
-      end
-
-      def platforms
-        [
-          { name: "android" },
-          { name: "ios" },
-          { name: "web" }
-        ]
       end
   end
 end

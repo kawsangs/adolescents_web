@@ -11,9 +11,15 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  last_accessed_at :datetime
+#  platform         :integer          default("android")
 #
 class AppUser < ApplicationRecord
   GENDERS = %w(male female lgbt unknown)
+
+  enum platform: {
+    android: 1,
+    ios: 2
+  }
 
   # Validation
   validates :gender, presence: true, unless: :anonymous?
@@ -62,6 +68,7 @@ class AppUser < ApplicationRecord
     scope = scope.where(gender: params[:genders]) if params[:genders].present?
     scope = scope.where("age BETWEEN ? AND ?", params[:start_age], params[:end_age]) if params[:start_age].present? && params[:end_age].present?
     scope = scope.joins(:app_user_characteristics).where("app_user_characteristics.characteristic_id": params[:characteristic_ids]) if params[:characteristic_ids].present?
+    scope = scope.where(platform: params[:platform]) if params[:platform].present?
     scope
   end
 end

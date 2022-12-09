@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_23_072639) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_08_085458) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -52,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_23_072639) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "last_accessed_at"
+    t.integer "platform", default: 1
   end
 
   create_table "audits", force: :cascade do |t|
@@ -333,7 +334,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_23_072639) do
 
   create_table "visits", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "page_id"
-    t.uuid "platform_id"
     t.datetime "visit_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

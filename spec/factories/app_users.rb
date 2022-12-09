@@ -11,6 +11,7 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  last_accessed_at :datetime
+#  platform         :integer          default("android")
 #
 FactoryBot.define do
   factory :app_user do

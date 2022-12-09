@@ -11,8 +11,7 @@ module Api
         def visit_params
           params.require(:visit).permit(
             :app_user_id, :visit_date, :pageable_id, :pageable_type,
-            page_attributes: [:code, :name, :parent_code],
-            platform_attributes: [:name]
+            page_attributes: [:code, :name, :parent_code]
           )
         end
     end

@@ -22,6 +22,6 @@ class VisitsController < ApplicationController
 
   private
     def filter_params
-      params.permit(:start_date, :end_date, page_ids: [])
+      params.permit(:start_date, :end_date, :platform, page_ids: [])
     end
 end
