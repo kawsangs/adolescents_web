@@ -11,6 +11,7 @@
 #  app_versions  :string           default([]), is an Array
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  platform      :integer
 #
 class MobileNotification < ApplicationRecord
   validates :body, presence: true
@@ -18,12 +19,14 @@ class MobileNotification < ApplicationRecord
 
   after_commit :push_notification_async, on: [:create]
 
+  enum platform: MobileToken.platforms
+
   def push_notification_async
     MobileNotificationJob.perform_async(id)
   end
 
   def build_content
-    { notification: { title:, body: } }
+     { notification: { title:, body: }, apns: { payload: { aps: { "content-available": 1 } } }, android: { "priority": "high" } }
   end
 
   def description
