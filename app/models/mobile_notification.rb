@@ -26,7 +26,7 @@ class MobileNotification < ApplicationRecord
   end
 
   def build_content
-    { notification: { title:, body: } }
+     { notification: { title:, body: }, apns: { payload: { aps: { "content-available": 1 } } }, android: { "priority": "high" } }
   end
 
   def description

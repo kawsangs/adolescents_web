@@ -1,8 +1,9 @@
 %nav#sidenavAccordion.sb-sidenav.accordion.sb-sidenav-light{'data-controller': 'sidebar'}
   .sb-sidenav-menu
     .nav
-      .sb-sidenav-menu-heading= t('sidebar.reports')
       - if policy(:grafana).show?
+        .sb-sidenav-menu-heading= t('sidebar.reports')
+
         %a.nav-link{href: ENV['GF_DASHBOARD_URL'], target: '_blank'}
           .sb-nav-link-icon
             %i.fa-solid.fa-chart-column
@@ -48,31 +49,33 @@
               = link_to t('sidebar.topics'), topics_path, class: ['nav-link', css_active_class('topics')]
 
       / Settings
-      %a.nav-link.collapsed{"aria-controls" => "collapseSettings", "aria-expanded" => "false", "data-bs-target" => "#collapseSettings", "data-bs-toggle" => "collapse", :href => "#"}
-        .sb-nav-link-icon
-          %i.fa-solid.fa-wrench
-        = t('sidebar.settings')
-        .sb-sidenav-collapse-arrow
-          %i.fas.fa-angle-down
+      - if policy(:setting).show?
+        %a.nav-link.collapsed{"aria-controls" => "collapseSettings", "aria-expanded" => "false", "data-bs-target" => "#collapseSettings", "data-bs-toggle" => "collapse", :href => "#"}
+          .sb-nav-link-icon
+            %i.fa-solid.fa-wrench
+          = t('sidebar.settings')
+          .sb-sidenav-collapse-arrow
+            %i.fas.fa-angle-down
 
-      #collapseSettings.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" => "#sidenavAccordion"}
-        %nav.sb-sidenav-menu-nested.nav
-          = link_to t('sidebar.users'), users_path, class: ['nav-link', css_active_class('users')]
+        #collapseSettings.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" => "#sidenavAccordion"}
+          %nav.sb-sidenav-menu-nested.nav
+            - if policy(User).index?
+              = link_to t('sidebar.users'), users_path, class: ['nav-link', css_active_class('users')]
 
-          - if policy(Service).index?
-            = link_to t('sidebar.services'), services_path, class: ['nav-link', css_active_class('services')]
+            - if policy(Service).index?
+              = link_to t('sidebar.services'), services_path, class: ['nav-link', css_active_class('services')]
 
-          - if policy(Page).index?
-            = link_to t('sidebar.pages'), pages_path, class: ['nav-link', css_active_class('pages')]
+            - if policy(Page).index?
+              = link_to t('sidebar.pages'), pages_path, class: ['nav-link', css_active_class('pages')]
 
-          - if policy(ApiKey).index?
-            = link_to t('sidebar.api_keys'), api_keys_path, class: ['nav-link', css_active_class('api_keys')]
+            - if policy(ApiKey).index?
+              = link_to t('sidebar.api_keys'), api_keys_path, class: ['nav-link', css_active_class('api_keys')]
 
-          - if current_user.primary_admin?
-            = link_to t('sidebar.oauth_applicatons'), oauth_applications_url, class: ['nav-link']
+            - if current_user.primary_admin?
+              = link_to t('sidebar.oauth_applicatons'), oauth_applications_url, class: ['nav-link']
 
-          - if policy(MobileNotification).index?
-            = link_to t('sidebar.mobile_notifications'), mobile_notifications_path, class: ['nav-link', css_active_class('mobile_notifications')]
+            - if policy(MobileNotification).index?
+              = link_to t('sidebar.mobile_notifications'), mobile_notifications_path, class: ['nav-link', css_active_class('mobile_notifications')]
 
       = link_to about_path, class: ['nav-link', css_active_class('about')] do
         .sb-nav-link-icon
