@@ -11,6 +11,7 @@
 #  app_versions  :string           default([]), is an Array
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  platform      :integer
 #
 require "rails_helper"
 

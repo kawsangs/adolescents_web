@@ -27,11 +27,7 @@
           %span 255
 
       .form-group
-        %label= t('mobile_notification.app_version')
-
-        .tooltips{ 'data-toggle' => 'tooltip', 'data-placement': 'left' }
-          - options = MobileToken.where.not(app_version: nil).pluck(:app_version).uniq
-          = select_tag 'mobile_notification[app_versions][]', options_for_select(options), multiple: true, "data-count-selected-text" => "{0} #{t('mobile_notification.versions_selected')}", "data-selected-text-format" => "count > 1", "data-none-selected-text" => t("mobile_notification.any_version"), class: 'selectpicker form-control'
+        = f.input :platform, collection: MobileToken::PLATFORMS, label: t('shared.platform'), include_blank: true, input_html: {class: 'selectpicker', "data-none-selected-text" => t('visit.any_platform')}
 
       .actions.text-right
         = link_to t('shared.cancel'), mobile_notifications_url, class: 'btn btn-secondary me-1'
@@ -45,8 +41,6 @@
             = image_tag 'logo_color.png', size: '18x18', class: 'rounded'
           .flex-1.small= ENV["APP_NAME"]
 
-
         .text-wrapper.mt-2
           .title.text-truncate{'data-mobile-notifiations-target': 'title'}
           .text-body.text-truncate{'data-mobile-notifiations-target': 'body'}
-
