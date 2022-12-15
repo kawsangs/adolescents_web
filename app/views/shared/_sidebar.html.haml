@@ -82,5 +82,10 @@
           %i.fa-solid.fa-circle-exclamation
         = t('sidebar.about')
 
+      = link_to "/#{current_user.role}_user_guide.pdf", class: ['nav-link'], target: '_blank' do
+        .sb-nav-link-icon
+          %i.fa-regular.fa-circle-question
+        = t('sidebar.help')
+
   .sb-sidenav-footer
     .small= "Version: #{ENV['APP_VERSION'] || 'dev'}"
