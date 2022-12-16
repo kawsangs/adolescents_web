@@ -21,3 +21,7 @@ en:
     download_json: Download JSON
     search_by_name: Search by name
     search_by_batch: Search by batch
+    tags: Tags
+    tages_selected: tages_selected
+    any_tag: Any tag
+    number_of_facility: "# of facility"

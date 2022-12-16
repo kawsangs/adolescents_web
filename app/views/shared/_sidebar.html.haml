@@ -62,8 +62,8 @@
             - if policy(User).index?
               = link_to t('sidebar.users'), users_path, class: ['nav-link', css_active_class('users')]
 
-            - if policy(Service).index?
-              = link_to t('sidebar.services'), services_path, class: ['nav-link', css_active_class('services')]
+            - if policy(Tag).index?
+              = link_to t('sidebar.tags'), tags_path, class: ['nav-link', css_active_class('tags')]
 
             - if policy(Page).index?
               = link_to t('sidebar.pages'), pages_path, class: ['nav-link', css_active_class('pages')]

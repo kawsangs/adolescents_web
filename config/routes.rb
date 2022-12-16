@@ -42,13 +42,13 @@ Rails.application.routes.draw do
   end
 
   resources :facilities
+  resources :tags
   resources :facility_batches, except: [:update, :edit], param: :code
   resources :videos
   resources :video_batches, except: [:update, :edit], param: :code
   resources :mobile_notifications
 
   resources :pages
-  resources :services
 
   get "/privacy-policy", to: "privacy_policies#show"
   get "/terms-and-conditions", to: "terms_and_conditions#show"
