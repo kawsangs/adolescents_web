@@ -1,13 +1,28 @@
-%form.mb-2{ action: facilities_path, method: 'get' }
+%form.mb-2{ action: facilities_path, method: 'get', 'data-controller': 'facilities-index' }
   .d-flex.align-items-center
-    .input-group.my-2.search-input.me-1
+    .input-group.my-2.search-input
       = text_field_tag(:name, params[:name], class: 'form-control', placeholder: t('facility.search_by_name'))
-
-    - list = FacilityBatch.all.map{ |batch| ["#{batch.code}(#{display_datetime(batch.created_at)})", batch.code]}
-
-    = select_tag :batch_code, options_for_select(list, params[:batch_code]), class: 'form-select filter-input', prompt: t("facility.search_by_batch")
-
-    %div.ms-3
-      %button.btn.btn-primary.ml-md-2{type: :submit}
+      %span.input-group-text
         %i.fas.fa-search
-        %span.d-none.d-lg-inline= t('shared.search')
+
+    .ms-3
+      %button.btn.btm-sm{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-bs-target" => "#collapseOne", "data-bs-toggle" => "collapse", :type => "button", "data-action": "facilities-index#handleLocalStorage"}
+        %span.d-none.d-lg-inline= t('shared.advance_search')
+        %i.fas.fa-angle-down
+
+  #collapseOne.accordion-collapse.collapse.collapse-filter
+    .d-flex.m-2
+      / Filtery by batch
+      - list = FacilityBatch.all.map{ |batch| ["#{batch.code}(#{display_datetime(batch.created_at)})", batch.code]}
+
+      = select_tag :batch_code, options_for_select(list, params[:batch_code]), class: 'form-select filter-input', prompt: t("facility.search_by_batch")
+
+      / Filter by tag
+      .ms-1.filter-input.tooltips{ 'data-bs-toggle' => 'tooltip' }
+        - options = Facility.tag_counts.sort_by(&:count).reverse.pluck(:name)
+        = select_tag 'tag[]', options_for_select(options, params[:tag]), multiple: true, "data-live-search" => "true", "data-count-selected-text" => "{0} #{t('facility.tages_selected')}", "data-selected-text-format" => "count > 1", "data-none-selected-text" => t('facility.any_tag'), class: 'selectpicker form-control'
+
+      .ms-3
+        %button.btn.btn-primary.ml-md-2{type: :submit}
+          %i.fas.fa-search
+          %span.d-none.d-lg-inline= t('shared.search')

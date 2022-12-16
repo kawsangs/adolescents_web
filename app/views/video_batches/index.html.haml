@@ -36,6 +36,4 @@
               %td= batch.user_email
               %td= timeago(batch.created_at, 'datetime').html_safe
 
-  - if @pagy.pages > 1
-    .pagy-wrapper.justify-content-lg-end.justify-content-center
-      != pagy_bootstrap_compact_nav(@pagy)
+  = render "shared/footers/pagination"

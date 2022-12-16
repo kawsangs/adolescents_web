@@ -5,11 +5,11 @@ class FacilitiesController < ApplicationController
   def index
     respond_to do |format|
       format.html {
-        @pagy, @facilities = pagy(authorize Facility.filter(filter_params).includes(:services))
+        @pagy, @facilities = pagy(query_facility)
       }
 
       format.json {
-        @facilities = authorize Facility.filter(filter_params).includes(:services)
+        @facilities = query_facility
 
         if @facilities.length > Settings.max_download_visit_record
           flash[:alert] = t("shared.file_size_is_too_big")
@@ -60,7 +60,7 @@ class FacilitiesController < ApplicationController
       params.require(:facility).permit(
         :name, :province_id, :district_id, :commune_id, :street,
         :house_number, :latitude, :longitude, :tels, :emails, :websites,
-        :facebook_pages, :telegram_username, :description,
+        :facebook_pages, :telegram_username, :description, :tag_list,
         working_days_attributes: [ :id, :day, :open, :_destroy,
           working_hours_attributes: [:id, :open_at, :close_at, :_destroy]
         ],
@@ -69,10 +69,14 @@ class FacilitiesController < ApplicationController
     end
 
     def filter_params
-      params.permit(:name, :batch_code)
+      params.permit(:name, :batch_code, tag: [])
     end
 
     def set_facility
       @facility = authorize Facility.find(params[:id])
+    end
+
+    def query_facility
+      authorize Facility.filter(filter_params).includes(:services, :tags)
     end
 end

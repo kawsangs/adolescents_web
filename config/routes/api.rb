@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resources :facilities, only: [:index]
       resource  :mobile_tokens, only: [:create]
       resources :topics, only: [:index]
-      resources :services, only: [:index]
+      resources :tags, only: [:index]
       resources :quizzes, only: [:create]
 
       get "*path" => "api#routing_error"

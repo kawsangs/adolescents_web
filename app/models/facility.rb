@@ -23,6 +23,8 @@
 #  house_number      :string
 #
 class Facility < ApplicationRecord
+  include Facilities::Tagging
+
   # Association
   belongs_to :facility_batch, optional: true
   has_many :working_days, dependent: :destroy
@@ -46,6 +48,7 @@ class Facility < ApplicationRecord
     scope = all
     scope = scope.where("name LIKE ?", "%#{params[:name]}%") if params[:name].present?
     scope = scope.joins(:facility_batch).where("facility_batches.code = ?", params[:batch_code]) if params[:batch_code].present?
+    scope = scope.joins(taggings: :tag).where("tags.name IN (?)", params[:tag]) if params[:tag].present?
     scope
   end
 

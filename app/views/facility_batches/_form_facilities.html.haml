@@ -4,6 +4,7 @@
       %tr
         %th #
         %th= t('facility.name')
+        %th= t('facility.tags')
         %th= t('facility.address')
         %th= t('facility.latitude')
         %th= t('facility.longitude')
@@ -24,6 +25,7 @@
         %tr
           %td= index + 1
           %td= facility.name
+          %td= facility.tag_list
           %td= facility.addresses
           %td= facility.latitude
           %td= facility.longitude
