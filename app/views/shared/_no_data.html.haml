@@ -3,7 +3,7 @@
 - remote ||= false
 
 - if items.blank?
-  .text-center.no-data.m-4
+  .text-center.no-data.m-4{style: 'margin-top: 120px !important'}
     %h2= t('shared.no_data_found')
 
     - if items.length.zero? || policy(items.class.to_s.split("::")[0..-2].join('::').constantize).create? && !request.query_string.present?

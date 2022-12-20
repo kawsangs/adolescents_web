@@ -1,6 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 import datePicker from "commons/filter_date_picker";
-import noUiSlider from "nouislider"
+import noUiSlider from "nouislider";
+import toggleCollapse from "commons/toggle_collapse";
 
 export default class extends Controller {
   localStorageKey = "advance_search";
@@ -11,21 +12,11 @@ export default class extends Controller {
 
     datePicker.init();
     this.initAgeRageSlider();
-    this.initAdvanceSearchToggle();
-  }
-
-  initAdvanceSearchToggle() {
-    let css_class = localStorage.getItem(this.localStorageKey);
-
-    if(!!css_class) {
-      document.getElementById('collapseOne').classList.add(css_class);
-    }
+    toggleCollapse.init(this.localStorageKey);
   }
 
   handleLocalStorage() {
-    let css_class = !!localStorage.getItem(this.localStorageKey) ? '' : 'show'
-
-    localStorage.setItem(this.localStorageKey, css_class);
+    toggleCollapse.handleLocalStorage(this.localStorageKey);
   }
 
   initAgeRageSlider() {

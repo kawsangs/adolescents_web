@@ -51,3 +51,4 @@ en:
     name_en: Name in English
     name_km: Name in Khmer
     platform: Platform
+    cannot_delete: Cannot delete, it is currently in used!

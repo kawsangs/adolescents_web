@@ -26,12 +26,16 @@ class FacilitySerializer < ActiveModel::Serializer
   attributes :id, :name, :addresses, :province_id, :district_id, :commune_id,
              :street, :house_number, :tels, :emails, :websites, :facebook_pages,
              :telegram_username, :description, :latitude, :longitude, :services,
-             :updated_at, :service_ids
+             :updated_at, :service_ids, :tags
 
   has_many :working_days
 
   def services
     object.services.pluck(:name)
+  end
+
+  def tags
+    object.tags.pluck(:name)
   end
 
   def addresses

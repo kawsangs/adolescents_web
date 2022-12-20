@@ -1,0 +1,16 @@
+%tr
+  %td= num
+  %td= tag.name
+  %td= tag.facilities.length
+  %td= timeago(tag.created_at).html_safe
+  %td= timeago(tag.updated_at).html_safe
+  %td
+    .d-flex.justify-content-end
+      = render 'shared/buttons/edit_button', object: tag, url: edit_tag_path(tag)
+
+      - if tag.facilities.blank?
+        = render 'shared/buttons/delete_button', object: tag,  message: { type: t('tag.tag'), name: tag.name, url: tag_path(tag) }
+      - else
+        %span{ data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top' }, title: t('shared.cannot_delete') }
+          %button.btn.btn-circle.btn-sm.btn-outline-danger{ type: 'button', disabled: true }
+            %i.fas.fa-trash-alt

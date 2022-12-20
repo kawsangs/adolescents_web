@@ -20,6 +20,7 @@ module Spreadsheets
 
       @facilities_attributes.push({
         name: row["name"],
+        tag_list: row["tag_list"],
         province_id: commune.try(:province_id),
         district_id: commune.try(:district_id),
         commune_id: commune.try(:id),

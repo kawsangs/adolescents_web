@@ -1,0 +1,30 @@
+= content_for :header_title_right_col do
+  .me-1
+    = render "shared/buttons/download_button", label: t('facility.download_json'), url: tags_path(filter_params.merge(format: :json))
+
+.container-fluid.px-4
+  = render 'shared/header_title', title: t('facility.tags')
+  = render "filters"
+  = render "shared/no_data", items: @tags
+
+  - if @tags.present?
+    = render "shared/pagination_title", objects: @tags
+
+    .table-responsive
+      %table.table.table-hover.pretty
+        %thead
+          %tr
+            %th #
+            %th= t('shared.name')
+            %th= t('facility.number_of_facility')
+            %th= t('shared.created_at')
+            %th= t('shared.updated_at')
+            %th
+
+        %tbody
+          - @tags.each_with_index do |tag, index|
+            = render "tag", tag: tag, num: @pagy.from + index
+
+    = render "shared/footers/pagination"
+
+= render "shared/modals/confirm_delete_modal"

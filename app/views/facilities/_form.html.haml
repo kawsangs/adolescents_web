@@ -1,6 +1,10 @@
 .w-75.view-center{'data-controller': 'facilities'}
   = simple_form_for @facility, html: {'data-action': 'facilities#submitForm'} do |f|
+    / Name
     .mb-3= f.input :name, label: t('facility.name')
+
+    / Tags
+    .mb-3= f.input :tag_list, label: t('facility.tags'), input_html: { 'data-facilities-target': 'tagList', 'data-tags': Facility.tag_counts.sort_by(&:count).reverse.pluck(:name).to_json }
 
     / Address
     #province.form-group.mb-3

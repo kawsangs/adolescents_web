@@ -16,6 +16,7 @@
           %tr
             %th #
             %th= t('facility.name')
+            %th= t('facility.tags')
             %th= t('facility.address')
             %th= t('facility.lat_lng')
             %th= t('facility.tels')
@@ -34,6 +35,7 @@
             %tr
               %td= @pagy.from + index
               %td= facility.name
+              %td= raw facility.tags.map(&:name).map { |t| link_to t, facilities_path("tag[]": t) }.join(', ')
               %td= facility.addresses
               %td= "#{facility.latitude}, #{facility.longitude}"
               %td= facility.tels.join(', ')
@@ -54,8 +56,6 @@
 
                   = render 'shared/buttons/delete_button', object: facility,  message: { type: t('facility.facility'), name: facility.name, url: facility_path(facility) }
 
-    - if @pagy.pages > 1
-      .pagy-wrapper.justify-content-lg-end.justify-content-center
-        != pagy_bootstrap_nav(@pagy)
+    = render "shared/footers/pagination"
 
 = render "shared/modals/confirm_delete_modal"
