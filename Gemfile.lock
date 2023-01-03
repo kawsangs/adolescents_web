@@ -200,8 +200,8 @@ GEM
       nokogiri (>= 1.6.0)
       ruby_parser (~> 3.5)
     htmlentities (4.3.4)
-    httparty (0.20.0)
-      mime-types (~> 3.0)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
@@ -500,7 +500,7 @@ DEPENDENCIES
   fog-aws (~> 3.15.0)
   googleauth (= 1.2.0)
   haml-rails (~> 2.0.1)
-  httparty (~> 0.20.0)
+  httparty (~> 0.21.0)
   importmap-rails
   jbuilder
   jquery-rails (~> 4.5.0)

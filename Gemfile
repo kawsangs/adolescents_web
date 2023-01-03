@@ -83,7 +83,7 @@ gem "audited", "~> 5.0"
 gem "sidekiq", "~> 6.5.4"
 
 # Client request
-gem "httparty", "~> 0.20.0"
+gem "httparty", "~> 0.21.0"
 
 gem "sentry-ruby"
 gem "sentry-rails"
