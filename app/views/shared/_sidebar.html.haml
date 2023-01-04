@@ -82,10 +82,10 @@
           %i.fa-solid.fa-circle-exclamation
         = t('sidebar.about')
 
-      = link_to "/#{current_user.role}_user_guide.pdf", class: ['nav-link'], target: '_blank' do
+      = link_to "/#{current_user.role}_youth_health_web_app_user_guide.pdf", class: ['nav-link'], target: '_blank' do
         .sb-nav-link-icon
           %i.fa-regular.fa-circle-question
-        = t('sidebar.help')
+        = t('sidebar.how_to_use')
 
   .sb-sidenav-footer
     .small= "Version: #{ENV['APP_VERSION'] || 'development'}"
