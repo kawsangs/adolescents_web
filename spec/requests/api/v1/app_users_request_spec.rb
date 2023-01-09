@@ -11,7 +11,7 @@ RSpec.describe "Api::V1::AppUsersController", type: :request do
     let!(:disablity) { create(:characteristic, :disablity) }
 
     let(:valid_params) { {
-      gender: "male", age: 20, province_id: "01", registered_at: DateTime.yesterday, device_id: "123",
+      gender: "male", age: 20, province_id: "01", registered_at: DateTime.yesterday, device_id: "123", platform: "ios",
       app_user_characteristics_attributes: [
         { characteristic_attributes: { code: "PO" } },
         { characteristic_attributes: { code: "MI" } },
@@ -25,6 +25,12 @@ RSpec.describe "Api::V1::AppUsersController", type: :request do
       it "creates an app user" do
         expect { post "/api/v1/app_users", params: { app_user: valid_params }, headers: }
               .to change { AppUser.count }.by 1
+      end
+
+      it "creates an app user" do
+        post "/api/v1/app_users", params: { app_user: valid_params }, headers: headers
+
+        expect(AppUser.last.platform).to eq("ios")
       end
 
       it "creates 3 user characteristics" do
