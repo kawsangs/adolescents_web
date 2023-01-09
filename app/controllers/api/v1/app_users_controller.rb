@@ -24,7 +24,7 @@ module Api
       private
         def app_user_params
           params.require(:app_user).permit(
-            :gender, :age, :province_id, :registered_at, :device_id,
+            :gender, :age, :province_id, :registered_at, :device_id, :platform,
             app_user_characteristics_attributes: [
               characteristic_attributes: [ :code ]
             ]
