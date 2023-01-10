@@ -13,8 +13,8 @@ export default (function() {
       var name = button.getAttribute('data-bs-message-name')
       var url = button.getAttribute('data-bs-message-url')
 
-      let title = modalTitle.innerHTML.replace(/_type_/, type)
-      let body = modalBody.innerHTML.replace(/_name_/, name).replace(/_type_/, type)
+      let title = modalTitle.getAttribute('data-content').replace(/_type_/, type)
+      let body = modalBody.getAttribute('data-content').replace(/_name_/, name).replace(/_type_/, type)
 
       modalTitle.innerHTML = title
       modalBody.innerHTML = body

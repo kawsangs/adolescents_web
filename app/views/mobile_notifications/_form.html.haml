@@ -1,10 +1,12 @@
 .d-flex.mobile-notifications-form.flex-md-row.flex-column-reverse{'data-controller': 'mobile-notifiations'}
   .flex-1.me-md-4
     = simple_form_for @mobile_notification do |f|
+      / Title
       .mb-3
         %label
           = t('mobile_notification.notification_title')
           = "(#{t('mobile_notification.max_title')})"
+          %abbr.text-danger{title: 'required'} *
 
         = f.input :title, label: false, input_html: { maxlength: 64, 'data-action': 'mobile-notifiations#updateTitle' }
 
@@ -13,6 +15,7 @@
           %span /
           %span 64
 
+      / Body
       .mb-3
         %label
           = t('mobile_notification.notification_text')
@@ -26,13 +29,27 @@
           %span /
           %span 255
 
-      .form-group
+      / Platform
+      .mb-3
         = f.input :platform, collection: MobileToken::PLATFORMS, label: t('shared.platform'), include_blank: true, input_html: {class: 'selectpicker', "data-none-selected-text" => t('visit.any_platform')}
 
+      / Schedule date
+      .mb-3
+        %label= t('mobile_notification.schedule_date')
+
+        #schedule_date.input-group.date{"data-target-input" => "nearest"}
+          %input.form-control{ type: 'text', "data-target" => "#schedule_date", placeholder: t('mobile_notification.send_now') }
+          %span.input-group-text{"data-target" => "#schedule_date", "data-toggle" => "datetimepicker"}
+            %i.fa-solid.fa-calendar-days
+
+          = f.input :schedule_date, as: :hidden
+
+      / Action
       .actions.text-right
         = link_to t('shared.cancel'), mobile_notifications_url, class: 'btn btn-secondary me-1'
-        = f.submit t('mobile_notification.push_notification'), class: 'btn btn-primary'
+        = f.submit t('mobile_notification.push_notification'), class: 'btn btn-primary', 'data-action': 'mobile-notifiations#submit'
 
+  / Preview
   %div
     .preview-background
       .card-box

@@ -1,0 +1,11 @@
+%form.mb-2{ action: mobile_notifications_path, method: 'get', 'data-controller': 'facilities-index' }
+  .d-flex.align-items-center
+    .input-group.my-2.search-input
+      = text_field_tag(:title, params[:title], class: 'form-control', placeholder: t('mobile_notification.search_by_title'))
+      %span.input-group-text
+        %i.fas.fa-search
+
+    .ms-3
+      %button.btn.btn-primary.ml-md-2{type: :submit}
+        %i.fas.fa-search
+        %span.d-none.d-lg-inline= t('shared.search')

@@ -1,0 +1,5 @@
+%form{ action: mobile_notification_importers_path, method: 'get' }
+  .input-group.my-2.search-input
+    = text_field_tag(:keyword, params[:keyword], class: 'form-control', placeholder: t('shared.search_by_code_or_filename'))
+    %span.input-group-text
+      %i.fas.fa-search
