@@ -1,8 +1,9 @@
 = content_for :header_title_right_col do
-  = render "shared/buttons/add_new_button", url: new_mobile_notification_path, title: t('mobile_notifications.new_mobile_notifications')
+  = render "new_buttons"
 
 .container-fluid.px-4
   = render 'shared/header_title', title: t('mobile_notification.mobile_notifications')
+  = render "filters"
   = render "shared/no_data", items: @mobile_notifications
 
   - if @mobile_notifications.present?
@@ -15,9 +16,11 @@
             %th #
             %th= t('mobile_notification.notification_title')
             %th= t('mobile_notification.notification_text')
-            %th= t('shared.description')
-            %th= t('mobile_notification.app_version')
+            %th= t('mobile_notification.platform')
             %th= t('shared.created_at')
+            %th= t('mobile_notification.schedule_date')
+            %th= t('shared.description')
+            %th= t('shared.status')
             %th
 
         %tbody
@@ -26,9 +29,17 @@
               %td= @pagy.from + index
               %td= notification.title
               %td= notification.body
-              %td= notification.description
-              %td= notification.app_versions.join(', ').presence || t('mobile_notification.all_version')
+              %td= platform_icon(notification.platform).html_safe
               %td= timeago(notification.created_at).html_safe
+              %td
+                = l(notification.schedule_date, format: :long) if notification.schedule_date.present?
+              %td= notification.description
               %td= notification.status_html.html_safe
+              %td
+                .d-flex.justify-content-end
+                  - if policy(notification).destroy?
+                    = render 'shared/buttons/delete_button', object: notification, message: { type: t('mobile_notification.mobile_notification'), name: notification.title, url: mobile_notification_path(notification) }
 
     = render "shared/footers/pagination"
+
+= render "shared/modals/confirm_delete_modal"

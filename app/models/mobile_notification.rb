@@ -2,29 +2,35 @@
 #
 # Table name: mobile_notifications
 #
-#  id            :bigint           not null, primary key
-#  title         :string
-#  body          :text
-#  success_count :integer
-#  failure_count :integer
-#  creator_id    :integer
-#  app_versions  :string           default([]), is an Array
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  platform      :integer
+#  id                           :bigint           not null, primary key
+#  title                        :string
+#  body                         :text
+#  success_count                :integer
+#  failure_count                :integer
+#  creator_id                   :integer
+#  app_versions                 :string           default([]), is an Array
+#  created_at                   :datetime         not null
+#  updated_at                   :datetime         not null
+#  platform                     :integer
+#  schedule_date                :datetime
+#  mobile_notification_batch_id :integer
+#  job_id                       :string
 #
 class MobileNotification < ApplicationRecord
-  validates :body, presence: true
+  include MobileNotifications::Callback
+
+  # Association
   belongs_to :creator, foreign_key: :creator_id, class_name: "User"
+  belongs_to :mobile_notification_batch, optional: true
 
-  after_commit :push_notification_async, on: [:create]
+  # Valiation
+  validates :title, presence: true, length: { maximum: 64 }
+  validates :body, presence: true, length: { maximum: 255 }
 
+  # Enum
   enum platform: MobileToken.platforms
 
-  def push_notification_async
-    MobileNotificationJob.perform_async(id)
-  end
-
+  # Instant method
   def build_content
     { notification: { title:, body: }, apns: { payload: { aps: { "content-available": 1 } } }, android: { "priority": "high" } }
   end
@@ -42,5 +48,12 @@ class MobileNotification < ApplicationRecord
     return "<span class='badge bg-success'>Delivered</span>" if success_count.present?
 
     "<span class='badge bg-warning text-dark'>Pending</span>"
+  end
+
+  # Class method
+  def self.filter(params = {})
+    scope = all
+    scope = scope.where("title LIKE ?", "%#{params[:title]}%") if params[:title].present?
+    scope
   end
 end

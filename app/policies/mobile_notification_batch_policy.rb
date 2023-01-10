@@ -1,14 +1,22 @@
-class MobileNotificationPolicy < ApplicationPolicy
+class MobileNotificationBatchPolicy < ApplicationPolicy
   def index?
     user.primary_admin? || user.admin?
   end
 
-  def create?
+  def show?
     index?
   end
 
+  def create?
+    user.primary_admin? || user.admin?
+  end
+
+  def update?
+    create?
+  end
+
   def destroy?
-    index? && record.schedule_date.present? && record.schedule_date > Time.zone.now
+    create? && record.mobile_notifications.length.zero?
   end
 
   class Scope < Scope

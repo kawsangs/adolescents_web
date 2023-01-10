@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   resources :videos
   resources :video_batches, except: [:update, :edit], param: :code
   resources :mobile_notifications
+  resources :mobile_notification_importers, except: [:update, :edit], param: :code
 
   resources :pages
 

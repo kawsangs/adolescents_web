@@ -8,8 +8,16 @@ en:
     max_title: max 64 characters
     max_body: max 255 characters
     push_notification: Push Notification
-    description: Success %{success_count}; Failure %{failure_count}
+    description: "Success: %{success_count}; Failure: %{failure_count}"
     app_version: App version number
     any_version: Any version
     versions_selected: versions selected
     all_version: All version
+    confirm_message: "There are total notification <b>%{total_count}</b> importing to the stystem! Do you approve it?"
+    schedule_date: Schedule date
+    congratulation_message: There are total notification <b>%{total_count}</b> imported to the stystem under Batch code <b>%{batch_code}</b>
+    delete_successfully: Notification %{title} is deleted successfully!
+    display_items: "There are <b>%{total_count}</b> notifications(valid: <b>%{valid_count}</b>)"
+    search_by_title: Search by title
+    number_of_notification: "# of notification"
+    send_now: Send now

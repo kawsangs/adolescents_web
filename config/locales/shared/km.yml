@@ -52,3 +52,24 @@ km:
     name_km: ឈ្មោះជាភាសាខ្មែរ
     platform: Platform
     cannot_delete: មិនអាចលុប ព្រោះកំពុងប្រើប្រាស់!
+
+    # Batch import
+    download_sample_form: ទាញយកគម្រូឯកសារទៅបំពេញ (Excel file .xlsx)
+    attach_excel_file: ភ្ជាប់គម្រូឯកសារដែលបំពេញរួចមកវិញ
+    congratulation: អបអរសាទរ!
+    show_list: បង្ហាញទិន្នន័យ
+    download_list: ទាញយកទិន្នន័យ
+    excel_file: ឯកសារ Excel (អតិបរិមា 150 KB)
+    todo_step: ជំហ៊ានដែលត្រូវធ្វើ
+    _yes: បាទ/ចាស ខ្ញុំយល់ព្រម
+    import_batch: បញ្ចូល%{name}ជា Excel
+    filename: ឈ្មោះឯកសារ
+    search_by_code_or_filename: លេខកូដ ឬ ឈ្មោះឯកសារ
+    imported_by: បញ្ចូលដោយ
+    imported_at: កាលបរិច្ឆេទបញ្ចូល
+    import_wizard: "បញ្ចូល%{name} wizard"
+    at_least_one_item: ត្រូវមាន%{name}ដែលត្រឹមត្រូវយ៉ាងហោចណាស់ 1
+    confirm_title: បញ្ចាក់ការបញ្ចូល%{name}
+    short_description: "ចំនួនសរុប: %{total_count} (ត្រឹមត្រូវ: %{valid_count})"
+    is_valid: ត្រឹមត្រូវឬទេ?
+    search_by_batch: ស្វែងរកតាម batch

@@ -8,8 +8,16 @@ km:
     max_title: អតិបរមា 64 តួ
     max_body: អតិបរមា 255 តួ
     push_notification: បញ្ជូនការជូនដំណឹង
-    description: ជោគជ័យចំនួន %{success_count}; បរាជ័យចំនួន %{failure_count}
+    description: "ជោគជ័យ: %{success_count}; បរាជ័យ: %{failure_count}"
     app_version: លេខកំណែកម្មវិធីទូរស័ព្ទ
     any_version: គ្រប់លេខកំណែ
     versions_selected: លេខកំណែត្រូវបានជ្រើសរើស
     all_version: ទាំងអស់
+    confirm_message: "មានការជូនដំណឹងសរុប <b>%{total_count}</b> នឹងត្រូវបញ្ចូលក្នុងប្រព័ន្ធ! តើអ្នកយល់ព្រមឬទេ?"
+    schedule_date: កាលបរិច្ឆេទកំណត់
+    congratulation_message: មានការជូនដំណឹងសរុប <b>%{total_count}</b> បានបញ្ចូលទៅក្នុងប្រព័ន្ធ ក្រោមលេខកូដ Batch <b>%{batch_code}</b>
+    delete_successfully: ការជូនដំណឹង %{title} ត្រូវបានលុបដោយជោគជ័យ!
+    display_items: "មានការជូនដំណឹងសរុប <b>%{total_count}</b>(ត្រឹមត្រូវ: <b>%{valid_count}</b>)"
+    search_by_title: ស្វែងរកតាមចំណងជើង
+    number_of_notification: "# នៃការជូនដំណឹង"
+    send_now: ផ្ញើរឥលូវ
