@@ -20,7 +20,7 @@
         = render "shared/buttons/back_button", url: new_facility_batch_path
 
         / Yes confirm button
-        - tooltip_title = @facility_batch.valid_count.positive? ? "" : t("facility_batch.at_least_one_scorecard")
+        - tooltip_title = @facility_batch.valid_count.positive? ? "" : t("facility_batch.at_least_one_facility")
 
         %span{ 'data-bs-toggle' => 'tooltip', title: tooltip_title }
           %button.btn.btn-primary.btn-sm{'data-bs-toggle' => 'modal', 'data-bs-target' => '#confirmModal', type: 'button', class: ('disabled' if @facility_batch.valid_count.zero?)}= t('facility_batch._yes')

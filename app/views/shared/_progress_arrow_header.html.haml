@@ -1,0 +1,18 @@
+- title ||= t('mobile_notification.mobile_notification')
+
+.d-sm-flex.align-items-center.mt-4
+  %h1.h3.flex-grow-1
+    = t('shared.import_wizard', name: title)
+
+  .mt-3.mt-md-0.me-4
+    - progress_num ||= 1
+
+    %ul.breadcrumb-arrows.pl-0.text-center
+      %li{class: ('active' if progress_num == 1)}
+        %a
+          .num 1
+          Upload File
+      %li{class: ('active' if progress_num == 2)}
+        %a
+          .num 2
+          Review

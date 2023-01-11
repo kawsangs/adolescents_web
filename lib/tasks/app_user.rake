@@ -16,8 +16,8 @@ namespace :app_user do
   desc "Migrate missing iOs platform"
   task migrate_missing_ios_platform: :environment do
     AppUser.transaction do
-      app_users = AppUser.where('device_id LIKE ? OR device_id LIKE ?', "%iPhone%", "%iPad%")
-      app_users.update_all(platform: 'ios')
+      app_users = AppUser.where("device_id LIKE ? OR device_id LIKE ?", "%iPhone%", "%iPad%")
+      app_users.update_all(platform: "ios")
     end
   end
 end

@@ -52,3 +52,24 @@ en:
     name_km: Name in Khmer
     platform: Platform
     cannot_delete: Cannot delete, it is currently in used!
+
+    # Batch import
+    download_sample_form: Download sample file to complete (Excel file .xlsx)
+    attach_excel_file: Attach a completed template
+    congratulation: Congratulation!
+    show_list: Show List
+    download_list: Download List
+    excel_file: Excel file (maximum 150 KB)
+    todo_step: Todo step
+    _yes: Yes, I approve
+    import_batch: Import Batch
+    filename: Filename
+    search_by_code_or_filename: Code or filename
+    imported_by: Imported by
+    imported_at: Imported at
+    import_wizard: "%{title} imort wizard"
+    at_least_one_item: There must be at least 1 valid %{name}
+    confirm_title: Confirm import %{name}
+    short_description: "Total items: %{total_count} (valid: %{valid_count})"
+    is_valid: Is valid?
+    search_by_batch: Search by batch

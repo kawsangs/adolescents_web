@@ -1,0 +1,28 @@
+.table-responsive{'data-controller': 'import-wizard'}
+  %table.table.table-hover.pretty
+    %thead
+      %tr
+        %th #
+        %th= t('mobile_notification.title')
+        %th= t('mobile_notification.body')
+        %th= t('mobile_notification.platform')
+        %th= t('mobile_notification.schedule_date')
+        %th= t('shared.is_valid')
+    %tbody
+      - @mobile_notification_batch.mobile_notifications.each_with_index do |mobile_notification, index|
+        - if mobile_notification.valid?
+          = f.fields_for :mobile_notifications, mobile_notification do |ff|
+            = render 'field_for', f: ff
+        %tr
+          %td= index + 1
+          %td= mobile_notification.title
+          %td= mobile_notification.body
+          %td= mobile_notification.platform
+          %td= mobile_notification.schedule_date
+          %td
+            - if mobile_notification.valid?
+              %i.fas.fa-check.text-success
+            - else
+              %span.text-danger.d-flex.align-items-center{'data-bs-toggle' => 'tooltip', 'data-bs-placement': 'left', title: mobile_notification.errors.full_messages.join(', '), style: 'min-width: 80px;' }
+                %i.fas.fa-times.text-danger
+                %small.ms-1= t('shared.reason')

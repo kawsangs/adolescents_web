@@ -3,15 +3,13 @@
     .modal-dialog
       .modal-content
         .modal-header
-          %h5#exampleModalLabel.modal-title
+          %h5#exampleModalLabel.modal-title{'data-content': t('shared.confirm_delete', name: '_type_')}
             / Message title to replace
-            = t('shared.confirm_delete', name: '_type_')
 
           %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
 
-        .modal-body
+        .modal-body{'data-content': t('shared.are_you_sure_to_delete', type: "_type_", name: '_name_')}
           / Message body to replace
-          = t('shared.are_you_sure_to_delete', type: "_type_", name: '_name_').html_safe
 
         .modal-footer
           %button.btn.btn-secondary{"data-bs-dismiss" => "modal", :type => "button"}= t('shared.cancel')
