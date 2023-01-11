@@ -14,7 +14,7 @@ RSpec.describe "Api::V1::AppUsersController", type: :request do
       gender: "male", age: 20, province_id: "01", registered_at: DateTime.yesterday, device_id: "123", platform: "ios",
       app_user_characteristics_attributes: [
         { characteristic_attributes: { code: "PO" } },
-        { characteristic_attributes: { code: "MI" } },
+        { characteristic_attributes: { code: "IP" } },
         { characteristic_attributes: { code: "DI" } }
       ]
     }}

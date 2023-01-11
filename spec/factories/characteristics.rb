@@ -18,9 +18,9 @@ FactoryBot.define do
     end
 
     trait :minority do
-      code  { "MI" }
-      name_en { "Minority" }
-      name_km { "ជនជាតិដើម" }
+      code  { "IP" }
+      name_en { "Indigenous people" }
+      name_km { "ជនជាតិដើមភាគតិច" }
     end
 
     trait :disablity do
