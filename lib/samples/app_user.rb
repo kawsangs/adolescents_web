@@ -17,7 +17,7 @@ module Samples
       def app_user_characteristics
         [
           { characteristic_attributes: { code: "PO" } },
-          { characteristic_attributes: { code: "MI" } },
+          { characteristic_attributes: { code: "IP" } },
           { characteristic_attributes: { code: "DI" } }
         ]
       end
