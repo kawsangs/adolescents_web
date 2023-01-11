@@ -20,7 +20,12 @@ export default class extends Controller {
   }
 
   submit(e) {
-    $('#mobile_notification_schedule_date').val(this.picker.viewDate);
+    e.preventDefault();
+
+    if (!!$("#view-date").val()) {
+      $('#mobile_notification_schedule_date').val(this.picker.viewDate);
+    }
+
     $(e.target).parents('form').submit();
   }
 }
