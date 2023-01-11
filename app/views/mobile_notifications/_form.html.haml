@@ -38,7 +38,7 @@
         %label= t('mobile_notification.schedule_date')
 
         #schedule_date.input-group.date{"data-target-input" => "nearest"}
-          %input.form-control{ type: 'text', "data-target" => "#schedule_date", placeholder: t('mobile_notification.send_now') }
+          %input.form-control#view-date{ type: 'text', "data-target" => "#schedule_date", placeholder: t('mobile_notification.send_now') }
           %span.input-group-text{"data-target" => "#schedule_date", "data-toggle" => "datetimepicker"}
             %i.fa-solid.fa-calendar-days
 

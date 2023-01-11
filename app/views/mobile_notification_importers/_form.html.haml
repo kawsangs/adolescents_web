@@ -18,7 +18,8 @@
           %td= mobile_notification.title
           %td= mobile_notification.body
           %td= mobile_notification.platform
-          %td= mobile_notification.schedule_date
+          %td
+            = l(mobile_notification.schedule_date, format: :long) if mobile_notification.schedule_date.present?
           %td
             - if mobile_notification.valid?
               %i.fas.fa-check.text-success
