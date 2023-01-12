@@ -18,5 +18,8 @@
 #
 FactoryBot.define do
   factory :mobile_notification do
+    title { FFaker::Name.name }
+    body  { FFaker::Name.name }
+    creator
   end
 end
