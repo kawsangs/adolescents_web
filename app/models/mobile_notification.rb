@@ -27,6 +27,9 @@ class MobileNotification < ApplicationRecord
   validates :title, presence: true, length: { maximum: 64 }
   validates :body, presence: true, length: { maximum: 255 }
 
+  # Callback
+  before_destroy :check_schedule_date
+
   # Enum
   enum platform: MobileToken.platforms
 
@@ -50,10 +53,23 @@ class MobileNotification < ApplicationRecord
     "<span class='badge bg-warning text-dark'>Pending</span>"
   end
 
+  def removeable?
+    schedule_date.present? && schedule_date > Time.zone.now
+  end
+
   # Class method
   def self.filter(params = {})
     scope = all
     scope = scope.where("title LIKE ?", "%#{params[:title]}%") if params[:title].present?
     scope
   end
+
+  private
+    def check_schedule_date
+      return true if removeable?
+
+      errors.add :base, "Cannot delete past schedule date notification!"
+
+      throw(:abort)
+    end
 end
