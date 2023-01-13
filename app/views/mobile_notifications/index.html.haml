@@ -1,7 +1,7 @@
 = content_for :header_title_right_col do
   = render "new_buttons"
 
-.container-fluid.px-4
+.container-fluid.px-4{'data-controller': 'mobile-notification-index'}
   = render 'shared/header_title', title: t('mobile_notification.mobile_notifications')
   = render "filters"
   = render "shared/no_data", items: @mobile_notifications
@@ -31,8 +31,8 @@
               %td= notification.body
               %td= platform_icon(notification.platform).html_safe
               %td= timeago(notification.created_at).html_safe
-              %td
-                = l(notification.schedule_date, format: :long) if notification.schedule_date.present?
+              %td= notification.schedule_date.future? ? l(notification.schedule_date, format: :long) : timeago(notification.schedule_date, 'datetime').html_safe
+
               %td= notification.description
               %td= notification.status_html.html_safe
               %td

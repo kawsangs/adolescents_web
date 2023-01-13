@@ -28,7 +28,7 @@ module Spreadsheets
     end
 
     private
-      def schedule_at(value, timezone="+0700")
+      def schedule_at(value, timezone = "+0700")
         date = format_date(value)
         return value if value.nil? || date.nil?
 

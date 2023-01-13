@@ -1,6 +1,7 @@
 %form.form-search.accordion{ action: visits_path, method: 'get' }
   .d-flex
-    = render 'shared/filters/filter_date', placeholder: t('visit.search_by_visit_date')
+    .mb-2
+      = render 'shared/filters/filter_date', placeholder: t('visit.search_by_visit_date')
 
     %div.ms-3
       %button.btn.btm-sm{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-bs-target" => "#collapseOne", "data-bs-toggle" => "collapse", :type => "button", "data-action": "visits#handleLocalStorage"}
