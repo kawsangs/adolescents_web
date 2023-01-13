@@ -5,6 +5,9 @@
       %span.input-group-text
         %i.fas.fa-search
 
+    .ms-2
+      = render 'shared/filters/filter_date', placeholder: t('mobile_notification.search_by_schedule_date')
+
     .ms-3
       %button.btn.btn-primary.ml-md-2{type: :submit}
         %i.fas.fa-search

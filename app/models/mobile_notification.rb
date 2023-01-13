@@ -32,9 +32,6 @@ class MobileNotification < ApplicationRecord
   validate  :validate_schedule_at
   validate  :schedule_date_cannot_be_in_the_past
 
-  # Callback
-  before_destroy :check_schedule_date
-
   # Enum
   enum platform: MobileToken.platforms
 
@@ -66,18 +63,11 @@ class MobileNotification < ApplicationRecord
   def self.filter(params = {})
     scope = all
     scope = scope.where("title LIKE ?", "%#{params[:title]}%") if params[:title].present?
+    scope = scope.where("schedule_date BETWEEN ? AND ?", DateTime.parse(params[:start_date]).beginning_of_day, DateTime.parse(params[:end_date]).end_of_day) if params[:start_date].present? && params[:end_date].present?
     scope
   end
 
   private
-    def check_schedule_date
-      return true if removeable?
-
-      errors.add :base, "Cannot delete past schedule date notification!"
-
-      throw(:abort)
-    end
-
     def validate_schedule_at
       return true if schedule_at.blank?
 
@@ -85,11 +75,9 @@ class MobileNotification < ApplicationRecord
     end
 
     def convert_schedule_at
-      begin
-        self.schedule_date = Time.zone.parse(schedule_at.to_s)
-      rescue ArgumentError
-        false
-      end
+      self.schedule_date = Time.zone.parse(schedule_at.to_s)
+    rescue ArgumentError
+      false
     end
 
     def schedule_date_cannot_be_in_the_past
