@@ -22,7 +22,7 @@
           %button.btn.btn-primary.btn-sm{'data-bs-toggle' => 'modal', 'data-bs-target' => '#confirmModal', type: 'button', class: ('disabled' if @mobile_notification_batch.valid_count.zero?)}= t('shared._yes')
 
 
-    / Facility list rendering
+    / Notification list rendering
     = render 'form', f: f
 
     / Yes Confirm modal

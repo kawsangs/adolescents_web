@@ -21,3 +21,7 @@ en:
     search_by_title: Search by title
     number_of_notification: "# of notification"
     send_now: Send now
+    import_success: "%{count} notifications were successfully imported!"
+    some_invalid_records: There are some invalid notifications, please check and reimport!
+    platform_hint: "ios, android, all"
+    schedule_date_hint: must over at least 5mn from now (yyyy-mm-dd hh:mm)
