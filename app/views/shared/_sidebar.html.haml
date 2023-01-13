@@ -77,15 +77,20 @@
             - if policy(MobileNotification).index?
               = link_to t('sidebar.mobile_notifications'), mobile_notifications_path, class: ['nav-link', css_active_class('mobile_notifications')]
 
-      = link_to about_path, class: ['nav-link', css_active_class('about')] do
-        .sb-nav-link-icon
-          %i.fa-solid.fa-circle-exclamation
-        = t('sidebar.about')
-
-      = link_to "/#{current_user.role}_youth_health_web_app_user_guide.pdf", class: ['nav-link'], target: '_blank' do
-        .sb-nav-link-icon
+  .sb-sidenav-footer
+    = link_to "/#{current_user.role}_youth_health_web_app_user_guide.pdf", class: ['nav-link text-dark'], target: '_blank' do
+      .d-flex.align-items-center
+        .sb-nav-link-icon.me-1
           %i.fa-regular.fa-circle-question
         = t('sidebar.how_to_use')
 
-  .sb-sidenav-footer
-    .small= "Version: #{ENV['APP_VERSION'] || 'development'}"
+    .d-flex.align-items-center
+      .flex-grow-1
+        = link_to about_path, class: ['nav-link text-dark', css_active_class('about')] do
+          .d-flex.align-items-center
+            .sb-nav-link-icon.me-1
+              %i.fa-solid.fa-circle-exclamation
+
+            = t('sidebar.about')
+
+      %small.text-muted="v: #{ENV['APP_VERSION'] || 'dev'}"
