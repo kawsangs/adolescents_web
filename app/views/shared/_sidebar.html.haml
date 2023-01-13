@@ -1,6 +1,6 @@
 %nav#sidenavAccordion.sb-sidenav.accordion.sb-sidenav-light{'data-controller': 'sidebar'}
-  .sb-sidenav-menu
-    .nav
+  .sb-sidenav-menu.d-flex.flex-column
+    .nav.flex-grow-1
       - if policy(:grafana).show?
         .sb-sidenav-menu-heading= t('sidebar.reports')
 
@@ -9,12 +9,13 @@
             %i.fa-solid.fa-chart-column
           %span= t("sidebar.dashboard")
 
+      - if policy(:google_play).show?
         %a.nav-link{href: "https://play.google.com/console/u/0/developers/5029615386963513716/app/4974269071605622809/app-dashboard?timespan=thirtyDays", target: '_blank'}
           .sb-nav-link-icon
             %i.fa-brands.fa-google-play
           %span= t("sidebar.app_install_statistic")
 
-      .sb-sidenav-menu-heading= t('sidebar.interfaces')
+      .sb-sidenav-menu-heading{style: 'padding-top: 0.75rem'}= t('sidebar.interfaces')
 
       - if policy(AppUser).index?
         = link_to app_users_path, class: ['nav-link', css_active_class('app_users'), ('active' if request.path.split("/")[1].blank?)] do
@@ -28,9 +29,15 @@
             %i.fa-solid.fa-eye
           = t('sidebar.visits')
 
-      - if current_user.primary_admin?
-        / Contents
-        %a.nav-link.collapsed{"aria-controls" => "collapseContents", "aria-expanded" => "false", "data-bs-target" => "#collapseContents", "data-bs-toggle" => "collapse", :href => "#"}
+      - if policy(MobileNotification).index?
+        = link_to mobile_notifications_path, class: ['nav-link', css_active_class('mobile_notifications')] do
+          .sb-nav-link-icon
+            %i.fa-regular.fa-bell
+          = t('sidebar.mobile_notifications')
+
+      - if policy(:setting).show?
+        / Contents setting
+        %a.nav-link.collapsed{"aria-controls" => "collapseContents", "aria-expanded" => "false", "data-bs-target" => "#collapseContents", "data-bs-toggle" => "collapse", href: "#"}
           .sb-nav-link-icon
             %i.fas.fa-columns
           = t('sidebar.contents')
@@ -45,12 +52,23 @@
             - if policy(Video).index?
               = link_to t('sidebar.videos'), videos_path, class: ['nav-link', css_active_class('videos')]
 
-            - if policy(Topic).index?
-              = link_to t('sidebar.topics'), topics_path, class: ['nav-link', css_active_class('topics')]
+            - if policy(Topics::FaqForm).index?
+              = link_to t('sidebar.topics'), faq_forms_path, class: ['nav-link', css_active_class('faq_forms')]
 
-      / Settings
-      - if policy(:setting).show?
-        %a.nav-link.collapsed{"aria-controls" => "collapseSettings", "aria-expanded" => "false", "data-bs-target" => "#collapseSettings", "data-bs-toggle" => "collapse", :href => "#"}
+            - if policy(Category).index?
+              = link_to t('sidebar.categories'), categories_path, class: ['nav-link', css_active_class('categories')]
+
+            - if policy(Contact).index?
+              = link_to t('sidebar.contacts'), contacts_path, class: ['nav-link', css_active_class('contacts')]
+
+            - if policy(Tag).index?
+              = link_to t('sidebar.tags'), tags_path, class: ['nav-link', css_active_class('tags')]
+
+            - if policy(Reason).index?
+              = link_to t('sidebar.reasons'), reasons_path, class: ['nav-link', css_active_class('reasons')]
+
+        / Application Setting
+        %a.nav-link.collapsed{"aria-controls" => "collapseSettings", "aria-expanded" => "false", "data-bs-target" => "#collapseSettings", "data-bs-toggle" => "collapse", href: "#"}
           .sb-nav-link-icon
             %i.fa-solid.fa-wrench
           = t('sidebar.settings')
@@ -62,11 +80,11 @@
             - if policy(User).index?
               = link_to t('sidebar.users'), users_path, class: ['nav-link', css_active_class('users')]
 
-            - if policy(Tag).index?
-              = link_to t('sidebar.tags'), tags_path, class: ['nav-link', css_active_class('tags')]
+            - if policy(TelegramBot).create?
+              = link_to t('sidebar.telegram_bot'), telegram_bot_path, class: ['nav-link', css_active_class('telegram_bots', 'chat_groups', 'helps')]
 
-            - if policy(Page).index?
-              = link_to t('sidebar.pages'), pages_path, class: ['nav-link', css_active_class('pages')]
+            - if policy(:dashboard_accessibility).show?
+              = link_to t('sidebar.dashboard_accessibility'), dashboard_accessibility_path, class: ['nav-link', css_active_class('dashboard_accessibility')]
 
             - if policy(ApiKey).index?
               = link_to t('sidebar.api_keys'), api_keys_path, class: ['nav-link', css_active_class('api_keys')]
@@ -74,18 +92,30 @@
             - if current_user.primary_admin?
               = link_to t('sidebar.oauth_applicatons'), oauth_applications_url, class: ['nav-link']
 
-            - if policy(MobileNotification).index?
-              = link_to t('sidebar.mobile_notifications'), mobile_notifications_path, class: ['nav-link', css_active_class('mobile_notifications')]
+    .sb-sidenav-footer
+      .nav-link
+        .btn-group.dropend
+          %a.text-dark.d-flex.align-items-center.user-guide{"data-bs-toggle" => "dropdown"}
+            .sb-nav-link-icon.me-1
+              %i.fa-regular.fa-circle-question
+            = t('sidebar.how_to_use')
 
-      = link_to about_path, class: ['nav-link', css_active_class('about')] do
-        .sb-nav-link-icon
-          %i.fa-solid.fa-circle-exclamation
-        = t('sidebar.about')
+          %ul.dropdown-menu
+            %li
+              %a.dropdown-item{href: "/#{current_user.role}_youth_health_web_app_user_guide.pdf", target: '_blank'}
+                = t('sidebar.how_to_use_in_pdf')
 
-      = link_to "/#{current_user.role}_youth_health_web_app_user_guide.pdf", class: ['nav-link'], target: '_blank' do
-        .sb-nav-link-icon
-          %i.fa-regular.fa-circle-question
-        = t('sidebar.how_to_use')
+            %li
+              %a.dropdown-item{href: Settings.user_guide[current_user.role], target: '_blank'}
+                = t('sidebar.how_to_use_in_video')
 
-  .sb-sidenav-footer
-    .small= "Version: #{ENV['APP_VERSION'] || 'dev'}"
+      .d-flex.align-items-center
+        .flex-grow-1
+          = link_to about_path, class: ['nav-link text-dark', css_active_class('about')] do
+            .d-flex.align-items-center
+              .sb-nav-link-icon.me-1
+                %i.fa-solid.fa-circle-exclamation
+
+              = t('sidebar.about')
+
+        %small.text-muted="v: #{ENV['APP_VERSION'] || 'dev'}"
