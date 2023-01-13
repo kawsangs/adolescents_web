@@ -3,11 +3,24 @@
     %thead
       %tr
         %th #
-        %th= t('mobile_notification.title')
-        %th= t('mobile_notification.body')
-        %th= t('mobile_notification.platform')
-        %th= t('mobile_notification.schedule_date')
-        %th= t('shared.is_valid')
+        %td.text-center
+          %strong= t('mobile_notification.notification_title')
+          %div
+            %small.text-muted= t('mobile_notification.max_title')
+        %td.text-center
+          %strong= t('mobile_notification.notification_text')
+          %div
+            %small.text-muted= t('mobile_notification.max_body')
+        %td.text-center
+          %strong= t('mobile_notification.platform')
+          %div
+            %small.text-muted= t('mobile_notification.platform_hint')
+        %td.text-center
+          %strong= t('mobile_notification.schedule_date')
+          %div
+            %small.text-muted= t('mobile_notification.schedule_date_hint')
+        %th.text-center
+          = t('shared.is_valid')
     %tbody
       - @mobile_notification_batch.mobile_notifications.each_with_index do |mobile_notification, index|
         - if mobile_notification.valid?
@@ -17,9 +30,8 @@
           %td= index + 1
           %td= mobile_notification.title
           %td= mobile_notification.body
-          %td= mobile_notification.platform
-          %td
-            = l(mobile_notification.schedule_date, format: :long) if mobile_notification.schedule_date.present?
+          %td= mobile_notification.platform || 'all'
+          %td= mobile_notification.schedule_at
           %td
             - if mobile_notification.valid?
               %i.fas.fa-check.text-success

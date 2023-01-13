@@ -8,7 +8,7 @@ class MobileNotificationPolicy < ApplicationPolicy
   end
 
   def destroy?
-    index? && record.schedule_date.present? && record.schedule_date > Time.zone.now
+    index? && record.removeable?
   end
 
   class Scope < Scope

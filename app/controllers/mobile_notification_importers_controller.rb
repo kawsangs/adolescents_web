@@ -25,7 +25,7 @@ class MobileNotificationImportersController < ApplicationController
     @mobile_notification_batch.destroy
 
     respond_to do |format|
-      format.html { redirect_to mobile_notification_batches_url, notice: "Notification batch was successfully destroyed." }
+      format.html { redirect_to mobile_notification_importers_url, notice: "Notification batch was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -39,9 +39,9 @@ class MobileNotificationImportersController < ApplicationController
       @mobile_notification_batch = MobileNotificationBatch.new(mobile_notification_batch_params)
 
       if @mobile_notification_batch.save
-        redirect_to mobile_notifications_url, notice: "Notifications was successfully imported."
+        redirect_to mobile_notifications_url, notice: I18n.t("mobile_notification.import_success", count: @mobile_notification_batch.mobile_notifications.length)
       else
-        render :import_confirm
+        redirect_to new_mobile_notification_importer_url, alert: I18n.t("mobile_notification.some_invalid_records")
       end
     end
 

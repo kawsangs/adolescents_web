@@ -36,7 +36,7 @@
               %td
                 .d-flex.justify-content-end
                   - if policy(batch).destroy?
-                    = render 'shared/buttons/delete_button', object: batch, message: { type: t('mobile_notification.mobile_notification'), name: batch.code, url: mobile_notification_batch_path(batch.code) }
+                    = render 'shared/buttons/delete_button', object: batch, message: { type: t('mobile_notification.mobile_notification'), name: batch.code, url: mobile_notification_importer_path(batch.code) }
 
 
   = render "shared/footers/pagination"

@@ -17,12 +17,13 @@ class MobileNotificationBatch < ApplicationRecord
 
   # Callback
   before_create :secure_code
+  validate :validate_notifications
 
   # Delegation
   delegate :email, to: :user, prefix: :user
 
   # Nested attribute
-  accepts_nested_attributes_for :mobile_notifications, allow_destroy: true
+  accepts_nested_attributes_for :mobile_notifications
 
   def self.filter(params)
     keyword = params[:keyword].to_s.strip
@@ -30,4 +31,12 @@ class MobileNotificationBatch < ApplicationRecord
     scope = scope.where("code LIKE ? OR filename LIKE ?", "%#{keyword}%", "%#{keyword}%") if keyword.present?
     scope
   end
+
+  private
+    def validate_notifications
+      return if mobile_notifications.map { |a| a.valid? }.all?
+
+      errors.add(:mobile_notifications, "There are some invalid records")
+      throw(:abort)
+    end
 end
