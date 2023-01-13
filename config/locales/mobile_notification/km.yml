@@ -25,4 +25,4 @@ km:
     some_invalid_records: មានការជូនដំណឹងមួយចំនួនមិនត្រឹមត្រូវ សូមធ្វើការត្រួតពិនិត្យ និងបញ្ចូលឡើងវិញ!
     platform_hint: "ios, android, all"
     schedule_date_hint: "ត្រូវលើសបច្ចុប្បន្នយ៉ាងតិច 5នាទី (yyyy-mm-dd hh:mm)"
-
+    search_by_schedule_date: ស្វែងរកតាមកាលបរិច្ឆេទកំណត់

@@ -32,6 +32,6 @@ class MobileNotificationsController < ApplicationController
     end
 
     def filter_params
-      params.permit(:title)
+      params.permit(:title, :start_date, :end_date)
     end
 end
