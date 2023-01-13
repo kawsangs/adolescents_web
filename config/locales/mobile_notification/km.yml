@@ -21,3 +21,8 @@ km:
     search_by_title: ស្វែងរកតាមចំណងជើង
     number_of_notification: "# នៃការជូនដំណឹង"
     send_now: ផ្ញើរឥលូវ
+    import_success: "ការជូនដំណឹងចំនួន %{count} ត្រូវបានបញ្ចូលដោយជោគជ័យ"
+    some_invalid_records: មានការជូនដំណឹងមួយចំនួនមិនត្រឹមត្រូវ សូមធ្វើការត្រួតពិនិត្យ និងបញ្ចូលឡើងវិញ!
+    platform_hint: "ios, android, all"
+    schedule_date_hint: "ត្រូវលើសបច្ចុប្បន្នយ៉ាងតិច 5នាទី (yyyy-mm-dd hh:mm)"
+

@@ -22,12 +22,23 @@ module Spreadsheets
         title: row["title"],
         body: row["body"],
         platform: (platform if MobileNotification.platforms.keys.include? platform),
-        schedule_date: row["schedule_date"],
+        schedule_at: schedule_at(row["schedule_date"]),
         creator_id: @batch.user_id
       })
     end
 
     private
+      def schedule_at(value, timezone="+0700")
+        date = format_date(value)
+        return value if value.nil? || date.nil?
+
+        Time.new(date.year, date.month, date.day, date.hour, date.min, date.sec, timezone)
+      end
+
+      def format_date(date)
+        DateTime.parse date.to_s rescue nil
+      end
+
       def batch_params(file)
         valid_notifications = batch.mobile_notifications.select { |s| s.valid? }
         {
