@@ -34,7 +34,7 @@
               %td= notification.schedule_date.future? ? l(notification.schedule_date, format: :long) : timeago(notification.schedule_date, 'datetime').html_safe
 
               %td= notification.description
-              %td= notification.status_html.html_safe
+              %td= status_html(notification.status).html_safe
               %td
                 .d-flex.justify-content-end
                   - if policy(notification).destroy?

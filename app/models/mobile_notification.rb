@@ -15,6 +15,7 @@
 #  schedule_date                :datetime
 #  mobile_notification_batch_id :integer
 #  job_id                       :string
+#  status                       :integer          default("pending")
 #
 class MobileNotification < ApplicationRecord
   include MobileNotifications::Callback
@@ -25,6 +26,7 @@ class MobileNotification < ApplicationRecord
   # Association
   belongs_to :creator, foreign_key: :creator_id, class_name: "User"
   belongs_to :mobile_notification_batch, optional: true
+  has_many   :mobile_notification_logs
 
   # Valiation
   validates :title, presence: true, length: { maximum: 64 }
@@ -34,6 +36,10 @@ class MobileNotification < ApplicationRecord
 
   # Enum
   enum platform: MobileToken.platforms
+  enum status: {
+    pending: 1,
+    delivered: 2
+  }
 
   # Instant method
   def build_content
@@ -47,12 +53,6 @@ class MobileNotification < ApplicationRecord
       success_count:,
       failure_count:
     )
-  end
-
-  def status_html
-    return "<span class='badge bg-success'>Delivered</span>" if success_count.present?
-
-    "<span class='badge bg-warning text-dark'>Pending</span>"
   end
 
   def removeable?

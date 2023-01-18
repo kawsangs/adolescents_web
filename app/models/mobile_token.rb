@@ -12,18 +12,25 @@
 #  platform    :integer          default("android")
 #
 class MobileToken < ApplicationRecord
+  # Association
+  has_many :mobile_notification_logs
+
+  # Validation
   validates :token, presence: true
   validates :device_id, presence: true
   validates :device_type, presence: true
   validates :app_version, presence: true
 
+  # Enum
   enum platform: {
     android: 1,
     ios: 2
   }
 
+  # Constant
   PLATFORMS = [["Android", "android"], ["iOs", "ios"]]
 
+  # Class methods
   def self.filter(params = {})
     scope = all
     scope = scope.where(app_version: params[:app_versions]) if params[:app_versions].present?

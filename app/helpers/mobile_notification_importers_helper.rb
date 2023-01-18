@@ -7,10 +7,14 @@ module MobileNotificationImportersHelper
 
   private
     def icon_ios
-      '<i class="fa-brands fa-apple ios-icon"></i>'
+      "<span data-bs-toggle='tooltip' bs-placement='top' title='iOs'>" +
+      "<i class='fa-brands fa-apple ios-icon'></i>" +
+      "</span"
     end
 
     def icon_android
-      '<i class="fa-brands fa-android android-icon"></i>'
+      "<span data-bs-toggle='tooltip' bs-placement='top' title='Android'>" +
+      "<i class='fa-brands fa-android android-icon'></i>" +
+      "</span>"
     end
 end
