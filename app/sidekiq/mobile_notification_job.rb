@@ -4,12 +4,13 @@ class MobileNotificationJob
   def perform(notification_id)
     @notification = MobileNotification.find_by(id: notification_id)
 
-    tokens = MobileToken.filter(platform: @notification.platform).pluck(:token)
-    res = PushNotificationService.new.notify(tokens, @notification.build_content)
+    mobile_tokens = MobileToken.filter(platform: @notification.platform)
+    res = PushNotificationService.new.notify(mobile_tokens, @notification)
 
-    @notification.update(
+    @notification.update_columns(
       success_count: res[:success_count],
-      failure_count: res[:failure_count]
+      failure_count: res[:failure_count],
+      status: :delivered
     )
   end
 end

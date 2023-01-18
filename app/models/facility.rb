@@ -58,7 +58,7 @@ class Facility < ApplicationRecord
 
     return "ផ្ទះលេខ#{house_number} ផ្លូវ#{street} #{commune.address_km}" if I18n.locale == :km
 
-    "##{house_number}, st. #{stree}, #{commune.address_en}"
+    "##{house_number}, st. #{street}, #{commune.address_en}"
   end
 
   def commune

@@ -15,11 +15,13 @@
 #  schedule_date                :datetime
 #  mobile_notification_batch_id :integer
 #  job_id                       :string
+#  status                       :integer          default("pending")
 #
 require "rails_helper"
 
 RSpec.describe MobileNotification, type: :model do
   it { is_expected.to belong_to(:creator).with_foreign_key(:creator_id).class_name("User") }
+  it { is_expected.to have_many(:mobile_notification_logs) }
 
   it { is_expected.to validate_presence_of(:body) }
   it { is_expected.to validate_presence_of(:title) }

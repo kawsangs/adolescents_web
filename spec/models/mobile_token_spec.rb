@@ -14,5 +14,10 @@
 require "rails_helper"
 
 RSpec.describe MobileToken, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { is_expected.to have_many(:mobile_notification_logs) }
+
+  it { is_expected.to validate_presence_of(:token) }
+  it { is_expected.to validate_presence_of(:device_id) }
+  it { is_expected.to validate_presence_of(:device_type) }
+  it { is_expected.to validate_presence_of(:app_version) }
 end
