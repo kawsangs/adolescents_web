@@ -41,6 +41,7 @@ class AppUser < ApplicationRecord
   # Nested attributes
   accepts_nested_attributes_for :app_user_characteristics
 
+  # Instant methods
   def anonymous?
     age == -1
   end
@@ -49,12 +50,10 @@ class AppUser < ApplicationRecord
     @province ||= Pumi::Province.find_by_id province_id
   end
 
-  def set_last_accessed_at
-    self.last_accessed_at = registered_at
-  end
+  def display_device_id
+    return device_id if device_id.length <= 12
 
-  def set_province_id
-    self.province_id ||= Location::UNKNOWN_PROVINCE_ID
+    device_id.first(6) + "..." + device_id.last(6)
   end
 
   # Class method
@@ -68,4 +67,13 @@ class AppUser < ApplicationRecord
     scope = scope.where(platform: params[:platform]) if params[:platform].present?
     scope
   end
+
+  private
+    def set_province_id
+      self.province_id ||= Location::UNKNOWN_PROVINCE_ID
+    end
+
+    def set_last_accessed_at
+      self.last_accessed_at = registered_at
+    end
 end

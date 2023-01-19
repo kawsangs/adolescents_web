@@ -40,7 +40,7 @@
               %td
                 = app_user.province["name_#{I18n.locale}"] unless app_user.anonymous?
               %td= app_user.characteristics.map(&:"name_#{I18n.locale}").join(', ')
-              %td= app_user.device_id
+              %td= app_user.display_device_id
               %td= timeago(app_user.registered_at).html_safe
               %td= timeago(app_user.last_accessed_at).html_safe
               %td= app_user.visits.length
