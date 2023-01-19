@@ -8,15 +8,16 @@ class PushNotificationService
     @failure_count = 0
   end
 
-  def notify(tokens = [], notification = {})
-    tokens.each do |token|
-      message = { 'token': token }.merge(notification)
+  def notify(mobile_tokens, mobile_notification)
+    mobile_tokens.each do |mobile_token|
+      message = { 'token': mobile_token.token }.merge(mobile_notification.build_content)
       res = fcm.send_v1(message)
 
       if res[:status_code] == 200
         @success_count += 1
       else
         @failure_count += 1
+        mobile_notification.mobile_notification_logs.create(mobile_token_id: mobile_token.id, failed_reason: res[:body])
       end
     end
 
