@@ -15,7 +15,7 @@ class FacilitiesController < ApplicationController
           flash[:alert] = t("shared.file_size_is_too_big")
           redirect_to facilities_url
         else
-          send_data ActiveModelSerializers::SerializableResource.new(@facilities).to_json, type: :json, disposition: "attachment", filename: "facilities_#{Time.new.strftime('%Y%m%d_%H_%M_%S')}.json"
+          send_data ActiveModelSerializers::SerializableResource.new(@facilities.includes(working_days: :working_hours)).to_json, type: :json, disposition: "attachment", filename: "facilities_#{Time.new.strftime('%Y%m%d_%H_%M_%S')}.json"
         end
       }
     end
