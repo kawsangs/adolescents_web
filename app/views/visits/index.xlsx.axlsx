@@ -3,6 +3,6 @@ wb.add_worksheet(name: "Visits") do |sheet|
   sheet.add_row [t("visit.device_id"), t("visit.page"), t("visit.pageable"), t("visit.platform"), t("visit.visit_date")]
 
   @visits.each do |visit|
-    sheet.add_row [visit.app_user.device_id, visit.page_name, visit.pageable_name, visit.platform, visit.visit_date]
+    sheet.add_row [visit.app_user.display_device_id, visit.page_name, visit.pageable_name, visit.platform, visit.visit_date]
   end
 end
