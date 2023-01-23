@@ -29,7 +29,7 @@ km:
     unauthorized_alert_message: អ្នកមិនត្រូវបានអនុញ្ញាតឱ្យអនុវត្តសកម្មភាពនេះទេ
     archived: Archived
     download_excel: ទាញយកជា Excel
-    file_size_is_too_big: ទំហំឯកសារធំពេកសូមច្រោះវា!
+    file_size_is_too_big: ទំហំឯកសារធំពេក សូមធ្វើការច្រោះ អ្នកអាចទាញយកធំបំផុត %{max_record} ជួរដេក!
     device_id: ID ឧបករណ៍
     reason: មូលហេតុ
     apply: អនុវត្ត
@@ -73,3 +73,6 @@ km:
     short_description: "ចំនួនសរុប: %{total_count} (ត្រឹមត្រូវ: %{valid_count})"
     is_valid: ត្រឹមត្រូវឬទេ?
     search_by_batch: ស្វែងរកតាម batch
+    preview: ផ្ទៀងផ្ទាត់
+    new: ថ្មី
+    invalid: មិនត្រឹមត្រូវ

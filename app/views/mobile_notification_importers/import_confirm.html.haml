@@ -1,5 +1,5 @@
 .container-fluid.px-4.facilities
-  = render "shared/progress_arrow_header", progress_num: 2
+  = render "shared/headers/progress_arrow_header", title: t('shared.import_wizard', name: t('mobile_notification.mobile_notification')), progress_num: 2
 
   = simple_form_for @mobile_notification_batch, url: mobile_notification_importers_path do |f|
     = f.hidden_field :code, value: @mobile_notification_batch.code

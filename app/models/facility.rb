@@ -31,6 +31,9 @@ class Facility < ApplicationRecord
   has_many :facility_services
   has_many :services, through: :facility_services
 
+  has_many :importing_facilities
+  has_many :facility_batches, through: :importing_facilities
+
   # Valiation
   validates :name, presence: true
 
@@ -38,7 +41,7 @@ class Facility < ApplicationRecord
   accepts_nested_attributes_for :working_days, allow_destroy: true
 
   def services_attributes=(attributes)
-    names = attributes.values.select { |a| a["_destroy"] != "1" }.pluck("name").compact_blank
+    names = attributes.values.select { |a| a[:_destroy] != "1" }.pluck(:name).compact_blank
 
     self.service_ids = names.map { |name| Service.find_or_create_by(name:) }.collect(&:id)
   end
@@ -47,7 +50,7 @@ class Facility < ApplicationRecord
   def self.filter(params = {})
     scope = all
     scope = scope.where("name LIKE ?", "%#{params[:name]}%") if params[:name].present?
-    scope = scope.joins(:facility_batch).where("facility_batches.code = ?", params[:batch_code]) if params[:batch_code].present?
+    scope = scope.joins(importing_facilities: :facility_batch).where("facility_batches.code = ?", params[:batch_code]) if params[:batch_code].present?
     scope = scope.joins(taggings: :tag).where("tags.name IN (?)", params[:tag]) if params[:tag].present?
     scope
   end

@@ -1,5 +1,9 @@
 = content_for :header_title_right_col do
   = render "shared/buttons/download_button", label: t('facility.download_json'), url: facilities_path(filter_params.merge(format: :json))
+
+  .ms-1
+    = render "shared/buttons/download_button", url: facilities_path(filter_params.merge(format: :xlsx))
+
   .ms-1= render "new_buttons"
 
 .container-fluid.px-4.facilities
@@ -26,6 +30,7 @@
             %th= t('facility.telegram_username')
             %th= t('facility.services')
             %th= t('facility.description')
+            %th= t('facility.business_hours')
             %th= t('shared.created_at')
             %th= t('shared.updated_at')
             %th
@@ -47,6 +52,24 @@
               %td
                 .text-truncate{ style: 'width: 200px;' }
                   = facility.description
+
+              %td{style: 'min-width: 150px;'}
+                - WorkingDay.days.keys.each do |day|
+                  - wd = facility.working_days.select { |d| d.day == day }.first
+                  .d-flex
+                    %span
+                      = I18n.t("date.abbr_day_names")[WorkingDay.days[day]] + ": "
+
+                    %span.ms-1
+                      - if wd.nil? || !wd.open
+                        %span= t('facility.close')
+
+                      - else
+                        - wd.working_hours.each do |wh|
+                          %span
+                            = t('facility.open')
+                            = wh.open_24h? ? "#{wh.open_at}h" : "#{wh.open_at} - #{wh.close_at}"
+
 
               %td= timeago(facility.created_at).html_safe
               %td= timeago(facility.updated_at).html_safe
