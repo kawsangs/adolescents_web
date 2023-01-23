@@ -51,9 +51,9 @@ class AppUser < ApplicationRecord
   end
 
   def display_device_id
-    return device_id if device_id.length <= 12
+    return device_id if device_id.length <= 6
 
-    device_id.first(6) + "..." + device_id.last(6)
+    device_id.first(3) + "..." + device_id.last(3)
   end
 
   # Class method
