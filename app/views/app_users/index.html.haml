@@ -7,7 +7,7 @@
   = render "shared/no_data", items: @app_users
 
   - if @app_users.present?
-    .mt-2= render "shared/pagination_title", objects: @app_users
+    .mt-2= render "pagination_title", objects: @app_users
 
     .table-responsive
       %table.table.table-hover.pretty
