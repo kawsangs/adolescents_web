@@ -15,7 +15,7 @@ module Api
         app_user = AppUser.find(params[:id])
 
         if app_user.update(app_user_params)
-          render json: app_user, status: :updated
+          render json: app_user
         else
           render json: { errors: app_user.errors }, status: :unprocessable_entity
         end
