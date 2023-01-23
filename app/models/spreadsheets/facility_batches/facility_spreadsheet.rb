@@ -1,24 +1,15 @@
 module Spreadsheets
-  class FacilityBatch < Base
-    attr_reader :batch
+  class FacilityBatches::FacilitySpreadsheet
+    attr_reader :facility
 
-    def initialize(user)
-      @batch = user.facility_batches.new
-      @facilities_attributes = []
-    end
-
-    def import(file)
-      super
-
-      batch.facilities_attributes = @facilities_attributes
-      batch.attributes = batch.attributes.merge(batch_params(file))
-      batch
+    def initialize(facility)
+      @facility = facility
     end
 
     def process(row)
       commune = Pumi::Commune.find_by_id(row["commune_id"])
 
-      @facilities_attributes.push({
+      facility.attributes = {
         name: row["name"],
         tag_list: row["tag_list"],
         province_id: commune.try(:province_id),
@@ -36,22 +27,15 @@ module Spreadsheets
         latitude: row["latitude"],
         longitude: row["longitude"],
         services_attributes: services_attributes(row)
-      })
+      }
+
+      facility
     end
 
     private
-      def batch_params(file)
-        valid_facilities = batch.facilities.select { |s| s.valid? }
-        {
-          total_count: batch.facilities.length,
-          valid_count: valid_facilities.length,
-          province_count: valid_facilities.pluck(:province_id).uniq.length,
-          filename: file.original_filename
-        }
-      end
-
       def working_days_attributes(row)
         days = []
+        days = facility.working_days.map { |wd| { id: wd.id, _destroy: 1 } } if !facility.new_record?
 
         WorkingDay.days.keys.each do |day|
           open_at = row["#{day.titleize}_open_at"]
@@ -75,6 +59,10 @@ module Spreadsheets
         end
 
         services
+      end
+
+      def string_to_array(str)
+        str.to_s.split(",").map { |st| st.strip }
       end
   end
 end

@@ -1,14 +1,15 @@
 .container-fluid.px-4.facilities
-  = render "progress_arrow_header", progress_num: 2
+  = render "shared/headers/progress_arrow_header", title:t('facility_batch.import_wizard'), show_confirm: true, progress_num: 2
 
   = simple_form_for @facility_batch do |f|
     = f.hidden_field :code, value: @facility_batch.code
     = f.hidden_field :total_count
     = f.hidden_field :valid_count
     = f.hidden_field :province_count
-    = f.hidden_field :filename
+    = f.hidden_field :reference_cache
 
     .d-flex.align-items-center{style: 'flex-wrap: wrap-reverse;'}
+      / Short description header
       .flex-grow-1
         %div= t("facility_batch.short_description", total_count: @facility_batch.total_count, valid_count: @facility_batch.valid_count).html_safe
 
@@ -26,7 +27,14 @@
           %button.btn.btn-primary.btn-sm{'data-bs-toggle' => 'modal', 'data-bs-target' => '#confirmModal', type: 'button', class: ('disabled' if @facility_batch.valid_count.zero?)}= t('facility_batch._yes')
 
 
+    / Facility valid count information
+    .mt-2
+      = render "facility_status"
+
     / Facility list rendering
-    = render 'form_facilities', f: f
+    = render 'wizard_list', f: f
     / Yes Confirm modal
     = render 'modal_import_confirm', f: f
+
+    .my-2
+      = render "facility_status"

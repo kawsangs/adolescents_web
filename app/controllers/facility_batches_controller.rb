@@ -16,9 +16,9 @@ class FacilityBatchesController < ApplicationController
     authorize FacilityBatch, :create?
 
     if file = params[:facility_batch][:file].presence
-      @facility_batch = Spreadsheets::FacilityBatch.new(current_user).import(file)
+      @facility_batch = Spreadsheets::FacilityBatchSpreadsheet.new(current_user).import(file)
 
-      render :import_confirm, status: :see_other
+      render :wizard_review, status: :see_other
     else
 
       create_facility_batch
@@ -45,19 +45,22 @@ class FacilityBatchesController < ApplicationController
       if @facility_batch.save
         redirect_to facility_batch_url(@facility_batch.code), notice: "Facility batch was successfully imported."
       else
-        render :import_confirm
+        render :wizard_review
       end
     end
 
     def facility_batch_params
       params.require(:facility_batch).permit(
-        :total_count, :valid_count, :province_count, :filename,
-        facilities_attributes: [
-          :name, :tag_list, :province_id, :district_id, :commune_id, :street, :house_number,
-          :telegram_username, :description, :latitude, :longitude, :_destroy,
-          tels: [], emails: [], websites: [], facebook_pages: [],
-          working_days_attributes: [ :day, :open, working_hours_attributes: [ :open_at, :close_at ] ],
-          services_attributes: [:name]
+        :total_count, :valid_count, :province_count, :filename, :reference_cache,
+        importing_facilities_attributes: [
+          :facility_id,
+          facility_attributes: [
+            :id, :name, :tag_list, :province_id, :district_id, :commune_id, :street, :house_number,
+            :telegram_username, :description, :latitude, :longitude, :_destroy,
+            tels: [], emails: [], websites: [], facebook_pages: [],
+            working_days_attributes: [ :id, :day, :open, :_destroy, working_hours_attributes: [ :id, :open_at, :close_at ] ],
+            services_attributes: [:name]
+          ]
         ]
       ).merge({
         user_id: current_user.id

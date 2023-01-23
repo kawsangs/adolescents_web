@@ -4,7 +4,7 @@
 #
 #  id          :uuid             not null, primary key
 #  facility_id :uuid
-#  day         :integer          default("sunday")
+#  day         :integer          default(NULL)
 #  open        :boolean          default(FALSE)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null

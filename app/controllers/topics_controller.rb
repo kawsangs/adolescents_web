@@ -11,8 +11,8 @@ class TopicsController < ApplicationController
       format.json {
         @topics = authorize policy_scope(Topic.filter(filter_params).includes(:services, :questions))
 
-        if @topics.length > Settings.max_download_visit_record
-          flash[:alert] = t("shared.file_size_is_too_big")
+        if @topics.length > Settings.max_download_record
+          flash[:alert] = t("shared.file_size_is_too_big", max_record: Settings.max_download_record)
           redirect_to topics_url
         else
           send_data ActiveModelSerializers::SerializableResource.new(@topics).to_json, type: :json, disposition: "attachment", filename: "topics_#{Time.new.strftime('%Y%m%d_%H_%M_%S')}.json"

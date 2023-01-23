@@ -10,8 +10,8 @@ class AppUsersController < ApplicationController
       format.xlsx {
         @app_users = authorize app_user_query
 
-        if @app_users.length > Settings.max_download_visit_record
-          flash[:alert] = t("shared.file_size_is_too_big")
+        if @app_users.length > Settings.max_download_record
+          flash[:alert] = t("shared.file_size_is_too_big", max_record: Settings.max_download_record)
           redirect_to app_users_url
         else
           render xlsx: "index", filename: "app_users_#{Time.new.strftime('%Y%m%d_%H_%M_%S')}.xlsx"

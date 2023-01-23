@@ -10,8 +10,8 @@ class VisitsController < ApplicationController
       format.xlsx {
         @visits = authorize Visit.filter(filter_params).includes(:page, :app_user)
 
-        if @visits.length > Settings.max_download_visit_record
-          flash[:alert] = t("shared.file_size_is_too_big")
+        if @visits.length > Settings.max_download_record
+          flash[:alert] = t("shared.file_size_is_too_big", max_record: Settings.max_download_record)
           redirect_to visits_url
         else
           render xlsx: "index", filename: "visits_#{Time.new.strftime('%Y%m%d_%H_%M_%S')}.xlsx"

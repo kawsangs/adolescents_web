@@ -11,8 +11,8 @@ class TagsController < ApplicationController
       format.json {
         @tags = query_tag
 
-        if @tags.length > Settings.max_download_visit_record
-          flash[:alert] = t("shared.file_size_is_too_big")
+        if @tags.length > Settings.max_download_record
+          flash[:alert] = t("shared.file_size_is_too_big", max_record: Settings.max_download_record)
           redirect_to tags_url
         else
           send_data ActiveModelSerializers::SerializableResource.new(@tags).to_json, type: :json, disposition: "attachment", filename: "tags_#{Time.new.strftime('%Y%m%d_%H_%M_%S')}.json"
