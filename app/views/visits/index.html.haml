@@ -25,7 +25,7 @@
           - @visits.each_with_index do |visit, index|
             %tr
               %td= @pagy.from + index
-              %td= visit.app_user.device_id
+              %td= visit.app_user.display_device_id
               %td= visit.page_name
               %td= visit.pageable_name
               %td.text-capitalize= visit.platform
