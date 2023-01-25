@@ -2,6 +2,6 @@
 / = render template: "mobile_notification_importers/import_confirm"
 
 .container-fluid.px-4
-  = render "shared/progress_arrow_header", title: t('mobile_notification.mobile_notification')
+  = render "shared/headers/progress_arrow_header", title: t('shared.import_wizard', name: t('mobile_notification.mobile_notification'))
 
-  = render "shared/forms/wizard_form"
+  = render "shared/forms/wizard_form", sample_url: '/mobile_notification_sample.xlsx', batch_item: @mobile_notification_batch, cancel_url: mobile_notifications_path, form_url: mobile_notification_importers_path

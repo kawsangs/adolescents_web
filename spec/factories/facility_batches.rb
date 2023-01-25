@@ -11,6 +11,8 @@
 #  user_id        :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  reference      :string
+#  new_count      :integer          default(0)
 #
 FactoryBot.define do
   factory :facility_batch do

@@ -25,7 +25,9 @@
             %tr
               %td= index + 1
               %td= link_to batch.code, facilities_path(batch_code: batch.code), class: 'text-primary'
-              %td= batch.filename
+              %td
+                - if batch.reference_url.present?
+                  = link_to batch.reference_identifier, batch.reference_url, class: "text-primary", target: "_blank"
               %td
                 - tooltip_title = t("facility_batch.display_items", total_count: batch.total_count, valid_count: batch.valid_count, total_invalid: batch.total_count - batch.valid_count, province_count: batch.province_count)
 

@@ -29,7 +29,7 @@ en:
     unauthorized_alert_message: You are not authorized to perform this action.
     archived: Archived
     download_excel: Download Excel
-    file_size_is_too_big: The file size is too big, please filter it!
+    file_size_is_too_big: Download size too large, please filter. You can download up to %{max_record} records
     device_id: Device ID
     reason: Reason
     apply: Apply
@@ -73,3 +73,6 @@ en:
     short_description: "Total items: %{total_count} (valid: %{valid_count})"
     is_valid: Is valid?
     search_by_batch: Search by batch
+    preview: Preview
+    new: New
+    invalid: Invalid

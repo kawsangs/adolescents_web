@@ -1,8 +1,9 @@
-- title ||= t('mobile_notification.mobile_notification')
+- title ||= ""
+- show_confirm ||= false
 
 .d-sm-flex.align-items-center.mt-4
   %h1.h3.flex-grow-1
-    = t('shared.import_wizard', name: title)
+    = title
 
   .mt-3.mt-md-0.me-4
     - progress_num ||= 1
@@ -16,3 +17,9 @@
         %a
           .num 2
           Review
+
+      - if show_confirm
+        %li{class: ('active' if progress_num == 3)}
+          %a
+            .num 3
+            Confirmed

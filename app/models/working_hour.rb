@@ -12,4 +12,8 @@
 class WorkingHour < ApplicationRecord
   # Association
   belongs_to :working_day, optional: true
+
+  def open_24h?
+    open_at == 24
+  end
 end

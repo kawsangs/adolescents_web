@@ -11,11 +11,22 @@ class FacilitiesController < ApplicationController
       format.json {
         @facilities = query_facility
 
-        if @facilities.length > Settings.max_download_visit_record
-          flash[:alert] = t("shared.file_size_is_too_big")
+        if @facilities.length > Settings.max_download_record
+          flash[:alert] = t("shared.file_size_is_too_big", max_record: Settings.max_download_record)
           redirect_to facilities_url
         else
-          send_data ActiveModelSerializers::SerializableResource.new(@facilities.includes(working_days: :working_hours)).to_json, type: :json, disposition: "attachment", filename: "facilities_#{Time.new.strftime('%Y%m%d_%H_%M_%S')}.json"
+          send_data ActiveModelSerializers::SerializableResource.new(@facilities).to_json, type: :json, disposition: "attachment", filename: "facilities_#{Time.new.strftime('%Y%m%d_%H_%M_%S')}.json"
+        end
+      }
+
+      format.xlsx {
+        @facilities = query_facility
+
+        if @facilities.length > Settings.max_download_record
+          flash[:alert] = t("shared.file_size_is_too_big", max_record: Settings.max_download_record)
+          redirect_to facilities_url
+        else
+          render xlsx: "index", filename: "facility_#{Time.new.strftime('%Y%m%d_%H_%M_%S')}.xlsx"
         end
       }
     end
@@ -77,6 +88,6 @@ class FacilitiesController < ApplicationController
     end
 
     def query_facility
-      authorize Facility.filter(filter_params).includes(:services, :tags)
+      authorize Facility.filter(filter_params).includes(:services, :tags, working_days: :working_hours)
     end
 end

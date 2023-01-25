@@ -1,0 +1,35 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "facilities") do |sheet|
+  headers = %w(id name commune_id village_note tag_list street house_number latitude longitude description tels emails websites facebook_pages telegram_username services Monday_open_at Monday_close_at Tuesday_open_at Tuesday_close_at Wednesday_open_at Wednesday_close_at Thursday_open_at Thursday_close_at Friday_open_at Friday_close_at Saturday_open_at Saturday_close_at Sunday_open_at Sunday_close_at)
+  sheet.add_row headers
+
+  @facilities.each do |facility|
+    row = [
+      facility.id,
+      facility.name,
+      facility.commune_id,
+      facility.commune.address_km,
+      facility.tags.pluck(:name).join(","),
+      facility.street,
+      facility.house_number,
+      facility.latitude,
+      facility.longitude,
+      facility.description,
+      facility.tels.join(","),
+      facility.emails.join(","),
+      facility.websites.join(","),
+      facility.facebook_pages.join(","),
+      facility.telegram_username,
+      facility.services.pluck(:name).join(",")
+    ]
+
+    WorkingDay.days.keys.each do |day|
+      wd = facility.working_days.select { |wda| wda.day == day }.first
+      wh = wd.try(:working_hours).try(:first)
+      row.push(wh.try(:open_at))
+      row.push(wh.try(:close_at))
+    end
+
+    sheet.add_row row, types: headers.length.times.map { |t| :string }
+  end
+end
