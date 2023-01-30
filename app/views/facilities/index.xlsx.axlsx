@@ -8,7 +8,7 @@ wb.add_worksheet(name: "facilities") do |sheet|
       facility.id,
       facility.name,
       facility.commune_id,
-      facility.commune.address_km,
+      facility.commune.try(:address_km),
       facility.tags.pluck(:name).join(","),
       facility.street,
       facility.house_number,
