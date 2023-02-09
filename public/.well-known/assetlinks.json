@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "kh.org.childhelpline.youthhealth",
+      "sha256_cert_fingerprints": [
+        "F4:29:A7:A0:1E:EB:7E:50:00:72:EB:6A:CC:37:02:29:27:CF:D9:08:95:36:37:77:81:62:82:83:FC:51:0D:E3"
+      ]
+    }
+  }
+]
