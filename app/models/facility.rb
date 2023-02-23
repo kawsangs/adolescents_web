@@ -21,9 +21,12 @@
 #  commune_id        :string
 #  street            :string
 #  house_number      :string
+#  deleted_at        :datetime
 #
 class Facility < ApplicationRecord
   include Facilities::Tagging
+
+  acts_as_paranoid
 
   # Association
   belongs_to :facility_batch, optional: true
