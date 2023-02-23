@@ -4,7 +4,7 @@
   %td= page.name
   %td= page.name_en
   %td= page.name_km
-  %td= link_to page.visits.length, visits_path(page_ids: [page.id]), target: "_blank"
+  %td= link_to page.visits_count, visits_path(page_ids: [page.id]), target: "_blank"
   %td= timeago(page.created_at).html_safe
   %td= timeago(page.updated_at).html_safe
   %td
