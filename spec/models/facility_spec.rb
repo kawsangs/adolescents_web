@@ -21,6 +21,7 @@
 #  commune_id        :string
 #  street            :string
 #  house_number      :string
+#  deleted_at        :datetime
 #
 require "rails_helper"
 

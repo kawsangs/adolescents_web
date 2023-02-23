@@ -21,6 +21,7 @@
 #  commune_id        :string
 #  street            :string
 #  house_number      :string
+#  deleted_at        :datetime
 #
 class FacilitySerializer < ActiveModel::Serializer
   attributes :id, :name, :addresses, :province_id, :district_id, :commune_id,
