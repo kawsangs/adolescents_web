@@ -3,13 +3,14 @@
 # Table name: topics
 #
 #  id           :uuid             not null, primary key
-#  name         :string
+#  name_km      :string
 #  version      :integer          default(0)
 #  published_at :datetime
 #  audio        :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  code         :string
+#  name_en      :string
 #
 class Topic < ApplicationRecord
   # Association
@@ -18,7 +19,8 @@ class Topic < ApplicationRecord
   has_many :services, through: :topic_services
 
   # Validation
-  validates :name, presence: true
+  validates :name_km, presence: true
+  validates :name_en, presence: true
 
   # Mount audio
   mount_uploader :audio, AudioUploader
@@ -37,6 +39,10 @@ class Topic < ApplicationRecord
     scope = all
     scope = scope.where("name LIKE ?", "%#{params[:name]}%") if params[:name].present?
     scope
+  end
+
+  def name
+    self["name_#{I18n.locale}"]
   end
 
   private
