@@ -9,6 +9,7 @@
             %i.fa-solid.fa-chart-column
           %span= t("sidebar.dashboard")
 
+      - if policy(:google_play).show?
         %a.nav-link{href: "https://play.google.com/console/u/0/developers/5029615386963513716/app/4974269071605622809/app-dashboard?timespan=thirtyDays", target: '_blank'}
           .sb-nav-link-icon
             %i.fa-brands.fa-google-play
@@ -76,6 +77,9 @@
 
             - if policy(MobileNotification).index?
               = link_to t('sidebar.mobile_notifications'), mobile_notifications_path, class: ['nav-link', css_active_class('mobile_notifications')]
+
+            - if policy(:dashboard_accessibility).show?
+              = link_to t('sidebar.dashboard_accessibility'), dashboard_accessibility_path, class: ['nav-link', css_active_class('dashboard_accessibility')]
 
   .sb-sidenav-footer
     = link_to "/#{current_user.role}_youth_health_web_app_user_guide.pdf", class: ['nav-link text-dark'], target: '_blank' do
