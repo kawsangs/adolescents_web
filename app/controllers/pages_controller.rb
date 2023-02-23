@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   before_action :set_page, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pages = authorize Page.filter(filter_params).includes(:children, :visits)
+    @pages = authorize Page.filter(filter_params).includes(:children)
   end
 
   def show

@@ -14,6 +14,7 @@
 #  updated_at     :datetime         not null
 #  name_en        :string
 #  name_km        :string
+#  visits_count   :integer          default(0)
 #
 class Page < ApplicationRecord
   acts_as_nested_set
