@@ -2,9 +2,9 @@ module Api
   module V1
     class FacilitiesController < ApiController
       def index
-        @facilities = Facility.all
+        pagy, facilities = pagy(Facility.all)
 
-        render json: @facilities
+        render json: { pagy: pagy.vars, facilities: facilities }
       end
     end
   end

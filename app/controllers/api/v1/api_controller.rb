@@ -2,6 +2,7 @@ module Api
   module V1
     class ApiController < ActionController::Base
       include Pundit::Authorization
+      include Pagy::Backend
 
       protect_from_forgery with: :null_session
 
