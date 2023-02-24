@@ -2,9 +2,9 @@ module Api
   module V1
     class TagsController < ApiController
       def index
-        @tags = Tag.all
+        pagy, tags = pagy(Tag.all)
 
-        render json: @tags
+        render json: { pagy: pagy.vars, tags: tags }
       end
     end
   end
