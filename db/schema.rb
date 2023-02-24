@@ -104,6 +104,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_23_090706) do
     t.string "commune_id"
     t.string "street"
     t.string "house_number"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_facilities_on_deleted_at"
   end
 
   create_table "facility_batches", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
