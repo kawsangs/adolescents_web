@@ -17,3 +17,5 @@ en:
     answer: Answer
     services: Services
     number_of_question: "# of question"
+    name_in_km: Name in Khmer
+    name_in_en: Name in English
