@@ -25,6 +25,7 @@ pin "nouislider", to: "https://ga.jspm.io/npm:nouislider@15.6.1/dist/nouislider.
 pin "typeahead", to: "https://ga.jspm.io/npm:typeahead@0.2.2/typeahead.js"
 pin "dom", to: "https://ga.jspm.io/npm:dom@0.0.2/index.js"
 pin "xtend", to: "https://ga.jspm.io/npm:xtend@1.0.3/index.js"
+pin "sortablejs", to: "https://ga.jspm.io/npm:sortablejs@1.15.0/modular/sortable.esm.js"
 
 pin_all_from "app/javascript/libs", under: "libs", preload: true
 pin_all_from "app/javascript/commons", under: "commons", preload: true

@@ -1,16 +1,30 @@
-%tr
-  %td= num
-  %td= tag.name
-  %td= tag.facilities.length
-  %td= timeago(tag.created_at).html_safe
-  %td= timeago(tag.updated_at).html_safe
-  %td
+.list-group-item.d-flex{'data-tag_id': tag.id}
+  .w-25= num
+
+  .w-25= tag.name
+
+  .w-25
+    - if tag.taggings_count.positive?
+      = link_to tag.taggings_count, facilities_path("tag[]": tag.name)
+    - else
+      = tag.taggings_count
+
+  .w-25= timeago(tag.created_at).html_safe
+
+  .w-25= timeago(tag.updated_at).html_safe
+
+  .w-25
     .d-flex.justify-content-end
       = render 'shared/buttons/edit_button', object: tag, url: edit_tag_path(tag)
 
-      - if tag.facilities.blank?
+      - if tag.taggings_count.zero?
         = render 'shared/buttons/delete_button', object: tag,  message: { type: t('tag.tag'), name: tag.name, url: tag_path(tag) }
       - else
         %span{ data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top' }, title: t('shared.cannot_delete') }
           %button.btn.btn-circle.btn-sm.btn-outline-danger{ type: 'button', disabled: true }
             %i.fas.fa-trash-alt
+
+      / drag-drop handler
+      %span.ms-1{ data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top' }, title: t('shared.drag_to_sort') }
+        %button.btn.btn-circle.btn-outline-secondary.handle{type: 'button'}
+          %i.fa-solid.fa-grip-vertical

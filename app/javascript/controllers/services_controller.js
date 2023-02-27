@@ -11,7 +11,6 @@ export default class extends Controller {
     let regexp = new RegExp(dom.data('id'), 'g');
     let field = $(dom.data('fields').replace(regexp, time));
 
-    debugger
     dom.parents('.service-wrappers').find('.btnAddField').before(field);
   }
 
