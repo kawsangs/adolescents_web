@@ -3,6 +3,12 @@ class ApplicationRecord < ActiveRecord::Base
 
   strip_attributes
 
+  def self.update_order!(ids)
+    ids.each_with_index do |id, index|
+      self.update(id, display_order: index + 1)
+    end
+  end
+
   private
     def secure_code
       self.code ||= SecureRandom.uuid[0..5]

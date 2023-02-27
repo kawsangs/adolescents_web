@@ -2,29 +2,32 @@
   .me-1
     = render "shared/buttons/download_button", label: t('facility.download_json'), url: tags_path(filter_params.merge(format: :json))
 
-.container-fluid.px-4
+.container-fluid.px-4{'data-controller': 'tags'}
   = render 'shared/header_title', title: t('facility.tags')
   = render "filters"
   = render "shared/no_data", items: @tags
 
   - if @tags.present?
-    = render "shared/pagination_title", objects: @tags
+    .d-flex.flex-grow-1
+      .pagy-wrapper.justify-content-lg-end.justify-content-center
+        .d-flex.flex-grow-1
+          .flex-1.d-flex.align-items-center.mb-2
+            %span
+              = "បង្ហាញទិន្ន័យសរុប <b>#{@tags.size}</b>".html_safe
 
-    .table-responsive
-      %table.table.table-hover.pretty
-        %thead
-          %tr
-            %th #
-            %th= t('shared.name')
-            %th= t('facility.number_of_facility')
-            %th= t('shared.created_at')
-            %th= t('shared.updated_at')
-            %th
+    .w-100.list-group
+      .list-group-item.d-flex.border-0
+        %strong.w-25= "#"
+        %strong.w-25= t('shared.name')
+        %strong.w-25= t('facility.number_of_facility')
+        %strong.w-25= t('shared.created_at')
+        %strong.w-25= t('shared.updated_at')
+        %strong.w-25
 
-        %tbody
-          - @tags.each_with_index do |tag, index|
-            = render "tag", tag: tag, num: @pagy.from + index
-
-    = render "shared/footers/pagination"
+    .border-bottom
+    = form_tag "", url: sort_tags_path, class: 'tag-form' do |f|
+      .w-100.list-group#tag-group.mb-3
+        - @tags.each_with_index do |tag, index|
+          = render "tag", tag: tag, num: index + 1
 
 = render "shared/modals/confirm_delete_modal"

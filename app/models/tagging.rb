@@ -9,6 +9,6 @@
 #  updated_at  :datetime         not null
 #
 class Tagging < ApplicationRecord
-  belongs_to :tag
+  belongs_to :tag, counter_cache: true
   belongs_to :facility
 end
