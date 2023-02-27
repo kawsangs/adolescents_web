@@ -5,7 +5,7 @@ class TagsController < ApplicationController
   def index
     respond_to do |format|
       format.html {
-        @pagy, @tags = pagy(query_tag)
+        @tags = query_tag
       }
 
       format.json {
@@ -57,6 +57,12 @@ class TagsController < ApplicationController
     end
   end
 
+  def sort
+    Tag.update_order!(params[:tags])
+
+    render json: { status: 201 }
+  end
+
   private
     def filter_params
       params.permit(:name)
@@ -71,6 +77,6 @@ class TagsController < ApplicationController
     end
 
     def query_tag
-      authorize Tag.filter(filter_params).includes(:facilities).order(updated_at: :desc)
+      authorize Tag.filter(filter_params).order(display_order: :asc, created_at: :desc)
     end
 end

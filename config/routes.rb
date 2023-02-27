@@ -42,7 +42,10 @@ Rails.application.routes.draw do
   end
 
   resources :facilities
-  resources :tags
+  resources :tags do
+    post :sort, on: :collection
+  end
+
   resources :facility_batches, except: [:update, :edit], param: :code
   resources :videos
   resources :video_batches, except: [:update, :edit], param: :code
