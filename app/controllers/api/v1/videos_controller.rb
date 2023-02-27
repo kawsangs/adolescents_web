@@ -2,9 +2,9 @@ module Api
   module V1
     class VideosController < ApiController
       def index
-        @videos = Video.all
+        pagy, videos = pagy(Video.all)
 
-        render json: @videos
+        render json: { pagy: pagy.vars, videos: videos }
       end
     end
   end

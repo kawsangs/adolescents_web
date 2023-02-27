@@ -2,9 +2,9 @@ module Api
   module V1
     class TopicsController < ApiController
       def index
-        @topics = Topic.published.includes(:services, questions: :options)
+        pagy, topics = pagy(Topic.published.includes(:services, questions: :options))
 
-        render json: @topics
+        render json: { pagy: pagy.vars, topics: topics }
       end
     end
   end
