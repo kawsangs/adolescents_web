@@ -1,5 +1,19 @@
 .w-75.view-center{'data-controller': 'facilities'}
   = simple_form_for @facility, html: {'data-action': 'facilities#submitForm'} do |f|
+    / Logo
+    .image-wrapper.position-relative
+      = image_tag @facility.logo_or_default, class: 'preview-logo', 'data-default' => image_path('default_logo.png')
+      = f.input :logo, as: :file, label: false, wrapper_html: { class: 'file_wrapper' }, input_html: { class: 'file_avata pointer logo-input' }
+
+      .remove-logo-wrapper
+        = f.input :remove_logo, as: :boolean
+
+      .btn-delete.pointer{class: ('d-none' unless @facility.logo_url.present?) }
+        %i.fas.fa-trash-alt.text-white
+
+    .text-center.mt-2
+      %small 250 x 250 (32-bit PNG)
+
     / Name
     .mb-3= f.input :name, label: t('facility.name')
 

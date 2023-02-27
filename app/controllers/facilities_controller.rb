@@ -72,6 +72,7 @@ class FacilitiesController < ApplicationController
         :name, :province_id, :district_id, :commune_id, :street,
         :house_number, :latitude, :longitude, :tels, :emails, :websites,
         :facebook_pages, :telegram_username, :description, :tag_list,
+        :logo, :remove_logo,
         working_days_attributes: [ :id, :day, :open, :_destroy,
           working_hours_attributes: [:id, :open_at, :close_at, :_destroy]
         ],

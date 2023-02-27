@@ -4,7 +4,10 @@ module Api
       def index
         pagy, facilities = pagy(Facility.all)
 
-        render json: { pagy: pagy.vars, facilities: facilities }
+        render json: {
+          pagy: pagy.vars,
+          facilities: ActiveModel::Serializer::CollectionSerializer.new(facilities, serializer: FacilitySerializer)
+        }
       end
     end
   end

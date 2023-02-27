@@ -22,11 +22,15 @@
 #  street            :string
 #  house_number      :string
 #  deleted_at        :datetime
+#  logo              :string
 #
 class Facility < ApplicationRecord
   include Facilities::Tagging
 
   acts_as_paranoid
+
+  # Uploader
+  mount_uploader :logo, AttachmentUploader
 
   # Association
   belongs_to :facility_batch, optional: true
@@ -47,6 +51,10 @@ class Facility < ApplicationRecord
     names = attributes.values.select { |a| a[:_destroy] != "1" }.pluck(:name).compact_blank
 
     self.service_ids = names.map { |name| Service.find_or_create_by(name:) }.collect(&:id)
+  end
+
+  def logo_or_default
+    logo_url || "default_logo.png"
   end
 
   # Class method
