@@ -2,11 +2,14 @@ import { Controller } from "@hotwired/stimulus"
 import Tagify from "@yaireo/tagify"
 import toggleCollapse from "commons/toggle_collapse";
 
+import logo from 'commons/logo';
+
 export default class extends Controller {
   static targets = [ "email", "website", "fbpage", "tel", "tagList" ]
   localStorageKey = "advance_search_clinic";
 
   connect() {
+    logo.init();
     this._initEmailTagify();
     this._initWebsiteTagify(this.websiteTarget);
     this._initWebsiteTagify(this.fbpageTarget);
