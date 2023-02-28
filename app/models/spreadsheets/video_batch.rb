@@ -19,7 +19,7 @@ module Spreadsheets
       @videos_attributes.push({
         name: row["name"],
         url: row["url"],
-        author: row["autho"],
+        video_author_attributes: { name: row["author"] },
         video_category_attributes: { name: row["category"] }
       })
     end

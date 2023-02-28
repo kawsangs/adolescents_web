@@ -1,0 +1,7 @@
+.w-75.view-center
+  = simple_form_for @video_author, html: { class: 'main-form' } do |f|
+    .mb-3= f.input :name
+
+    .actions.text-right.mb-3
+      = link_to t('shared.cancel'), video_authors_path, class: 'btn btn-secondary me-1'
+      = f.submit t('shared.save'), class: 'btn btn-primary', data: { turbo: "false" }

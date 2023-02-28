@@ -69,6 +69,9 @@
             - if policy(Page).index?
               = link_to t('sidebar.pages'), pages_path, class: ['nav-link', css_active_class('pages')]
 
+            - if policy(VideoAuthor).index?
+              = link_to t('sidebar.video_authors'), video_authors_path, class: ['nav-link', css_active_class('video_authors')]
+
             - if policy(ApiKey).index?
               = link_to t('sidebar.api_keys'), api_keys_path, class: ['nav-link', css_active_class('api_keys')]
 

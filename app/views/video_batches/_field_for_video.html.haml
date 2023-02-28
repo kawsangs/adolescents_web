@@ -3,6 +3,10 @@
 = f.hidden_field :url
 = f.hidden_field :author
 
+/ Author
+= f.fields_for :video_author, f.object.video_author do |ff|
+  = ff.hidden_field :name
+
 / Category
-= f.fields_for :video_category, f.object.video_category do |sf|
-  = sf.hidden_field :name
+= f.fields_for :video_category, f.object.video_category do |ff|
+  = ff.hidden_field :name

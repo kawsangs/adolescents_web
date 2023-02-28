@@ -58,6 +58,8 @@ class TagsController < ApplicationController
   end
 
   def sort
+    authorize Tag
+
     Tag.update_order!(params[:ids])
 
     render json: { status: 201 }

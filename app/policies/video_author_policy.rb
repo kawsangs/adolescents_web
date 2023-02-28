@@ -1,4 +1,4 @@
-class TagPolicy < ApplicationPolicy
+class VideoAuthorPolicy < ApplicationPolicy
   def index?
     user.primary_admin?
   end

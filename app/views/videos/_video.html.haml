@@ -5,7 +5,7 @@
     = link_to video.url, target: '_blank' do
       = image_tag video.thumbnail, style: 'width: 50px;'
 
-  .w-25= video.author
+  .w-25= video.video_author_name
   .w-25= video.video_category_name
   .w-25= timeago(video.created_at).html_safe
   .w-25
