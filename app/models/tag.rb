@@ -24,7 +24,7 @@ class Tag < ApplicationRecord
 
   private
     def confirm_blank_tagging
-      if taggings.present?
+      if taggings_count.positive?
         errors.add :tag, I18n.t("shared.cannot_delete")
         throw(:abort)
       end

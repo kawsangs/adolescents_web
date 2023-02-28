@@ -12,6 +12,6 @@
         = t('facility_batch.confirm_message', total_count: @facility_batch.valid_count, province_count: @facility_batch.province_count).html_safe
 
       .modal-footer
-        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}= t("shared.cancel")
+        %button.btn.btn-secondary{"data-bs-dismiss" => "modal", :type => "button"}= t("shared.cancel")
 
         = f.submit t('facility_batch._yes'), class: 'btn btn-primary'

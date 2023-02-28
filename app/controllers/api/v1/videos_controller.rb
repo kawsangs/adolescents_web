@@ -4,7 +4,10 @@ module Api
       def index
         pagy, videos = pagy(Video.all)
 
-        render json: { pagy: pagy.vars, videos: videos }
+        render json: {
+          pagy: pagy.vars,
+          videos: ActiveModel::Serializer::CollectionSerializer.new(videos, serializer: VideoSerializer)
+        }
       end
     end
   end

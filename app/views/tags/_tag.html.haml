@@ -25,6 +25,7 @@
             %i.fas.fa-trash-alt
 
       / drag-drop handler
-      %span.ms-1{ data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top' }, title: t('shared.drag_to_sort') }
-        %button.btn.btn-circle.btn-outline-secondary.handle{type: 'button'}
-          %i.fa-solid.fa-grip-vertical
+      - if policy(Tag).sort?
+        %span.ms-1{ data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top' }, title: t('shared.drag_to_sort') }
+          %button.btn.btn-circle.btn-outline-secondary.handle{type: 'button'}
+            %i.fa-solid.fa-grip-vertical

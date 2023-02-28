@@ -3,28 +3,24 @@ import Typeahead from "typeahead";
 
 export default class extends Controller {
   connect() {
-    this.initTypeahead();
+    this.initTypeahead($('.typeahead-category')[0], $("[data-categories]").data('categories'));
+    this.initTypeahead($('.typeahead-author')[0], $("[data-authors]").data('authors'));
   }
 
-  initTypeahead() {
-    let categories = $("[data-categories]").data('categories')
-    let typeaheadList = [].slice.call(document.querySelectorAll('.typeahead'))
+  initTypeahead(dom, collection) {
     let self = this;
-    let typeahead = typeaheadList.map(function (dom) {
-      return new Typeahead(dom, {
-        hint: true,
-        highlight: true,
-        minLength: 1,
-        name: 'categories',
-        source: self.substringMatcher(categories)
-      })
+
+    new Typeahead(dom, {
+      hint: true,
+      highlight: true,
+      minLength: 1,
+      source: self.substringMatcher(collection)
     })
   }
 
   substringMatcher(strs) {
     return function findMatches(q, cb) {
       var matches, substringRegex;
-
 
       // an array that will be populated with substring matches
       matches = [];

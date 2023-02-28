@@ -1,5 +1,29 @@
-%form{ action: videos_path, method: 'get' }
-  .input-group.my-2.search-input
-    = text_field_tag(:name, params[:name], class: 'form-control', placeholder: t('video.name'))
-    %span.input-group-text
-      %i.fas.fa-search
+%form.mb-2{ action: videos_path, method: 'get', 'data-controller': 'facilities-index' }
+  .d-flex.align-items-center
+    .input-group.my-2.search-input
+      = text_field_tag(:name, params[:name], class: 'form-control', placeholder: t('video.search_by_title'))
+      %span.input-group-text
+        %i.fas.fa-search
+
+    .ms-3
+      %button.btn.btm-sm{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-bs-target" => "#collapseOne", "data-bs-toggle" => "collapse", :type => "button", "data-action": "facilities-index#handleLocalStorage"}
+        %span.d-none.d-lg-inline= t('shared.advance_search')
+        %i.fas.fa-angle-down
+
+  #collapseOne.accordion-collapse.collapse.collapse-filter
+    .d-flex.m-2
+      / Filtery by batch
+      - list = VideoBatch.all.map{ |batch| ["#{batch.code}(#{display_datetime(batch.created_at)})", batch.code]}
+
+      = select_tag :batch_code, options_for_select(list, params[:batch_code]), class: 'form-select filter-input', prompt: t("facility.search_by_batch")
+
+      / Filter by author
+      .ms-1.filter-input.tooltips{ 'data-bs-toggle' => 'tooltip' }
+        - options = @video_authors.pluck(:name)
+        = select_tag 'video_author[]', options_for_select(options, params[:video_author]), multiple: true, "data-live-search" => "true", "data-count-selected-text" => "{0} #{t('video.authors_selected')}", "data-selected-text-format" => "count > 1", "data-none-selected-text" => t('video.any_author'), class: 'selectpicker form-control'
+
+      .ms-3
+        %button.btn.btn-primary.ml-md-2{type: :submit}
+          %i.fas.fa-search
+          %span.d-none.d-lg-inline= t('shared.search')
+

@@ -12,3 +12,9 @@ en:
     woman: Woman
     author: Author
     name: Name
+    number_of_video: "# of videos"
+    video_author: Video author
+    authors_selected: authors selected
+    any_author: Any author
+    search_by_title: Search by title
+    edit_video_author: Edit video author
