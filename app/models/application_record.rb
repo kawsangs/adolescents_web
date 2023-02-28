@@ -18,4 +18,8 @@ class ApplicationRecord < ActiveRecord::Base
       self.code = SecureRandom.uuid[0..5]
       secure_code
     end
+
+    def set_display_order
+      self.display_order ||= self.class.maximum(:display_order).to_i + 1
+    end
 end

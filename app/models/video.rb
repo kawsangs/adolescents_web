@@ -40,8 +40,17 @@ class Video < ApplicationRecord
     scope
   end
 
-  # Instant methods
-  def set_display_order
-    self.display_order ||= self.class.maximum(:display_order).to_i + 1
+  def youtube_id
+    regex = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+    match = regex.match(url)
+    if match && !match[1].blank?
+      match[1]
+    else
+      nil
+    end
+  end
+
+  def thumbnail
+    "http://img.youtube.com/vi/#{youtube_id}/default.jpg"
   end
 end
