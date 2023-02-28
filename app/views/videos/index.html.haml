@@ -4,41 +4,29 @@
 
   .ms-1= render "new_buttons"
 
-.container-fluid.px-4
+.container-fluid.px-4{'data-controller': 'drag-drop'}
   = render "shared/header_title", title: t("video.videos")
   = render "filters"
   = render "shared/no_data", items: @videos
 
   - if @videos.present?
-    = render "shared/pagination_title", objects: @videos
+    = render "shared/display_total", total_count: @videos.size
 
-    .table-responsive
-      %table.table.table-hover.pretty
-        %thead
-          %tr
-            %th #
-            %th= t('video.title')
-            %th= t('video.url')
-            %th= t('video.author')
-            %th= t('video.category')
-            %th= t('shared.created_at')
-            %th
+    .w-100.list-group
+      .list-group-item.d-flex.border-0
+        %strong.w-25= "#"
+        %strong.w-25= t('video.title')
+        %strong.w-25= t('video.url')
+        %strong.w-25= t('video.author')
+        %strong.w-25= t('video.category')
+        %strong.w-25= t('shared.created_at')
+        %strong.w-25
 
-        %tbody
-          - @videos.each_with_index do |video, index|
-            %tr
-              %td= @pagy.from + index
-              %td= video.name
-              %td= video.url
-              %td= video.author
-              %td= video.video_category_name
-              %td= timeago(video.created_at).html_safe
-              %td
-                .d-flex.justify-content-end
-                  = render 'shared/buttons/edit_button', object: video, url: edit_video_path(video)
+    .border-bottom
 
-                  = render 'shared/buttons/delete_button', object: video,  message: { type: t('video.video'), name: video.name, url: video_path(video) }
-
-    = render "shared/footers/pagination"
+    = form_tag "", url: sort_videos_path, class: 'drag-drop-form' do |f|
+      .w-100.list-group#tag-group.mb-3
+        - @videos.each_with_index do |video, index|
+          = render "video", video: video, num: index + 1
 
 = render "shared/modals/confirm_delete_modal"

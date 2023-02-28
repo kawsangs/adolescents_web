@@ -48,7 +48,9 @@ Rails.application.routes.draw do
   end
 
   resources :facility_batches, except: [:update, :edit], param: :code
-  resources :videos
+  resources :videos do
+    post :sort, on: :collection
+  end
   resources :video_batches, except: [:update, :edit], param: :code
   resources :mobile_notifications
   resources :mobile_notification_importers, except: [:update, :edit], param: :code

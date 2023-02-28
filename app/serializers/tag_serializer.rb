@@ -10,5 +10,5 @@
 #  display_order  :integer          default(0)
 #
 class TagSerializer < ActiveModel::Serializer
-  attributes :id, :name, :updated_at
+  attributes :id, :name, :display_order, :taggings_count, :updated_at, :created_at
 end

@@ -16,7 +16,11 @@
         %tr
           %td= index + 1
           %td= video.name
-          %td= video.url
+          %td
+            - if video.url.present?
+              = link_to video.url, target: '_blank' do
+                = image_tag video.thumbnail, style: 'width: 50px;'
+
           %td= video.author
           %td= video.video_category_name
           %td

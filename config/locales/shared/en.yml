@@ -77,3 +77,4 @@ en:
     new: New
     invalid: Invalid
     drag_to_sort: Drag to sort order
+    display_total: "Total items: <b>%{total_count}</b>"

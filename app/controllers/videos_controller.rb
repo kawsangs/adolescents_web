@@ -5,7 +5,7 @@ class VideosController < ApplicationController
   def index
     respond_to do |format|
       format.html {
-        @pagy, @videos = pagy(authorize Video.filter(filter_params).order(display_order: :asc))
+        @videos = authorize Video.filter(filter_params).order(display_order: :asc)
       }
 
       format.json {
@@ -50,6 +50,12 @@ class VideosController < ApplicationController
     @video.destroy
 
     redirect_to videos_url, notice: "Video was successfully destroyed."
+  end
+
+  def sort
+    Video.update_order!(params[:ids])
+
+    render json: { status: 201 }
   end
 
   private

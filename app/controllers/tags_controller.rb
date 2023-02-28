@@ -58,7 +58,7 @@ class TagsController < ApplicationController
   end
 
   def sort
-    Tag.update_order!(params[:tags])
+    Tag.update_order!(params[:ids])
 
     render json: { status: 201 }
   end

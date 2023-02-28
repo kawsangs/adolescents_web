@@ -77,3 +77,4 @@ km:
     new: ថ្មី
     invalid: មិនត្រឹមត្រូវ
     drag_to_sort: អូសដើម្បីតម្រៀបលំដាប់
+    display_total: "បង្ហាញទិន្ន័យសរុប <b>%{total_count}</b>"
