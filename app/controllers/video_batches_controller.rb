@@ -53,7 +53,8 @@ class VideoBatchesController < ApplicationController
       params.require(:video_batch).permit(
         :total_count, :valid_count, :filename,
         videos_attributes: [
-          :name, :url, :author,
+          :name, :url,
+          video_author_attributes: [:name],
           video_category_attributes: [:name]
         ]
       ).merge({
