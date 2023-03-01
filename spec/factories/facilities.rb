@@ -22,6 +22,7 @@
 #  street            :string
 #  house_number      :string
 #  deleted_at        :datetime
+#  logo              :string
 #
 FactoryBot.define do
   factory :facility do
