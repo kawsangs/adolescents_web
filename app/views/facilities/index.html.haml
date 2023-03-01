@@ -20,6 +20,7 @@
           %tr
             %th #
             %th= t('facility.name')
+            %th= t('facility.logo')
             %th= t('facility.tags')
             %th= t('facility.address')
             %th= t('facility.lat_lng')
@@ -40,6 +41,8 @@
             %tr
               %td= @pagy.from + index
               %td= facility.name
+              %td
+                = image_tag facility.logo_url, style: 'width: 50px;' if facility.logo_url.present?
               %td= raw facility.tags.map(&:name).map { |t| link_to t, facilities_path("tag[]": t) }.join(', ')
               %td= facility.addresses
               %td= "#{facility.latitude}, #{facility.longitude}"

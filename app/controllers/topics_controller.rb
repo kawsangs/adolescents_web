@@ -63,9 +63,9 @@ class TopicsController < ApplicationController
 
   private
     def topic_params
-      params.require(:topic).permit(:name, :audio, :remove_audio,
+      params.require(:topic).permit(:name_km, :name_en, :audio, :remove_audio,
         questions_attributes: [
-          :id, :name_km, :name_en, :type, :display_order, :answer,
+          :id, :name, :type, :display_order, :answer,
           :_destroy, :hint, :audio, :remove_audio,
           options_attributes: %i[id name value move_next audio remove_audio message _destroy]
         ]
