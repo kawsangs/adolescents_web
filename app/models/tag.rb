@@ -13,6 +13,7 @@ class Tag < ApplicationRecord
   has_many :taggings
   has_many :facilities, through: :taggings
 
+  before_create :set_display_order
   before_destroy :confirm_blank_tagging
 
   def self.filter(params)
@@ -23,7 +24,7 @@ class Tag < ApplicationRecord
 
   private
     def confirm_blank_tagging
-      if taggings.present?
+      if taggings_count.positive?
         errors.add :tag, I18n.t("shared.cannot_delete")
         throw(:abort)
       end

@@ -5,11 +5,12 @@ class VideosController < ApplicationController
   def index
     respond_to do |format|
       format.html {
-        @pagy, @videos = pagy(authorize Video.filter(filter_params).order(display_order: :asc))
+        @videos = query_video
+        @video_authors = VideoAuthor.order(display_order: :asc, created_at: :desc)
       }
 
       format.json {
-        @videos = authorize Video.filter(filter_params).order(display_order: :asc)
+        @videos = query_video
 
         if @videos.length > Settings.max_download_record
           flash[:alert] = t("shared.file_size_is_too_big", max_record: Settings.max_download_record)
@@ -52,19 +53,30 @@ class VideosController < ApplicationController
     redirect_to videos_url, notice: "Video was successfully destroyed."
   end
 
+  def sort
+    Video.update_order!(params[:ids])
+
+    render json: { status: 201 }
+  end
+
   private
     def filter_params
-      params.permit(:name)
+      params.permit(:name, :batch_code, video_author: [])
     end
 
     def video_params
       params.require(:video).permit(
-        :name, :url, :category, :author,
+        :name, :url, :category,
+        video_author_attributes: [:name],
         video_category_attributes: [:name]
       )
     end
 
     def set_video
       @video = authorize Video.find(params[:id])
+    end
+
+    def query_video
+      authorize Video.filter(filter_params).includes(:video_author, :video_category).order(display_order: :asc)
     end
 end

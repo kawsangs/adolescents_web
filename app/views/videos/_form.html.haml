@@ -2,12 +2,18 @@
   = simple_form_for @video do |f|
     .mb-3= f.input :name, label: t('video.title')
     .mb-3= f.input :url, label: t('video.url')
-    .mb-3= f.input :author, label: t('video.author')
+
+    .mb-3
+      = f.fields_for :video_author, (@video.video_author || @video.build_video_author ) do |builder|
+        .w-100{ 'data-authors' => VideoAuthor.pluck(:name) }
+          %label= t('video.author')
+          %div= builder.input :name, label: false, input_html: { class: 'typeahead-author' }
+
     .mb-3
       = f.fields_for :video_category, (@video.video_category || @video.build_video_category ) do |builder|
         .w-100{ 'data-categories' => VideoCategory.pluck(:name) }
           %label= t('video.category')
-          %div= builder.input :name, label: false, input_html: { class: 'typeahead' }
+          %div= builder.input :name, label: false, input_html: { class: 'typeahead-category' }
 
     .actions
       = link_to t('shared.cancel'), videos_path, class: 'btn btn-secondary me-1'

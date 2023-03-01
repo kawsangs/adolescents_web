@@ -2,18 +2,13 @@
   .me-1
     = render "shared/buttons/download_button", label: t('facility.download_json'), url: tags_path(filter_params.merge(format: :json))
 
-.container-fluid.px-4{'data-controller': 'tags'}
+.container-fluid.px-4{'data-controller': 'drag-drop'}
   = render 'shared/header_title', title: t('facility.tags')
   = render "filters"
   = render "shared/no_data", items: @tags
 
   - if @tags.present?
-    .d-flex.flex-grow-1
-      .pagy-wrapper.justify-content-lg-end.justify-content-center
-        .d-flex.flex-grow-1
-          .flex-1.d-flex.align-items-center.mb-2
-            %span
-              = "បង្ហាញទិន្ន័យសរុប <b>#{@tags.size}</b>".html_safe
+    = render "shared/display_total", total_count: @tags.size
 
     .w-100.list-group
       .list-group-item.d-flex.border-0
@@ -25,7 +20,7 @@
         %strong.w-25
 
     .border-bottom
-    = form_tag "", url: sort_tags_path, class: 'tag-form' do |f|
+    = form_tag "", url: sort_tags_path, class: 'drag-drop-form' do |f|
       .w-100.list-group#tag-group.mb-3
         - @tags.each_with_index do |tag, index|
           = render "tag", tag: tag, num: index + 1

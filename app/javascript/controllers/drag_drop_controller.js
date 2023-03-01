@@ -32,14 +32,14 @@ export default class extends Controller {
               let ids = [];
 
               $.each(sortable.el.children, function(key, el) {
-                ids.push($(el).data('tag_id'))
+                ids.push($(el).data('id'))
               })
 
               $.ajax({
-                url: $('.tag-form').attr('url'),
+                url: $('.drag-drop-form').attr('url'),
                 data: {
                   authenticity_token: $('[name="authenticity_token"]').val(),
-                  tags: ids
+                  ids: ids
                 },
                 type: 'POST',
                 success: (response) => {

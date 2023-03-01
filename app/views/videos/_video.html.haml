@@ -1,0 +1,20 @@
+.list-group-item.d-flex{'data-id': video.id}
+  .w-25= num
+  .w-25= video.name
+  .w-25
+    = link_to video.url, target: '_blank' do
+      = image_tag video.thumbnail, style: 'width: 50px;'
+
+  .w-25= video.video_author_name
+  .w-25= video.video_category_name
+  .w-25= timeago(video.created_at).html_safe
+  .w-25
+    .d-flex.justify-content-end
+      = render 'shared/buttons/edit_button', object: video, url: edit_video_path(video)
+
+      = render 'shared/buttons/delete_button', object: video,  message: { type: t('video.video'), name: video.name, url: video_path(video) }
+
+      / drag-drop handler
+      %span.ms-1{ data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top' }, title: t('shared.drag_to_sort') }
+        %button.btn.btn-circle.btn-outline-secondary.handle{type: 'button'}
+          %i.fa-solid.fa-grip-vertical
