@@ -13,7 +13,6 @@ class TokenInfoController < Doorkeeper::ApplicationMetalController
     def doorkeeper_token_to_json
       user = User.find(doorkeeper_token.resource_owner_id)
       obj = doorkeeper_token.as_json
-      obj[:email] = user.email
       obj[:email] = GrafanaPolicy.new(user, :grafana).show? ? user.email : "unauthorized_user@adolescent.org"
       obj
     end

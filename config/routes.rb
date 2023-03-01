@@ -54,6 +54,9 @@ Rails.application.routes.draw do
   resources :mobile_notification_importers, except: [:update, :edit], param: :code
 
   resources :pages
+  resource :dashboard_accessibility, only: [:show] do
+    put :upsert, on: :collection
+  end
 
   get "/privacy-policy", to: "privacy_policies#show"
   get "/terms-and-conditions", to: "terms_and_conditions#show"

@@ -6,6 +6,11 @@ class GrafanaPolicy
     end
 
   def show?
-    (user.primary_admin? || user.admin?) && ENV["GF_DASHBOARD_URL"].present?
+    ENV["GF_DASHBOARD_URL"].present? &&
+    (user.primary_admin? ||
+      user.admin? ||
+      Setting.dashboard_accessible_roles.include?(user.role) ||
+      Setting.dashboard_accessible_emails.include?(user.email)
+    )
   end
 end

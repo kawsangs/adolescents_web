@@ -1,0 +1,30 @@
+.container-fluid.px-4{'data-controller' => 'dashboard-accessibilities'}
+  = render 'shared/header_title', title: t('dashboard_accessibility.dashboard_accessibility')
+
+  .w-75
+    = form_for '', url: upsert_dashboard_accessibility_path, method: :put, html: {class: 'dashboard-form', 'data-action': 'dashboard-accessibilities#submitForm'} do |f|
+      .modal-body
+        / Accessable roles
+        %div
+          %label.mb-2= t('dashboard_accessibility.allow_roles_to_access_dashboard')
+
+          - [["Staff/Officer", "staff"]].each do |row|
+            .d-flex
+              .control.role{'data-role' => row[1]}
+                = form_check_toggle({id: row[1], checked: Setting.dashboard_accessible_roles.include?(row[1])}).html_safe
+              %label= row[0]
+
+        / Or ---------
+        .d-flex.flex-row.align-items-center
+          .line.flex-grow-1
+          .or-label= t('dashboard_accessibility.or')
+          .line.flex-grow-1
+
+        / Accessable emails
+        .form-group
+          %label.mb-2= t('dashboard_accessibility.allow_emails_to_access_dashboard')
+          %div
+            %input#userEmails{'data-emails' => @emails.as_json, value: Setting.dashboard_accessible_emails.join(', '), 'data-dashboard-accessibilities-target': 'email'}
+
+      .modal-footer
+        = f.submit t('shared.save'), class: 'btn btn-primary'
