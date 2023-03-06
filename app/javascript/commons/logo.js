@@ -54,6 +54,6 @@ export default (function() {
   }
 
   function setUncheckRemoveAvatar() {
-    $('#user_remove_avatar').attr('checked', false);
+    $('.remove-logo-wrapper input').attr('checked', false);
   }
 })();
