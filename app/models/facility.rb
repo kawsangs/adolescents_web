@@ -44,6 +44,9 @@ class Facility < ApplicationRecord
   # Valiation
   validates :name, presence: true
 
+  # Scope
+  default_scope { order(updated_at: :desc) }
+
   # Nested Attribute
   accepts_nested_attributes_for :working_days, allow_destroy: true
 
