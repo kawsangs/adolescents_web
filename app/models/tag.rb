@@ -16,6 +16,9 @@ class Tag < ApplicationRecord
   before_create :set_display_order
   before_destroy :confirm_blank_tagging
 
+  # Scope
+  default_scope { order(display_order: :asc) }
+
   def self.filter(params)
     scope = all
     scope = scope.where("LOWER(name) LIKE ?", "%#{params[:name].downcase}%") if params[:name].present?

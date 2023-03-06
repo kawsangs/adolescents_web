@@ -26,6 +26,9 @@ class Video < ApplicationRecord
   # Callback
   before_create :set_display_order
 
+  # Scope
+  default_scope { order(display_order: :asc) }
+
   # Delegation
   delegate :name, to: :video_category, prefix: true, allow_nil: true
   delegate :name, to: :video_author, prefix: true, allow_nil: true
