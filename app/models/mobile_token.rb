@@ -10,6 +10,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  platform    :integer          default("android")
+#  device_os   :string
 #
 class MobileToken < ApplicationRecord
   # Association
