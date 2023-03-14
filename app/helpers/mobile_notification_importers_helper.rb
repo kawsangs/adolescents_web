@@ -9,7 +9,7 @@ module MobileNotificationImportersHelper
     def icon_ios
       "<span data-bs-toggle='tooltip' bs-placement='top' title='iOs'>" +
       "<i class='fa-brands fa-apple ios-icon'></i>" +
-      "</span"
+      "</span>"
     end
 
     def icon_android

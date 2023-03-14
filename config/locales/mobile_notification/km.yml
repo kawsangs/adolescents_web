@@ -26,3 +26,5 @@ km:
     platform_hint: "ios, android, all"
     schedule_date_hint: "ត្រូវលើសបច្ចុប្បន្នយ៉ាងតិច 5នាទី (yyyy-mm-dd hh:mm)"
     search_by_schedule_date: ស្វែងរកតាមកាលបរិច្ឆេទកំណត់
+    success: ជោគជ័យ
+    failure: បរាជ័យ
