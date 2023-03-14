@@ -5,6 +5,7 @@ class AppUsersController < ApplicationController
     respond_to do |format|
       format.html {
         @pagy, @app_users = pagy(authorize app_user_query)
+        @total_uniq_devices = AppUser.filter(filter_params).pluck(:device_id).uniq.count
       }
 
       format.xlsx {

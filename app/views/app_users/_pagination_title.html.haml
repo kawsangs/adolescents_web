@@ -6,6 +6,8 @@
           %span
             = t('shared.pagination_title', from: @pagy.from, to: @pagy.to, total: number_with_delimiter(@pagy.count)).html_safe
 
+            = "(#{t('app_user.total_devices')}: <b>#{number_with_delimiter(@total_uniq_devices)}</b>)".html_safe
+
   .flex-grow-1
 
   - if @pagy.pages > 1
