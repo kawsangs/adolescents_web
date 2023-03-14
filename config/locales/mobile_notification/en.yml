@@ -26,3 +26,5 @@ en:
     platform_hint: "ios, android, all"
     schedule_date_hint: must over at least 5mn from now (yyyy-mm-dd hh:mm)
     search_by_schedule_date: Search by schedule date
+    success: Success
+    failure: Failure

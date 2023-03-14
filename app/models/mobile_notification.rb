@@ -16,6 +16,7 @@
 #  mobile_notification_batch_id :integer
 #  job_id                       :string
 #  status                       :integer          default("pending")
+#  detail                       :json
 #
 class MobileNotification < ApplicationRecord
   include MobileNotifications::Callback
@@ -44,15 +45,6 @@ class MobileNotification < ApplicationRecord
   # Instant method
   def build_content
     { notification: { title:, body: }, apns: { payload: { aps: { "content-available": 1 } } }, android: { "priority": "high" } }
-  end
-
-  def description
-    return nil if success_count.nil?
-
-    I18n.t("mobile_notification.description",
-      success_count:,
-      failure_count:
-    )
   end
 
   def removeable?

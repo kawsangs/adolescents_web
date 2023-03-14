@@ -12,6 +12,7 @@
 #  updated_at        :datetime         not null
 #  author            :string
 #  video_batch_id    :uuid
+#  video_author_id   :uuid
 #
 class Video < ApplicationRecord
   # Association

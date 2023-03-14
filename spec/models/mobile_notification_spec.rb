@@ -16,6 +16,7 @@
 #  mobile_notification_batch_id :integer
 #  job_id                       :string
 #  status                       :integer          default("pending")
+#  detail                       :json
 #
 require "rails_helper"
 

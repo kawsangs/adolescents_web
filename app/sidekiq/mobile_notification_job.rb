@@ -5,12 +5,13 @@ class MobileNotificationJob
     @notification = MobileNotification.find_by(id: notification_id)
 
     mobile_tokens = MobileToken.filter(platform: @notification.platform)
-    res = PushNotificationService.new.notify(mobile_tokens, @notification)
+    res = PushNotificationService.new.notify_all(mobile_tokens, @notification)
 
     @notification.update_columns(
       success_count: res[:success_count],
       failure_count: res[:failure_count],
-      status: :delivered
+      status: :delivered,
+      detail: res[:detail]
     )
   end
 end
