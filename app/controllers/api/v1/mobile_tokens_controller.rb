@@ -14,7 +14,7 @@ module Api
       private
         def token_params
           params.require(:mobile_token).permit(
-            :token, :device_id, :device_type, :app_version, :platform
+            :token, :device_id, :device_type, :app_version, :platform, :device_os
           )
         end
     end
