@@ -2,7 +2,7 @@ module Api
   module V1
     class VideosController < ApiController
       def index
-        pagy, videos = pagy(Video.all)
+        pagy, videos = pagy(Video.includes(:video_author, :video_category))
 
         render json: {
           pagy: pagy.vars,

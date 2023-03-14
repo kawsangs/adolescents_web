@@ -3,28 +3,38 @@
 require "googleauth"
 
 class PushNotificationService
+  attr_reader :detail, :success_count, :failure_count
+
   def initialize
     @success_count = 0
     @failure_count = 0
+    @detail = {
+      success: { ios: 0, android: 0 },
+      failure: { ios: 0, android: 0 }
+    }
   end
 
-  def notify(mobile_tokens, mobile_notification)
+  def notify_all(mobile_tokens, mobile_notification)
     mobile_tokens.each do |mobile_token|
-      message = { 'token': mobile_token.token }.merge(mobile_notification.build_content)
-      res = fcm.send_v1(message)
-
-      if res[:status_code] == 200
-        @success_count += 1
-      else
-        @failure_count += 1
-        mobile_notification.mobile_notification_logs.create(mobile_token_id: mobile_token.id, failed_reason: res[:body])
-      end
+      notify(mobile_token, mobile_notification)
     end
 
-    {
-      success_count:  @success_count,
-      failure_count: @failure_count
-    }
+    { detail:, success_count:, failure_count: }
+  end
+
+  def notify(mobile_token, mobile_notification)
+    message = { 'token': mobile_token.token }.merge(mobile_notification.build_content)
+    res = fcm.send_v1(message)
+
+    if res[:status_code] == 200
+      @success_count += 1
+      @detail[:success][mobile_token.platform.to_sym] += 1
+    else
+      @failure_count += 1
+      @detail[:failure][mobile_token.platform.to_sym] += 1
+
+      mobile_notification.mobile_notification_logs.create(mobile_token_id: mobile_token.id, failed_reason: res[:body])
+    end
   end
 
   private

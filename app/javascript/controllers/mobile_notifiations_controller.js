@@ -6,7 +6,13 @@ export default class extends Controller {
   static picker;
 
   connect() {
-    this.picker = new tempusDominus.TempusDominus(document.getElementById('schedule_date'));
+    let options = {};
+
+    if(!!$('#mobile_notification_schedule_date').val()) {
+      options.defaultDate = $('#mobile_notification_schedule_date').val();
+    }
+
+    this.picker = new tempusDominus.TempusDominus(document.getElementById('schedule_date'), options);
   }
 
   updateTitle(e) {
@@ -24,6 +30,8 @@ export default class extends Controller {
 
     if (!!$("#view-date").val()) {
       $('#mobile_notification_schedule_date').val(this.picker.viewDate);
+    } else {
+      $('#mobile_notification_schedule_date').val('');
     }
 
     $(e.target).parents('form').submit();

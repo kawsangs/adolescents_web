@@ -13,9 +13,14 @@
 #
 FactoryBot.define do
   factory :mobile_token do
-    token { "abcd" }
-    device_id { "abc_#{rand(1..10)}" }
+    token       { SecureRandom.hex(10) }
+    device_id   { SecureRandom.hex(8) }
     device_type { %w(mobile tablet).sample }
     app_version { "1.0.1" }
+    platform    { "android" }
+
+    trait :ios do
+      platform { "ios" }
+    end
   end
 end

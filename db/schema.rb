@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_28_045049) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_14_032747) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -179,6 +179,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_045049) do
     t.integer "mobile_notification_batch_id"
     t.string "job_id"
     t.integer "status", default: 1
+    t.json "detail", default: {}
   end
 
   create_table "mobile_tokens", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
