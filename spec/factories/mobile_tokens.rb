@@ -10,6 +10,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  platform    :integer          default("android")
+#  device_os   :string
 #
 FactoryBot.define do
   factory :mobile_token do
