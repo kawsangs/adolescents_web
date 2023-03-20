@@ -11,3 +11,7 @@ smtp:
 
 max_download_visit_record: <%= ENV.fetch('MAX_DOWNLOAD_VISIT_RECORD') { 10000 }.to_i %>
 max_download_record: <%= ENV.fetch('MAX_DOWNLOAD_VISIT_RECORD') { 10000 }.to_i %>
+user_guide:
+  primary_admin: <%= ENV.fetch('USER_GUIDE_VIDEO_LINK_FOR_PRIMARY_ADMIN') { "https://drive.google.com/file/d/1kMWF02tvTIOhvmWDj3KxmY78gPO1K-XZ/view?usp=share_link" } %>
+  admin: <%= ENV.fetch('USER_GUIDE_VIDEO_LINK_FOR_ADMIN') { "https://drive.google.com/file/d/1kMWF02tvTIOhvmWDj3KxmY78gPO1K-XZ/view?usp=share_link" } %>
+  staff: <%= ENV.fetch('USER_GUIDE_VIDEO_LINK_FOR_STAFF') { "https://drive.google.com/file/d/1F8pSxIFJz4ingsEsXmNE4hMRrjU8P7eQ/view?usp=share_link" } %>
