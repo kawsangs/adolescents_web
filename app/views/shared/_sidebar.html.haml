@@ -31,7 +31,7 @@
 
       - if current_user.primary_admin?
         / Contents
-        %a.nav-link.collapsed{"aria-controls" => "collapseContents", "aria-expanded" => "false", "data-bs-target" => "#collapseContents", "data-bs-toggle" => "collapse", :href => "#"}
+        %a.nav-link.collapsed{"aria-controls" => "collapseContents", "aria-expanded" => "false", "data-bs-target" => "#collapseContents", "data-bs-toggle" => "collapse", href: "#"}
           .sb-nav-link-icon
             %i.fas.fa-columns
           = t('sidebar.contents')
@@ -51,7 +51,7 @@
 
       / Settings
       - if policy(:setting).show?
-        %a.nav-link.collapsed{"aria-controls" => "collapseSettings", "aria-expanded" => "false", "data-bs-target" => "#collapseSettings", "data-bs-toggle" => "collapse", :href => "#"}
+        %a.nav-link.collapsed{"aria-controls" => "collapseSettings", "aria-expanded" => "false", "data-bs-target" => "#collapseSettings", "data-bs-toggle" => "collapse", href: "#"}
           .sb-nav-link-icon
             %i.fa-solid.fa-wrench
           = t('sidebar.settings')
@@ -85,11 +85,21 @@
               = link_to t('sidebar.dashboard_accessibility'), dashboard_accessibility_path, class: ['nav-link', css_active_class('dashboard_accessibility')]
 
   .sb-sidenav-footer
-    = link_to "/#{current_user.role}_youth_health_web_app_user_guide.pdf", class: ['nav-link text-dark'], target: '_blank' do
-      .d-flex.align-items-center
-        .sb-nav-link-icon.me-1
-          %i.fa-regular.fa-circle-question
-        = t('sidebar.how_to_use')
+    .nav-link
+      .btn-group.dropend
+        %a.text-dark.d-flex.align-items-center.user-guide{"data-bs-toggle" => "dropdown"}
+          .sb-nav-link-icon.me-1
+            %i.fa-regular.fa-circle-question
+          = t('sidebar.how_to_use')
+
+        %ul.dropdown-menu
+          %li
+            %a.dropdown-item{href: "/#{current_user.role}_youth_health_web_app_user_guide.pdf", target: '_blank'}
+              = t('sidebar.how_to_use_in_pdf')
+
+          %li
+            %a.dropdown-item{href: Settings.user_guide[current_user.role], target: '_blank'}
+              = t('sidebar.how_to_use_in_video')
 
     .d-flex.align-items-center
       .flex-grow-1
