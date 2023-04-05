@@ -30,7 +30,7 @@ class MobileNotification < ApplicationRecord
   has_many   :mobile_notification_logs
 
   # Valiation
-  validates :title, presence: true, length: { maximum: 64 }
+  validates :title, presence: true, length: { maximum: 100 }
   validates :body, presence: true, length: { maximum: 255 }
   validate  :validate_schedule_at
   validate  :schedule_date_cannot_be_in_the_past

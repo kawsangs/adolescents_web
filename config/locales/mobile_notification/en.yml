@@ -5,7 +5,7 @@ en:
     new_mobile_notification: New mobile notification
     notification_title: Notification title
     notification_text: Notification text
-    max_title: max 64 characters
+    max_title: max 100 characters
     max_body: max 255 characters
     push_notification: Push Notification
     description: "Success: %{success_count}; Failure: %{failure_count}"
