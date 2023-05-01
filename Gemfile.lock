@@ -77,8 +77,9 @@ GEM
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
     ast (2.4.2)
-    audited (5.0.2)
+    audited (5.3.3)
       activerecord (>= 5.0, < 7.1)
+      request_store (~> 1.2)
     autoprefixer-rails (10.4.7.0)
       execjs (~> 2)
     awesome_nested_set (3.5.0)
@@ -203,7 +204,7 @@ GEM
     httparty (0.21.0)
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
-    i18n (1.12.0)
+    i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
       mini_magick (>= 4.9.5, < 5)
@@ -344,6 +345,8 @@ GEM
     regexp_parser (2.5.0)
     reline (0.3.1)
       io-console (~> 0.5)
+    request_store (1.5.1)
+      rack (>= 1.4)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -481,7 +484,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10.13)
   annotate
-  audited (~> 5.0)
+  audited (~> 5.3)
   awesome_nested_set (~> 3.5.0)
   bootsnap
   bootstrap (~> 5.2.0)
