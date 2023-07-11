@@ -12,10 +12,14 @@
 #  updated_at       :datetime         not null
 #  last_accessed_at :datetime
 #  platform         :integer          default("android")
+#  occupation       :integer          default("n_a")
+#  education_level  :integer          default("n_a")
 #
 FactoryBot.define do
   factory :app_user do
     gender { AppUser::GENDERS.sample }
+    occupation { AppUser.occupations.keys.sample }
+    education_level { AppUser.education_levels.keys.sample }
     age    { rand(10..19) }
     province_id { format("%02d", rand(1..25)) }
     device_id { "abc_#{rand(1..10)}" }

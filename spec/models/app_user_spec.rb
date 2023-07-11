@@ -12,6 +12,8 @@
 #  updated_at       :datetime         not null
 #  last_accessed_at :datetime
 #  platform         :integer          default("android")
+#  occupation       :integer          default("n_a")
+#  education_level  :integer          default("n_a")
 #
 require "rails_helper"
 
@@ -48,7 +50,7 @@ RSpec.describe AppUser, type: :model do
         expect(subject.errors.messages).to include :gender
       end
 
-      it "validate inclution" do
+      it "validate inclusion" do
         subject.gender = "invalid"
         subject.valid?
 
@@ -62,6 +64,50 @@ RSpec.describe AppUser, type: :model do
         subject.valid?
 
         expect(subject.errors.messages).not_to include :gender
+      end
+    end
+  end
+
+  describe "validation #occupation" do
+    subject { described_class.new(occupation: nil) }
+
+    context "normal user" do
+      it "requires occupation" do
+        allow(subject).to receive(:anonymous?).and_return false
+        subject.valid?
+
+        expect(subject.errors.messages).to include :occupation
+      end
+    end
+
+    context "anonymous" do
+      it "doens't require occupation" do
+        allow(subject).to receive(:anonymous?).and_return true
+        subject.valid?
+
+        expect(subject.errors.messages).not_to include :occupation
+      end
+    end
+  end
+
+  describe "validation #education_level" do
+    subject { described_class.new(education_level: nil) }
+
+    context "normal user" do
+      it "requires education_level" do
+        allow(subject).to receive(:anonymous?).and_return false
+        subject.valid?
+
+        expect(subject.errors.messages).to include :education_level
+      end
+    end
+
+    context "anonymous" do
+      it "doens't require education_level" do
+        allow(subject).to receive(:anonymous?).and_return true
+        subject.valid?
+
+        expect(subject.errors.messages).not_to include :education_level
       end
     end
   end
