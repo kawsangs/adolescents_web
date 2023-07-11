@@ -12,15 +12,41 @@
 #  updated_at       :datetime         not null
 #  last_accessed_at :datetime
 #  platform         :integer          default("android")
+#  occupation       :integer          default("n_a")
+#  education_level  :integer          default("n_a")
 #
 class AppUser < ApplicationRecord
   GENDERS = %w(male female lgbt unknown)
 
   enum platform: MobileToken.platforms
 
+  enum education_level: {
+    n_a: 0,
+    under_grade_twelve: 1,
+    university: 2,
+    tvet: 3,
+    dropout_student: 4
+  }, _prefix: :education
+
+  enum occupation: {
+    n_a: 0,
+    student: 1,
+    entertainment_worker: 2,
+    factory_worker: 3,
+    local_migrant_worker: 4,
+    oversea_migrant_worker: 5,
+    other: 6
+  }
+
   # Validation
   validates :gender, presence: true, unless: :anonymous?
   validates :gender, inclusion: { in: GENDERS, allow_nil: true }
+
+  validates :occupation, presence: true, unless: :anonymous?
+  validates :occupation, inclusion: { in: occupations.keys, allow_nil: true }
+
+  validates :education_level, presence: true, unless: :anonymous?
+  validates :education_level, inclusion: { in: education_levels.keys, allow_nil: true }
 
   validates :age, presence: true
   validates :province_id, presence: true
