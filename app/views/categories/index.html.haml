@@ -1,0 +1,21 @@
+.container-fluid.px-4{'data-controller' => ''}
+  = render "page_heading"
+  / = render "filters"
+  = render "shared/no_data", items: @categories
+
+  - if @categories.present?
+
+    .table-responsive
+      %table.table.table-hover.pretty
+        %thead
+          %tr
+            %th #
+            %th= t("shared.name")
+            %th= t("category.image")
+            %th= t("category.audio")
+            %th= t("category.description")
+        %tbody
+          - @categories.each_with_index do |category, index|
+            = render 'categories/category', category: category, num: index + 1
+
+= render "shared/modals/confirm_delete_modal"

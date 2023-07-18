@@ -79,6 +79,37 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_062648) do
     t.index ["user_id", "user_type"], name: "user_index"
   end
 
+  create_table "batches", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "code"
+    t.integer "total_count", default: 0
+    t.integer "valid_count", default: 0
+    t.integer "new_count", default: 0
+    t.integer "province_count", default: 0
+    t.string "reference"
+    t.integer "creator_id"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.string "image"
+    t.string "audio"
+    t.text "description"
+    t.uuid "parent_id"
+    t.integer "lft", null: false
+    t.integer "rgt", null: false
+    t.integer "depth", default: 0, null: false
+    t.integer "children_count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lft"], name: "index_categories_on_lft"
+    t.index ["parent_id"], name: "index_categories_on_parent_id"
+    t.index ["rgt"], name: "index_categories_on_rgt"
+  end
+
   create_table "characteristics", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "code"
     t.string "name_en"
@@ -134,6 +165,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_062648) do
   create_table "importing_facilities", force: :cascade do |t|
     t.uuid "facility_id"
     t.uuid "facility_batch_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "importing_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "itemable_id"
+    t.string "itemable_type"
+    t.uuid "batch_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

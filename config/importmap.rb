@@ -16,6 +16,9 @@ pin "moment", to: "https://ga.jspm.io/npm:moment@2.29.4/moment.js"
 pin "moment/min/moment-with-locales.min.js", to: "https://ga.jspm.io/npm:moment@2.29.4/min/moment-with-locales.min.js"
 pin "daterangepicker", to: "https://ga.jspm.io/npm:daterangepicker@3.1.0/daterangepicker.js"
 
+# richtext editor
+pin "tinymce", to: "https://cdn.tiny.cloud/1/xlg2815iyuokkkbrkx4pr9pd7hebttvudistnzl7mgmlkyde/tinymce/6/tinymce.min.js"
+
 # It is in betta vesion, and it supports bootstrap 5
 pin "bootstrap-select", to: "https://ga.jspm.io/npm:bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.js"
 pin "@yaireo/tagify", to: "https://ga.jspm.io/npm:@yaireo/tagify@4.16.4/dist/tagify.min.js"

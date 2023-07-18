@@ -10,7 +10,7 @@ en:
     videos: Videos
     mobile_notifications: Mobile notifications
     topics: Decision Aid Topic
-    contents: Contents
+    contents: Manage Contents
     settings: Settings
     reports: Reports
     interfaces: Interfaces
@@ -23,3 +23,4 @@ en:
     video_authors: Video authors
     how_to_use_in_pdf: Pdf manual
     how_to_use_in_video: Video manual
+    categories: Categories

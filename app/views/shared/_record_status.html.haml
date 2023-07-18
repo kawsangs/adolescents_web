@@ -1,0 +1,5 @@
+.d-flex
+  - %w(new edit invalid).each do |status|
+    %div.mr-2.p-1.border.rounded{style: 'min-width: 60px;'}
+      %small.line-badge{ class: status }
+        = t("shared.#{status}") + ": " + @batch.send("#{status}_count").to_s
