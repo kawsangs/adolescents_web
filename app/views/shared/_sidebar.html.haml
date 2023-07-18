@@ -40,6 +40,9 @@
 
         #collapseContents.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" => "#sidenavAccordion"}
           %nav.sb-sidenav-menu-nested.nav
+            - if policy(Category).index?
+              = link_to t('sidebar.categories'), categories_path, class: ['nav-link', css_active_class('categories')]
+
             - if policy(Facility).index?
               = link_to t('sidebar.facilities'), facilities_path, class: ['nav-link', css_active_class('facilities')]
 
@@ -48,6 +51,15 @@
 
             - if policy(Topic).index?
               = link_to t('sidebar.topics'), topics_path, class: ['nav-link', css_active_class('topics')]
+
+            - if policy(Tag).index?
+              = link_to t('sidebar.tags'), tags_path, class: ['nav-link', css_active_class('tags')]
+
+            - if policy(Page).index?
+              = link_to t('sidebar.pages'), pages_path, class: ['nav-link', css_active_class('pages')]
+
+            - if policy(VideoAuthor).index?
+              = link_to t('sidebar.video_authors'), video_authors_path, class: ['nav-link', css_active_class('video_authors')]
 
       / Settings
       - if policy(:setting).show?
@@ -62,15 +74,6 @@
           %nav.sb-sidenav-menu-nested.nav
             - if policy(User).index?
               = link_to t('sidebar.users'), users_path, class: ['nav-link', css_active_class('users')]
-
-            - if policy(Tag).index?
-              = link_to t('sidebar.tags'), tags_path, class: ['nav-link', css_active_class('tags')]
-
-            - if policy(Page).index?
-              = link_to t('sidebar.pages'), pages_path, class: ['nav-link', css_active_class('pages')]
-
-            - if policy(VideoAuthor).index?
-              = link_to t('sidebar.video_authors'), video_authors_path, class: ['nav-link', css_active_class('video_authors')]
 
             - if policy(ApiKey).index?
               = link_to t('sidebar.api_keys'), api_keys_path, class: ['nav-link', css_active_class('api_keys')]

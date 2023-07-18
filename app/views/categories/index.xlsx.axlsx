@@ -1,0 +1,21 @@
+# frozen_string_literal: true
+
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "category") do |sheet|
+  sheet.add_row %w[id code name image_url image audio_url audio description parent_code parent_id]
+
+  @categories.each_with_index do |category, index|
+    sheet.add_row [
+      category.id,
+      category.code,
+      category.name,
+      category.image_url,
+      category.image_identifier,
+      category.audio_url,
+      category.audio_identifier,
+      category.description,
+      category.parent_code,
+      category.parent_id
+    ], types: [:string, :string, :string, :string]
+  end
+end

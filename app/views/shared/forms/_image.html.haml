@@ -1,0 +1,12 @@
+.image-wrapper.position-relative
+  = image_tag f.object.image_url, class: 'preview-logo', 'data-default' => f.object.image.default_url
+  = f.input :image, as: :file, label: false, wrapper_html: { class: 'file_wrapper' }, input_html: { class: 'file_avata pointer logo-input', accept: "image/x-png,image/gif,image/jpeg" }
+
+  .remove-logo-wrapper
+    = f.input :remove_image, as: :boolean
+
+  .btn-delete.pointer{class: ('d-none' unless f.object.image.present?) }
+    %i.fas.fa-trash-alt.text-white
+
+.text-center.mt-2
+  %small 250 x 250 (32-bit PNG)

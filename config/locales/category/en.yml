@@ -1,0 +1,8 @@
+en:
+  category:
+    category: Category
+    new_category: New category
+    parent_category: Parent category
+    edit_category: Edit category
+    image: Image
+    audio: Audio

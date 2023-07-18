@@ -1,0 +1,37 @@
+- form_url ||= college_major_importers_path
+- title ||= t('sidebar.college_major')
+- wizard_list_path ||= "college_major_importers/wizard_list"
+
+.container-fluid.px-4.facilities
+  = render "shared/headers/progress_arrow_header", title: t("shared.importing_wizard", name: title), progress_num: 2
+
+  = simple_form_for @batch, as: :batch, url: form_url do |f|
+    = f.hidden_field :code, value: @batch.code
+    = f.hidden_field :total_count
+    = f.hidden_field :valid_count
+    = f.hidden_field :new_count
+    = f.hidden_field :reference_cache
+
+    .d-flex.align-items-center{style: 'flex-wrap: wrap-reverse;'}
+      / Short description header
+      .flex-grow-1
+        %div= t("shared.short_description", total_count: @batch.total_count, valid_count: @batch.valid_count).html_safe
+
+      .d-flex.mb-2
+        / Back button
+        = render "shared/buttons/back_button", url: form_url
+
+        / Yes confirm button
+        = render "shared/buttons/yes_confirm_button"
+
+    / Item valid count information
+    .my-2= render "shared/record_status"
+
+    / Display list
+    = render wizard_list_path, f: f
+
+    / Yes Confirm modal
+    = render 'shared/modals/modal_import_confirm', f: f, title: t('shared.confirm_title', name: title), message: t('shared.confirm_message_no_province', total_count: @batch.valid_count).html_safe
+
+    / Item valid count information
+    .my-2= render "shared/record_status"

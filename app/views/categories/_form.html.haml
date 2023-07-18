@@ -1,0 +1,24 @@
+.w-75.view-center{'data-controller': 'category-form'}
+  = simple_form_for @category do |f|
+    = render "shared/forms/image", f: f
+
+    - if @category.parent.present?
+      .form-group.mb-3
+        %label= t('category.parent_category')
+        .form-control
+          = @category.parent.name
+
+    = f.input :parent_id, as: :hidden
+
+    .mb-3= f.input :name, label: t('shared.name')
+
+    .mb-3
+      %label= t('shared.audio')
+      = render "shared/forms/audio", field: :audio, f: f
+
+    .mb-3
+      = f.input :description, label: t('shared.content'), input_html: {id: 'description', class: 'tinymce'}
+
+    .actions
+      = link_to t('shared.cancel'), categories_url, class: 'btn btn-secondary me-1'
+      = f.submit t('shared.save'), class: 'btn btn-primary'
