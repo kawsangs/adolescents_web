@@ -8,7 +8,9 @@
         %th= t("category.image")
         %th= t("category.audio")
         %th= t("category.description")
-        %th= t("category.parent")
+        %th= t("category.tag_list")
+        %th= t("category.parent_category")
+        %th= t("category.source")
 
     %tbody
       - @batch.importing_items.each_with_index do |importing_item, index|
@@ -25,6 +27,12 @@
               = fff.hidden_field :audio_cache
               = fff.hidden_field :description
               = fff.hidden_field :parent_id
+              = fff.hidden_field :tag_list
+              = fff.fields_for :content_sources, item.content_sources do |cs|
+                = cs.hidden_field :id
+                = cs.hidden_field :_destroy
+                = cs.hidden_field :name
+                = cs.hidden_field :url
 
         %tr
           %td= index + 1
@@ -40,7 +48,12 @@
 
           %td
             %div.text-truncate{style: 'max-width: 200px'}= item.description
+          %td= item.tag_list
           %td= item.parent.try(:name)
+
+          %td
+            - item.content_sources.select { |cs| !cs._destroy }.each do |cs|
+              %div= "#{cs.name}: #{cs.url}"
 
           / Validation status
           %td= render "shared/validation_status", item: item

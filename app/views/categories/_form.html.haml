@@ -1,5 +1,5 @@
 .w-75.view-center{'data-controller': 'category-form'}
-  = simple_form_for @category do |f|
+  = simple_form_for @category, html: {'data-action': 'category-form#submitForm'} do |f|
     = render "shared/forms/image", f: f
 
     - if @category.parent.present?
@@ -10,14 +10,28 @@
 
     = f.input :parent_id, as: :hidden
 
+    / Name
     .mb-3= f.input :name, label: t('shared.name')
 
+    / Tags
+    .mb-3= f.input :tag_list, label: t('facility.tags'), input_html: { 'data-category-form-target': 'tagList', 'data-tags': Facility.tag_counts.sort_by(&:count).reverse.pluck(:name).to_json }
+
+    / Audio
     .mb-3
       %label= t('shared.audio')
       = render "shared/forms/audio", field: :audio, f: f
 
+    / Description
     .mb-3
       = f.input :description, label: t('shared.content'), input_html: {id: 'description', class: 'tinymce'}
+
+    / Source
+    %ol.fields
+      %label= t('category.source')
+      = f.simple_fields_for :content_sources, f.object.content_sources do |builder|
+        = render 'content_source_fields', f: builder
+
+      = link_to_add_fields t('category.add_source'), f, :content_sources, 'category-form-target': 'btnAddQuestion', 'action': 'category-form#appendField'
 
     .actions
       = link_to t('shared.cancel'), categories_url, class: 'btn btn-secondary me-1'

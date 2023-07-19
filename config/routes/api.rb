@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :tags, only: [:index]
       resources :quizzes, only: [:create]
       resources :video_authors, only: [:index]
+      resources :categories, only: [:index]
 
       get "*path" => "api#routing_error"
     end

@@ -6,3 +6,7 @@ en:
     edit_category: Edit category
     image: Image
     audio: Audio
+    tag_list: Tag list
+    source: Source
+    description: Content
+    add_source: "+ Add source"

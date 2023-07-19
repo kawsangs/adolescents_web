@@ -2,7 +2,7 @@
 
 wb = xlsx_package.workbook
 wb.add_worksheet(name: "category") do |sheet|
-  sheet.add_row %w[id code name image_url image audio_url audio description parent_code parent_id]
+  sheet.add_row %w[id code name image_url image audio_url audio tag_list description parent_code parent_id]
 
   @categories.each_with_index do |category, index|
     sheet.add_row [
@@ -13,9 +13,24 @@ wb.add_worksheet(name: "category") do |sheet|
       category.image_identifier,
       category.audio_url,
       category.audio_identifier,
+      category.tag_list,
       category.description,
       category.parent_code,
       category.parent_id
     ], types: [:string, :string, :string, :string]
+  end
+end
+
+wb.add_worksheet(name: "source") do |sheet|
+  sheet.add_row %w[category_code name url]
+
+  @categories.each_with_index do |category, index|
+    category.content_sources.each do |source|
+      sheet.add_row [
+        category.code,
+        source.name,
+        source.url
+      ], types: [:string, :string, :string]
+    end
   end
 end

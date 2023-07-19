@@ -9,7 +9,7 @@ module Spreadsheets
 
       def assign_items(sheet, sheet_name)
         @items = sheet.parse(headers: true)[1..-1] if sheet_name.to_s.downcase == "category"
-        # @sources = sheet.parse(headers: true)[1..-1] if sheet_name.to_s.downcase == "source"
+        @sources = sheet.parse(headers: true)[1..-1] if sheet_name.to_s.downcase == "source"
       end
 
       def importing_items(zipfile)
@@ -19,7 +19,7 @@ module Spreadsheets
         @items.map do |row|
           item = items.select { |f| f.code == row["code"] }.first || Category.new
 
-          batch.importing_items.new(itemable: Spreadsheets::Batches::CategorySpreadsheet.new(item).process(row, zipfile))
+          batch.importing_items.new(itemable: Spreadsheets::Batches::CategorySpreadsheet.new(item, @sources).process(row, zipfile))
         end
       end
   end

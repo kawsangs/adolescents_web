@@ -18,5 +18,13 @@
 #
 class CategorySerializer < ActiveModel::Serializer
   attributes :id, :code, :name, :image_url, :audio_url,
-             :description, :parent_id, :parent_code
+             :description, :parent_id, :parent_code, :level,
+             :lft, :rgt, :tag_list
+
+  has_many :content_sources
+  has_many :children
+
+  class ContentSourceSerializer < ActiveModel::Serializer
+    attributes :name, :url
+  end
 end

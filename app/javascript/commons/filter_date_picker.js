@@ -1,4 +1,5 @@
 import moment from 'moment/min/moment-with-locales.min.js';
+import 'jquery';
 import "daterangepicker"
 
 export default (function() {

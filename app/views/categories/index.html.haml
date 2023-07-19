@@ -14,6 +14,9 @@
             %th= t("category.image")
             %th= t("category.audio")
             %th= t("category.description")
+            %th= t("category.tag_list")
+            %th= t("category.source")
+            %th
         %tbody
           - @categories.each_with_index do |category, index|
             = render 'categories/category', category: category, num: index + 1
