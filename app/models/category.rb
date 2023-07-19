@@ -17,15 +17,23 @@
 #  updated_at     :datetime         not null
 #
 class Category < ApplicationRecord
+  include Taggable
+
   # Uploader
   mount_uploader :image, ImageUploader
   mount_uploader :audio, AudioUploader
 
+  # Association
+  has_many :content_sources
+
   # Validation
   validates :name, presence: true
 
-  # Nested attribute
+  # Nested level
   acts_as_nested_set counter_cache: :children_count, touch: true
+
+  # Nested attribute
+  accepts_nested_attributes_for :content_sources, allow_destroy: true
 
   # Callback
   before_create :secure_code

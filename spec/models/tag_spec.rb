@@ -13,5 +13,6 @@ require "rails_helper"
 
 RSpec.describe Tag, type: :model do
   it { is_expected.to have_many(:taggings) }
-  it { is_expected.to have_many(:facilities).through(:taggings) }
+  it { is_expected.to have_many(:facilities).through(:taggings).source(:taggable) }
+  it { is_expected.to have_many(:categories).through(:taggings).source(:taggable) }
 end

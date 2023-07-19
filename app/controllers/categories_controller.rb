@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
       }
 
       format.xlsx {
-        @categories = authorize Category.filter(filter_params).includes(:parent)
+        @categories = authorize Category.filter(filter_params).includes(:parent, :content_sources)
 
         if @categories.length > Settings.max_download_record
           flash[:alert] = t("shared.file_size_is_too_big", max_record: Settings.max_download_record)
@@ -20,7 +20,7 @@ class CategoriesController < ApplicationController
       }
 
       format.json {
-        @categories = authorize Category.filter(filter_params)
+        @categories = authorize Category.filter(filter_params).roots
 
         render json: @categories
       }
@@ -65,8 +65,11 @@ class CategoriesController < ApplicationController
 
     def category_params
       params.require(:category).permit(
-        :name, :description, :parent_id,
-        :image, :remove_image, :audio, :remove_audio
+        :name, :description, :parent_id, :tag_list,
+        :image, :remove_image, :audio, :remove_audio,
+        content_sources_attributes: [
+          :id, :_destroy, :name, :url
+        ]
       )
     end
 

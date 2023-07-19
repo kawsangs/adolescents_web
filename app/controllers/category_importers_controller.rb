@@ -17,7 +17,8 @@ class CategoryImportersController < ApplicationController
     def itemable_attributes
       [
         :id, :code, :name, :description, :parent_id,
-        :image_cache, :audio_cache
+        :image_cache, :audio_cache, :tag_list,
+        content_sources_attributes: [:id, :name, :url, :_destroy]
       ]
     end
 end

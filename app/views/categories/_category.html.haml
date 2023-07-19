@@ -8,6 +8,12 @@
         %source{src: category.audio_url}
   %td
     %div.text-truncate{style: 'max-width: 200px'}= category.description
+
+  %td= category.tag_list
+
+  %td
+    - category.content_sources.each do |cs|
+      %div= "#{cs.name}: #{cs.url}"
   %td
     .d-flex.justify-content-end
       .me-1

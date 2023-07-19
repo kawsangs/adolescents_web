@@ -11,7 +11,8 @@
 #
 class Tag < ApplicationRecord
   has_many :taggings
-  has_many :facilities, through: :taggings
+  has_many :facilities, through: :taggings, source: :taggable, source_type: "Facility"
+  has_many :categories, through: :taggings, source: :taggable, source_type: "Category"
 
   before_create :set_display_order
   before_destroy :confirm_blank_tagging

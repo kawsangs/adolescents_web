@@ -118,6 +118,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_062648) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "content_sources", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "url"
+    t.uuid "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "facilities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -348,6 +356,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_062648) do
     t.uuid "facility_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "taggable_id"
+    t.string "taggable_type"
   end
 
   create_table "tags", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

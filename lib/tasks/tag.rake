@@ -12,4 +12,11 @@ namespace :tag do
       tag.update(display_order: index + 1)
     end
   end
+
+  desc "migrate facility_id to facility taggable"
+  task migrate_facility_id_to_taggable: :environment do
+    Tagging.where.not(facility_id: nil).each do |tagging|
+      tagging.update(taggable_id: tagging.facility_id, taggable_type: "Facility")
+    end
+  end
 end

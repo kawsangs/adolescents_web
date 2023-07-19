@@ -11,7 +11,7 @@ if Rails.env.development? || Rails.env.test?
 
     desc "Loads sample data"
     task load: [:clean_db] do
-      Samples::Kawsang.load_samples
+      Samples::Kawsang.new.load_samples
     end
   end
 end

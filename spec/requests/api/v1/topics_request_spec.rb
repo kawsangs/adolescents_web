@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "Api::V1::TopicsController", type: :request do
   describe "GET #index" do
     let(:api_key) { create(:api_key) }
-    let(:header) { { "ACCEPT" => "application/json", "Authorization" => "Apikey #{api_key.api_key}" } }
+    let(:headers) { { "ACCEPT" => "application/json", "Authorization" => "Apikey #{api_key.api_key}" } }
     let(:json_response) { JSON.parse(response.body) }
     let!(:topic) { create(:topic, :published) }
 
@@ -12,7 +12,7 @@ RSpec.describe "Api::V1::TopicsController", type: :request do
     end
 
     it "returns collection of topics" do
-      expect(json_response.length).to eq(1)
+      expect(json_response["topics"].length).to eq(1)
     end
   end
 end

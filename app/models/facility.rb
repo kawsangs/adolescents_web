@@ -25,7 +25,7 @@
 #  logo              :string
 #
 class Facility < ApplicationRecord
-  include Facilities::Tagging
+  include Taggable
 
   acts_as_paranoid
 
