@@ -1,0 +1,66 @@
+.table-responsive
+  %table.table.table-hover.pretty
+    %thead
+      %tr
+        %th #
+        %th= t('facility.name')
+        %th= t('facility.tags')
+        %th= t('facility.address')
+        %th= t('facility.latitude')
+        %th= t('facility.longitude')
+        %th= t('facility.tels')
+        %th= t('facility.emails')
+        %th= t('facility.websites')
+        %th= t('facility.facebook_pages')
+        %th= t('facility.telegram_name')
+        %th= t('facility.services')
+        %th= t('facility.description')
+        %th= t('facility.business_hours')
+        %th= t('facility_batch.is_valid')
+
+    %tbody
+      - @batch.importing_items.each_with_index do |importing_item, index|
+        - item = importing_item.itemable
+        - if item.valid?
+          = f.fields_for :importing_items, importing_item do |ff|
+            = ff.hidden_field :itemable_id
+            = ff.hidden_field :itemable_type
+            = ff.fields_for :itemable, item do |fff|
+              = render 'field_for_facility', f: fff
+
+        %tr
+          %td
+            .line-badge{ class: status_class(item), 'data-bs-toggle' => 'tooltip', title: status_message(item) }
+              = index + 1
+          %td= item.name
+          %td= item.tag_list
+          %td= item.addresses
+          %td= item.latitude
+          %td= item.longitude
+          %td= item.tels.join(', ')
+          %td= item.emails.join(', ')
+          %td= item.websites.join(', ')
+          %td= item.facebook_pages.join(', ')
+          %td= item.telegram_username
+          %td= item.services.collect(&:name).join(', ')
+          %td
+            .text-truncate{style: 'max-width: 100px'}
+              = item.description
+
+          / Business hours
+          %td{style: 'min-width: 150px;'}
+            - WorkingDay.days.keys.each do |day|
+              - wd = item.working_days.select { |d| d.day == day }.first
+              .d-flex
+                %span
+                  = I18n.t("date.abbr_day_names")[WorkingDay.days[day]] + ": "
+
+                %span.ms-1
+                  - if wd.present?
+                    - wd.working_hours.each do |wh|
+                      %span= "#{t('facility.open')} #{wh.open_at} - #{wh.close_at}"
+                  - else
+                    %span= t('facility.close')
+
+          / Validation status
+          %td= render "shared/validation_status", item: item
