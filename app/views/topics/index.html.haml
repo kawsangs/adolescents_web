@@ -20,10 +20,10 @@
             %th= t('topic.name_in_km')
             %th= t('topic.name_in_en')
             %th= t('topic.version')
-            %th= t('topic.published_at')
-            %th= t('topic.services')
+            %th= t('facility.tags')
             %th= t('shared.audio')
             %th= t('topic.number_of_question')
+            %th= t('topic.published_at')
             %th= t('shared.created_at')
             %th= t('shared.updated_at')
             %th
@@ -36,17 +36,17 @@
               %td= topic.name_en
               %td
                 = topic.version if topic.version.positive?
-              %td= timeago(topic.published_at, 'datetime').html_safe
-              %td= topic.services.collect(&:name).join(', ')
+              %td= topic.tag_list
               %td
                 = link_to topic.audio_identifier, topic.audio_url, target: "_blank", class: 'btn btn-link p-0 d-block text-truncate' if topic.audio.present?
 
               %td= topic.questions.length
+              %td= timeago(topic.published_at, 'datetime').html_safe
               %td= timeago(topic.created_at).html_safe
               %td= timeago(topic.updated_at).html_safe
               %td
                 .d-flex.justify-content-end
-                  - if policy(Topic).publish?
+                  - if policy(topic).publish?
                     %span.me-1{ data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top' }, title: t('shared.publish') }
                       %button.btn.btn-circle.btn-sm.btn-outline-success{ "data-bs-target" => "#confirmModalPublish", "data-bs-toggle" => "modal", "data-bs-message" => { type: t('topic.topic'), name: topic.name, url: publish_topic_path(topic)}, :type => "button" }
                         %i.fa-solid.fa-file-export

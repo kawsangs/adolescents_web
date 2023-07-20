@@ -13,7 +13,7 @@
 #  name_en      :string
 #
 class TopicSerializer < ActiveModel::Serializer
-  attributes :id, :name_km, :name_en, :published_at, :service_ids, :audio
+  attributes :id, :name_km, :name_en, :published_at, :service_ids, :audio, :tag_list
 
   has_many :questions
 

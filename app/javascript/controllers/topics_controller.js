@@ -3,68 +3,19 @@ import jquerySortable from 'libs/jquerySortable';
 import Tagify from "@yaireo/tagify"
 
 export default class extends Controller {
-  static targets = [ "btnAddQuestion", "btnCollapseAllTrigger", "serviceIdsInput" ]
+  static targets = [ "btnAddQuestion", "btnCollapseAllTrigger", "tagList" ]
 
   connect() {
     this._initQuestionView();
     this._initSortable();
-
-    this._initValueForInputService();
-    this._initServiceTagify();
+    this._initTagTagify();
   }
 
-  _getServices() {
-    return $(this.serviceIdsInputTarget).data('collection').map(x => ({"value": x.id, "name": x.name}));
-  }
-
-  _initValueForInputService() {
-    let services = this._getServices() || [];
-    let serviceIds = $(this.serviceIdsInputTarget).val().split(' ');
-    let values = services.filter(s => serviceIds.includes(s.value));
-
-    $(this.serviceIdsInputTarget).val(JSON.stringify(values));
-  }
-
-  _initServiceTagify() {
-    let self = this;
-    var tagify = new Tagify(document.querySelector('input[name="topic[service_ids]"]'), {
-        delimiters : null,
-        templates : {
-            tag : this._tagTemplate,
-            dropdownItem : this._dropdownItemTemplate
-        },
-        enforceWhitelist : true,
-        whitelist : self._getServices(),
-        dropdown : {
-            enabled: 1, // suggest tags after a single character input
-            classname : '', // custom class for the suggestions dropdown
-            enabled: 0,
-            closeOnSelect: true
-        },
-        searchKeys: ['name'],
-        originalInputValueFormat: (valuesArr) => valuesArr.map(item => item.value)
-    })
-  }
-
-  _tagTemplate(tagData) {
-    try{
-        return `<tag title='${tagData.name}' contenteditable='false' spellcheck="false" class='tagify__tag ${tagData.class ? tagData.class : ""}' ${this.getAttributes(tagData)}>
-                <x title='remove tag' class='tagify__tag__removeBtn'></x>
-                <div>
-                    <span class='tagify__tag-text'>${tagData.name}</span>
-                </div>
-            </tag>`
-    }
-    catch(err){}
-  }
-
-  _dropdownItemTemplate(tagData) {
-    try {
-        return `<div ${this.getAttributes(tagData)} class='tagify__dropdown__item ${tagData.class ? tagData.class : ""}' >
-                    <span>${tagData.name}</span>
-                </div>`
-    }
-    catch(err){ console.error(err)}
+  _initTagTagify() {
+    new Tagify(this.tagListTarget, {
+      whitelist: $(this.tagListTarget).data('tags'),
+      dropdown: { maxItems: 20, classname: "tags-look", enabled: 0, closeOnSelect: false }
+    });
   }
 
   _initSortable() {
@@ -147,6 +98,17 @@ export default class extends Controller {
 
   _showCollapseTrigger(dom) {
     $(dom).parents('.fieldset').find('.collapse-trigger').show()
+  }
+
+  submitForm(e) {
+    this._reassignValueWithComma($(this.tagListTarget));
+  }
+
+  _reassignValueWithComma(target) {
+    if (target.val().length) {
+      let transformValue = JSON.parse(target.val()).map(x => x.value);
+      target.val(`${transformValue.join(',')}`);
+    }
   }
 
   appendField(event) {
