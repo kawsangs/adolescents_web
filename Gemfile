@@ -77,7 +77,7 @@ gem "paranoia", "~> 2.6.0"
 gem "awesome_nested_set", "~> 3.5.0"
 
 # Tracking change
-gem "audited", "~> 5.0"
+gem "audited", "~> 5.3"
 
 # Background process
 gem "sidekiq", "~> 7.0.8"
