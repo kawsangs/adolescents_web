@@ -1,0 +1,28 @@
+%tr
+  %td{ style: "padding-left:#{16*category.level}px;"}= num
+  %td= category.name
+  %td= image_tag category.image_url, width: 40
+  %td
+    - if category.audio_url.present?
+      %audio{controls: true, style: 'height: 40px;'}
+        %source{src: category.audio_url}
+  %td
+    %div.text-truncate{style: 'max-width: 200px'}= category.description
+
+  %td= category.tag_list
+
+  %td
+    - category.content_sources.each do |cs|
+      %div= "#{cs.name}: #{cs.url}"
+  %td
+    .d-flex.justify-content-end
+      .me-1
+        = link_to new_category_path(parent_id: category.id), class: "btn btn-circle btn-sm btn-info mr-2", data: { toggle: 'tooltip', placement: 'top', title: t('shared.add_sub_category')} do
+          %i.fas.fa-plus
+
+      = render "shared/buttons/edit_button", object: category, url: edit_category_path(category)
+
+      = render 'shared/buttons/delete_button', object: category, message: { type: t('category.category'), name: category.name, url: category_path(category) }
+
+- category.children.each_with_index do |child, index|
+  = render "category", category: child, num: "#{num}.#{index + 1}"

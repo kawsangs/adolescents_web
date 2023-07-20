@@ -19,7 +19,7 @@
             = f.text_field :hint, placeholder: t('topic.hint'), class: "form-control field-definition no-style as-hint"
 
           .w-25.ms-2
-            = render "audio", field: :audio, f: f
+            = render "shared/forms/audio", field: :audio, f: f
 
           %button.btn.btn-outline-primary.btn-add-field{ type: 'button', 'data-questions-target': 'btnAddName', 'data-action': 'questions#showChooseDataType'}
             = t('shared.done')

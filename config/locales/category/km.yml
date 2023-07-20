@@ -1,0 +1,12 @@
+km:
+  category:
+    category: Category
+    new_category: Category ថ្មី
+    parent_category: Category មេ
+    edit_category: កែតម្រូវ category
+    image: រូបភាព
+    audio: សម្លេង
+    tag_list: ថេក
+    source: ប្រភពមាតិកា
+    description: មាតិកា
+    add_source: "+ បន្ថែមប្រភព"

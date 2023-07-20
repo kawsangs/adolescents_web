@@ -1,0 +1,20 @@
+= content_for :header_title_right_col do
+  = render "shared/buttons/download_button", url: categories_path(filter_params.merge(format: :xlsx))
+
+  .ms-1
+    = render "shared/buttons/add_new_button", url: new_category_path
+
+  %button.btn.btn-sm.ms-1{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :type => "button"}
+    %i.fa-solid.fa-ellipsis-vertical
+
+  %ul.dropdown-menu.dropdown-menu-end
+    %li
+      %a.dropdown-item{ href: new_category_importer_path }
+        %i.fa-solid.fa-file-import
+        %span បញ្ចូលទិន្នន័យតាម .zip file
+    %li
+      %a.dropdown-item{ href: category_importers_path }
+        %i.fa-solid.fa-clock-rotate-left
+        %span ប្រវត្តិនៃការបញ្ចូលទិន្នន័យ
+
+= render 'shared/header_title', title: t('sidebar.categories')

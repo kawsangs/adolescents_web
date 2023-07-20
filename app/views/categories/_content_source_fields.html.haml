@@ -1,0 +1,15 @@
+%li{ 'data-controller': 'questions' }
+  %fieldset.fieldset
+    .field-wrapper.p-2
+      .d-flex.flex-grow-1
+        .d-flex.flex-grow-1
+          .flex-grow-1.me-2
+            = f.input :name
+          .flex-grow-1
+            = f.input :url
+
+        .actions.d-flex.flex-column.align-items-center.justify-content-center.ps-2
+          = f.hidden_field :_destroy
+          %a.remove_fields{ href: '#', 'data-questions-target': 'btnRemoveQuestion', 'data-action': 'click->questions#removeQuestion'}
+            %i.fas.fa-trash-alt.text-danger
+

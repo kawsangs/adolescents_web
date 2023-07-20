@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "Api::V1::TagsController", type: :request do
   describe "GET #index" do
     let(:api_key) { create(:api_key) }
-    let(:header) { { "ACCEPT" => "application/json", "Authorization" => "Apikey #{api_key.api_key}" } }
+    let(:headers) { { "ACCEPT" => "application/json", "Authorization" => "Apikey #{api_key.api_key}" } }
     let(:json_response) { JSON.parse(response.body) }
     let!(:tag) { create(:tag) }
 
@@ -12,7 +12,7 @@ RSpec.describe "Api::V1::TagsController", type: :request do
     end
 
     it "returns collection of tags" do
-      expect(json_response.length).to eq(1)
+      expect(json_response["tags"].length).to eq(1)
     end
   end
 end

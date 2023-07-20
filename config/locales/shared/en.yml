@@ -78,3 +78,9 @@ en:
     invalid: Invalid
     drag_to_sort: Drag to sort order
     display_total: "Total items: <b>%{total_count}</b>"
+    content: Content
+    download_zip_sample_form: Download sample file to complete (Zip file .zip)
+    importing_wizard: "Importing %{name} Wizard"
+    yes_i_approve: Yes, I approve
+    confirm_message_no_province: "There are total item <b>%{total_count}</b> importing to the stystem! Do you approve it?"
+    import_success: "%{count} items were successfully imported!"

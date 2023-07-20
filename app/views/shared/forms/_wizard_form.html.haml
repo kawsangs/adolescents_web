@@ -1,39 +1,41 @@
-- sample_url ||= ""
-- batch_item ||= {}
 - cancel_url ||= "/"
-- form_url ||= "/"
+- sample_url ||= "/"
+- item ||= @batch
+- form_url ||= '#'
+- download_sample_form_label ||= t('shared.download_sample_form')
+- accept_file_format ||= ".xlsx"
 
 .w-50.m-auto{'data-controller': 'import-wizard'}
   .mt-4= "#{t('shared.todo_step')}:"
   %ol.mb-3
-    %li= t('shared.download_sample_form')
+    %li= download_sample_form_label
     %li= t('shared.attach_excel_file')
 
   .card.shadow.mb-2
     .card-body
       %span.mr-2 1.
 
-      %a.btn.btn-link.p-0{ href: sample_url, target: "_blank", download: true }
+      %a.btn.btn-link.p-0{ href: sample_url, target: "_blank" }
         %i.fas.fa-cloud-download-alt.fa-sm
-        = t("shared.download_sample_form")
+        = download_sample_form_label
 
   .arrow-wrapper.text-center
     %i.fas.fa-long-arrow-alt-down
 
-  = form_for batch_item, url: form_url do |f|
+  = form_for item, as: :batch, url: form_url do |f|
     #importModals
       .file-wrapper
         .card.shadow
           .card-body
             %span.mr-2 2.
             .form-control.file-control-wrapper
-              = f.file_field :file, accept: ".xls,.xlsx", 'data-action': 'import-wizard#toggleSaveButton'
+              = f.file_field :file, accept: accept_file_format, 'data-action': 'import-wizard#toggleSaveButton'
 
         %small= t('shared.excel_file')
 
       .display-file.d-none
         .card.shadow
-          .card-body
+          .card-body.d-flex
             .excel-icon-wrapper.mr-2
               %i.fas.fa-file-excel
 

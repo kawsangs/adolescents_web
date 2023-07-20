@@ -35,6 +35,9 @@ Rails.application.routes.draw do
     put :publish, on: :member
   end
 
+  resources :category_importers
+  resources :categories
+
   resource :locale, only: [:update]
   resources :visits
   resource :about, only: [:show]

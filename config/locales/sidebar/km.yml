@@ -10,7 +10,7 @@ km:
     videos: វីដេអូ
     mobile_notifications: ការជូនដំណឹងតាមទូរស័ព្ទ
     topics: ប្រធានបទប្រឹក្សា
-    contents: មាតិកា
+    contents: គ្រប់គ្រងមាតិកា
     settings: ការកំណត់
     reports: របាយការណ៍
     interfaces: Interfaces
@@ -23,3 +23,4 @@ km:
     video_authors: អ្នកផលិតវីដេអូ
     how_to_use_in_pdf: របៀបប្រើប្រាស់ជា Pdf
     how_to_use_in_video: របៀបប្រើប្រាស់ជា Video
+    categories: Categories
