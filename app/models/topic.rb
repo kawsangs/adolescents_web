@@ -13,6 +13,8 @@
 #  name_en      :string
 #
 class Topic < ApplicationRecord
+  include Taggable
+
   # Association
   has_many :questions, dependent: :destroy
   has_many :topic_services, dependent: :destroy
@@ -43,6 +45,10 @@ class Topic < ApplicationRecord
 
   def name
     self["name_#{I18n.locale}"]
+  end
+
+  def published?
+    published_at.present?
   end
 
   private

@@ -15,7 +15,7 @@ class TopicsController < ApplicationController
           flash[:alert] = t("shared.file_size_is_too_big", max_record: Settings.max_download_record)
           redirect_to topics_url
         else
-          send_data ActiveModelSerializers::SerializableResource.new(@topics).to_json, type: :json, disposition: "attachment", filename: "topics_#{Time.new.strftime('%Y%m%d_%H_%M_%S')}.json"
+          render json: @topics
         end
       }
     end
@@ -64,16 +64,13 @@ class TopicsController < ApplicationController
   private
     def topic_params
       params.require(:topic).permit(:name_km, :name_en, :audio, :remove_audio,
+        :tag_list,
         questions_attributes: [
           :id, :name, :type, :display_order, :answer,
           :_destroy, :hint, :audio, :remove_audio,
           options_attributes: %i[id name value move_next audio remove_audio message _destroy]
         ]
-      ).merge(service_ids:)
-    end
-
-    def service_ids
-      params[:topic][:service_ids].to_s.split(",")
+      )
     end
 
     def set_topic

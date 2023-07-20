@@ -1,9 +1,10 @@
 .w-75.view-center{'data-controller': 'topics'}
-  = simple_form_for @topic, html: { class: 'main-form' } do |f|
+  = simple_form_for @topic, html: { class: 'main-form', 'data-action': 'topics#submitForm' } do |f|
     .mb-3= f.input :name_km
     .mb-3= f.input :name_en
 
-    .mb-3= f.input :service_ids, label: t('topic.services'), input_html: { 'data-topics-target': 'serviceIdsInput', 'data-collection': Service.all.to_json }
+    / Tags
+    .mb-3= f.input :tag_list, label: t('facility.tags'), input_html: { 'data-topics-target': 'tagList', 'data-tags': Facility.tag_counts.sort_by(&:count).reverse.pluck(:name).to_json }
 
     .mb-3
       %label= t('shared.audio')

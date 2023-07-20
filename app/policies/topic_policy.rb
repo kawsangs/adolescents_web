@@ -16,7 +16,7 @@ class TopicPolicy < ApplicationPolicy
   end
 
   def publish?
-    create?
+    create? && !record.published?
   end
 
   class Scope < Scope
