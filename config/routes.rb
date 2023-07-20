@@ -38,6 +38,9 @@ Rails.application.routes.draw do
   resources :category_importers
   resources :categories
 
+  resources :facility_importers
+  resources :facilities
+
   resource :locale, only: [:update]
   resources :visits
   resource :about, only: [:show]
@@ -45,12 +48,10 @@ Rails.application.routes.draw do
     resources :quizzes, only: [:index, :show]
   end
 
-  resources :facilities
   resources :tags do
     post :sort, on: :collection
   end
 
-  resources :facility_batches, except: [:update, :edit], param: :code
   resources :videos do
     post :sort, on: :collection
   end

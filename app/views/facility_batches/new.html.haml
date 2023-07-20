@@ -1,7 +1,0 @@
-/ - @facility_batch = FacilityBatch.first
-/ = render template: "facility_batches/wizard_review"
-
-.container-fluid.px-4{'data-controller': 'facility-batches'}
-  = render "shared/headers/progress_arrow_header", title:t('facility_batch.import_wizard'), show_confirm: true
-
-  = render "shared/forms/wizard_form", sample_url: '/facility_batch_sample.xlsx', batch_item: @facility_batch, cancel_url: facilities_path, form_url: facility_batches_path
