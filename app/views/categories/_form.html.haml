@@ -27,7 +27,8 @@
 
     / Source
     %ol.fields
-      %label= t('category.source')
+      %div
+        %label= t('category.source')
       = f.simple_fields_for :content_sources, f.object.content_sources do |builder|
         = render 'content_source_fields', f: builder
 

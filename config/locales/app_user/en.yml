@@ -24,3 +24,16 @@ en:
     number_of_quiz: "# of consulting quiz"
     number_of_visit: "# of visits"
     total_devices: Total devices
+    occupation: Occupation
+    education_level: Education level
+    n_a: N/A
+    general_knowledge: General knowledge
+    university: University
+    tvet: TVET
+    dropout_student: Dropout student
+    student: Student
+    entertainment_worker: Entertainment worker
+    factory_worker: Factory worker
+    local_migrant_worker: Local migrant worker
+    oversea_migrant_worker: Oversea migrant worker
+    other: Other
