@@ -56,7 +56,7 @@ gem "omniauth-facebook", "~> 9.0.0"
 gem "recaptcha", "~> 5.10.0"
 
 # Oauth authentication
-gem "doorkeeper", "~> 5.5.4"
+gem "doorkeeper", "~> 5.6.6"
 
 # View
 gem "haml-rails", "~> 2.0.1"
