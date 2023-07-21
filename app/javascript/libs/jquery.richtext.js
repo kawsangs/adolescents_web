@@ -2189,4 +2189,4 @@ window.jQuery = jquery
 
     };
 
-}(jQuery));
+}(jQuery, window, 'richtext'));
