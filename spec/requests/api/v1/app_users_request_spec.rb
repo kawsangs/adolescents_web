@@ -12,7 +12,7 @@ RSpec.describe "Api::V1::AppUsersController", type: :request do
 
     let(:valid_params) { {
       gender: "male", age: 20, province_id: "01", registered_at: DateTime.yesterday, device_id: "123", platform: "ios",
-      occupation: "student", education_level: "under_grade_twelve",
+      occupation: "student", education_level: "general_knowledge",
       app_user_characteristics_attributes: [
         { characteristic_attributes: { code: "PO" } },
         { characteristic_attributes: { code: "IP" } },

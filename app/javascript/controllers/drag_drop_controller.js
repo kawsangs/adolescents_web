@@ -8,6 +8,8 @@ export default class extends Controller {
 
   _initSortable() {
     var el = document.getElementById('tag-group');
+    if (!el) return;
+
     let self = this;
     new Sortable(el, {
         animation: 150,

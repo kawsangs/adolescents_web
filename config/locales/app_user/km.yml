@@ -24,3 +24,16 @@ km:
     number_of_quiz: "ចំនួននៃតេស្តប្រឹក្សា"
     number_of_visit: "ចំនួនទស្សនៈកិច្ច"
     total_devices: ចំនួនឧបករណ៍
+    occupation: មុខរបរ
+    education_level: កម្រិតវប្បធម៌
+    n_a: N/A
+    general_knowledge: ចំណេះដឹងទូទៅ
+    university: បរិញ្ញាបត្រ/បរិញ្ញាបត្ររង
+    tvet: TVET
+    dropout_student: បោះបង់ការសិក្សា
+    student: សិស្ស/និស្សិត
+    entertainment_worker: បុគ្គលិកសេវាកំសាន្ត
+    factory_worker: កម្មកររោងចក្រ
+    local_migrant_worker: ពលករចំណាកស្រុកក្នុងប្រទេស
+    oversea_migrant_worker: ពលករចំណាកស្រុកក្រៅប្រទេស
+    other: ផ្សេងៗ

@@ -1,6 +1,6 @@
 import moment from 'moment/min/moment-with-locales.min.js';
 import 'jquery';
-import "daterangepicker"
+import "daterangepicker";
 
 export default (function() {
   let tr = {};
@@ -71,7 +71,9 @@ export default (function() {
       options.endDate = end;
     }
 
-    $('#daterange').daterangepicker(options);
+    if ($('#daterange')) {
+      $('#daterange').daterangepicker(options);
+    }
   }
 
   function customRange() {

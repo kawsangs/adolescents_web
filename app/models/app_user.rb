@@ -22,7 +22,7 @@ class AppUser < ApplicationRecord
 
   enum education_level: {
     n_a: 0,
-    under_grade_twelve: 1,
+    general_knowledge: 1,
     university: 2,
     tvet: 3,
     dropout_student: 4
