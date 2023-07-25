@@ -1,0 +1,8 @@
+.container-fluid.px-4
+  = content_for :header_title_right_col do
+    = render "shared/buttons/back_button", url: videos_path
+    = render "shared/buttons/add_new_button", url: new_video_importer_path, name: t('sidebar.videos')
+
+  = render 'shared/header_title', title: t('shared.importing_history', name: t('sidebar.videos'))
+
+  = render "shared/batches/batch_list"

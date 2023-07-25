@@ -51,11 +51,10 @@ Rails.application.routes.draw do
     post :sort, on: :collection
   end
 
+  resources :video_importers
   resources :videos do
     post :sort, on: :collection
   end
-  resources :video_batches, except: [:update, :edit], param: :code
-
   resources :video_authors do
     post :sort, on: :collection
   end

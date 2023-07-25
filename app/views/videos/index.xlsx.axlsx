@@ -1,0 +1,16 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "videos") do |sheet|
+  sheet.add_row %w(id name url author category)
+
+  @videos.each do |video|
+    row = [
+      video.id,
+      video.name,
+      video.url,
+      video.video_author_name,
+      video.video_category_name
+    ]
+
+    sheet.add_row row, types: row.length.times.map { |t| :string }
+  end
+end
