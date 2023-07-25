@@ -1,0 +1,46 @@
+.table-responsive
+  %table.table.table-hover.pretty
+    %thead
+      %tr
+        %th #
+        %th= t('video.name')
+        %th= t('video.url')
+        %th= t('video.author')
+        %th= t('video.category')
+        %th= t('shared.is_valid')
+
+    %tbody
+      - @batch.importing_items.each_with_index do |importing_item, index|
+        - item = importing_item.itemable
+        - if item.valid?
+          = f.fields_for :importing_items, importing_item do |ff|
+            = ff.hidden_field :itemable_id
+            = ff.hidden_field :itemable_type
+            = ff.fields_for :itemable, item do |fff|
+              = fff.hidden_field :_destroy
+              = fff.hidden_field :name
+              = fff.hidden_field :url
+
+              / Author
+              = fff.fields_for :video_author, fff.object.video_author do |vf|
+                = vf.hidden_field :name
+
+              / Category
+              = fff.fields_for :video_category, fff.object.video_category do |cf|
+                = cf.hidden_field :name
+
+        %tr
+          %td
+            .line-badge{ class: status_class(item), 'data-bs-toggle' => 'tooltip', title: status_message(item) }
+              = index + 1
+          %td= item.name
+          %td
+            - if item.url.present?
+              = link_to item.url, target: '_blank' do
+                = image_tag item.thumbnail, style: 'width: 50px;'
+
+          %td= item.video_author_name
+          %td= item.video_category_name
+
+          / Validation status
+          %td= render "shared/validation_status", item: item

@@ -1,11 +1,5 @@
-= content_for :header_title_right_col do
-  - if current_user.primary_admin?
-    = render "shared/buttons/download_button", url: videos_path(filter_params.merge(format: :json)), label: t('shared.download_json')
-
-  .ms-1= render "new_buttons"
-
 .container-fluid.px-4{'data-controller': 'drag-drop'}
-  = render "shared/header_title", title: t("video.videos")
+  = render "page_heading"
   = render "filters"
   = render "shared/no_data", items: @videos
 
