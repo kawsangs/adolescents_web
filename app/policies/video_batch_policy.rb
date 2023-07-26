@@ -1,6 +1,6 @@
 class VideoBatchPolicy < ApplicationPolicy
   def index?
-    user.primary_admin?
+    create?
   end
 
   def show?
@@ -8,7 +8,7 @@ class VideoBatchPolicy < ApplicationPolicy
   end
 
   def create?
-    user.primary_admin?
+    user.primary_admin? || admin?
   end
 
   def update?

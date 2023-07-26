@@ -16,7 +16,18 @@ class VideosController < ApplicationController
           flash[:alert] = t("shared.file_size_is_too_big", max_record: Settings.max_download_record)
           redirect_to videos_url
         else
-          send_data ActiveModelSerializers::SerializableResource.new(@videos).to_json, type: :json, disposition: "attachment", filename: "videos_#{Time.new.strftime('%Y%m%d_%H_%M_%S')}.json"
+          render json: @videos
+        end
+      }
+
+      format.xlsx {
+        @videos = query_video
+
+        if @videos.length > Settings.max_download_record
+          flash[:alert] = t("shared.file_size_is_too_big", max_record: Settings.max_download_record)
+          redirect_to videos_url
+        else
+          render xlsx: "index", filename: "video_#{Time.new.strftime('%Y%m%d_%H_%M_%S')}.xlsx"
         end
       }
     end
