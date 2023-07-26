@@ -12,51 +12,16 @@
 #  pageable_type :integer
 #
 class Visit < ApplicationRecord
-  # Association
-  belongs_to :page, counter_cache: true
-  belongs_to :app_user
-  belongs_to :pageable, polymorphic: true, optional: true
+  include Visits::Pageable
 
-  # Enum
-  enum pageable_type: {
-    Page: 1,
-    Facility: 2,
-    Video: 3,
-    Topic: 4,
-    Contact: 5
-  }
+  # Association
+  belongs_to :app_user
 
   # Callback
   after_commit :update_app_user_last_accessed, on: [:create]
-  before_validation :set_pageable
 
   # Delegation
-  delegate :name, :code, to: :page, prefix: true, allow_nil: true
-  delegate :name, to: :pageable, prefix: true, allow_nil: true
   delegate :platform, to: :app_user, prefix: false, allow_nil: true
-
-  # Nested attribute
-  accepts_nested_attributes_for :page, reject_if: lambda { |attributes|
-    attributes["code"].blank?
-  }
-
-  # Instant method
-  def page_attributes=(attribute)
-    _page = Page.find_or_initialize_by(code: attribute[:code])
-    _page.parent ||= Page.find_or_create_by(code: attribute[:parent_code]) if attribute[:parent_code].present?
-    _page.update(name: attribute[:name])
-
-    self.page = _page
-    set_pageable
-  end
-
-  def set_pageable
-    self.pageable ||= page
-  end
-
-  def update_app_user_last_accessed
-    app_user.update_column(:last_accessed_at, visit_date)
-  end
 
   def last_visit
     self.class.where(app_user_id:, pageable_type:, pageable_id:)
@@ -72,4 +37,9 @@ class Visit < ApplicationRecord
     scope = scope.joins(:app_user).where('app_users.platform': params[:platform]) if params[:platform].present?
     scope
   end
+
+  private
+    def update_app_user_last_accessed
+      app_user.update_column(:last_accessed_at, visit_date)
+    end
 end

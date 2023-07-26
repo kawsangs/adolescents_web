@@ -11,7 +11,10 @@
     .d-flex.justify-content-end
       = render 'shared/buttons/edit_button', object: page, url: edit_page_path(page)
 
-      = render 'shared/buttons/delete_button', object: page,  message: { type: t('page.page'), name: page.name, url: page_path(page) }
+      - if page.visits_count.zero?
+        = render 'shared/buttons/delete_button', object: page,  message: { type: t('page.page'), name: page.name, url: page_path(page) }
+      - else
+        = render 'shared/buttons/delete_disable_button'
 
 - page.children.each_with_index do |p, i|
   = render "page", page: p, num: "#{num}.#{i + 1}"

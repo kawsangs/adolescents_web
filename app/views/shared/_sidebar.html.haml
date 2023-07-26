@@ -58,9 +58,6 @@
             - if policy(Tag).index?
               = link_to t('sidebar.tags'), tags_path, class: ['nav-link', css_active_class('tags')]
 
-            - if policy(Page).index?
-              = link_to t('sidebar.pages'), pages_path, class: ['nav-link', css_active_class('pages')]
-
             - if policy(VideoAuthor).index?
               = link_to t('sidebar.video_authors'), video_authors_path, class: ['nav-link', css_active_class('video_authors')]
 
