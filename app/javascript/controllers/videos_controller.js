@@ -1,10 +1,13 @@
 import { Controller } from "@hotwired/stimulus";
 import Typeahead from "typeahead";
+import tagList from "commons/tag_list";
 
 export default class extends Controller {
+  static targets = [ "tagList" ];
+
   connect() {
-    this.initTypeahead($('.typeahead-category')[0], $("[data-categories]").data('categories'));
     this.initTypeahead($('.typeahead-author')[0], $("[data-authors]").data('authors'));
+    tagList.initTagify(this.tagListTarget);
   }
 
   initTypeahead(dom, collection) {
@@ -16,6 +19,10 @@ export default class extends Controller {
       minLength: 1,
       source: self.substringMatcher(collection)
     })
+  }
+
+  submitForm(e) {
+    tagList.reassignValueWithComma($(this.tagListTarget));
   }
 
   substringMatcher(strs) {

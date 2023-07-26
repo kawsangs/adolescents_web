@@ -6,7 +6,7 @@
       = image_tag video.thumbnail, style: 'width: 50px;'
 
   .w-25= video.video_author_name
-  .w-25= video.video_category_name
+  .w-25= video.tag_list
   .w-25= timeago(video.created_at).html_safe
   .w-25
     .d-flex.justify-content-end

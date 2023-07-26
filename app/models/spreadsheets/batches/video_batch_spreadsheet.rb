@@ -9,7 +9,7 @@ module Spreadsheets
 
       def importing_items
         ids = @items.map { |r| r["id"] }
-        items = Video.where(id: ids).includes(:video_author, :video_category)
+        items = Video.where(id: ids).includes(:video_author, :tags)
 
         @items.map do |row|
           item = items.select { |f| f.id == row["id"] }.first || Video.new
