@@ -11,10 +11,10 @@ module Spreadsheets
 
       def process(row)
         video.attributes = {
-          name: row["name"],
+          name: row["title"],
           url: row["url"],
-          video_author_attributes: { name: row["author"] },
-          video_category_attributes: { name: row["category"] }
+          tag_list: row["category"],
+          video_author_attributes: { name: row["author"] }
         }
 
         video

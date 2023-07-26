@@ -1,16 +1,16 @@
 import { Controller } from "@hotwired/stimulus"
 import logo from 'commons/logo';
-import Tagify from "@yaireo/tagify";
 import "jquery";
 import "libs/jquery.richtext";
+import tagList from 'commons/tag_list';
 
 export default class extends Controller {
   static targets = [ "tagList", "btnAddQuestion" ]
 
   connect() {
     logo.init();
-    this._initTagTagify();
     this._initEditor();
+    tagList.initTagify(this.tagListTarget);
   }
 
   appendField(event) {
@@ -110,21 +110,7 @@ export default class extends Controller {
     });
   }
 
-  _initTagTagify() {
-    new Tagify(this.tagListTarget, {
-      whitelist: $(this.tagListTarget).data('tags'),
-      dropdown: { maxItems: 20, classname: "tags-look", enabled: 0, closeOnSelect: false }
-    });
-  }
-
   submitForm(e) {
-    this._reassignValueWithComma($(this.tagListTarget));
-  }
-
-  _reassignValueWithComma(target) {
-    if (target.val().length) {
-      let transformValue = JSON.parse(target.val()).map(x => x.value);
-      target.val(`${transformValue.join(',')}`);
-    }
+    tagList.reassignValueWithComma($(this.tagListTarget))
   }
 }

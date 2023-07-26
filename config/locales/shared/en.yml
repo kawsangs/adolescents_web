@@ -85,3 +85,4 @@ en:
     confirm_message_no_province: "There are total item <b>%{total_count}</b> importing to the stystem! Do you approve it?"
     import_success: "%{count} items were successfully imported!"
     importing_history: "Importing %{name} history"
+    tags: Tags

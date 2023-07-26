@@ -1,5 +1,5 @@
 .w-50.view-center{'data-controller': 'videos'}
-  = simple_form_for @video do |f|
+  = simple_form_for @video, html: {'data-action': 'videos#submitForm'} do |f|
     .mb-3= f.input :name, label: t('video.title')
     .mb-3= f.input :url, label: t('video.url')
 
@@ -9,11 +9,8 @@
           %label= t('video.author')
           %div= builder.input :name, label: false, input_html: { class: 'typeahead-author' }
 
-    .mb-3
-      = f.fields_for :video_category, (@video.video_category || @video.build_video_category ) do |builder|
-        .w-100{ 'data-categories' => VideoCategory.pluck(:name) }
-          %label= t('video.category')
-          %div= builder.input :name, label: false, input_html: { class: 'typeahead-category' }
+    / Tags
+    .mb-3= f.input :tag_list, label: t('shared.tags'), input_html: { 'data-videos-target': 'tagList', 'data-tags': Facility.tag_counts.sort_by(&:count).reverse.pluck(:name).to_json }
 
     .actions
       = link_to t('shared.cancel'), videos_path, class: 'btn btn-secondary me-1'

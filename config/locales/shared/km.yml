@@ -85,3 +85,4 @@ km:
     confirm_message_no_province: "មានទិន្នន័យសរុប <b>%{total_count}</b> នឹងត្រូវបញ្ចូលក្នុងប្រព័ន្ធ! តើអ្នកយល់ព្រមឬទេ?"
     import_success: "ទិន្នន័យចំនួន %{count} ត្រូវបានបញ្ចូលដោយជោគជ័យ"
     importing_history: "ប្រវត្តិនៃការបញ្ចូល%{name}តាម Excel"
+    tags: ថេក/ក្រុម

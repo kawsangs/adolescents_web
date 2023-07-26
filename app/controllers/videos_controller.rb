@@ -77,9 +77,8 @@ class VideosController < ApplicationController
 
     def video_params
       params.require(:video).permit(
-        :name, :url, :category,
-        video_author_attributes: [:name],
-        video_category_attributes: [:name]
+        :name, :url, :tag_list,
+        video_author_attributes: [:name]
       )
     end
 
@@ -88,6 +87,6 @@ class VideosController < ApplicationController
     end
 
     def query_video
-      authorize Video.filter(filter_params).includes(:video_author, :video_category).order(display_order: :asc)
+      authorize Video.filter(filter_params).includes(:video_author, :tags).order(display_order: :asc)
     end
 end

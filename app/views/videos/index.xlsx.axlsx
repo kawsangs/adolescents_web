@@ -8,7 +8,7 @@ wb.add_worksheet(name: "videos") do |sheet|
       video.name,
       video.url,
       video.video_author_name,
-      video.video_category_name
+      video.tag_list
     ]
 
     sheet.add_row row, types: row.length.times.map { |t| :string }

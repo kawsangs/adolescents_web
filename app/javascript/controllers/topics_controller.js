@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 import jquerySortable from 'libs/jquerySortable';
-import Tagify from "@yaireo/tagify"
+import tagList from 'commons/tag_list';
 
 export default class extends Controller {
   static targets = [ "btnAddQuestion", "btnCollapseAllTrigger", "tagList" ]
@@ -8,14 +8,7 @@ export default class extends Controller {
   connect() {
     this._initQuestionView();
     this._initSortable();
-    this._initTagTagify();
-  }
-
-  _initTagTagify() {
-    new Tagify(this.tagListTarget, {
-      whitelist: $(this.tagListTarget).data('tags'),
-      dropdown: { maxItems: 20, classname: "tags-look", enabled: 0, closeOnSelect: false }
-    });
+    tagList.initTagify(this.tagListTarget);
   }
 
   _initSortable() {
@@ -101,14 +94,7 @@ export default class extends Controller {
   }
 
   submitForm(e) {
-    this._reassignValueWithComma($(this.tagListTarget));
-  }
-
-  _reassignValueWithComma(target) {
-    if (target.val().length) {
-      let transformValue = JSON.parse(target.val()).map(x => x.value);
-      target.val(`${transformValue.join(',')}`);
-    }
+    tagList.reassignValueWithComma($(this.tagListTarget));
   }
 
   appendField(event) {
