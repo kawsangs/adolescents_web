@@ -17,6 +17,8 @@
             %th= sortable "gender", t('app_user.gender')
             %th= sortable "age", t('app_user.age')
             %th= sortable "province_id", t('app_user.province')
+            %th= t('app_user.occupation')
+            %th= t('app_user.education_level')
             %th= t('app_user.characteristic')
             %th= t('shared.device_id')
             %th= sortable "registered_at", t('app_user.registered_at')
@@ -39,6 +41,8 @@
 
               %td
                 = app_user.province["name_#{I18n.locale}"] unless app_user.anonymous?
+              %td= t("app_user.#{app_user.occupation}")
+              %td= t("app_user.#{app_user.education_level}")
               %td= app_user.characteristics.map(&:"name_#{I18n.locale}").join(', ')
               %td= app_user.display_device_id
               %td= timeago(app_user.registered_at).html_safe
