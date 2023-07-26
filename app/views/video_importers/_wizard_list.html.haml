@@ -3,10 +3,10 @@
     %thead
       %tr
         %th #
-        %th= t('video.name')
+        %th= t('video.title')
         %th= t('video.url')
         %th= t('video.author')
-        %th= t('video.category')
+        %th= t('shared.tags')
         %th= t('shared.is_valid')
 
     %tbody
@@ -20,14 +20,11 @@
               = fff.hidden_field :_destroy
               = fff.hidden_field :name
               = fff.hidden_field :url
+              = fff.hidden_field :tag_list
 
               / Author
               = fff.fields_for :video_author, fff.object.video_author do |vf|
                 = vf.hidden_field :name
-
-              / Category
-              = fff.fields_for :video_category, fff.object.video_category do |cf|
-                = cf.hidden_field :name
 
         %tr
           %td
@@ -40,7 +37,7 @@
                 = image_tag item.thumbnail, style: 'width: 50px;'
 
           %td= item.video_author_name
-          %td= item.video_category_name
+          %td= item.tag_list
 
           / Validation status
           %td= render "shared/validation_status", item: item
