@@ -1,0 +1,14 @@
+.w-50.view-center{'data-controller': 'contact-form'}
+  = simple_form_for @contact.becomes(Contact) do |f|
+    .mb-3= f.input :name, label: t('contact.name')
+    .mb-3= f.input :type, label: t('contact.channel'), collection: Contact::TYPES, input_html: { disabled: f.object.persisted?, class: 'form-select' }
+    .mb-3= f.input :value, label: t('contact.value')
+    .mb-3
+      = f.fields_for :contact_directory, (@contact.contact_directory || @contact.build_contact_directory ) do |builder|
+        .w-100{ 'data-directories' => ContactDirectory.pluck(:name) }
+          %label= t('contact.directory')
+          %div= builder.input :name, label: false, input_html: { class: 'typeahead-directory' }
+
+    .actions
+      = link_to t('shared.cancel'), contacts_path, class: 'btn btn-secondary me-1'
+      = f.submit t('shared.save'), class: 'btn btn-primary'

@@ -1,0 +1,16 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "videos") do |sheet|
+  sheet.add_row %w(id name value channel category)
+
+  @contacts.each do |contact|
+    row = [
+      contact.id,
+      contact.name,
+      contact.value,
+      contact.channel,
+      contact.contact_directory_name,
+    ]
+
+    sheet.add_row row, types: row.length.times.map { |t| :string }
+  end
+end
