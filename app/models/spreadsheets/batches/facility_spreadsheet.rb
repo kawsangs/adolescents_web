@@ -37,18 +37,10 @@ module Spreadsheets
 
       private
         def working_days_attributes(row)
-          days = []
-          days = facility.working_days.map { |wd| { id: wd.id, _destroy: 1 } } if !facility.new_record?
+          days = facility.working_days.map { |wd| { id: wd.id, _destroy: 1 } }
 
           WorkingDay.days.keys.each do |day|
-            open_at = row["#{day.titleize}_open_at"]
-            close_at = row["#{day.titleize}_close_at"]
-
-            if open_at.to_i == 24
-              days.push({ day:, open: true, working_hours_attributes: [ { open_at: } ] })
-            else
-              days.push({ day:, open: true, working_hours_attributes: [ { open_at:, close_at: } ] }) if open_at.present? && close_at.present?
-            end
+            days.push(Spreadsheets::Batches::WorkingDaySpreadsheet.new(day, row).process)
           end
 
           days
