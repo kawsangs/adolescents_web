@@ -13,7 +13,7 @@ module Spreadsheets
         {
           day: @day,
           open: open_business?,
-          working_hours_attributes: working_hours_attributes
+          working_hours_attributes:
         }
       end
 

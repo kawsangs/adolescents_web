@@ -1,0 +1,36 @@
+.table-responsive
+  %table.table.table-hover.pretty
+    %thead
+      %tr
+        %th #
+        %th= t('contact.name')
+        %th= t('contact.channel')
+        %th= t('contact.value')
+        %th= t('contact.directory')
+        %th= t('shared.is_valid')
+
+    %tbody
+      - @batch.importing_items.each_with_index do |importing_item, index|
+        - item = importing_item.itemable
+        - if item.valid?
+          = f.fields_for :importing_items, importing_item do |ff|
+            = ff.hidden_field :itemable_id
+            = ff.hidden_field :itemable_type
+            = ff.fields_for :itemable, item do |fff|
+              = fff.hidden_field :name
+              = fff.hidden_field :type
+              = fff.hidden_field :value
+              = fff.fields_for :contact_directory, fff.object.contact_directory do |cf|
+                = cf.hidden_field :name
+
+        %tr
+          %td
+            .line-badge{ class: status_class(item), 'data-bs-toggle' => 'tooltip', title: status_message(item) }
+              = index + 1
+          %td= item.name
+          %td= item.channel
+          %td= item.value
+          %td= item.contact_directory_name
+
+          / Validation status
+          %td= render "shared/validation_status", item: item
