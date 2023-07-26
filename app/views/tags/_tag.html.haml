@@ -20,9 +20,7 @@
       - if tag.taggings_count.zero?
         = render 'shared/buttons/delete_button', object: tag,  message: { type: t('tag.tag'), name: tag.name, url: tag_path(tag) }
       - else
-        %span{ data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top' }, title: t('shared.cannot_delete') }
-          %button.btn.btn-circle.btn-sm.btn-outline-danger{ type: 'button', disabled: true }
-            %i.fas.fa-trash-alt
+        = render 'shared/buttons/delete_disable_button'
 
       / drag-drop handler
       - if policy(Tag).sort?

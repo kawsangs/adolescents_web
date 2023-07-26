@@ -16,7 +16,7 @@ class PagePolicy < ApplicationPolicy
   end
 
   def destroy?
-    create? && record.visits.length.zero?
+    update? && record.visits.length.zero?
   end
 
   class Scope < Scope

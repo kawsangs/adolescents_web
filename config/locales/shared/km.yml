@@ -86,3 +86,4 @@ km:
     import_success: "ទិន្នន័យចំនួន %{count} ត្រូវបានបញ្ចូលដោយជោគជ័យ"
     importing_history: "ប្រវត្តិនៃការបញ្ចូល%{name}តាម Excel"
     tags: ថេក/ក្រុម
+    setting: ការកំណត់
