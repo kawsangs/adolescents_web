@@ -23,13 +23,13 @@ module Samples
       end
 
       def get_education_level(user)
-        return 'n_a' if user.n_a?
+        return "n_a" if user.n_a?
 
         user.student? ? student_education_levels.sample : ::AppUser.education_levels.keys.sample
       end
 
       def student_education_levels
-        ['general_knowledge', 'university', 'tvet']
+        ["general_knowledge", "university", "tvet"]
       end
 
       def app_user_characteristics

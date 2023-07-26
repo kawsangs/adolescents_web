@@ -1,0 +1,9 @@
+en:
+  contact:
+    contact: Contact
+    name: Name
+    value: Value
+    channel: Channel
+    new_contact: New contact
+    edit_contact: Edit contact
+    directory: Directory

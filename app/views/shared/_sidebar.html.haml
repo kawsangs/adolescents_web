@@ -40,6 +40,9 @@
 
         #collapseContents.collapse{"aria-labelledby" => "headingOne", "data-bs-parent" => "#sidenavAccordion"}
           %nav.sb-sidenav-menu-nested.nav
+            - if policy(Contact).index?
+              = link_to t('sidebar.contacts'), contacts_path, class: ['nav-link', css_active_class('contacts')]
+
             - if policy(Category).index?
               = link_to t('sidebar.categories'), categories_path, class: ['nav-link', css_active_class('categories')]
 

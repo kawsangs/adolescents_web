@@ -1,0 +1,40 @@
+.container-fluid.px-4.contacts
+  = render "page_heading"
+  / = render "filters"
+  = render "shared/no_data", items: @contacts
+
+  - if @contacts.present?
+    = render "shared/pagination_title", objects: @contacts
+
+    .table-responsive
+      %table.table.table-hover.pretty
+        %thead
+          %tr
+            %th #
+            %th= t('contact.name')
+            %th= t('contact.value')
+            %th= t('contact.channel')
+            %th= t('contact.directory')
+            %th= t('shared.created_at')
+            %th= t('shared.updated_at')
+            %th
+
+        %tbody
+          - @contacts.each_with_index do |contact, index|
+            %tr
+              %td= @pagy.from + index
+              %td= contact.name
+              %td= contact.value
+              %td= contact.channel
+              %td= contact.contact_directory_name
+              %td= timeago(contact.created_at).html_safe
+              %td= timeago(contact.updated_at).html_safe
+              %td
+                .d-flex.justify-content-end
+                  = render 'shared/buttons/edit_button', object: contact, url: edit_contact_path(contact)
+
+                  = render 'shared/buttons/delete_button', object: contact,  message: { type: t('contact.contact'), name: contact.name, url: contact_path(contact) }
+
+    = render "shared/footers/pagination"
+
+= render "shared/modals/confirm_delete_modal"

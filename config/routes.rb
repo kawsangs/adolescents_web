@@ -60,6 +60,9 @@ Rails.application.routes.draw do
     post :sort, on: :collection
   end
 
+  resources :contacts
+  resources :contact_importers
+
   resources :mobile_notifications
   resources :mobile_notification_importers, except: [:update, :edit], param: :code
 

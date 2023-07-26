@@ -22,7 +22,8 @@ class Visit < ApplicationRecord
     Page: 1,
     Facility: 2,
     Video: 3,
-    Topic: 4
+    Topic: 4,
+    Contact: 5
   }
 
   # Callback
