@@ -12,9 +12,10 @@ km:
     woman: ស្រ្តី
     author: អ្នកផលិត
     name: ចំណងជើង
-    number_of_video: ចំនួនវីដេអូ
+    number_of_video: "# ចំនួនវីដេអូ"
     video_author: អ្នកផលិតវីដេអូ
     authors_selected: អ្នកផលិត ត្រុូបានជ្រើសរើស
     any_author: គ្រប់អ្នកផលិត
     search_by_title: ស្វែងរកតាមចំណងជើង
+    search_by_tag: ស្វែងរកតាមថេក
     edit_video_author: កែតម្រូវអ្នកផលិតវីដេអូ

@@ -14,6 +14,7 @@ class Tag < ApplicationRecord
   has_many :facilities, through: :taggings, source: :taggable, source_type: "Facility"
   has_many :categories, through: :taggings, source: :taggable, source_type: "Category"
   has_many :topics, through: :taggings, source: :taggable, source_type: "Topic"
+  has_many :videos, through: :taggings, source: :taggable, source_type: "Video"
 
   before_create :set_display_order
   before_destroy :confirm_blank_tagging
@@ -21,7 +22,7 @@ class Tag < ApplicationRecord
   # Scope
   default_scope { order(display_order: :asc) }
 
-  def self.filter(params)
+  def self.filter(params = {})
     scope = all
     scope = scope.where("LOWER(name) LIKE ?", "%#{params[:name].downcase}%") if params[:name].present?
     scope

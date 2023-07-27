@@ -54,6 +54,7 @@ Rails.application.routes.draw do
     post :sort, on: :collection
   end
 
+  resources :video_tags, only: [:index]
   resources :video_importers
   resources :videos do
     post :sort, on: :collection

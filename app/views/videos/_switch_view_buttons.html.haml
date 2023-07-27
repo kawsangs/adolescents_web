@@ -1,0 +1,12 @@
+.btn-group.btn-group-sm{"aria-label" => "Basic outlined example", :role => "group"}
+  = link_to video_authors_path, class: ['btn btn-outline-secondary', css_active_class('video_authors')] do
+    %i.fa-solid.fa-at
+    = t("video.video_author")
+
+  = link_to video_tags_path, class: ['btn btn-outline-secondary', css_active_class('video_tags')] do
+    %i.fa-solid.fa-list-ul
+    = t("shared.tags")
+
+  = link_to videos_path, class: ['btn btn-outline-secondary', css_active_class('videos')] do
+    %i.fa-solid.fa-film
+    = t("video.videos")
