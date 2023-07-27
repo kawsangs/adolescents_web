@@ -39,6 +39,7 @@ Rails.application.routes.draw do
 
   resources :facility_importers
   resources :facilities
+  resources :facility_tags
 
   resource :locale, only: [:update]
   resources :visits

@@ -87,3 +87,6 @@ en:
     importing_history: "Importing %{name} history"
     tags: Tags
     setting: Setting
+    tag: Tag
+    search_by_tag: Search by tag
+    search_by_name: Search by name

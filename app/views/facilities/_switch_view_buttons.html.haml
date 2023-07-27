@@ -1,0 +1,8 @@
+.btn-group.btn-group-sm{"aria-label" => "Basic outlined example", :role => "group"}
+  = link_to facility_tags_path, class: ['btn btn-outline-secondary', css_active_class('facility_tags')] do
+    %i.fa-solid.fa-list-ul
+    = t("shared.tags")
+
+  = link_to facilities_path, class: ['btn btn-outline-secondary', css_active_class('facilities')] do
+    %i.fa-solid.fa-house-chimney-medical
+    = t("facility.facilities")
