@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :topic_tags, only: [:index]
   resources :topics do
     put :publish, on: :member
   end

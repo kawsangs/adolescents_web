@@ -38,8 +38,9 @@ class Topic < ApplicationRecord
   before_update :upgrade_version, if: :published_at_changed?
 
   def self.filter(params = {})
+    param_name = params[:name].to_s.strip
     scope = all
-    scope = scope.where("name LIKE ?", "%#{params[:name]}%") if params[:name].present?
+    scope = scope.where("name_km LIKE ? OR name_en LIKE ?", "%#{param_name}%", "%#{param_name}%") if param_name.present?
     scope
   end
 
