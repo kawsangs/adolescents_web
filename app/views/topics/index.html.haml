@@ -1,12 +1,5 @@
-= content_for :header_title_right_col do
-  - if current_user.primary_admin?
-    = render "shared/buttons/download_button", label: t('shared.download_json'), url: topics_path(filter_params.merge(format: :json))
-
-  .ms-1= render "shared/buttons/add_new_button", url: new_topic_path, name: t("topic.topic")
-
 .container-fluid.px-4
-  = render 'shared/header_title', title: t('topic.topics')
-  = render 'filters'
+  = render "page_heading"
   = render "shared/no_data", items: @topics
 
   - if @topics.present?
