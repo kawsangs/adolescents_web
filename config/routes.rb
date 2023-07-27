@@ -37,6 +37,7 @@ Rails.application.routes.draw do
 
   resources :category_importers
   resources :categories
+  resources :category_tags, only: [:index]
 
   resources :facility_importers
   resources :facilities

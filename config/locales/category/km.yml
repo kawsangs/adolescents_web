@@ -1,6 +1,7 @@
 km:
   category:
     category: Category
+    categories: Categories
     new_category: Category ថ្មី
     parent_category: Category មេ
     edit_category: កែតម្រូវ category
@@ -10,3 +11,4 @@ km:
     source: ប្រភពមាតិកា
     description: មាតិកា
     add_source: "+ បន្ថែមប្រភព"
+    number_of_category: "# ចំនួនCategory"

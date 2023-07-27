@@ -1,6 +1,7 @@
 en:
   category:
     category: Category
+    categories: Categories
     new_category: New category
     parent_category: Parent category
     edit_category: Edit category
@@ -10,3 +11,4 @@ en:
     source: Source
     description: Content
     add_source: "+ Add source"
+    number_of_category: "# of category"
