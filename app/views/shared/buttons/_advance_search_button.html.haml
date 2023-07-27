@@ -1,0 +1,5 @@
+- toggler_variable ||= "advance_search_clinic"
+
+%button.btn.btm-sm{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-bs-target" => "#collapseOne", "data-bs-toggle" => "collapse", :type => "button", "data-controller" => "toggler", "data-action": " toggler#handleLocalStorage", "data-toggler-variable" => toggler_variable }
+  %span.d-none.d-lg-inline= t('shared.advance_search')
+  %i.fas.fa-angle-down

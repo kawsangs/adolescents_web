@@ -1,0 +1,7 @@
+- field_name ||= "name"
+- placeholder ||= t('shared.search_by_name')
+
+.input-group.my-2.search-input
+  = text_field_tag(field_name.to_sym, params[field_name.to_sym], class: 'form-control', placeholder: placeholder)
+  %button.input-group-text{ type: :submit }
+    %i.fas.fa-search

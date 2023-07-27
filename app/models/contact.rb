@@ -52,4 +52,8 @@ class Contact < ApplicationRecord
     scope = scope.joins(:contact_directory).where("contact_directories.name IN (?)", params[:contact_directory]) if params[:contact_directory].present?
     scope
   end
+
+  def self.policy_class
+    ContactPolicy
+  end
 end
