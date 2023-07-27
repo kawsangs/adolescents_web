@@ -1,6 +1,5 @@
 .container-fluid.px-4{'data-controller' => ''}
   = render "page_heading"
-  / = render "filters"
   = render "shared/no_data", items: @categories
 
   - if @categories.present?

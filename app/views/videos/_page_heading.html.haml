@@ -20,8 +20,9 @@
             %span ប្រវត្តិនៃការបញ្ចូលគ្លីនិក
 
         - if current_user.primary_admin?
-          %a.dropdown-item{ href: videos_path(filter_params.merge(format: :json)), target: '_blank' }
-            %i.fa-solid.fa-download
-            %span= t('shared.download_json')
+          %li
+            %a.dropdown-item{ href: videos_path(filter_params.merge(format: :json)), target: '_blank' }
+              %i.fa-solid.fa-download
+              %span= t('shared.download_json')
 
 = render 'shared/header_title', title: t('sidebar.videos')

@@ -1,0 +1,8 @@
+.btn-group.btn-group-sm{"aria-label" => "Basic outlined example", :role => "group"}
+  = link_to category_tags_path, class: ['btn btn-outline-secondary', css_active_class('category_tags')] do
+    %i.fa-solid.fa-tag
+    = t("shared.tags")
+
+  = link_to categories_path, class: ['btn btn-outline-secondary', css_active_class('categories')] do
+    %i.fa-solid.fa-file-zipper
+    = t("category.categories")

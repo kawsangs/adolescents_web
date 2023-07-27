@@ -1,0 +1,17 @@
+= content_for :header_title_right_col do
+  .ms-1
+    = render "shared/buttons/download_button", url: category_tags_path(filter_params.merge(format: :json)), label: t('shared.download_json')
+
+= render 'shared/header_title', title: "#{t('category.categories')}: #{t('shared.tags')}"
+
+%form.mb-2{ action: category_tags_path }
+  .d-flex.align-items-center
+    .d-flex.flex-grow-1
+      = render "shared/filters/filter_name", placeholder: t('shared.search_by_tag')
+      / .input-group.my-2.search-input
+      /   = text_field_tag(:name, params[:name], class: 'form-control', placeholder: t('shared.search_by_tag'))
+      /   %span.input-group-text
+      /     %i.fas.fa-search
+
+    %div
+      = render "categories/switch_view_buttons"
