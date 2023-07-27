@@ -1,7 +1,6 @@
-# frozen_string_literal: true
-
 module Batches::ItemableImportersConcern
   extend ActiveSupport::Concern
+
   included do
     before_action :set_batch, only: [:edit, :update, :destroy]
 
