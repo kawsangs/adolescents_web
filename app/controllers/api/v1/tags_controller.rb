@@ -2,7 +2,7 @@ module Api
   module V1
     class TagsController < ApiController
       def index
-        pagy, tags = pagy(Tag.all)
+        pagy, tags = pagy(Facility.tag_counts)
 
         render json: {
           pagy: pagy.vars,
