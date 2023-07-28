@@ -1,0 +1,24 @@
+.container-fluid.px-4
+  = render "page_heading"
+
+  = render "shared/no_data", items: @directories
+
+  - if @directories.present?
+    = render "shared/pagination_title", objects: @directories
+
+    .table-responsive
+      %table.table.table-hover.pretty
+        %thead
+          %tr
+            %th #
+            %th= t('shared.name')
+            %th= t('contact.number_of_contact')
+
+        %tbody
+          - @directories.each_with_index do |directory, index|
+            %tr
+              %td= @pagy.from + index
+              %td= directory.name
+              %td= directory.contacts.length
+
+    = render "shared/footers/pagination"

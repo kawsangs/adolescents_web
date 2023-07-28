@@ -1,9 +1,11 @@
 en:
   contact:
     contact: Contact
+    contacts: Contacts
     name: Name
     value: Value
     channel: Channel
     new_contact: New contact
     edit_contact: Edit contact
     directory: Directory
+    number_of_contact: "# of contact"
