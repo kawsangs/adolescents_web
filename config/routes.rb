@@ -62,6 +62,7 @@ Rails.application.routes.draw do
 
   resources :contacts
   resources :contact_importers
+  resources :contact_directories, only: [:index]
 
   resources :mobile_notifications
   resources :mobile_notification_importers, except: [:update, :edit], param: :code

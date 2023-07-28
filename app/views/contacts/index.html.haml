@@ -25,7 +25,8 @@
               %td= @pagy.from + index
               %td= contact.name
               %td= contact.value
-              %td= contact.channel
+              %td
+                %span.text-capitalize= contact.channel
               %td= contact.contact_directory_name
               %td= timeago(contact.created_at).html_safe
               %td= timeago(contact.updated_at).html_safe

@@ -1,0 +1,8 @@
+.btn-group.btn-group-sm{"aria-label" => "Basic outlined example", :role => "group"}
+  = link_to contact_directories_path, class: ['btn btn-outline-secondary', css_active_class('contact_directories')] do
+    %i.fa-solid.fa-file-zipper
+    = t("contact.directory")
+
+  = link_to contacts_path, class: ['btn btn-outline-secondary', css_active_class('contacts')] do
+    %i.fa-regular.fa-address-book
+    = t("contact.contacts")

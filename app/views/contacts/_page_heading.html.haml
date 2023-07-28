@@ -25,3 +25,10 @@
             %span= t('shared.download_json')
 
 = render 'shared/header_title', title: t('sidebar.contacts')
+
+.d-flex.align-items-center
+  .flex-grow-1
+    %form.my-2{ action: contacts_path, method: 'get' }
+      = render "shared/filters/filter_name"
+  %div
+    = render "contacts/switch_view_buttons"
