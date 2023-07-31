@@ -1,0 +1,14 @@
+= content_for :header_title_right_col do
+  - if current_user.primary_admin?
+    = render "shared/buttons/download_button", label: t('shared.download_json'), url: topics_path(filter_params.merge(format: :json))
+
+  .ms-1= render "shared/buttons/add_new_button", url: new_topic_path, name: t("topic.topic")
+
+= render 'shared/header_title', title: t('topic.topics')
+
+.d-flex.align-items-center
+  .flex-grow-1
+    %form{ action: topics_path, method: 'get' }
+      = render "shared/filters/filter_name"
+  %div
+    = render "topics/switch_view_buttons"

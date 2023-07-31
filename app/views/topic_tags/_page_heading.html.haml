@@ -1,0 +1,13 @@
+= content_for :header_title_right_col do
+  .ms-1
+    = render "shared/buttons/download_button", url: topic_tags_path(filter_params.merge(format: :json)), label: t('shared.download_json')
+
+= render 'shared/header_title', title: "#{t('topic.topics')}: #{t('shared.tags')}"
+
+%form.mb-2{ action: topic_tags_path }
+  .d-flex.align-items-center
+    .d-flex.flex-grow-1
+      = render "shared/filters/filter_name", placeholder: t('shared.search_by_tag')
+
+    %div
+      = render "topics/switch_view_buttons"
