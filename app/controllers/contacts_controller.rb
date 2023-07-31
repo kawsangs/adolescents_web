@@ -65,7 +65,7 @@ class ContactsController < ApplicationController
 
   private
     def filter_params
-      params.permit(:name, :batch_code, :contact_directory)
+      params.permit(:name)
     end
 
     def contact_params
