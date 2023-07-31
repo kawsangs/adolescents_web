@@ -1,10 +1,10 @@
 class FacilityPolicy < ApplicationPolicy
   def index?
-    user.primary_admin?
+    create?
   end
 
   def create?
-    user.primary_admin?
+    user.primary_admin? || user.admin?
   end
 
   def update?
