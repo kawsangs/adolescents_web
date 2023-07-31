@@ -4,9 +4,7 @@
       = render 'shared/filters/filter_date', placeholder: t('visit.search_by_visit_date')
 
     %div.ms-3
-      %button.btn.btm-sm{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-bs-target" => "#collapseOne", "data-bs-toggle" => "collapse", :type => "button", "data-action": "visits#handleLocalStorage"}
-        %span.d-none.d-lg-inline= t('shared.advance_search')
-        %i.fas.fa-angle-down
+      = render "shared/buttons/advance_search_button", toggler_variable: "advance_search_visit"
 
   #collapseOne.accordion-collapse.collapse.collapse-filter
     .d-flex.m-2

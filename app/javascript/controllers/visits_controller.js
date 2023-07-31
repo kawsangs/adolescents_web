@@ -1,16 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 import datePicker from "commons/filter_date_picker";
-import toggleCollapse from "commons/toggle_collapse";
 
 export default class extends Controller {
-  localStorageKey = "advance_search_visit";
-
   connect() {
     datePicker.init();
-    toggleCollapse.init(this.localStorageKey);
-  }
-
-  handleLocalStorage() {
-    toggleCollapse.handleLocalStorage(this.localStorageKey);
   }
 }

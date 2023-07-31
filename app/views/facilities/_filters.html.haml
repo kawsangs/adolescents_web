@@ -1,14 +1,12 @@
-%form.mb-2{ action: facilities_path, method: 'get', 'data-controller': 'facilities-index' }
+%form.mb-2{ action: facilities_path, method: 'get' }
   .d-flex.align-items-center
-    .input-group.my-2.search-input
-      = text_field_tag(:name, params[:name], class: 'form-control', placeholder: t('facility.search_by_name'))
-      %span.input-group-text
-        %i.fas.fa-search
+    = render "shared/filters/filter_name"
 
-    .ms-3
-      %button.btn.btm-sm{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-bs-target" => "#collapseOne", "data-bs-toggle" => "collapse", :type => "button", "data-action": "facilities-index#handleLocalStorage"}
-        %span.d-none.d-lg-inline= t('shared.advance_search')
-        %i.fas.fa-angle-down
+    .ms-3.flex-grow-1
+      = render "shared/buttons/advance_search_button"
+
+    %div
+      = render "switch_view_buttons"
 
   #collapseOne.accordion-collapse.collapse.collapse-filter
     .d-flex.m-2
