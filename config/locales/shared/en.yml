@@ -86,3 +86,4 @@ en:
     import_success: "%{count} items were successfully imported!"
     importing_history: "Importing %{name} history"
     tags: Tags
+    setting: Setting

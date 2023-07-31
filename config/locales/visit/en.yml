@@ -8,6 +8,7 @@ en:
     search_by_visit_date: Search by visit date
     any_page: Any page
     pages_selected: pages selected
-    pageable: Pageable
+    pageable: Page detail
     platform: Platform
     any_platform: Any platform
+    setting: Visit Setting

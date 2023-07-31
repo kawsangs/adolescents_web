@@ -1,7 +1,7 @@
 en:
   facility:
-    facility: Facility
-    facilities: Facilities
+    facility: Clinic
+    facilities: Clinics
     name: Name
     address: Address
     tels: Telephones
@@ -10,12 +10,12 @@ en:
     facebook_pages: Facebook pages
     telegram_username: Telegram username
     description: Description
-    new_facility: New facility
-    edit_facility: Edit facility
+    new_facility: New clinic
+    edit_facility: Edit clinic
     business_hours: Business hours
     open: Open
     close: Close
-    any_facility_batch: Any facility batch
+    any_facility_batch: Any clinic batch
     lat_lng: Lat/Lng
     services: Services
     download_json: Download JSON
@@ -24,6 +24,6 @@ en:
     tags: Tags
     tages_selected: tages_selected
     any_tag: Any tag
-    number_of_facility: "# of facility"
+    number_of_facility: "# of clinic"
     edit_tag: Edit tag
     logo: Logo
