@@ -15,7 +15,7 @@ class VideoAuthorsController < ApplicationController
           flash[:alert] = t("shared.file_size_is_too_big", max_record: Settings.max_download_record)
           redirect_to video_authors_url
         else
-          send_data ActiveModelSerializers::SerializableResource.new(@video_authors).to_json, type: :json, disposition: "attachment", filename: "video_authors_#{Time.new.strftime('%Y%m%d_%H_%M_%S')}.json"
+          render json: @video_authors
         end
       }
     end

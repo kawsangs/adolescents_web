@@ -1,0 +1,16 @@
+= content_for :header_title_right_col do
+  .ms-1
+    = render "shared/buttons/download_button", url: video_tags_path(filter_params.merge(format: :json)), label: t('shared.download_json')
+
+= render 'shared/header_title', title: "#{t('video.videos')}: #{t('facility.tags')}"
+
+%form.mb-2{ action: video_tags_path }
+  .d-flex.align-items-center
+    .d-flex.flex-grow-1
+      .input-group.my-2.search-input
+        = text_field_tag(:name, params[:name], class: 'form-control', placeholder: t('video.search_by_tag'))
+        %span.input-group-text
+          %i.fas.fa-search
+
+    %div
+      = render "videos/switch_view_buttons"

@@ -5,13 +5,16 @@
       %span.input-group-text
         %i.fas.fa-search
 
-    .ms-3
+    .ms-3.flex-grow-1
       = render "shared/buttons/advance_search_button", toggler_variable: 'advance_search_video'
+
+    %div
+      = render "switch_view_buttons"
 
   #collapseOne.accordion-collapse.collapse.collapse-filter
     .d-flex.m-2
       / Filtery by batch
-      - list = VideoBatch.all.map{ |batch| ["#{batch.code}(#{display_datetime(batch.created_at)})", batch.code]}
+      - list = Batches::VideoBatch.all.map{ |batch| ["#{batch.code}(#{display_datetime(batch.created_at)})", batch.code]}
 
       = select_tag :batch_code, options_for_select(list, params[:batch_code]), class: 'form-select filter-input', prompt: t("facility.search_by_batch")
 

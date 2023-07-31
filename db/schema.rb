@@ -459,7 +459,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_26_071721) do
     t.integer "display_order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "author"
     t.uuid "video_batch_id"
     t.uuid "video_author_id"
   end

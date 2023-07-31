@@ -1,10 +1,5 @@
-= content_for :header_title_right_col do
-  .me-1
-    = render "shared/buttons/download_button", label: t('shared.download_json'), url: video_authors_path(filter_params.merge(format: :json))
-
 .container-fluid.px-4{'data-controller': 'drag-drop'}
-  = render 'shared/header_title', title: t('video.video_author')
-  = render "filters"
+  = render "page_heading"
   = render "shared/no_data", items: @video_authors
 
   - if @video_authors.present?
