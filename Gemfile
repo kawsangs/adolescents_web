@@ -80,7 +80,7 @@ gem "awesome_nested_set", "~> 3.5.0"
 gem "audited", "~> 5.3"
 
 # Background process
-gem "sidekiq", "~> 7.0.8"
+gem "sidekiq", "~> 7.1.3"
 
 # Client request
 gem "httparty", "~> 0.21.0"
