@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class Spreadsheets::Batches::BaseWithZipfileSpreadsheet
-  attr_reader :batch
+  attr_reader :batch, :user
 
-  def initialize
+  def initialize(user)
+    @user = user
     @batch = batch_model.new
     @items = []
   end

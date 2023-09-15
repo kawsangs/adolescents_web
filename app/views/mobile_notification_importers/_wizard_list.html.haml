@@ -1,0 +1,47 @@
+.table-responsive
+  %table.table.table-hover.pretty
+    %thead
+      %tr
+        %th #
+        %td.text-center
+          .d-flex.flex-column
+            %strong= t('mobile_notification.notification_title')
+            %small.text-muted= t('mobile_notification.max_title')
+        %td.text-center
+          .d-flex.flex-column
+            %strong= t('mobile_notification.notification_text')
+            %small.text-muted= t('mobile_notification.max_body')
+        %td.text-center
+          .d-flex.flex-column
+            %strong= t('mobile_notification.platform')
+            %small.text-muted= t('mobile_notification.platform_hint')
+        %td.text-center
+          .d-flex.flex-column
+            %strong= t('mobile_notification.schedule_date')
+            %small.text-muted= t('mobile_notification.schedule_date_hint')
+        %th.text-center
+          = t('shared.is_valid')
+
+    %tbody
+      - @batch.importing_items.each_with_index do |importing_item, index|
+        - item = importing_item.itemable
+        - if item.valid?
+          = f.fields_for :importing_items, importing_item do |ff|
+            = ff.hidden_field :itemable_id
+            = ff.hidden_field :itemable_type
+            = ff.fields_for :itemable, item do |fff|
+              = fff.hidden_field :title
+              = fff.hidden_field :body
+              = fff.hidden_field :platform
+              = fff.hidden_field :schedule_date
+              = fff.hidden_field :creator_id
+
+        %tr
+          %td= index + 1
+          %td= item.title
+          %td= item.body
+          %td= item.platform || 'all'
+          %td= item.schedule_at
+
+          / Validation status
+          %td= render "shared/validation_status", item: item

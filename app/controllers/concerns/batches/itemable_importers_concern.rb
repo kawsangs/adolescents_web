@@ -16,7 +16,7 @@ module Batches::ItemableImportersConcern
       authorize batch_model, :create?
 
       if file = params[:batch][:file].presence
-        @batch = spreadsheet_model.new.import(file)
+        @batch = spreadsheet_model.new(current_user).import(file)
 
         render :wizard_review, status: :see_other
       else

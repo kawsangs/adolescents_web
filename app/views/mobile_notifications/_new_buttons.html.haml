@@ -8,8 +8,8 @@
     %li
       %a.dropdown-item{ href: new_mobile_notification_importer_path }
         %i.fa-solid.fa-file-import
-        %span បញ្ចូលការជូនដំណឹងតាម Exel
+        %span= t("shared.import_from_file")
     %li
       %a.dropdown-item{ href: mobile_notification_importers_path }
         %i.fa-solid.fa-clock-rotate-left
-        %span ប្រវត្តិនៃការបញ្ចូលការជូនដំណឹង
+        %span= t('shared.importing_history', name: t('sidebar.mobile_notifications'))
