@@ -68,7 +68,7 @@ en:
     imported_by: Imported by
     imported_at: Imported at
     import_wizard: "%{title} imort wizard"
-    at_least_one_item: There must be at least 1 valid %{name}
+    at_least_one_valid_item: There must be at least 1 valid item
     confirm_title: Confirm import %{name}
     short_description: "Total items: %{total_count} (valid: %{valid_count})"
     is_valid: Is valid?
