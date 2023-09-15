@@ -68,7 +68,7 @@ km:
     imported_by: បញ្ចូលដោយ
     imported_at: កាលបរិច្ឆេទបញ្ចូល
     import_wizard: "បញ្ចូល%{name} wizard"
-    at_least_one_item: ត្រូវមាន%{name}ដែលត្រឹមត្រូវយ៉ាងហោចណាស់ 1
+    at_least_one_valid_item: ត្រូវមានទិន្នន័យដែលត្រឹមត្រូវយ៉ាងហោចណាស់ 1
     confirm_title: បញ្ចាក់ការបញ្ចូល%{name}
     short_description: "ចំនួនសរុប: %{total_count} (ត្រឹមត្រូវ: %{valid_count})"
     is_valid: ត្រឹមត្រូវឬទេ?

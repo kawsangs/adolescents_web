@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       resources :video_authors, only: [:index]
       resources :categories, only: [:index]
       resources :contacts, only: [:index]
+      resources :contact_directories, only: [:index]
 
       get "*path" => "api#routing_error"
     end
