@@ -11,8 +11,8 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #
-class Contacts::Whatapp < Contact
+class Contacts::Whatsapp < Contact
   def channel
-    "whatapp"
+    "whatsapp"
   end
 end
