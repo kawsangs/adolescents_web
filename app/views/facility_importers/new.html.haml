@@ -1,4 +1,4 @@
-.container-fluid.px-4{'data-controller': 'facility-batches'}
+.container-fluid.px-4
   = render "shared/headers/progress_arrow_header", title: t("shared.importing_wizard", name: t("sidebar.facilities"))
 
-  = render "shared/forms/wizard_form", cancel_url: facilities_path, sample_url: '/sample/facility_batch_sample.xlsx', item: @batch, form_url: facility_importers_path, accept_file_format: ".xlsx"
+  = render "shared/forms/wizard_form", cancel_url: facilities_path, sample_url: '/sample/facility_batch_sample.xlsx', item: @batch, form_url: facility_importers_path

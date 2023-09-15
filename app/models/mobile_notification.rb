@@ -19,6 +19,7 @@
 #  detail                       :json
 #
 class MobileNotification < ApplicationRecord
+  include ItemableConcern
   include MobileNotifications::Callback
 
   # to support excel import
@@ -26,7 +27,6 @@ class MobileNotification < ApplicationRecord
 
   # Association
   belongs_to :creator, foreign_key: :creator_id, class_name: "User"
-  belongs_to :mobile_notification_batch, optional: true
   has_many   :mobile_notification_logs
 
   # Valiation

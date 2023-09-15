@@ -2,7 +2,7 @@
 - title ||= t('sidebar.college_major')
 - wizard_list_path ||= "college_major_importers/wizard_list"
 
-.container-fluid.px-4.facilities
+.container-fluid.px-4{'data-controller': 'import-wizard'}
   = render "shared/headers/progress_arrow_header", title: t("shared.importing_wizard", name: title), progress_num: 2
 
   = simple_form_for @batch, as: :batch, url: form_url do |f|

@@ -1,44 +1,8 @@
-= content_for :header_title_right_col do
-  = render "shared/buttons/back_button", url: mobile_notifications_path
-  = render "shared/buttons/add_new_button", url: new_mobile_notification_importer_path, title: t('mobile_notification_batch.import_batch')
-
 .container-fluid.px-4
-  = render 'shared/header_title', title: t('mobile_notification.mobile_notifications')
-  = render 'filters'
-  = render "shared/no_data", items: @mobile_notification_batches
+  = content_for :header_title_right_col do
+    = render "shared/buttons/back_button", url: mobile_notifications_path
+    = render "shared/buttons/add_new_button", url: new_mobile_notification_importer_path, name: t('sidebar.mobile_notifications')
 
-  - if @mobile_notification_batches.present?
-    = render "shared/pagination_title", objects: @mobile_notification_batches
+  = render 'shared/header_title', title: t('shared.importing_history', name: t('sidebar.mobile_notifications'))
 
-    .table-responsive
-      %table.table.table-hover.pretty
-        %thead
-          %tr
-            %th #
-            %th= t("shared.code")
-            %th= t("shared.filename")
-            %th= t("shared.description")
-            %th= t("mobile_notification.number_of_notification")
-            %th= t("shared.imported_by")
-            %th= t('shared.imported_at')
-            %th
-        %tbody
-          - @mobile_notification_batches.each_with_index do |batch, index|
-            %tr
-              %td= index + 1
-              %td= batch.code
-              %td= batch.filename
-              %td
-                = t("mobile_notification.display_items", total_count: batch.total_count, valid_count: batch.valid_count, total_invalid: batch.total_count - batch.valid_count).html_safe
-              %td= batch.mobile_notifications.length
-              %td= batch.user_email
-              %td= timeago(batch.created_at, 'datetime').html_safe
-              %td
-                .d-flex.justify-content-end
-                  - if policy(batch).destroy?
-                    = render 'shared/buttons/delete_button', object: batch, message: { type: t('mobile_notification.mobile_notification'), name: batch.code, url: mobile_notification_importer_path(batch.code) }
-
-
-  = render "shared/footers/pagination"
-
-= render "shared/modals/confirm_delete_modal"
+  = render "shared/batches/batch_list"

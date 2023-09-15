@@ -13,11 +13,11 @@
         %li
           %a.dropdown-item{ href: new_video_importer_path }
             %i.fa-solid.fa-file-import
-            %span បញ្ចូលគ្លីនិកតាម Exel
+            %span= t("shared.import_from_file")
         %li
           %a.dropdown-item{ href: video_importers_path }
             %i.fa-solid.fa-clock-rotate-left
-            %span ប្រវត្តិនៃការបញ្ចូលគ្លីនិក
+            %span= t('shared.importing_history', name: t('sidebar.videos'))
 
         - if current_user.primary_admin?
           %li
