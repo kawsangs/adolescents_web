@@ -17,6 +17,7 @@
 #  job_id                       :string
 #  status                       :integer          default("pending")
 #  detail                       :json
+#  topic_id                     :uuid
 #
 FactoryBot.define do
   factory :mobile_notification do

@@ -20,3 +20,33 @@ km:
     name_in_km: ឈ្មោះជាភាសាខ្មែរ
     name_in_en: ឈ្មោះជាភាសាអង់គ្លេស
     number_of_topic: "# ចំនួនប្រធានបទ"
+    faq_form: ជំនួយសេវាសុខភាព
+    new_questionnaire: កម្រងសំណួរថ្មី
+
+  form:
+    survey: ការស្ទង់មិតិ
+    edit_questionnaire: កែតម្រូវកម្រងសំណួរ
+    questionnaire: កម្រងសំណួរ
+    notification_questionnaire: "កម្រងសំណួរសេចក្ដីជូនដំណឹង: %{title}"
+    number_of_question: "# ចំនួនសំនួរ"
+    number_of_notification: "# ចំនួនសេចក្តីជូនដំណឹង"
+    new_questionnaire: កម្រងសំណួរថ្មី
+    question_maximum: សំណួរ (អតិបរមា 255តួ)
+    answer_maximum: ចម្លើយ (អតិបរមា 255តួ)
+    value: តម្លៃ
+    add_section: + Add section
+    section_name: ផ្នែក
+    telegram_chat_group: ក្រុម Telegram ដែលទទួលការជូនដំណឹង
+    group_selected: ក្រុមត្រូវបានជ្រើសរើស
+    chat_group_description: ពេលចម្លើយនេះត្រូវបានជ្រើសរើស នោះព័ត៌មានទាក់ទងនឹងការស្ទង់មតិមួយនេះនឹងត្រូវបញ្ជូនទៅកាន់ក្រុម Telegram ដែលអ្នកបានកំណត់
+    question_audio_hint: ការថតសម្លេងគួររួមបញ្ចូលទាំងសំណួរ និងជម្រើសទាំងអស់បើមាន
+    tracking: បង្ហាញក្នុងផ្ទាំងស្ថិតិប្រើប្រាស់
+    hint: ព័ត៌មានជំនួយ
+    select_question_from_list: ជ្រើសរើសសំណួរពីបញ្ជី
+    skip_logic_not: ខុសពី
+    any_of: មួយក្នុងចំណោម
+    match_all_of: ផ្គូរផ្គងទាំងអស់
+    response_value: តម្លៃឆ្លើយតប
+    add_critera: + បន្ថែមលក្ខខណ្ឌ
+    add_option: + បន្ថែមជម្រើស
+    add_question: + បន្ថែមសំណួរ

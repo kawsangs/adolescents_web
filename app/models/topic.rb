@@ -11,14 +11,14 @@
 #  updated_at   :datetime         not null
 #  code         :string
 #  name_en      :string
+#  type         :string
 #
 class Topic < ApplicationRecord
   include Taggable
 
   # Association
-  has_many :questions, dependent: :destroy
-  has_many :topic_services, dependent: :destroy
-  has_many :services, through: :topic_services
+  has_many :questions
+  has_many :sections, dependent: :destroy, inverse_of: :form
 
   # Validation
   validates :name_km, presence: true
@@ -33,6 +33,7 @@ class Topic < ApplicationRecord
 
   # Nested attribute
   accepts_nested_attributes_for :questions, allow_destroy: true
+  accepts_nested_attributes_for :sections, allow_destroy: true
 
   # Callback
   before_update :upgrade_version, if: :published_at_changed?
@@ -50,6 +51,10 @@ class Topic < ApplicationRecord
 
   def published?
     published_at.present?
+  end
+
+  def status
+    published? ? "published" : "draft"
   end
 
   private

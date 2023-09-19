@@ -12,8 +12,8 @@
 #  code         :string
 #  name_en      :string
 #
-class TopicSerializer < ActiveModel::Serializer
-  attributes :id, :name_km, :name_en, :published_at, :service_ids, :audio, :tag_list
+class FaqFormSerializer < ActiveModel::Serializer
+  attributes :id, :name_km, :name_en, :published_at, :audio, :tag_list
 
   has_many :questions
 

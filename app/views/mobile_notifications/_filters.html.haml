@@ -1,14 +1,16 @@
-%form.mb-2{ action: mobile_notifications_path, method: 'get' }
-  .d-flex.align-items-center
-    .input-group.my-2.search-input
-      = text_field_tag(:title, params[:title], class: 'form-control', placeholder: t('mobile_notification.search_by_title'))
-      %span.input-group-text
-        %i.fas.fa-search
+%form.form-search.accordion{ action: mobile_notifications_path, method: 'get' }
+  .d-flex
+    .mb-2
+      = render 'shared/filters/filter_name', field_name: 'title', placeholder: t('mobile_notification.search_by_title')
 
-    .ms-2
-      = render 'shared/filters/filter_date', placeholder: t('mobile_notification.search_by_schedule_date')
+    %div.ms-3.flex-grow-1
+      = render "shared/buttons/advance_search_button", toggler_variable: "advance_search_notification"
 
-    .ms-3
-      %button.btn.btn-primary.ml-md-2{type: :submit}
-        %i.fas.fa-search
-        %span.d-none.d-lg-inline= t('shared.search')
+    %div= render "switch_view_buttons"
+
+  #collapseOne.accordion-collapse.collapse.collapse-filter
+    .d-flex.m-2
+      .me-1= render 'shared/filters/filter_date', placeholder: t('mobile_notification.search_by_schedule_date')
+
+      .ms-3
+        = render "shared/buttons/search_button"

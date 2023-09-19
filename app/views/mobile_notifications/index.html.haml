@@ -7,7 +7,7 @@
   = render "shared/no_data", items: @mobile_notifications
 
   - if @mobile_notifications.present?
-    = render "shared/pagination_title", objects: @mobile_notifications
+    .mt-2= render "shared/pagination_title", objects: @mobile_notifications
 
     .table-responsive
       %table.table.table-hover.pretty

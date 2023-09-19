@@ -53,7 +53,7 @@ module ApplicationHelper
       render(association.to_s.singularize + "_fields", f: builder, option:)
     end
 
-    link_to(name, "#", class: "add_#{association} btn", data: { id:, fields: fields.gsub("\n", "") }.merge(option))
+    link_to(name, "#", class: "add_#{association} btn add_association", data: { id:, fields: fields.gsub("\n", "") }.merge(option))
   end
 
   def form_check_toggle(option = {})

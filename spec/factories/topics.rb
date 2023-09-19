@@ -11,11 +11,13 @@
 #  updated_at   :datetime         not null
 #  code         :string
 #  name_en      :string
+#  type         :string
 #
 FactoryBot.define do
   factory :topic do
     name_km { FFaker::Name.name }
     name_en { FFaker::Name.name }
+    type    { Topics::FaqForm }
 
     trait :published do
       published_at { Time.now }

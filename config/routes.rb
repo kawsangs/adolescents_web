@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   end
 
   resources :topic_tags, only: [:index]
-  resources :topics do
+  resources :faq_forms do
     put :publish, on: :member
   end
 
@@ -81,6 +81,8 @@ Rails.application.routes.draw do
     put :upsert, on: :collection
   end
   resources :chat_groups, only: [:index]
+
+  resources :survey_forms
 
   get "/privacy-policy", to: "privacy_policies#show"
   get "/terms-and-conditions", to: "terms_and_conditions#show"

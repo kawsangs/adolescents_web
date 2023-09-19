@@ -28,3 +28,6 @@ km:
     search_by_schedule_date: ស្វែងរកតាមកាលបរិច្ឆេទកំណត់
     success: ជោគជ័យ
     failure: បរាជ័យ
+    drafted_at: ធ្វើសេចក្តីព្រៀងនៅ
+    questionnaire_to_be_used: កម្រងសំនួរដែលត្រូវផ្ញើរចេញ
+    view_all_survey_form: ចូលមើលកម្រងសំនួរ

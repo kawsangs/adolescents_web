@@ -9,6 +9,7 @@
 #  move_next   :boolean          default(TRUE)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  value       :string
 #
 FactoryBot.define do
   factory :option do
