@@ -1,0 +1,8 @@
+.btn-group.btn-group-sm{"aria-label" => "", :role => "group"}
+  = link_to survey_forms_path, class: ['btn btn-outline-secondary', css_active_class('survey_forms')] do
+    %i.fa-brands.fa-wpforms
+    = t("form.questionnaire")
+
+  = link_to mobile_notifications_path, class: ['btn btn-outline-secondary', css_active_class('mobile_notifications')] do
+    %i.fa-regular.fa-bell
+    = t("sidebar.mobile_notifications")

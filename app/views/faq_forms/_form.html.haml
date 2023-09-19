@@ -1,5 +1,7 @@
+- url = @topic.persisted? ? faq_form_path(@topic) : faq_forms_path
+
 .w-75.view-center{'data-controller': 'topics'}
-  = simple_form_for @topic, html: { class: 'main-form', 'data-action': 'topics#submitForm' } do |f|
+  = simple_form_for @topic, url: url, html: { class: 'main-form', 'data-action': 'topics#submitForm' } do |f|
     .mb-3= f.input :name_km
     .mb-3= f.input :name_en
 
@@ -23,5 +25,5 @@
         = link_to_add_fields t('topic.add_question'), f, :questions, 'topics-target': 'btnAddQuestion', 'action': 'topics#appendField'
 
       .actions.text-right.mb-3
-        = link_to t('shared.cancel'), topics_path, class: 'btn btn-secondary me-1'
+        = link_to t('shared.cancel'), faq_forms_path, class: 'btn btn-secondary me-1'
         = f.submit t('shared.save'), class: 'btn btn-primary', data: { turbo: "false" }

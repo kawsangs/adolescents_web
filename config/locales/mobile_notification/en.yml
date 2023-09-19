@@ -28,3 +28,6 @@ en:
     search_by_schedule_date: Search by schedule date
     success: Success
     failure: Failure
+    drafted_at: Drafted at
+    questionnaire_to_be_used: Survey form to be sent
+    view_all_survey_form: View all survey forms

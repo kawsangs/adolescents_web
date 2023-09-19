@@ -1,0 +1,32 @@
+- url = @form.persisted? ? survey_form_path(@form) : survey_forms_path
+= simple_form_for @form, url: url, html: { class: 'main-form skip-logic', 'data-action': 'survey-forms#submitForm' }  do |f|
+  / Name
+  .mb-3= f.input :name_km, label: t('shared.name_km')
+  .mb-3= f.input :name_en, label: t('shared.name_en')
+
+  / Tags
+  .mb-3= f.input :tag_list, label: t('shared.tags'), input_html: {  'data-tags': Topics::SurveyForm.tag_counts.sort_by(&:count).reverse.pluck(:name).to_json, class: 'form-tag-list' }
+
+  / Description
+  .mb-3= f.input :description, label: t('shared.description')
+
+  / Sections
+  = f.fields_for :sections, f.object.sections do |sf|
+    = render 'section_fields', f: sf
+
+  / Button add section
+  = link_to_add_fields t('form.add_section'), f, :sections, class: 'btn btn-outline-secondary'
+
+  / Action buttons
+  .actions.text-right.mb-3
+    = render "shared/buttons/cancel_button", url: survey_forms_url
+    = render "shared/buttons/submit_button", f: f
+
+:javascript
+  locale = {
+    please_select: "#{t('shared.please_select')}",
+    select_question_from_list: "#{t('form.select_question_from_list')}",
+    skip_logic_not: "#{t('form.skip_logic_not')}",
+    any_of: "#{t('form.any_of')}",
+    match_all_of: "#{t('form.match_all_of')}"
+  }

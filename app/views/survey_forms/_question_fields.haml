@@ -1,0 +1,61 @@
+%li{ 'data-controller': 'questions' }
+  %fieldset.fieldset
+    %legend.position-absolute.d-flex
+      / Tag list
+      - tag_list = f.object.tag_list.split(", ")
+      .tag-list-wrapper{ class: ('d-none' unless tag_list.present?)}
+        .d-flex.align-items-center
+          %small.me-1= "#{t('shared.tags')}: "
+          .tag-wrapper= tag_list_html(tag_list).html_safe
+
+      / Tracking
+      .ms-2.tracking{ class: ('d-none' unless f.object.tracking)}
+        .d-flex
+          = image_tag "barchart.png", width: 20, height: 20
+
+    .field-wrapper
+      %button.btn.move{type: :button}
+        %i.fa.fa-arrows-alt
+
+      .d-flex.flex-grow-1
+        .wrapper.d-flex.align-items-center.flex-grow-1
+          %button.btn.collapse-trigger{type: :button}
+            %i.fas.fa-caret-right
+
+          %abbr.abbr-required{:title => "required", class: ('d-none' if !f.object.required?)} *
+
+          .flex-grow-1
+            = f.hidden_field :type, class: 'field-type', 'data-field' => f.object.to_json
+            = f.hidden_field :display_order, class: 'display-order'
+            = f.text_field :name, placeholder: t('form.question_maximum'), class: 'form-control field-name', maxlength: 255
+            - if error_msg = f.object.errors[:name].presence
+              .error-message.text-danger.small= error_msg.join('; ')
+
+            = f.text_field :hint, placeholder: t('form.hint'), class: "form-control field-definition no-style as-hint"
+
+          .w-25.ms-2.d-flex.align-items-center
+            %div{style: 'width: 90%'}
+              = render "shared/forms/audio", field: :audio, f: f
+
+            %span.ms-1{'data-toggle': 'tooltip', 'data-title': t('form.question_audio_hint')}
+              %i.fa-regular.fa-circle-question.text-gray-800
+
+          %button.btn.btn-outline-primary.btn-add-field{type: 'button'}= t('form.ok')
+
+        .action.d-flex.flex-column
+          = f.hidden_field :_destroy
+          .btn-setting.pointer.flex-grow-1.d-flex.align-items-center.justify-content-center
+            %i.fas.fa-cog.text-secondary
+          .remove_fields.pointer.flex-grow-1.d-flex.align-items-center.justify-content-center
+            %i.fas.fa-trash-alt.text-danger
+
+    = render 'kinds'
+
+    .collapse-content
+      .options-wrapper
+        = f.simple_fields_for :options do |builder|
+          = render 'option_fields', f: builder
+        = link_to_add_fields t('form.add_option'), f, :options
+
+    .setting-wrapper
+      = render 'setting', f: f

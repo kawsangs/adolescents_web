@@ -20,3 +20,33 @@ en:
     name_in_km: Name in Khmer
     name_in_en: Name in English
     number_of_topic: "# of topic"
+    faq_form: Faq form
+    new_questionnaire: New survey form
+
+  form:
+    survey: Survey
+    edit_questionnaire: Edit survey form
+    questionnaire: Survey form
+    notification_questionnaire: "Notification survey form: %{title}"
+    number_of_question: "# of questions"
+    number_of_notification: "# of notifications"
+    new_questionnaire: New survey form
+    question_maximum: Question (maximum 255)
+    answer_maximum: Answer (maximum 255)
+    value: Value
+    add_section: + Add section
+    section_name: Section name
+    telegram_chat_group: Receiving notification Telegram group
+    group_selected: groups selected
+    chat_group_description: Once this answer has been selected, information related to this survey will be sent to your designated Telegram team.
+    question_audio_hint: The recording should include question and all options
+    tracking: Visualize in Dashboard
+    hint: Hint
+    select_question_from_list: Select question from list
+    skip_logic_not: not
+    any_of: any of
+    match_all_of: match all of
+    response_value: Response value
+    add_critera: + Add criteria
+    add_option: + Add option
+    add_question: + Add question

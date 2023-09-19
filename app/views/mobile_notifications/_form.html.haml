@@ -33,6 +33,13 @@
       .mb-3
         = f.input :platform, collection: MobileToken::PLATFORMS, label: t('shared.platform'), include_blank: true, input_html: {class: 'selectpicker', "data-none-selected-text" => t('visit.any_platform')}
 
+      .mb-3
+        %label
+          = t("mobile_notification.questionnaire_to_be_used")
+          %small= link_to "(#{t('mobile_notification.view_all_survey_form')})", survey_forms_path, class: 'text-primary', target: '_blank'
+
+        = f.input :topic_id, collection: Topics::SurveyForm.all.map{|f| ["#{f.name} (#{f.status})", f.id]}, label: false, include_blank: true, input_html: {class: 'selectpicker', "data-none-selected-text" => t('shared.please_select')}
+
       / Schedule date
       .mb-3
         %label= t('mobile_notification.schedule_date')

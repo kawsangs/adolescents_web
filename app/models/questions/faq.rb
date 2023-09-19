@@ -13,8 +13,19 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  answer        :text
+#  tracking      :boolean          default(FALSE)
+#  required      :boolean          default(FALSE)
+#  relevant      :string
+#  section_id    :uuid
 #
 module Questions
   class Faq < Question
+    def icon
+      "<i class=\'fa-solid fa-question fa-list-ul icon\'></i>"
+    end
+
+    def label
+      "Faq"
+    end
   end
 end

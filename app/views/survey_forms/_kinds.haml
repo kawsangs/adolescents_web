@@ -1,0 +1,7 @@
+.field-type-wrapper
+  .flex-row
+    .flex1
+      - [Questions::SelectOne, Questions::SelectMultiple, Questions::Text, Questions::VoiceRecording].each do |klass|
+        .field-type-list{ 'data-field_type' => klass.name }
+          = klass.new.icon.html_safe
+          = klass.new.label

@@ -3,7 +3,7 @@
   = render "shared/no_data", items: @topics
 
   - if @topics.present?
-    = render "shared/pagination_title", objects: @topics
+    .mt-2= render "shared/pagination_title", objects: @topics
 
     .table-responsive
       %table.table.table-hover.pretty
@@ -41,12 +41,12 @@
                 .d-flex.justify-content-end
                   - if policy(topic).publish?
                     %span.me-1{ data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top' }, title: t('shared.publish') }
-                      %button.btn.btn-circle.btn-sm.btn-outline-success{ "data-bs-target" => "#confirmModalPublish", "data-bs-toggle" => "modal", "data-bs-message" => { type: t('topic.topic'), name: topic.name, url: publish_topic_path(topic)}, :type => "button" }
+                      %button.btn.btn-circle.btn-sm.btn-outline-success{ "data-bs-target" => "#confirmModalPublish", "data-bs-toggle" => "modal", "data-bs-message" => { type: t('topic.topic'), name: topic.name, url: publish_faq_form_path(topic)}, :type => "button" }
                         %i.fa-solid.fa-file-export
 
-                  = render 'shared/buttons/edit_button', object: topic, url: edit_topic_path(topic)
+                  = render 'shared/buttons/edit_button', object: topic, url: edit_faq_form_path(topic)
 
-                  = render 'shared/buttons/delete_button', object: topic,  message: { type: t('topic.topic'), name: topic.name, url: topic_path(topic) }
+                  = render 'shared/buttons/delete_button', object: topic,  message: { type: t('topic.topic'), name: topic.name, url: faq_form_path(topic) }
 
     = render "shared/footers/pagination"
 

@@ -1,19 +1,19 @@
-class TopicsController < ApplicationController
+class FaqFormsController < ApplicationController
   helper_method :filter_params
-  before_action :set_topic, only: [:show, :edit, :update, :destroy, :publish]
+  before_action :athorize_topic, only: [:show, :edit, :update, :destroy, :publish]
 
   def index
     respond_to do |format|
       format.html {
-        @pagy, @topics = pagy(authorize policy_scope(Topic.filter(filter_params).includes(:services, :questions)))
+        @pagy, @topics = pagy(authorize policy_scope(Topics::FaqForm.filter(filter_params).includes(:questions)))
       }
 
       format.json {
-        @topics = authorize policy_scope(Topic.filter(filter_params).includes(:services, :questions))
+        @topics = authorize policy_scope(Topics::FaqForm.filter(filter_params).includes(:questions))
 
         if @topics.length > Settings.max_download_record
           flash[:alert] = t("shared.file_size_is_too_big", max_record: Settings.max_download_record)
-          redirect_to topics_url
+          redirect_to faq_forms_url
         else
           render json: @topics
         end
@@ -25,14 +25,14 @@ class TopicsController < ApplicationController
   end
 
   def new
-    @topic = authorize Topic.new
+    @topic = authorize Topics::FaqForm.new
   end
 
   def create
-    @topic = authorize Topic.new(topic_params)
+    @topic = authorize Topics::FaqForm.new(topic_params)
 
     if @topic.save
-      redirect_to topics_url
+      redirect_to faq_forms_url
     else
       render :new
     end
@@ -43,7 +43,7 @@ class TopicsController < ApplicationController
 
   def update
     if @topic.update(topic_params)
-      redirect_to topics_url
+      redirect_to faq_forms_url
     else
       render :edit
     end
@@ -52,18 +52,18 @@ class TopicsController < ApplicationController
   def destroy
     @topic.destroy
 
-    redirect_to topics_url
+    redirect_to faq_forms_url
   end
 
   def publish
     @topic.update(published_at: Time.now)
 
-    redirect_to topics_url
+    redirect_to faq_forms_url
   end
 
   private
     def topic_params
-      params.require(:topic).permit(:name_km, :name_en, :audio, :remove_audio,
+      params.require(:topics_faq_form).permit(:name_km, :name_en, :audio, :remove_audio,
         :tag_list,
         questions_attributes: [
           :id, :name, :type, :display_order, :answer,
@@ -73,8 +73,8 @@ class TopicsController < ApplicationController
       )
     end
 
-    def set_topic
-      @topic = authorize Topic.find(params[:id])
+    def athorize_topic
+      @topic = authorize Topics::FaqForm.find(params[:id])
     end
 
     def filter_params
