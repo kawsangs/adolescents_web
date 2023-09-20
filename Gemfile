@@ -122,6 +122,10 @@ gem "fog-aws",        "~> 3.15.0"
 
 gem "rails-settings-cached", "~> 2.8"
 
+# Telegram
+gem "telegram-bot", "~> 0.15.7"
+gem "ipaddress", "~> 0.8.3"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

@@ -1,0 +1,26 @@
+.container-fluid.px-4
+  = render "shared/headers/page_heading", title: t('telegram_bot.telegram_chat_group') do
+    = render "telegram_bots/switch_view_buttons"
+
+  = render "shared/no_data", items: @chat_groups
+  = render "shared/pagination_title", objects: @chat_groups
+
+  - if @chat_groups.present?
+    .table-responsive.mb-4
+      %table.table.table-hover.pretty
+        %thead
+          %tr
+            %th{width: 60} #
+            %th= t('shared.name')
+            %th= t('shared.status')
+            %td= t('shared.created_at')
+            %td= t('shared.updated_at')
+
+        %tbody
+          - @chat_groups.each_with_index do |chat_group, index|
+            %tr
+              %td= @pagy.from + index
+              %td= chat_group.title
+              %th= chat_group_status(chat_group).html_safe
+              %td= timeago(chat_group.created_at).html_safe
+              %td= timeago(chat_group.updated_at).html_safe

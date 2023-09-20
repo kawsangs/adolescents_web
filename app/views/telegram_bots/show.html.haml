@@ -1,0 +1,21 @@
+.container-fluid.px-4{'data-controller': 'telegram-bots'}
+  .d-flex.mt-4.mb-2.align-items-center
+    .d-flex.flex-grow-1
+      %h1.h2
+        = t("sidebar.telegram_bot")
+      .ml-1= bot_status(@telegram_bot).html_safe
+      .ml-2= link_to t("shared.need_help"), helps_how_to_connect_telegram_bot_path, target: '_blank', class: 'btn btn-link'
+
+    .d-flex
+      = render "telegram_bots/switch_view_buttons"
+
+  = simple_form_for @telegram_bot, url: '/telegram_bot/upsert', method: :put, class: 'setting' do |f|
+    .modal-body
+      = form_check_toggle({name: "telegram_bot[enabled]", checked: f.object.enabled, label: t('program.telegram_notification')}).html_safe
+
+      .tokens{class: ('d-none' unless f.object.enabled?)}
+        .mb-3= f.input :token, label: t("telegram_bot.token")
+        .mb-3= f.input :username, label: t("telegram_bot.username")
+
+    .modal-footer
+      = f.submit t('shared.save'), class: 'btn btn-primary'

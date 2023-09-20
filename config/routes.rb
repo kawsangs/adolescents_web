@@ -75,6 +75,13 @@ Rails.application.routes.draw do
     put :upsert, on: :collection
   end
 
+  # Telegram bot
+  get "helps/how-to-connect-telegram-bot", to: "helps#telegram_bot"
+  resource :telegram_bot, only: [:show] do
+    put :upsert, on: :collection
+  end
+  resources :chat_groups, only: [:index]
+
   get "/privacy-policy", to: "privacy_policies#show"
   get "/terms-and-conditions", to: "terms_and_conditions#show"
 
