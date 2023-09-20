@@ -15,5 +15,12 @@ Rails.application.routes.draw do
 
       get "*path" => "api#routing_error"
     end
+
+    namespace :integration do
+      # Telegram
+      constraints Whitelist do
+        telegram_webhook Api::Integration::TelegramWebhooksController
+      end
+    end
   end
 end

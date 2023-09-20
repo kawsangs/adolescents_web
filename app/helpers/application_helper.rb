@@ -5,6 +5,10 @@ module ApplicationHelper
     "#{controller_path.parameterize}-#{action_name}"
   end
 
+  def css_active_class(controller_name, *other)
+    return "active" if params[:controller] == controller_name || other.include?(params[:controller])
+  end
+
   def sortable(column, title = nil)
     title ||= column.titleize
     css_class = column == sort_column ? "current #{sort_direction}" : "sortable"
@@ -32,10 +36,6 @@ module ApplicationHelper
     return "" unless date.present?
 
     I18n.l(date, format: :yyyy_mm_dd_time)
-  end
-
-  def css_active_class(controller_name)
-    return "active" if request.path.split("/")[1] == controller_name
   end
 
   def system_locales

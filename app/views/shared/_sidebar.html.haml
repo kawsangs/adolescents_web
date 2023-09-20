@@ -77,6 +77,9 @@
             - if policy(User).index?
               = link_to t('sidebar.users'), users_path, class: ['nav-link', css_active_class('users')]
 
+            - if policy(TelegramBot).create?
+              = link_to t('sidebar.telegram_bot'), telegram_bot_path, class: ['nav-link', css_active_class('telegram_bots', 'chat_groups', 'helps')]
+
             - if policy(:dashboard_accessibility).show?
               = link_to t('sidebar.dashboard_accessibility'), dashboard_accessibility_path, class: ['nav-link', css_active_class('dashboard_accessibility')]
 
