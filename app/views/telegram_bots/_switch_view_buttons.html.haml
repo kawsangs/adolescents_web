@@ -1,0 +1,8 @@
+.btn-group.btn-group-sm{"aria-label" => "", :role => "group"}
+  = link_to chat_groups_path, class: ['btn btn-outline-secondary', css_active_class('chat_groups')] do
+    %i.fa-solid.fa-users-line
+    = t("telegram_bot.telegram_chat_group")
+
+  = link_to telegram_bot_path, class: ['btn btn-outline-secondary', css_active_class('telegram_bots')] do
+    %i.fa-brands.fa-telegram
+    = t("sidebar.telegram_bot")
