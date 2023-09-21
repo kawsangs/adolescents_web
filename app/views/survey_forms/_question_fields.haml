@@ -1,6 +1,14 @@
 %li{ 'data-controller': 'questions' }
   %fieldset.fieldset
     %legend.position-absolute.d-flex
+      / Chat group
+      - chat_groups = f.object.chat_groups.uniq
+      .chat-group-wrapper.mr-2{ class: ('d-none' unless chat_groups.present?) }
+        .d-flex.align-items-center
+          %small.mr-1= "#{t('mobile_notification.mobile_notification')}: "
+          %span.notification-wrapper{'data-bs-toggle': 'tooltip', 'data-bs-html': 'true', 'title': "#{sanitize(chat_group_list_html(chat_groups))}"}
+            %i.fa-brands.fa-telegram{style: 'color: #0088cc'}
+
       / Tag list
       - tag_list = f.object.tag_list.split(", ")
       .tag-list-wrapper{ class: ('d-none' unless tag_list.present?)}
@@ -37,7 +45,7 @@
             %div{style: 'width: 90%'}
               = render "shared/forms/audio", field: :audio, f: f
 
-            %span.ms-1{'data-toggle': 'tooltip', 'data-title': t('form.question_audio_hint')}
+            %span.ms-1{'data-bs-toggle': 'tooltip', 'title': t('form.question_audio_hint')}
               %i.fa-regular.fa-circle-question.text-gray-800
 
           %button.btn.btn-outline-primary.btn-add-field{type: 'button'}= t('form.ok')

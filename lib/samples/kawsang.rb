@@ -9,7 +9,7 @@ module Samples
       ::Samples::AppUser.new.load
       ::Samples::Visit.new.load
       ::Samples::Topic.new.load
-      ::Samples::Quiz.new.load
+      ::Samples::Survey.new.load
     end
 
     def load_references

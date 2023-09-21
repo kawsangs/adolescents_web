@@ -42,8 +42,49 @@ export default (function() {
     onChangeTracking()
     initFormTagList()
     initQuestionTagList()
+    onChangeChatGroupSelect()
 
     criteria.init()
+  }
+
+  function onChangeChatGroupSelect() {
+    $(document).on("change", "select.chat_group_ids", function(e) {
+      let select = $(this);
+      let chatGroupNames = getChatGroupLabels(select);
+
+      if(!chatGroupNames.length) return hideChatGroup(select);
+
+      showChatGroup(select);
+      updateChatGroupTooltip(select, chatGroupNames);
+    })
+  }
+
+  function updateChatGroupTooltip(select, chatGroupNames) {
+    let tooltipSpan = select.parents(".fieldset").find(".notification-wrapper");
+    let title = "<div class=\'text-left\'>";
+    title += "<span>ក្រុមជជែក</span>: <ol>";
+    title += chatGroupNames.map((name) => `<li>${name}</li>`).join("");
+    title += "</ol></div>";
+
+    let tooltip = bootstrap.Tooltip.getInstance(tooltipSpan);
+    tooltip._config.title = title;
+    tooltip.update();
+  }
+
+  function showChatGroup(select, chatGroupNames) {
+    window.me = select;
+    select.parents(".fieldset").find(".chat-group-wrapper").removeClass("d-none");
+  }
+
+  function hideChatGroup(select) {
+    select.parents(".fieldset").find(".chat-group-wrapper").addClass("d-none");
+  }
+
+  function getChatGroupLabels(select) {
+    let chatGroupIds = select.parents(".fieldset").find("select.chat_group_ids").map((index, el) => $(el).val()).toArray();
+    let chatGroupOptions = select.find("option").filter((index, el) => chatGroupIds.includes(el.value));
+
+    return chatGroupOptions.map((index, el) => el.text).toArray();
   }
 
   function initFormTagList() {

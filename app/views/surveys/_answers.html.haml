@@ -1,5 +1,5 @@
-- @quiz.topic.questions.each_with_index do |question, index|
-  - if answer = @quiz.answers.select{ |a| a.question_id == question.id }.first.presence
+- @survey.topic.questions.each_with_index do |question, index|
+  - if answer = @survey.survey_answers.select{ |a| a.question_id == question.id }.first.presence
     .mb-3.p-1.card{ style: 'background-color: rgba(0, 0, 0, 0.05)' }
       %div= "#{index + 1}) #{question.name}"
 

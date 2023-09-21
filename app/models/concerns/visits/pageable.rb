@@ -12,7 +12,8 @@ module Visits::Pageable
       Facility: 2,
       Video: 3,
       Topic: 4,
-      Contact: 5
+      Contact: 5,
+      MobileNotification: 6
     }
 
     # Validation

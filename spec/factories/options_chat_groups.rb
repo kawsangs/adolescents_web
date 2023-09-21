@@ -10,6 +10,5 @@
 #
 FactoryBot.define do
   factory :options_chat_group do
-    
   end
 end

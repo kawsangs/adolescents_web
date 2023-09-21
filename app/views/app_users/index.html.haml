@@ -24,6 +24,7 @@
             %th= sortable "registered_at", t('app_user.registered_at')
             %th= sortable "last_accessed_at", t("app_user.last_accessed_at")
             %th= t('app_user.number_of_visit')
+            %th
 
         %tbody
           - @app_users.each_with_index do |app_user, index|
@@ -48,5 +49,8 @@
               %td= timeago(app_user.registered_at).html_safe
               %td= timeago(app_user.last_accessed_at).html_safe
               %td= app_user.visits.length
+              %td
+                - if app_user.surveys.present?
+                  = link_to t("app_user.view_survey"), app_user_surveys_path(app_user), class: 'text-primary'
 
     = render "shared/footers/pagination"

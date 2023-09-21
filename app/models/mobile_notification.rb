@@ -32,16 +32,23 @@ class MobileNotification < ApplicationRecord
 
   # Association
   belongs_to :creator, foreign_key: :creator_id, class_name: "User"
+  belongs_to :survey_form, foreign_key: :topic_id, class_name: "Topics::SurveyForm", optional: true
   has_many   :mobile_notification_logs
 
   # Valiation
   validates :title, presence: true, length: { maximum: 100 }
   validates :body, presence: true, length: { maximum: 255 }
 
+  # Callback
+  after_create :published_survey_form, if: -> { topic_id.present? }
+
+  # Delegation
+  delegate :name, to: :survey_form, prefix: true, allow_nil: true
+
   # Instant method
   def build_content
     {
-      data: { payload: { topic_id: topic_id, push_notification_id: id }.to_json },
+      data: { payload: { topic_id:, mobile_notification_id: id }.to_json },
       notification: { title:, body: },
       apns: { payload: { aps: { "content-available": 1 } } },
       android: { "priority": "high" }
@@ -53,6 +60,12 @@ class MobileNotification < ApplicationRecord
     scope = all
     scope = scope.where("title LIKE ?", "%#{params[:title]}%") if params[:title].present?
     scope = scope.where("schedule_date BETWEEN ? AND ?", DateTime.parse(params[:start_date]).beginning_of_day, DateTime.parse(params[:end_date]).end_of_day) if params[:start_date].present? && params[:end_date].present?
+    scope = scope.where(topic_id: params[:topic_id]) if params[:topic_id].present?
     scope
   end
+
+  private
+    def published_survey_form
+      survey_form.publish unless survey_form.published?
+    end
 end

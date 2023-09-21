@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   resources :visits
   resource :about, only: [:show]
   resources :app_users, only: [:index] do
-    resources :quizzes, only: [:index, :show]
+    resources :surveys, only: [:index, :show]
   end
 
   resources :tags do

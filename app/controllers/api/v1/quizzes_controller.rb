@@ -2,21 +2,25 @@ module Api
   module V1
     class QuizzesController < ApiController
       def create
-        @quiz = Quiz.new(quiz_params)
+        @survey = Survey.new(survey_params)
 
-        if @quiz.save
-          render json: @quiz
+        if @survey.save
+          render json: @survey
         else
-          render json: { errors: @quiz.errors }
+          render json: { errors: @survey.errors }
         end
       end
 
       private
-        def quiz_params
-          params.require(:quiz).permit(
-            :app_user_id, :topic_id, :quizzed_at,
+        def survey_params
+          param = params.require(:quiz).permit(
+            :app_user_id, :topic_id, :quizzed_at, :mobile_notification_id,
             answers_attributes: [:question_id, :option_id, :value]
           )
+
+          param[:survey_answers_attributes] = param[:answers_attributes]
+          param.delete(:answers_attributes)
+          param
         end
     end
   end

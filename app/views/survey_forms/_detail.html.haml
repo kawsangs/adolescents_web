@@ -1,0 +1,37 @@
+%ol
+  - @form.questions.each do |question|
+    %li.mb-3
+      %div
+        / Display question
+        %span{ 'data-bs-toggle': 'tooltip', 'title': question.label }
+          = question.icon.html_safe
+
+        = question.name
+
+        .d-flex.align-items-center
+          / Display tag_list
+          - tag_list = question.tag_list.split(", ")
+          .tag-list-wrapper{ class: ('d-none' unless tag_list.present?)}
+            .d-flex.align-items-center
+              %small.me-1= "#{t('shared.tags')}: "
+              .tag-wrapper= tag_list_html(tag_list).html_safe
+
+          / Display tracking
+          .tracking.ms-2{ class: ('d-none' unless question.tracking?) }
+            .d-flex.align-items-center
+              = image_tag "barchart.png", width: 14, height: 14
+              %small.ms-1= t('form.tracking')
+
+      / Display option
+      %ul
+        - question.options.each do |option|
+          %li
+            = "#{option.name} (#{option.value})"
+            / Chat group
+            - chat_groups = option.chat_groups.uniq
+            .chat-group-wrapper.me-2{ class: ('d-none' unless chat_groups.present?) }
+              .d-flex.align-items-center
+                %small.me-1= "#{t('mobile_notification.push_notification')}: "
+                %span.notification-wrapper{'data-bs-toggle': 'tooltip', 'data-bs-html': 'true', 'title': "#{sanitize(chat_group_list_html(chat_groups))}"}
+                  %i.fa-brands.fa-telegram{style: 'color: #0088cc'}
+

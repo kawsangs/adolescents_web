@@ -1,9 +1,9 @@
 # == Schema Information
 #
-# Table name: answers
+# Table name: survey_answers
 #
 #  id          :uuid             not null, primary key
-#  quiz_id     :uuid
+#  survey_id   :uuid
 #  question_id :uuid
 #  option_id   :uuid
 #  value       :string
@@ -11,6 +11,6 @@
 #  updated_at  :datetime         not null
 #
 FactoryBot.define do
-  factory :answer do
+  factory :survey_answer do
   end
 end

@@ -3,10 +3,10 @@
 
 .container-fluid.px-4
   = render 'shared/header_title', title: "App User: #{@app_user.id[0..7]}...: Quizzes"
-  = render "shared/no_data", items: @quizzes
+  = render "shared/no_data", items: @surveys
 
-  - if @quizzes.present?
-    = render "shared/pagination_title", objects: @quizzes
+  - if @surveys.present?
+    = render "shared/pagination_title", objects: @surveys
 
     .table-responsive
       %table.table.table-hover.pretty
@@ -17,12 +17,12 @@
             %th= t('quiz.quiz_date')
             %th= t('quiz.answer')
         %tbody
-          - @quizzes.each_with_index do |quiz, index|
+          - @surveys.each_with_index do |survey, index|
             %tr
               %td= @pagy.from + 1
-              %td= quiz.topic.name
-              %td= timeago(quiz.quizzed_at, 'datetime').html_safe
+              %td= survey.topic.name
+              %td= timeago(survey.quizzed_at, 'datetime').html_safe
               %td
-                = link_to quiz.answers.length, app_user_quiz_path(@app_user, quiz), class: 'btn btn-link', remote: true if quiz.answers.length.positive?
+                = link_to survey.survey_answers.length, app_user_survey_path(@app_user, survey), class: 'btn btn-link', remote: true if survey.survey_answers.length.positive?
 
 = render 'modal_answer'

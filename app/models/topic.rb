@@ -12,13 +12,14 @@
 #  code         :string
 #  name_en      :string
 #  type         :string
+#  description  :text
 #
 class Topic < ApplicationRecord
   include Taggable
 
   # Association
   has_many :questions
-  has_many :sections, dependent: :destroy, inverse_of: :form
+  has_many :sections, dependent: :destroy, inverse_of: :topic
 
   # Validation
   validates :name_km, presence: true
@@ -51,6 +52,10 @@ class Topic < ApplicationRecord
 
   def published?
     published_at.present?
+  end
+
+  def publish
+    update(published_at: Time.now)
   end
 
   def status

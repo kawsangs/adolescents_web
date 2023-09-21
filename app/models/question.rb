@@ -28,6 +28,7 @@ class Question < ApplicationRecord
   belongs_to :section, optional: true, inverse_of: :questions
   has_many   :options, dependent: :destroy
   has_many   :criterias, dependent: :destroy
+  has_many   :chat_groups, through: :options
 
   # Mount audio
   mount_uploader :audio, AudioUploader

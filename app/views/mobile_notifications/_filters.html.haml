@@ -12,5 +12,9 @@
     .d-flex.m-2
       .me-1= render 'shared/filters/filter_date', placeholder: t('mobile_notification.search_by_schedule_date')
 
+      / filter by survey form
+      .filter-input.ml-2
+        = select_tag 'topic_id', options_for_select(Topics::SurveyForm.notification_counts.map {|f| [f.name, f.id]}, params[:topic_id]), include_blank: t('mobile_notification.any_survey_form'), class: 'form-control form-select'
+
       .ms-3
         = render "shared/buttons/search_button"
