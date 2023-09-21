@@ -33,12 +33,12 @@ RSpec.describe "Api::V1::QuizzesController", type: :request do
 
     it "creates a quiz" do
       expect { post "/api/v1/quizzes", params: { quiz: valid_params }, headers: }
-            .to change { Quiz.count }.by 1
+            .to change { Survey.count }.by 1
     end
 
     it "creates 2 answers" do
       expect { post "/api/v1/quizzes", params: { quiz: valid_params }, headers: }
-            .to change { Answer.count }.by 2
+            .to change { SurveyAnswer.count }.by 2
     end
   end
 end

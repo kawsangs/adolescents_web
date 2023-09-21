@@ -12,23 +12,23 @@
 #  code         :string
 #  name_en      :string
 #  type         :string
+#  description  :text
 #
 module Topics
   class SurveyForm < ::Topic
     # Association
-    has_many :sections, foreign_key: :topic_id, inverse_of: :topic
     has_many :mobile_notifications, foreign_key: :topic_id
     has_many :questions, through: :sections
 
     # Validation
     validates_associated :sections
 
-    def self.policy_class
-      SurveyFormPolicy
-    end
-
     def self.notification_counts
       joins(:mobile_notifications)
+    end
+
+    def self.policy_class
+      SurveyFormPolicy
     end
   end
 end

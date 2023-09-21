@@ -1,12 +1,4 @@
 module TopicsHelper
-  def tag_list_html(tags)
-    return "" unless tags.present?
-
-    tags.map { |tag|
-      "<small class='tag rounded mr-1'>#{tag}</small>"
-    }.join("")
-  end
-
   def form_status_html(form)
     status_method = ["form_status", form.status, "html"].compact.join("_")
 
@@ -37,7 +29,7 @@ module TopicsHelper
     return "" unless tags.present?
 
     tags.map { |tag|
-      "<small class='tag rounded mr-1'>#{tag}</small>"
+      "<small class='tag rounded me-1'>#{tag}</small>"
     }.join("")
   end
 end

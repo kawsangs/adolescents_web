@@ -25,20 +25,20 @@
           %th= t('form.number_of_question')
           %th= t('form.number_of_notification')
           %th= t('shared.tags')
-          / %th= t('shared.description')
+          %th= t('shared.description')
           %th= t('shared.status')
           %th
       %tbody
         - @forms.each_with_index do |form, index|
           %tr
             %td= @pagy.from + index
-            %td= link_to form.name_km, survey_form_path(form), class: 'text-primary'
+            %td= link_to form.name_km, survey_form_path(form), class: 'text-primary', remote: true
             %td= form.name_en
             %td= form.questions.length
             %td
-              = link_to form.mobile_notifications.length, mobile_notifications_path(form_id: form.id), class: 'text-primary' if form.mobile_notifications.length.positive?
+              = link_to form.mobile_notifications.length, mobile_notifications_path(topic_id: form.id), class: 'text-primary' if form.mobile_notifications.length.positive?
             %td= form.tag_list
-            / %td= form.description
+            %td= form.description
             %td= form_status_html(form).html_safe
             %td
               .d-flex.justify-content-end
@@ -50,3 +50,4 @@
                   = render "shared/buttons/delete_disable_button"
 
 = render "shared/modals/confirm_delete_modal"
+= render 'form_detail_modal'

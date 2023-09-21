@@ -12,6 +12,7 @@
 #  code         :string
 #  name_en      :string
 #  type         :string
+#  description  :text
 #
 module Topics
   class FaqForm < ::Topic

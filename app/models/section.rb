@@ -11,7 +11,6 @@
 #
 class Section < ApplicationRecord
   # Association
-  # belongs_to :topic, inverse_of: :sections
   belongs_to :topic, inverse_of: :sections
   has_many :questions, dependent: :destroy, inverse_of: :section
 
