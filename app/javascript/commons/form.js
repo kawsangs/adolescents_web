@@ -1,5 +1,5 @@
 import jquerySortable from 'libs/jquerySortable';
-import criteria from './criteria';
+import criteria from 'commons/criteria';
 import selectPicker from "commons/select_picker";
 import tooltip from "commons/tooltip";
 import tagList from "commons/tag_list";
