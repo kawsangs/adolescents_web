@@ -1,0 +1,30 @@
+.d-flex.flex-1
+  %ul.d-flex.flex-column.items
+    %label.p-1.border-bottom= t('form.setting')
+    %li.item.item-setting{'data-target' => '.setting-content'} Question Option
+    %li.item.skip-logic{'data-target' => '.skip-logic-content'}= t('form.skip_logic')
+
+  .contents.flex-1
+    .content.setting-content
+      / Code
+      .mb-3= f.input :code, label: 'Data column name', input_html: {class: 'question-code'}
+
+      / Tags
+      .mb-3= f.input :tag_list, label: t('shared.tags'), input_html: { 'data-tags': Question.tag_counts.sort_by(&:count).reverse.pluck(:name).to_json, class: 'tag-list' }
+
+      / Tracking
+      .mb-3.d-none.d-for-select-one.d-for-select-multiple
+        .d-flex
+          = f.input :tracking, label: false, input_html: {class: 'tracking-checkbox'}
+
+          = f.label :tracking do
+            .d-flex.align-items-center
+              = image_tag "barchart.png", width: 14, height: 14
+              .ms-1= t('form.tracking')
+    / Criteria
+    .content.skip-logic-content.w-100.position-relative
+      = f.simple_fields_for :criterias, f.object.criterias do |builder|
+        = render 'criteria_fields', f: builder
+      = link_to_add_fields t('form.add_critera'), f, :criterias
+
+      = f.input :relevant, collection: [[t("form.match_all_criteria"), "AND"], [t('form.match_any_criteria'), "OR"]], label: false, include_blank: false, input_html: { class: 'custom-select '}, wrapper_html: { class: ['position-absolute relevant', ('d-none' unless f.object.criterias.length > 1)], style: 'bottom: -20px; left: 190px;'}

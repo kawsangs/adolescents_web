@@ -53,7 +53,7 @@
               = link_to t('sidebar.videos'), videos_path, class: ['nav-link', css_active_class('videos')]
 
             - if policy(Topic).index?
-              = link_to t('sidebar.topics'), topics_path, class: ['nav-link', css_active_class('topics')]
+              = link_to t('sidebar.topics'), faq_forms_path, class: ['nav-link', css_active_class('faq_forms')]
 
             - if policy(Category).index?
               = link_to t('sidebar.categories'), categories_path, class: ['nav-link', css_active_class('categories')]

@@ -1,0 +1,53 @@
+.container-fluid.px-4
+  = render "shared/headers/page_heading", title: t("form.questionnaire") do
+    = render "shared/buttons/add_new_button", url: new_survey_form_path
+
+  .d-flex.mb-2
+    %form.flex-grow-1.d-flex{ action: survey_forms_path, method: 'get'}
+      = render "shared/filters/filter_name"
+      .ms-2
+        = render "shared/buttons/search_button"
+
+    %div
+      = render "mobile_notifications/switch_view_buttons"
+
+  = render "shared/no_data", items: @forms
+
+  - if @forms.present?
+    .mt-2= render "shared/pagination_title", objects: @forms
+
+    %table.table.table-hover
+      %thead
+        %tr
+          %th #
+          %th= t('form.name_km')
+          %th= t('form.name_en')
+          %th= t('form.number_of_question')
+          %th= t('form.number_of_notification')
+          %th= t('shared.tags')
+          %th= t('shared.description')
+          %th= t('shared.status')
+          %th
+      %tbody
+        - @forms.each_with_index do |form, index|
+          %tr
+            %td= @pagy.from + index
+            %td= link_to form.name_km, survey_form_path(form), class: 'text-primary', remote: true
+            %td= form.name_en
+            %td= form.questions.length
+            %td
+              = link_to form.mobile_notifications.length, mobile_notifications_path(topic_id: form.id), class: 'text-primary' if form.mobile_notifications.length.positive?
+            %td= form.tag_list
+            %td= form.description
+            %td= form_status_html(form).html_safe
+            %td
+              .d-flex.justify-content-end
+                = render "shared/buttons/edit_button", url: edit_survey_form_path(form), object: form
+
+                = render 'shared/buttons/delete_button', object: form,  message: { type: t('form.your_story'), name: form.name, url: survey_form_path(form) }
+
+                - if !policy(form).destroy?
+                  = render "shared/buttons/delete_disable_button"
+
+= render "shared/modals/confirm_delete_modal"
+= render 'form_detail_modal'

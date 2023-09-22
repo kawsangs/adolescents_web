@@ -91,3 +91,6 @@ en:
     setting: Setting
     search_by_tag: Search by tag
     search_by_name: Search by name
+    please_select: Please select
+    published_at: Published at
+    at_least_one_valid_item: There must be at least 1 valid item

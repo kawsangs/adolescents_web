@@ -13,13 +13,22 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  answer        :text
+#  tracking      :boolean          default(FALSE)
+#  required      :boolean          default(FALSE)
+#  relevant      :string
+#  section_id    :uuid
 #
 class Question < ApplicationRecord
-  TYPES = %w[Questions::SelectOne Questions::Faq].freeze
+  include Taggable
+
+  TYPES = %w[Questions::SelectOne Questions::SelectMultiple Questions::Result Questions::Text Questions::VoiceRecording Questions::Faq].freeze
 
   # Associations
-  belongs_to :topic
+  belongs_to :topic, optional: true
+  belongs_to :section, optional: true, inverse_of: :questions
   has_many   :options, dependent: :destroy
+  has_many   :criterias, dependent: :destroy
+  has_many   :chat_groups, through: :options
 
   # Mount audio
   mount_uploader :audio, AudioUploader
@@ -36,6 +45,7 @@ class Question < ApplicationRecord
   before_validation :set_type
 
   accepts_nested_attributes_for :options, allow_destroy: true, reject_if: ->(attributes) { attributes["name"].blank? }
+  accepts_nested_attributes_for :criterias, allow_destroy: true
 
   private
     def set_display_order

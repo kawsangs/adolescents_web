@@ -25,7 +25,7 @@ class TelegramBot < ApplicationRecord
   before_update :post_webhook_to_telegram, unless: :skip_callback
 
   def post_webhook_to_telegram
-    bot = Telegram::Bot::Client.new(token: token, username: username)
+    bot = Telegram::Bot::Client.new(token:, username:)
 
     begin
       request = bot.set_webhook(url: ENV["TELEGRAM_CALLBACK_URL"])
@@ -42,7 +42,7 @@ class TelegramBot < ApplicationRecord
 
   def self.client_send_message(chat_id, message)
     ::Telegram::Bot::Client.new(instance.token)
-                           .send_message(chat_id: chat_id, text: message, parse_mode: :HTML)
+                           .send_message(chat_id:, text: message, parse_mode: :HTML)
   end
 
   private

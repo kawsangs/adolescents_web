@@ -1,0 +1,29 @@
+- url = @topic.persisted? ? faq_form_path(@topic) : faq_forms_path
+
+.w-75.view-center{'data-controller': 'topics'}
+  = simple_form_for @topic, url: url, html: { class: 'main-form', 'data-action': 'topics#submitForm' } do |f|
+    .mb-3= f.input :name_km
+    .mb-3= f.input :name_en
+
+    / Tags
+    .mb-3= f.input :tag_list, label: t('facility.tags'), input_html: { 'data-topics-target': 'tagList', 'data-tags': Facility.tag_counts.sort_by(&:count).reverse.pluck(:name).to_json }
+
+    .mb-3
+      %label= t('shared.audio')
+      = render "shared/forms/audio", field: :audio, f: f
+
+    %fieldset
+      %legend.d-inline
+        %span= t('topic.questions')
+        %button.btn.collapse-all-trigger{type: :button, data: {'topics-target': 'btnCollapseAllTrigger', action: 'topics#toggleCollapseAllContent'} }
+          %i.fas.fa-caret-right
+
+      %ol.fields.sortable
+        = f.fields_for :questions, f.object.questions do |builder|
+          = render 'question_fields', f: builder
+
+        = link_to_add_fields t('topic.add_question'), f, :questions, 'topics-target': 'btnAddQuestion', 'action': 'topics#appendField'
+
+      .actions.text-right.mb-3
+        = link_to t('shared.cancel'), faq_forms_path, class: 'btn btn-secondary me-1'
+        = f.submit t('shared.save'), class: 'btn btn-primary', data: { turbo: "false" }

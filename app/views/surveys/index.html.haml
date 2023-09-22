@@ -1,0 +1,28 @@
+= content_for :header_title_right_col do
+  = render "shared/buttons/back_button", url: app_users_path
+
+.container-fluid.px-4
+  = render 'shared/header_title', title: "App User: #{@app_user.id[0..7]}...: Quizzes"
+  = render "shared/no_data", items: @surveys
+
+  - if @surveys.present?
+    = render "shared/pagination_title", objects: @surveys
+
+    .table-responsive
+      %table.table.table-hover.pretty
+        %thead
+          %tr
+            %th #
+            %th= t('quiz.topic')
+            %th= t('quiz.quiz_date')
+            %th= t('quiz.answer')
+        %tbody
+          - @surveys.each_with_index do |survey, index|
+            %tr
+              %td= @pagy.from + 1
+              %td= survey.topic.name
+              %td= timeago(survey.quizzed_at, 'datetime').html_safe
+              %td
+                = link_to survey.survey_answers.length, app_user_survey_path(@app_user, survey), class: 'btn btn-link', remote: true if survey.survey_answers.length.positive?
+
+= render 'modal_answer'

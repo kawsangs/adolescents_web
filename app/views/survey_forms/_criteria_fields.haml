@@ -1,0 +1,12 @@
+%fieldset.flex-1.criteria.mb-3
+  .d-flex.flex-1
+    = f.hidden_field :_destroy
+    = link_to '#', class: "remove_fields btn btn-link" do
+      %i.fa.fa-trash-alt.text-danger
+
+    .flex-1
+      = f.input :question_code, collection: [], label: false, prompt: t('form.select_question_from_list'), input_html: { class: 'custom-select question-select', "data-value" => f.object.question_code }
+    .w-25.mx-2
+      = f.input :operator, label: false, collection: [], input_html: { class: 'custom-select operator-select', "data-value" => f.object.operator }
+    .flex-1
+      = f.input :response_value, label: false, placeholder: t('form.response_value'), input_html: {class: 'response_value'}

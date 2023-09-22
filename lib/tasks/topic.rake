@@ -5,4 +5,10 @@ namespace :topic do
       topic.update(name_en: "#{topic.name_km}(en)")
     end
   end
+
+  desc "migrate existing topic type to faq form"
+  task migrate_top_faq_form_type: :environment do
+    topics = Topic.where(type: nil)
+    topics.update_all(type: "Topics::FaqForm")
+  end
 end

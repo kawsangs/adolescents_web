@@ -27,11 +27,11 @@ class MobileNotificationsController < ApplicationController
   private
     def notification_params
       params.require(:mobile_notification).permit(
-        :id, :title, :body, :platform, :schedule_date
+        :id, :title, :body, :platform, :schedule_date, :topic_id
       ).merge(creator_id: current_user.id)
     end
 
     def filter_params
-      params.permit(:title, :start_date, :end_date)
+      params.permit(:title, :start_date, :end_date, :topic_id)
     end
 end

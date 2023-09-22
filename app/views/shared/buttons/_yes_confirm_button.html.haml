@@ -3,5 +3,5 @@
   %button.btn.btn-primary.btn-sm{'data-bs-toggle' => 'modal', 'data-bs-target' => '#confirmModal', type: 'button'}
     = t('shared.yes_i_approve')
 - else
-  %span.btn.btn-primary.btn-sm.disabled{ 'data-toggle' => 'tooltip', 'data-html' => 'true', title: t("shared.at_least_one_valid_item") }
+  %span.btn.btn-primary.btn-sm.disabled{ 'data-bs-toggle' => 'tooltip', 'data-html' => 'true', title: t("shared.at_least_one_valid_item") }
     = t('shared.yes_i_approve')

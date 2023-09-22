@@ -10,20 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_20_032339) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_21_024817) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
-
-  create_table "answers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "quiz_id"
-    t.uuid "question_id"
-    t.uuid "option_id"
-    t.string "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "api_keys", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
@@ -153,6 +144,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_20_032339) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "criteria", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "question_id"
+    t.string "question_code"
+    t.string "operator"
+    t.string "response_value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "facilities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -256,6 +256,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_20_032339) do
     t.string "job_id"
     t.integer "status", default: 1
     t.json "detail", default: {}
+    t.uuid "topic_id"
   end
 
   create_table "mobile_tokens", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -318,6 +319,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_20_032339) do
     t.boolean "move_next", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "value"
+  end
+
+  create_table "options_chat_groups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "option_id"
+    t.uuid "chat_group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "pages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -354,12 +363,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_20_032339) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "answer"
+    t.boolean "tracking", default: false
+    t.boolean "required", default: false
+    t.string "relevant"
+    t.uuid "section_id"
   end
 
-  create_table "quizzes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "app_user_id"
+  create_table "sections", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
     t.uuid "topic_id"
-    t.datetime "quizzed_at"
+    t.integer "display_order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -376,6 +389,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_20_032339) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["var"], name: "index_settings_on_var", unique: true
+  end
+
+  create_table "survey_answers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "survey_id"
+    t.uuid "question_id"
+    t.uuid "option_id"
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "surveys", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "app_user_id"
+    t.uuid "topic_id"
+    t.datetime "quizzed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "mobile_notification_id"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -421,6 +452,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_20_032339) do
     t.datetime "updated_at", null: false
     t.string "code"
     t.string "name_en"
+    t.string "type"
+    t.text "description"
   end
 
   create_table "users", force: :cascade do |t|

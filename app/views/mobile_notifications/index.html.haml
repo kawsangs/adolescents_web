@@ -7,7 +7,7 @@
   = render "shared/no_data", items: @mobile_notifications
 
   - if @mobile_notifications.present?
-    = render "shared/pagination_title", objects: @mobile_notifications
+    .mt-2= render "shared/pagination_title", objects: @mobile_notifications
 
     .table-responsive
       %table.table.table-hover.pretty
@@ -16,6 +16,7 @@
             %th #
             %th= t('mobile_notification.notification_title')
             %th= t('mobile_notification.notification_text')
+            %th= t('form.questionnaire')
             %th= t('mobile_notification.platform')
             %th= t('shared.created_at')
             %th= t('mobile_notification.schedule_date')
@@ -29,6 +30,8 @@
               %td= @pagy.from + index
               %td= notification.title
               %td= notification.body
+              %td
+                = link_to notification.survey_form_name, survey_form_path(notification.survey_form), class: 'text-primary', remote: true if notification.survey_form.present?
               %td= platform_icon(notification.platform).html_safe
               %td= timeago(notification.created_at).html_safe
               %td= notification.schedule_date.future? ? l(notification.schedule_date, format: :long) : timeago(notification.schedule_date, 'datetime').html_safe
@@ -43,3 +46,4 @@
     = render "shared/footers/pagination"
 
 = render "shared/modals/confirm_delete_modal"
+= render "survey_forms/form_detail_modal"
