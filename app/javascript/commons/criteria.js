@@ -1,4 +1,4 @@
-import MW from './skip_logic_constant';
+import MW from 'commons/skip_logic_constant';
 
 export default (function () {
   const SELECT_ONE_TYPE = "Questions::SelectOne";
