@@ -24,4 +24,9 @@ FactoryBot.define do
       published_at { Time.now }
     end
   end
+
+  factory :survey_form, class: "Topics::SurveyForm" do
+    name_km { FFaker::Name.name }
+    name_en { FFaker::Name.name }
+  end
 end
