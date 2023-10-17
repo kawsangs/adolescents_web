@@ -1,4 +1,5 @@
 import MW from 'commons/skip_logic_constant';
+import Tagify from "@yaireo/tagify";
 
 export default (function () {
   const SELECT_ONE_TYPE = "Questions::SelectOne";
@@ -97,6 +98,9 @@ export default (function () {
 
   function onChangeOperator() {
     $(document).on('change', '.operator-select', function (event) {
+      let isAlreadyInitTagify = !!$(event.currentTarget).parents('fieldset.criteria').find('tags').length;
+      if (isAlreadyInitTagify) return;
+
       initTagify($(event.currentTarget).parents('.criteria'));
     });
   }
