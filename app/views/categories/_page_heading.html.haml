@@ -19,7 +19,7 @@
 
     - if current_user.primary_admin?
       %li
-        %a.dropdown-item{ href: contacts_path(filter_params.merge(format: :json)), target: '_blank' }
+        %a.dropdown-item{ href: categories_path(filter_params.merge(format: :json)), target: '_blank' }
           %i.fa-solid.fa-download
           %span= t('shared.download_json')
 
