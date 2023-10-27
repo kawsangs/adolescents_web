@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_27_074855) do
     t.datetime "updated_at", null: false
     t.datetime "last_accessed_at"
     t.integer "platform", default: 1
-    t.integer "occupation", default: 0
+    t.integer "occupation"
     t.integer "education_level", default: 0
   end
 
@@ -399,6 +399,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_27_074855) do
     t.string "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "uuid"
+    t.string "voice"
   end
 
   create_table "surveys", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
