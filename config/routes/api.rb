@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       resources :contact_directories, only: [:index]
       resources :survey_forms, only: [:show]
       resources :surveys, only: [:create]
+      resources :survey_answers, only: [:update]
 
       get "*path" => "api#routing_error"
     end

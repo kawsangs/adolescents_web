@@ -16,7 +16,7 @@ module Api
           params.require(:survey).permit(
             :app_user_id, :topic_id, :quizzed_at, :mobile_notification_id,
             survey_answers_attributes: [
-              :question_id, :option_id, :value
+              :question_id, :option_id, :value, :uuid
             ]
           )
         end
