@@ -10,8 +10,11 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  value       :string
+#  image       :string
 #
 class Option < ApplicationRecord
+  mount_uploader :image, ImageUploader
+
   # Association
   belongs_to :question
   has_many :options_chat_groups

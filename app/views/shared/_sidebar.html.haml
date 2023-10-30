@@ -52,7 +52,7 @@
             - if policy(Video).index?
               = link_to t('sidebar.videos'), videos_path, class: ['nav-link', css_active_class('videos')]
 
-            - if policy(Topic).index?
+            - if policy(Topics::FaqForm).index?
               = link_to t('sidebar.topics'), faq_forms_path, class: ['nav-link', css_active_class('faq_forms')]
 
             - if policy(Category).index?

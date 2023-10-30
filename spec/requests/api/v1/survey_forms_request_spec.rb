@@ -10,7 +10,7 @@ RSpec.describe "Api::V1::SurveyFormsController", type: :request do
 
     before {
       headers = { "ACCEPT" => "application/json", "Authorization" => "Apikey #{api_key.api_key}" }
-      get "/api/v1/survey_forms/#{form.id}", headers: headers
+      get "/api/v1/survey_forms/#{form.id}", headers:
     }
 
     it { expect(response.status).to eq(200) }

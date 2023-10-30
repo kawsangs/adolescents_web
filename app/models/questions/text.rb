@@ -21,7 +21,7 @@
 module Questions
   class Text < Question
     def icon
-      "<strong class=\'icon\'>abc</strong>"
+      "<strong class=\'icon text-icon\'>abc</strong>"
     end
 
     def label

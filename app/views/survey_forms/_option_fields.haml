@@ -10,15 +10,26 @@
           = f.input :name, label: false, placeholder: t("form.answer_maximum")
         .flex-1.me-2
           = f.input :value, label: false, placeholder: t("form.value")
-        .me-2
+
+        / Option icon
+        .me-2.w-25.d-none.d-for-note
+          .d-flex
+            %div{style: 'width: 90%'}
+              = render "shared/image", f: f
+
+            %span.ml-1{'data-bs-toggle': 'tooltip', 'title': t('form.option_icon_hint')}
+              %i.fa-regular.fa-circle-question.text-gray-800
+
+        .me-2.d-none.d-for-select-one.d-for-select-multiple
           = link_to "Advanced", "#", class: 'btn btn-advance'
 
-      .mt-3.advance-options{class: ('d-none' unless f.object.chat_group_ids.present?)}
-        .form-group
-          %label
-            = t('form.telegram_chat_group')
-            %span.ml-1{'data-bs-toggle': 'tooltip', 'title': t('form.chat_group_description')}
-              %i.fa-regular.fa-circle-question
+      .d-none.d-for-select-one.d-for-select-multiple
+        .mt-3.advance-options{class: ('d-none' unless f.object.chat_group_ids.present?)}
+          .form-group
+            %label
+              = t('form.telegram_chat_group')
+              %span.ml-1{'data-bs-toggle': 'tooltip', 'title': t('form.chat_group_description')}
+                %i.fa-regular.fa-circle-question
 
-          .filter-input.tooltips{ 'data-bs-toggle' => 'tooltip' }
-            = f.input :chat_group_ids, label: false, collection: TelegramBot.instance.chat_groups.pluck(:title, :id), input_html: {class: 'custom-select selectpicker chat_group_ids', multiple: true, "data-live-search" => "true", "data-count-selected-text" => "{0} #{t('form.group_selected')}", "data-selected-text-format" => "count > 1", "data-none-selected-text" => t('shared.please_select') }
+            .filter-input.tooltips{ 'data-bs-toggle' => 'tooltip' }
+              = f.input :chat_group_ids, label: false, collection: TelegramBot.instance.chat_groups.pluck(:title, :id), input_html: {class: 'custom-select selectpicker chat_group_ids', multiple: true, "data-live-search" => "true", "data-count-selected-text" => "{0} #{t('form.group_selected')}", "data-selected-text-format" => "count > 1", "data-none-selected-text" => t('shared.please_select') }

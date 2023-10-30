@@ -1,10 +1,7 @@
 .field-type-wrapper
   .flex-row
     .flex1
-      .field-type-list{'data-action': 'click->questions#renderTitleStyle', 'data-questions-field_type-param': 'Questions::SelectOne', 'data-field_type' => 'Questions::SelectOne'}
-        %i.far.fa-dot-circle.icon
-        Select one
-
-      .field-type-list{'data-action': 'click->questions#renderTitleStyle', 'data-questions-field_type-param': 'Questions::Faq', 'data-field_type' => 'Questions::Faq'}
-        %i.fa-solid.fa-question.fa-list-ul.icon
-        Faq
+      - [Questions::SelectOne, Questions::Faq].each do |klass|
+        .field-type-list{'data-action': 'click->questions#renderTitleStyle', 'data-questions-field_type-param': "#{klass}", 'data-field_type' => "#{klass}"}
+          %span= klass.new.icon.html_safe
+          = klass.new.label
