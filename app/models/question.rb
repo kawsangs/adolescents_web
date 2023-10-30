@@ -21,7 +21,7 @@
 class Question < ApplicationRecord
   include Taggable
 
-  TYPES = %w[Questions::SelectOne Questions::SelectMultiple Questions::Result Questions::Text Questions::VoiceRecording Questions::Faq].freeze
+  TYPES = %w[Questions::SelectOne Questions::SelectMultiple Questions::Result Questions::Text Questions::VoiceRecording Questions::Faq Questions::Note].freeze
 
   # Associations
   belongs_to :topic, optional: true

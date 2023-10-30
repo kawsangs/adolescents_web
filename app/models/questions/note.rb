@@ -19,13 +19,13 @@
 #  section_id    :uuid
 #
 module Questions
-  class VoiceRecording < Question
+  class Note < Question
     def icon
-      "<i class=\'fa-solid fa-microphone voice-recording-icon icon\'></i>"
+      '<i class="fa-regular fa-note-sticky icon"></i>'
     end
 
     def label
-      "Voice Recording"
+      "Note"
     end
   end
 end

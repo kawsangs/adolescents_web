@@ -1,0 +1,4 @@
+%li.d-flex.align-items-center
+  - if option.image.present?
+    = image_tag option.image_url, width: 16, height: 16, class: 'me-1'
+  = "#{option.name} (#{option.value})"

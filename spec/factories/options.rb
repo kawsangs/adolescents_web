@@ -10,6 +10,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  value       :string
+#  image       :string
 #
 FactoryBot.define do
   factory :option do

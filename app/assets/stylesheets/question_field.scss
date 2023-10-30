@@ -62,8 +62,8 @@
     display: none;
   }
 
-  .icon {
-    width: 28px;
+  .btn.move {
+    min-width: 60px;
     display: inline-block;
   }
 
@@ -190,8 +190,12 @@
       color: #3fa2ee;
     }
 
-    .icon {
+    span {
       width: 50px;
+      display: inline-block;
+    }
+
+    .icon {
       display: inline-block;
       font-size: 16px;
     }
@@ -256,6 +260,24 @@
 
 .fieldset legend {
   top: -11px;
-  left: 60px;
+  left: 70px;
   background-color: #fff;
+}
+
+.text-icon {
+  border: 1px solid #111;
+  padding: 0px 2px;
+  border-radius: 3px;
+  font-weight: bold;
+  line-height: 16px;
+}
+
+.voice-recording-icon {
+  border: 1px solid #111;
+  border-radius: 50%;
+  text-align: center;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 22px !important;
 }
