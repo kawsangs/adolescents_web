@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: sections
+#
+#  id            :uuid             not null, primary key
+#  name          :string
+#  topic_id      :uuid
+#  display_order :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
 class SectionSerializer < ActiveModel::Serializer
   attributes :id, :name, :display_order
 

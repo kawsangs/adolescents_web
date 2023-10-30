@@ -1,9 +1,9 @@
 en:
   topic:
-    topic: Topic
-    topics: Topics
-    new_topic: New topic
-    edit_topic: Edit topic
+    topic: Decision Aid Topic(FAQ)
+    topics: Decision Aid Topic(FAQ)
+    new_topic: New Decision Aid Topic(FAQ)
+    edit_topic: Edit Decision Aid Topic(FAQ)
     name: Name
     version: Version
     published_at: Published at
@@ -20,7 +20,7 @@ en:
     name_in_km: Name in Khmer
     name_in_en: Name in English
     number_of_topic: "# of topic"
-    faq_form: Faq form
+    faq_form: Decision Aid Topic(FAQ)
     new_questionnaire: New survey form
 
   form:
@@ -50,3 +50,4 @@ en:
     add_critera: + Add criteria
     add_option: + Add option
     add_question: + Add question
+    option_icon_hint: The icon file(*.png, and 80px x 80px)

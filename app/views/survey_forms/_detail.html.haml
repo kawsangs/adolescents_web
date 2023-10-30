@@ -23,15 +23,6 @@
               %small.ms-1= t('form.tracking')
 
       / Display option
-      %ul
+      %ul.list-unstyled.ps-3
         - question.options.each do |option|
-          %li
-            = "#{option.name} (#{option.value})"
-            / Chat group
-            - chat_groups = option.chat_groups.uniq
-            .chat-group-wrapper.me-2{ class: ('d-none' unless chat_groups.present?) }
-              .d-flex.align-items-center
-                %small.me-1= "#{t('mobile_notification.push_notification')}: "
-                %span.notification-wrapper{'data-bs-toggle': 'tooltip', 'data-bs-html': 'true', 'title': "#{sanitize(chat_group_list_html(chat_groups))}"}
-                  %i.fa-brands.fa-telegram{style: 'color: #0088cc'}
-
+          = option_list_item(question.type, option)

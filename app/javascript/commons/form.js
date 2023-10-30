@@ -3,11 +3,16 @@ import criteria from 'commons/criteria';
 import selectPicker from "commons/select_picker";
 import tooltip from "commons/tooltip";
 import tagList from "commons/tag_list";
+import audio from "commons/audio";
 
 export default (function() {
-  var selectOne = 'Questions::SelectOne';
-  var selectMultiple = 'Questions::SelectMultiple';
   var resultType = 'Questions::Result';
+
+  var havingOptionQuestionTypes = {
+    'Questions::SelectOne': 'd-for-select-one',
+    'Questions::SelectMultiple': 'd-for-select-multiple',
+    'Questions::Note': 'd-for-note'
+  }
 
   return {
     init,
@@ -34,7 +39,9 @@ export default (function() {
     onClickBtnSetting()
 
     onClickBtnAdvanceOption()
-    // MW.Audio.init()
+
+    audio.init();
+
     onClickCollapseAllTrigger()
     onClickAddCriteria()
     onChangeQuestionName()
@@ -199,10 +206,11 @@ export default (function() {
 
   function initCollapseContent(dom) {
     hideCollapseContent(dom);
-    if (dom.value == selectOne || dom.value == selectMultiple) {
+
+    if(Object.keys(havingOptionQuestionTypes).includes(dom.value)) {
       showCollapseTrigger(dom);
       showOption(dom);
-      showContentUnderClass(dom, ['d-for-select-one', 'd-for-select-multiple'])
+      showContentUnderClass(dom, havingOptionQuestionTypes[dom.value])
     } else if (dom.value == resultType) {
       showResultField(dom);
       showCollapseTrigger(dom);
@@ -350,11 +358,11 @@ export default (function() {
   };
 
   function handleCollapseContent(dom, field_type) {
-    if (field_type == selectOne || field_type == selectMultiple) {
+    if (Object.keys(havingOptionQuestionTypes).includes(field_type)) {
       showOption(dom);
       initOneOption(dom);
       showArrowDownIcon(dom);
-      showContentUnderClass(dom, ['d-for-select-one', 'd-for-select-multiple'])
+      showContentUnderClass(dom, havingOptionQuestionTypes[field_type])
     } else if (field_type == resultType) {
       showResultField(dom);
       showArrowDownIcon(dom);
@@ -363,10 +371,14 @@ export default (function() {
     hideFieldTypeList(dom);
   };
 
-  function showContentUnderClass(dom, css_classes) {
-    for(let i=0; i < css_classes.length; i++) {
-      $(dom).parents('.fieldset').find(`.${css_classes[i]}`).removeClass('d-none');
-    }
+  function handleShowingContentForSpecificType(field) {
+    let fieldType = field.parents('.fieldset').find('.field-type').val()
+    console.log(fieldType)
+    showContentUnderClass(field, havingOptionQuestionTypes[fieldType])
+  }
+
+  function showContentUnderClass(dom, css_class) {
+    $(dom).parents('.fieldset').find(`.${css_class}`).removeClass('d-none');
   }
 
   function showArrowDownIcon(dom) {
@@ -436,6 +448,7 @@ export default (function() {
     }
 
     tooltip.init();
+    handleShowingContentForSpecificType(field);
     return field;
   };
 

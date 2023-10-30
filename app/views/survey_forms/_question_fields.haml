@@ -5,7 +5,7 @@
       - chat_groups = f.object.chat_groups.uniq
       .chat-group-wrapper.mr-2{ class: ('d-none' unless chat_groups.present?) }
         .d-flex.align-items-center
-          %small.mr-1= "#{t('mobile_notification.mobile_notification')}: "
+          %small.mr-1= "#{t('mobile_notification.notify_to')}: "
           %span.notification-wrapper{'data-bs-toggle': 'tooltip', 'data-bs-html': 'true', 'title': "#{sanitize(chat_group_list_html(chat_groups))}"}
             %i.fa-brands.fa-telegram{style: 'color: #0088cc'}
 

@@ -1,0 +1,11 @@
+%li
+  %i.fa-regular.fa-square-check
+  = "#{option.name} (#{option.value})"
+
+  / Chat group
+  - chat_groups = option.chat_groups.uniq
+  .chat-group-wrapper.me-2{ class: ('d-none' unless chat_groups.present?) }
+    .d-flex.align-items-center
+      %small.me-1= "#{t('mobile_notification.notify_to')}: "
+      %span.notification-wrapper{'data-bs-toggle': 'tooltip', 'data-bs-html': 'true', 'title': "#{sanitize(chat_group_list_html(chat_groups))}"}
+        %i.fa-brands.fa-telegram{style: 'color: #0088cc'}
