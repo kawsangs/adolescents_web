@@ -12,6 +12,10 @@
 #  updated_at           :datetime         not null
 #
 class ContactSerializer < ActiveModel::Serializer
-  attributes :id, :name, :value, :channel, :display_order,
+  attributes :id, :name, :value, :type, :display_order,
              :contact_directory_id, :updated_at
+
+  def type
+    object.channel
+  end
 end
