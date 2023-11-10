@@ -9,11 +9,15 @@
 #  value       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  uuid        :string
+#  voice       :string
 #
 class SurveyAnswer < ApplicationRecord
+  mount_uploader :voice, AudioUploader
+
   belongs_to :survey, optional: true
   belongs_to :question
-  belongs_to :option
+  belongs_to :option, optional: true
 
   # Callback
   after_create :notify_telegram_groups
