@@ -13,7 +13,7 @@ module Spreadsheets
         video.attributes = {
           name: row["title"],
           url: row["url"],
-          tag_list: row["category"],
+          tag_list: row["tag_list"],
           video_author_attributes: { name: row["author"] }
         }
 

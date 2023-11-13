@@ -5,14 +5,17 @@
       %span.input-group-text
         %i.fas.fa-search
 
-    .ms-3.flex-grow-1
+    .ms-3
       = render "shared/buttons/advance_search_button", toggler_variable: 'advance_search_video'
+
+    .ms-2.flex-grow-1
+      = render "shared/buttons/search_button"
 
     %div
       = render "switch_view_buttons"
 
   #collapseOne.accordion-collapse.collapse.collapse-filter
-    .d-flex.m-2
+    .d-flex.m-2.flex-wrap
       / Filtery by batch
       - list = Batches::VideoBatch.all.map{ |batch| ["#{batch.code}(#{display_datetime(batch.created_at)})", batch.code]}
 
@@ -23,8 +26,8 @@
         - options = @video_authors.pluck(:name)
         = select_tag 'video_author[]', options_for_select(options, params[:video_author]), multiple: true, "data-live-search" => "true", "data-count-selected-text" => "{0} #{t('video.authors_selected')}", "data-selected-text-format" => "count > 1", "data-none-selected-text" => t('video.any_author'), class: 'selectpicker form-control'
 
-      .ms-3
-        %button.btn.btn-primary.ml-md-2{type: :submit}
-          %i.fas.fa-search
-          %span.d-none.d-lg-inline= t('shared.search')
+      / Filter by tag
+      .ms-1.filter-input.tooltips{ 'data-bs-toggle' => 'tooltip' }
+        - options = Video.tag_counts.sort_by(&:count).reverse.pluck(:name)
+        = select_tag 'tag[]', options_for_select(options, params[:tag]), multiple: true, "data-live-search" => "true", "data-count-selected-text" => "{0} #{t('facility.tages_selected')}", "data-selected-text-format" => "count > 1", "data-none-selected-text" => t('facility.any_tag'), class: 'selectpicker form-control'
 
