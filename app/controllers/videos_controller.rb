@@ -72,7 +72,7 @@ class VideosController < ApplicationController
 
   private
     def filter_params
-      params.permit(:name, :batch_code, video_author: [])
+      params.permit(:name, :batch_code, video_author: [], tag: [])
     end
 
     def video_params
