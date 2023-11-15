@@ -1,6 +1,6 @@
 %nav#sidenavAccordion.sb-sidenav.accordion.sb-sidenav-light{'data-controller': 'sidebar'}
-  .sb-sidenav-menu
-    .nav
+  .sb-sidenav-menu.d-flex.flex-column
+    .nav.flex-grow-1
       - if policy(:grafana).show?
         .sb-sidenav-menu-heading= t('sidebar.reports')
 
@@ -89,30 +89,30 @@
             - if current_user.primary_admin?
               = link_to t('sidebar.oauth_applicatons'), oauth_applications_url, class: ['nav-link']
 
-  .sb-sidenav-footer
-    .nav-link
-      .btn-group.dropend
-        %a.text-dark.d-flex.align-items-center.user-guide{"data-bs-toggle" => "dropdown"}
-          .sb-nav-link-icon.me-1
-            %i.fa-regular.fa-circle-question
-          = t('sidebar.how_to_use')
-
-        %ul.dropdown-menu
-          %li
-            %a.dropdown-item{href: "/#{current_user.role}_youth_health_web_app_user_guide.pdf", target: '_blank'}
-              = t('sidebar.how_to_use_in_pdf')
-
-          %li
-            %a.dropdown-item{href: Settings.user_guide[current_user.role], target: '_blank'}
-              = t('sidebar.how_to_use_in_video')
-
-    .d-flex.align-items-center
-      .flex-grow-1
-        = link_to about_path, class: ['nav-link text-dark', css_active_class('about')] do
-          .d-flex.align-items-center
+    .sb-sidenav-footer
+      .nav-link
+        .btn-group.dropend
+          %a.text-dark.d-flex.align-items-center.user-guide{"data-bs-toggle" => "dropdown"}
             .sb-nav-link-icon.me-1
-              %i.fa-solid.fa-circle-exclamation
+              %i.fa-regular.fa-circle-question
+            = t('sidebar.how_to_use')
 
-            = t('sidebar.about')
+          %ul.dropdown-menu
+            %li
+              %a.dropdown-item{href: "/#{current_user.role}_youth_health_web_app_user_guide.pdf", target: '_blank'}
+                = t('sidebar.how_to_use_in_pdf')
 
-      %small.text-muted="v: #{ENV['APP_VERSION'] || 'dev'}"
+            %li
+              %a.dropdown-item{href: Settings.user_guide[current_user.role], target: '_blank'}
+                = t('sidebar.how_to_use_in_video')
+
+      .d-flex.align-items-center
+        .flex-grow-1
+          = link_to about_path, class: ['nav-link text-dark', css_active_class('about')] do
+            .d-flex.align-items-center
+              .sb-nav-link-icon.me-1
+                %i.fa-solid.fa-circle-exclamation
+
+              = t('sidebar.about')
+
+        %small.text-muted="v: #{ENV['APP_VERSION'] || 'dev'}"

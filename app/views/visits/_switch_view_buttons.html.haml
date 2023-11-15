@@ -1,0 +1,10 @@
+%div
+  .btn-group.btn-group-sm{"aria-label" => "Basic outlined example", :role => "group"}
+    = link_to pages_path, class: ['btn btn-outline-secondary', css_active_class('pages')] do
+      %i.fa-regular.fa-file
+      = t("page.pages")
+
+    = link_to visits_path, class: ['btn btn-outline-secondary', css_active_class('visits')] do
+
+      %i.fa-solid.fa-eye
+      = t("sidebar.visits")

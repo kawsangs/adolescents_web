@@ -1,8 +1,6 @@
 = content_for :header_title_right_col do
   = render "shared/buttons/download_button", url: visits_path(filter_params.merge(format: :xlsx))
 
-  .ms-1= render "shared/buttons/setting_button", url: pages_path
-
 .container-fluid.px-4{'data-controller' => 'visits'}
   = render 'shared/header_title', title: t('visit.visits')
   = render "filters"

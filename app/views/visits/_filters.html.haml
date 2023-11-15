@@ -3,8 +3,10 @@
     .mb-2
       = render 'shared/filters/filter_date', placeholder: t('visit.search_by_visit_date')
 
-    %div.ms-3
+    .ms-3.flex-grow-1
       = render "shared/buttons/advance_search_button", toggler_variable: "advance_search_visit"
+
+    = render "switch_view_buttons"
 
   #collapseOne.accordion-collapse.collapse.collapse-filter
     .d-flex.m-2
