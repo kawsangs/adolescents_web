@@ -1,0 +1,18 @@
+/ Modal
+#hintModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "hintModalLabel", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h5#hintModalLabel.modal-title= t('app_user.app_user_info')
+        %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+
+      .modal-body
+        = t('app_user.go_to_app')
+        %ol
+          %li= t('app_user.user_uuid')
+
+        .w-75.m-auto.mt-3
+          = image_tag "app_user_profile.png", style: 'width: 100%'
+
+      .modal-footer
+        %button.btn.btn-secondary{"data-bs-dismiss" => "modal", :type => "button"}= t('shared.close')

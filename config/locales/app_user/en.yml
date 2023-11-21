@@ -38,3 +38,16 @@ en:
     oversea_migrant_worker: Oversea migrant worker
     other: Other
     view_survey: View survey
+    cannot_be_blank: Can't be blank
+    app_user_info: Youth Health App user information
+    go_to_app: Go to Youth Health app and find
+    user_uuid: User ID in Youth Health app
+    delete_info_request: Request to delete personal information
+    send_delete_request: Send delete request
+    invalid_info: Your information is invalid, please check it again!
+    delete_info_success: Your information will be suspended and completely removed from the system witin 90 days!
+
+  recaptcha:
+    errors:
+      verification_failed: 'reCAPTCHA was incorrect, please try again.'
+      recaptcha_unreachable: 'reCAPTCHA verification server error, please try again.'

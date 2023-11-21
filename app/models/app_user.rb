@@ -14,8 +14,12 @@
 #  platform         :integer          default("android")
 #  occupation       :integer          default("n_a")
 #  education_level  :integer          default("n_a")
+#  uuid             :string
+#  deleted_at       :datetime
 #
 class AppUser < ApplicationRecord
+  acts_as_paranoid
+
   GENDERS = %w(male female lgbt unknown)
 
   enum platform: MobileToken.platforms
@@ -104,6 +108,12 @@ class AppUser < ApplicationRecord
     scope = scope.joins(:app_user_characteristics).where("app_user_characteristics.characteristic_id": params[:characteristic_ids]) if params[:characteristic_ids].present?
     scope = scope.where(platform: params[:platform]) if params[:platform].present?
     scope
+  end
+
+  def self.find_for_archive(params = {})
+    user = find_or_initialize_by(params.slice(:uuid))
+    user.errors.add(:uuid, I18n.t("app_user.cannot_be_blank")) if params[:uuid].blank?
+    user
   end
 
   private

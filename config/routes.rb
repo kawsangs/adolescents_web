@@ -75,6 +75,8 @@ Rails.application.routes.draw do
     put :upsert, on: :collection
   end
 
+  resource :user_delete_information, only: [:show, :destroy]
+
   # Telegram bot
   get "helps/how-to-connect-telegram-bot", to: "helps#telegram_bot"
   resource :telegram_bot, only: [:show] do
