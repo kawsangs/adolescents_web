@@ -19,4 +19,23 @@ RSpec.describe "Api::V1::CategoriesController", type: :request do
       expect(json_response["categories"].length).to eq(1)
     end
   end
+
+  describe "GET #show" do
+    let(:api_key) { create(:api_key) }
+    let(:headers) { { "ACCEPT" => "application/json", "Authorization" => "Apikey #{api_key.api_key}" } }
+    let(:json_response) { JSON.parse(response.body) }
+    let!(:category) { create(:category) }
+
+    before :each do
+      get "/api/v1/categories/#{category.id}", headers:
+    end
+
+    it "returns code 200" do
+      expect(response.code).to eq("200")
+    end
+
+    it "returns a category" do
+      expect(json_response["id"]).not_to be_nil
+    end
+  end
 end
