@@ -1,5 +1,6 @@
 %form{ action: pages_path, method: 'get' }
-  .input-group.my-2.search-input
-    = text_field_tag(:keyword, params[:keyword], class: 'form-control', placeholder: t('page.find_by_code_or_name'))
-    %span.input-group-text
-      %i.fas.fa-search
+  .d-flex
+    .mb-2.flex-grow-1
+      = render "shared/filters/filter_name", field_name: "keyword", placeholder: t('page.find_by_code_or_name')
+
+    = render "visits/switch_view_buttons"

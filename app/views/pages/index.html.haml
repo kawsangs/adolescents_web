@@ -1,16 +1,5 @@
-= content_for :header_title_right_col do
-  = render "shared/buttons/back_button", url: visits_path
-
 .container-fluid.px-4
-  = render 'shared/header_title', title: t('visit.setting')
-
-  / Nav Tabs
-  %ul.nav.nav-tabs
-    %li.nav-item
-      %a.nav-link.active{ href: '#' }
-        %i.fa-regular.fa-file-lines
-        = t("page.pages")
-
+  = render 'shared/header_title', title: t('page.pages')
   = render "filters"
   = render "shared/no_data", items: @pages
 
