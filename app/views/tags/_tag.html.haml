@@ -4,10 +4,12 @@
   .w-25= tag.name
 
   .w-25
-    - if tag.taggings_count.positive?
-      = link_to tag.taggings_count, facilities_path("tag[]": tag.name)
-    - else
-      = tag.taggings_count
+    - if tag.facilities.length.positive?
+      = link_to tag.facilities.length, facilities_path("tag[]": tag.name)
+
+  .w-25
+    - if tag.videos.length.positive?
+      = link_to tag.videos.length, videos_path("tag[]": tag.name)
 
   .w-25= timeago(tag.created_at).html_safe
 

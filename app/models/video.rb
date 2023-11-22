@@ -43,6 +43,7 @@ class Video < ApplicationRecord
     scope = scope.where("name LIKE ?", "%#{params[:name]}%") if params[:name].present?
     scope = scope.joins(:importing_items).joins(:batches).where("batches.code = ?", params[:batch_code]) if params[:batch_code].present?
     scope = scope.joins(:video_author).where("video_authors.name IN (?)", params[:video_author]) if params[:video_author].present?
+    scope = scope.joins(taggings: :tag).where("tags.name IN (?)", params[:tag]) if params[:tag].present?
     scope
   end
 

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resource  :mobile_tokens, only: [:create]
       resources :topics, only: [:index]
       resources :tags, only: [:index]
+      resources :video_tags, only: [:index]
       resources :quizzes, only: [:create]
       resources :video_authors, only: [:index]
       resources :categories, only: [:index]
