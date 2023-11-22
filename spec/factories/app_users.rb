@@ -14,6 +14,8 @@
 #  platform         :integer          default("android")
 #  occupation       :integer          default("n_a")
 #  education_level  :integer          default("n_a")
+#  uuid             :string
+#  deleted_at       :datetime
 #
 FactoryBot.define do
   factory :app_user do

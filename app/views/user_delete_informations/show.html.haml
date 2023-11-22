@@ -1,0 +1,23 @@
+.form-wrapper#user-delete-info.mb-5
+  %h2.font-weight-normal.text-center.my-4
+    = t('app_user.delete_info_request')
+
+  = simple_form_for @user, url: user_delete_information_path,  method: :delete, html: { data: { turbo: false } } do |f|
+    .mb-3
+      .d-flex
+        %label.control-label.string.required{:for => "user_uuid"}
+          %abbr.text-danger{:title => "required"} *
+          = t('app_user.user_uuid')
+
+        / Button trigger modal
+        %button.btn.btn-outline-info.btn-circle.btn-sm{"data-bs-target" => "#hintModal", "data-bs-toggle" => "modal", :type => "button"}
+          %i.fa-solid.fa-info
+
+      = f.input :uuid, label: false
+
+    = recaptcha_tags
+
+    .actions.form-group.mt-4
+      = f.submit t("app_user.send_delete_request"), class: 'btn btn-danger w-100 mb-2'
+
+= render "modal_user_hint"
