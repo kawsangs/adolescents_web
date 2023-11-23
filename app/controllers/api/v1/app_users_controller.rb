@@ -21,6 +21,16 @@ module Api
         end
       end
 
+      def destroy
+        app_user = AppUser.find params[:id]
+
+        if app_user.destroy
+          render json: { message: "User is deleted successfully" }, status: :ok
+        else
+          render json: { errors: app_user.errors }, status: :unprocessable_entity
+        end
+      end
+
       private
         def app_user_params
           params.require(:app_user).permit(

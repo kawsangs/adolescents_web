@@ -59,7 +59,7 @@ class AppUser < ApplicationRecord
 
   # Association
   belongs_to :location, foreign_key: :province_id, optional: true
-  has_many :app_user_characteristics, dependent: :destroy
+  has_many :app_user_characteristics
   has_many :characteristics, through: :app_user_characteristics
   has_many :surveys
   has_many :visits

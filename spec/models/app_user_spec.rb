@@ -24,7 +24,7 @@ RSpec.describe AppUser, type: :model do
   it { is_expected.to validate_presence_of(:device_id) }
   it { is_expected.to validate_presence_of(:registered_at) }
 
-  it { is_expected.to have_many(:app_user_characteristics).dependent(:destroy) }
+  it { is_expected.to have_many(:app_user_characteristics) }
   it { is_expected.to have_many(:characteristics).through(:app_user_characteristics) }
 
   describe "#anonymous?" do

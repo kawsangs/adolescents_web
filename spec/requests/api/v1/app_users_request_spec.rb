@@ -48,5 +48,23 @@ RSpec.describe "Api::V1::AppUsersController", type: :request do
               .to change { anonymous_user.reload.age }.from(-1).to(20)
       end
     end
+
+    describe "DELETE #destroy" do
+      let!(:anonymous_user) { create(:app_user, :anonymous) }
+
+      it "destroys the user and returns a success response" do
+        delete "/api/v1/app_users/#{anonymous_user.id}", headers: headers
+
+        expect(response.status).to eq(200)
+        expect(response.body).to eq({ message: "User is deleted successfully" }.to_json)
+        expect(AppUser.find_by uuid: anonymous_user.uuid).to be_nil
+      end
+
+      it "returns an error response if the user is not found" do
+        delete "/api/v1/app_users/0", headers: headers
+
+        expect(response.status).to eq(404)
+      end
+    end
   end
 end
