@@ -40,12 +40,16 @@ en:
     view_survey: View survey
     cannot_be_blank: Can't be blank
     app_user_info: Youth Health App user information
-    go_to_app: Go to Youth Health app and find
+    go_to_app: Go to Youth Health app
     user_uuid: User ID in Youth Health app
     delete_info_request: Request to delete personal information
     send_delete_request: Send delete request
     invalid_info: Your information is invalid, please check it again!
     delete_info_success: Your information will be suspended and completely removed from the system witin 90 days!
+    how_to_get_user_id: How to find user ID
+    click_on_menu: Click on button menu
+    click_on_user_profile: Click on user profile
+    copy_user_uuid: Copy user id
 
   recaptcha:
     errors:
