@@ -3,13 +3,21 @@
   .modal-dialog
     .modal-content
       .modal-header
-        %h5#hintModalLabel.modal-title= t('app_user.app_user_info')
+        %h5#hintModalLabel.modal-title= t('app_user.how_to_get_user_id')
         %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
 
       .modal-body
-        = t('app_user.go_to_app')
-        %ol
-          %li= t('app_user.user_uuid')
+        %ul
+          %li= t('app_user.go_to_app')
+          %li
+            = t('app_user.click_on_menu')
+            = image_tag "click_on_menu.jpg", height: 24
+
+          %li
+            = t('app_user.click_on_user_profile')
+            = image_tag "click_on_profile.jpg", height: 24
+
+          %li= t('app_user.copy_user_uuid')
 
         .w-75.m-auto.mt-3
           = image_tag "app_user_profile.png", style: 'width: 100%'
