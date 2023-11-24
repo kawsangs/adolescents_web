@@ -15,7 +15,7 @@ class Visit < ApplicationRecord
   include Visits::Pageable
 
   # Association
-  belongs_to :app_user
+  belongs_to :app_user, optional: true
 
   # Callback
   after_commit :update_app_user_last_accessed, on: [:create]
