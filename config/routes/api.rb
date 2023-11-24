@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       resources :video_tags, only: [:index]
       resources :quizzes, only: [:create]
       resources :video_authors, only: [:index]
-      resources :categories, only: [:index]
+      resources :categories, only: [:index, :show]
       resources :contacts, only: [:index]
       resources :contact_directories, only: [:index]
       resources :survey_forms, only: [:show]

@@ -9,6 +9,12 @@ module Api
           categories: ActiveModel::Serializer::CollectionSerializer.new(categories, serializer: CategorySerializer)
         }
       end
+
+      def show
+        category = Category.find(params[:id])
+
+        render json: category
+      end
     end
   end
 end
