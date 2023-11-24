@@ -26,6 +26,7 @@ FactoryBot.define do
     province_id { format("%02d", rand(1..25)) }
     device_id { "abc_#{rand(1..10)}" }
     registered_at { Time.zone.now }
+    uuid { SecureRandom.uuid }
 
     trait :anonymous do
       gender { nil }
