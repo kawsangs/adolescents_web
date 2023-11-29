@@ -1,0 +1,31 @@
+.table-responsive
+  %table.table.table-hover.pretty
+    %thead
+      %tr
+        %th #
+        %th= t('shared.code')
+        %th= t('shared.name_km')
+        %th= t('shared.name_en')
+        %th= t('shared.is_valid')
+
+    %tbody
+      - @batch.importing_items.each_with_index do |importing_item, index|
+        - item = importing_item.itemable
+        - if item.valid?
+          = f.fields_for :importing_items, importing_item do |ff|
+            = ff.hidden_field :itemable_id
+            = ff.hidden_field :itemable_type
+            = ff.fields_for :itemable, item do |fff|
+              = fff.hidden_field :_destroy
+              = fff.hidden_field :name_km
+              = fff.hidden_field :name_en
+        %tr
+          %td
+            .line-badge{ class: status_class(item), 'data-bs-toggle' => 'tooltip', title: status_message(item) }
+              = index + 1
+          %td= item.code
+          %td= item.name_km
+          %td= item.name_en
+
+          / Validation status
+          %td= render "shared/validation_status", item: item

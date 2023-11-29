@@ -86,6 +86,9 @@ Rails.application.routes.draw do
 
   resources :survey_forms
 
+  resources :reason_importers
+  resources :reasons
+
   get "/privacy-policy", to: "privacy_policies#show"
   get "/terms-and-conditions", to: "terms_and_conditions#show"
 

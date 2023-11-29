@@ -95,3 +95,6 @@ km:
     published_at: ចេញផ្សាយនៅ
     at_least_one_valid_item: ត្រូវមានទិន្នន័យដែលត្រឹមត្រូវយ៉ាងហោចណាស់ 1
     close: បិទ
+    search_by_code_or_name: ស្វែងរកតាមលេខកូដឬឈ្មោះ
+    edit_reason: កែតម្រូវហេតុផលស្នើរលុប
+    new_reason: ហេតុផលស្នើរលុបថ្មី

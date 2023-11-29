@@ -1,0 +1,4 @@
+.container-fluid.px-4
+  = render "shared/headers/progress_arrow_header", title: t("shared.importing_wizard", name: t("sidebar.reasons"))
+
+  = render "shared/forms/wizard_form", cancel_url: reasons_path, sample_url: '/sample/user_reason_batch_sample.xlsx', item: @batch, form_url: reason_importers_path

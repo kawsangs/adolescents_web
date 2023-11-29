@@ -6,7 +6,15 @@ export default class extends Controller {
   }
 
   _initShowCollapse() {
-    $(".sb-sidenav-menu-nested .nav-link.active").parents(".collapse").addClass('show')
+    let element = $(".sb-sidenav-menu-nested .nav-link.active")
+
+    if (!!element) {
+      element.parents(".collapse").addClass('show')
+
+      $('.sb-sidenav-menu').animate({
+        scrollTop: element.offset().top
+      }, 500);
+    }
   }
 
   toggle(event) {
