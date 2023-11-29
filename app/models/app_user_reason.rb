@@ -9,6 +9,6 @@
 #  updated_at  :datetime         not null
 #
 class AppUserReason < ApplicationRecord
-  belongs_to :app_user, optional: true
-  belongs_to :reason, primary_key: :code, foreign_key: :reason_code
+  belongs_to :app_user, -> { with_deleted }, optional: true
+  belongs_to :reason, -> { with_deleted }, primary_key: :code, foreign_key: :reason_code
 end
