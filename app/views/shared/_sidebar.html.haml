@@ -64,6 +64,9 @@
             - if policy(Tag).index?
               = link_to t('sidebar.tags'), tags_path, class: ['nav-link', css_active_class('tags')]
 
+            - if policy(Reason).index?
+              = link_to t('sidebar.reasons'), reasons_path, class: ['nav-link', css_active_class('reasons')]
+
         / Application Setting
         %a.nav-link.collapsed{"aria-controls" => "collapseSettings", "aria-expanded" => "false", "data-bs-target" => "#collapseSettings", "data-bs-toggle" => "collapse", href: "#"}
           .sb-nav-link-icon

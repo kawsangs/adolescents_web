@@ -95,3 +95,6 @@ en:
     published_at: Published at
     at_least_one_valid_item: There must be at least 1 valid item
     close: Close
+    search_by_code_or_name: Search by code or name
+    edit_reason: Edit user reason
+    new_reason: New user reason

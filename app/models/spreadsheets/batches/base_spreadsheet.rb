@@ -5,7 +5,7 @@ class Spreadsheets::Batches::BaseSpreadsheet
 
   def initialize(user)
     @user = user
-    @batch = batch_model.new
+    @batch = batch_model.new(creator_id: user.id)
     @items = []
   end
 

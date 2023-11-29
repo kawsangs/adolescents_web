@@ -1,0 +1,15 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "reasons") do |sheet|
+  sheet.add_row %w(id code name_km name_en)
+
+  @reasons.each do |reason|
+    row = [
+      reason.id,
+      reason.code,
+      reason.name_km,
+      reason.name_en
+    ]
+
+    sheet.add_row row, types: row.map { |t| :string }
+  end
+end

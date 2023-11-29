@@ -1,0 +1,8 @@
+.w-50.view-center
+  = simple_form_for @reason do |f|
+    .mb-3= f.input :name_km, label: t('shared.name_km')
+    .mb-3= f.input :name_en, label: t('shared.name_en')
+
+    .actions
+      = link_to t('shared.cancel'), reasons_path, class: 'btn btn-secondary me-1'
+      = f.submit t('shared.save'), class: 'btn btn-primary'
