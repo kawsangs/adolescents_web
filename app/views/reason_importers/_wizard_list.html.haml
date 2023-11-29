@@ -17,6 +17,7 @@
             = ff.hidden_field :itemable_type
             = ff.fields_for :itemable, item do |fff|
               = fff.hidden_field :_destroy
+              = fff.hidden_field :code
               = fff.hidden_field :name_km
               = fff.hidden_field :name_en
         %tr
