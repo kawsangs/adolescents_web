@@ -12,5 +12,9 @@
 #
 FactoryBot.define do
   factory :survey do
+    topic_id { create(:survey_form).id }
+    quizzed_at { Time.now }
+    mobile_notification
+    app_user
   end
 end

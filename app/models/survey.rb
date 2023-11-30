@@ -15,6 +15,7 @@ class Survey < ApplicationRecord
 
   belongs_to :topic
   belongs_to :app_user
+  belongs_to :mobile_notification, optional: true
 
   has_many :survey_answers, dependent: :destroy
 
