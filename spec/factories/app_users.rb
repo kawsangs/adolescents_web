@@ -34,5 +34,9 @@ FactoryBot.define do
       province_id  { nil }
       registered_at { DateTime.yesterday }
     end
+
+    trait :poor do
+      characteristic_ids { [create(:characteristic, :poor).id] }
+    end
   end
 end
