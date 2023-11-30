@@ -1,0 +1,38 @@
+.container-fluid.px-4
+  = render "page_heading"
+  = render "filters"
+  = render "shared/no_data", items: @reasons
+
+  - if @reasons.present?
+    .mt-2= render "shared/pagination_title", objects: @reasons
+
+    .table-responsive
+      %table.table.table-hover.pretty
+        %thead
+          %tr
+            %th #
+            %th= t('shared.code')
+            %th= t('shared.name_km')
+            %th= t('shared.name_en')
+            %th= t('shared.created_at')
+            %th= t('shared.updated_at')
+            %th
+
+        %tbody
+          - @reasons.each_with_index do |reason, index|
+            %tr
+              %td= @pagy.from + index
+              %td= reason.code
+              %td= reason.name_km
+              %td= reason.name_en
+              %td= timeago(reason.created_at).html_safe
+              %td= timeago(reason.updated_at).html_safe
+              %td
+                .d-flex.justify-content-end
+                  = render 'shared/buttons/edit_button', object: reason, url: edit_reason_path(reason)
+
+                  = render 'shared/buttons/delete_button', object: reason,  message: { type: t('sidebar.reasons'), name: reason.name_km, url: reason_path(reason) }
+
+    = render "shared/footers/pagination"
+
+= render "shared/modals/confirm_delete_modal"

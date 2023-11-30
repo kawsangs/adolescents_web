@@ -69,6 +69,9 @@ class AppUser < ApplicationRecord
   has_many :surveys
   has_many :visits
 
+  has_many :app_user_reasons
+  has_many :reasons, through: :app_user_reasons
+
   # Callback
   before_create :set_last_accessed_at
   before_validation :set_province_id

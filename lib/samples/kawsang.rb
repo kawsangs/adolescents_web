@@ -19,20 +19,20 @@ module Samples
       ::Samples::Category.new.load
 
       create_batch("CategoryBatch", "categories.zip")
+      create_batch("ReasonBatch", "user_reason_batch_sample.xlsx")
+    end
+
+    def create_batch(model_name, filename)
+      klass = "::Spreadsheets::Batches::#{model_name}Spreadsheet".constantize
+      batch = klass.new(creator).import(file(filename))
+      batch.save
+
+      puts "Loaded #{model_name} samples"
+    rescue
+      Rails.logger.warn "unknown handler for class: #{klass}"
     end
 
     private
-      def create_batch(model_name, filename)
-        klass = "::Spreadsheets::Batches::#{model_name}Spreadsheet".constantize
-        batch = klass.new.import(file(filename))
-        batch.creator = creator
-        batch.save
-
-        puts "Loaded #{model_name} samples"
-      rescue
-        Rails.logger.warn "unknown handler for class: #{klass}"
-      end
-
       def file(filename)
         File.open(Pathname.new(File.join(Rails.root, "public", "sample", filename)))
       end
