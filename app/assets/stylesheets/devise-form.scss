@@ -69,6 +69,16 @@
       width: 120px;
     }
   }
+
+  .btn-info-circle {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #0d6efd;
+    color: #0d6efd;
+    border-radius: 50%;
+    font-size: 12px;
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: 992px) {

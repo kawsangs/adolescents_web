@@ -3,17 +3,19 @@
     = t('app_user.delete_info_request')
 
   = simple_form_for @user, url: user_delete_information_path,  method: :delete, html: { data: { turbo: false } } do |f|
-    .mb-3
+    %div
       .d-flex
         %label.control-label.string.required{:for => "user_uuid"}
           %abbr.text-danger{:title => "required"} *
           = t('app_user.user_uuid')
 
-        / Button trigger modal
-        %button.btn.btn-outline-info.btn-circle.btn-sm{"data-bs-target" => "#hintModal", "data-bs-toggle" => "modal", :type => "button"}
-          %i.fa-solid.fa-info
-
       = f.input :uuid, label: false
+
+    / Button trigger modal
+    %button.btn.btn-link.d-flex.align-items-center.px-0.mb-3{"data-bs-target" => "#hintModal", "data-bs-toggle" => "modal", type: 'button'}
+      %span.btn-info-circle.me-1
+        %i.fa-solid.fa-info
+      %small= t('app_user.how_to_get_user_id')
 
     = recaptcha_tags
 
