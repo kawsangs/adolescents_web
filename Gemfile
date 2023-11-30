@@ -123,6 +123,9 @@ gem "rails-settings-cached", "~> 2.8"
 gem "telegram-bot", "~> 0.15.7"
 gem "ipaddress", "~> 0.8.3"
 
+# Protect the app from bad clients
+gem "rack-attack", "~> 6.7.0"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
