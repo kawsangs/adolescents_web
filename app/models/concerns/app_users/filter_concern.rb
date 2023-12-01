@@ -17,6 +17,7 @@ module AppUsers::FilterConcern
     def self.find_for_archive(params = {})
       user = find_or_initialize_by(params.slice(:uuid))
       user.errors.add(:uuid, I18n.t("app_user.cannot_be_blank")) if params[:uuid].blank?
+      user.errors.add(:reason, I18n.t("app_user.cannot_be_blank")) if params[:reason_code].blank?
       user
     end
   end
