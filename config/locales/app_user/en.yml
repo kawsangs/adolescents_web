@@ -50,6 +50,7 @@ en:
     click_on_menu: Click on button menu
     click_on_user_profile: Click on user profile
     copy_user_uuid: Copy user id
+    delete_reason: "Please specify why you would like to delete your account:"
 
   recaptcha:
     errors:

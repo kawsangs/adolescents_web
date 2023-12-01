@@ -19,7 +19,10 @@
 
     = recaptcha_tags
 
-    .actions.form-group.mt-4
-      = f.submit t("app_user.send_delete_request"), class: 'btn btn-danger w-100 mb-2'
+    .actions.mt-4
+      %button.btn.btn-danger.w-100{"data-bs-target" => "#reasonModal", "data-bs-toggle" => "modal", type: "button"}
+        = t("app_user.send_delete_request")
+
+    = render "modal_reason", f: f
 
 = render "modal_user_hint"
