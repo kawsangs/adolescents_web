@@ -9,9 +9,9 @@ module AppUsers::ScheduleDeletionConcern
     after_real_destroy :remove_association
 
     def destroy_with_reason(reason_code = nil)
-      AppUser.transaction do
-        return errors.add(:reason, "cannot be blank") if reason_code.blank?
+      return errors.add(:reason, "cannot be blank") if reason_code.blank?
 
+      AppUser.transaction do
         create_app_user_reason(reason_code:) && destroy
       end
     end

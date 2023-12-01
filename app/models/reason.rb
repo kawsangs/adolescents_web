@@ -25,6 +25,11 @@ class Reason < ApplicationRecord
   # Callback
   before_create :secure_code
 
+  # Instant methods
+  def name
+    self["name_#{I18n.locale}"]
+  end
+
   # Class methods
   def self.filter(params = {})
     param_name = params[:name].to_s.strip
