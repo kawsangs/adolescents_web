@@ -24,8 +24,8 @@ module Api
       def destroy
         app_user = AppUser.find params[:id]
 
-        if app_user.update(app_user_delete_params) && app_user.destroy
-          render json: { message: "User is deleted successfully" }, status: :ok
+        if app_user.destroy_with_reason(reason_code)
+          render json: { message: I18n.t("app_user.delete_info_success") }, status: :ok
         else
           render json: { errors: app_user.errors }, status: :unprocessable_entity
         end
@@ -42,8 +42,8 @@ module Api
           )
         end
 
-        def app_user_delete_params
-          params.require(:app_user).permit(:reason_ids)
+        def reason_code
+          params[:reason_code] || params.require(:app_user).permit(reason_ids: [])["reason_ids"].try(:first)
         end
     end
   end

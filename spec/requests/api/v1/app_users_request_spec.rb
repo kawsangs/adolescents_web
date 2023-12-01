@@ -54,11 +54,11 @@ RSpec.describe "Api::V1::AppUsersController", type: :request do
       let!(:anonymous_user) { create(:app_user, :anonymous) }
 
       it "destroys the user and returns a success response" do
-        delete "/api/v1/app_users/#{anonymous_user.id}", params: { app_user: { reason_ids: "other"} }, headers: headers
+        delete "/api/v1/app_users/#{anonymous_user.id}", params: { app_user: { reason_ids: ["other"] } }, headers: headers
 
         expect(response.status).to eq(200)
-        expect(response.body).to eq({ message: "User is deleted successfully" }.to_json)
-        expect(anonymous_user.reasons.length).to eq(1)
+        expect(response.body).to eq({ message: I18n.t("app_user.delete_info_success") }.to_json)
+        expect(anonymous_user.reason).not_to be_nil
         expect(AppUser.find_by uuid: anonymous_user.uuid).to be_nil
       end
 
