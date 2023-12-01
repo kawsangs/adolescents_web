@@ -30,4 +30,27 @@ RSpec.describe AppUsers::ScheduleDeletionConcern, type: :model do
       expect(app_user.app_user_characteristics.present?).to be_falsey
     end
   end
+
+  describe "#destroy_with_reason" do
+    let!(:reason) { create(:reason) }
+
+    context "no reason_code" do
+      it "raises error" do
+        app_user.destroy_with_reason
+
+        expect(app_user.errors[:reason]).to eq(["cannot be blank"])
+        expect(app_user.deleted_at).to be_nil
+        expect(app_user.app_user_reason).to be_nil
+      end
+    end
+
+    context "has reason_code" do
+      it "creates an app_user_reason and destroy the user" do
+        app_user.destroy_with_reason(reason.code)
+
+        expect(app_user.deleted_at).not_to be_nil
+        expect(app_user.app_user_reason).not_to be_nil
+      end
+    end
+  end
 end
