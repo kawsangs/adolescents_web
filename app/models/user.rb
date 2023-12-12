@@ -27,17 +27,19 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  sign_in_type           :integer          default("system")
+#  otp_token              :string
+#  otp_sent_at            :datetime
 #
 class User < ApplicationRecord
   include Users::Filter
-  include Users::Confirmable
+  include Users::OtpConcern
 
   acts_as_paranoid
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :confirmable, :lockable, :trackable,
-         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2, :facebook]
+         :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2, :facebook]
 
   enum role: {
     primary_admin: 1,
@@ -49,6 +51,8 @@ class User < ApplicationRecord
     google_oauth2: 2,
     facebook: 3,
   }
+
+  before_create :assign_password
 
   # Constant
   SYSTEM = "system"
@@ -62,4 +66,15 @@ class User < ApplicationRecord
 
     "pending"
   end
+
+  private
+    def assign_password
+      pwd = Devise.friendly_token
+      self.password = pwd
+      self.password_confirmation = pwd
+    end
+
+    def password_required?
+      false
+    end
 end
