@@ -1,6 +1,7 @@
 %tr
   %td{ style: "padding-left:#{16*category.level}px;"}= num
   %td= category.name
+  %td= category.code
   %td= image_tag category.image_url, width: 40
   %td
     - if category.audio_url.present?

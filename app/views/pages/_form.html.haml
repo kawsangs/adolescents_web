@@ -3,7 +3,7 @@
     - readonly = !@page.new_record?
 
     .mb-3= f.input :code, label: t('page.code'), input_html: { readonly: readonly }
-
+    .mb-3= f.input :viz_code, label: t('page.viz_code')
     .mb-3= f.input :name, label: t('page.name'), input_html: { readonly: readonly }
 
     .mb-3= f.input :name_en, label: t('shared.name_en')
