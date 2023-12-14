@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_29_064717) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_14_023925) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -353,6 +353,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_29_064717) do
     t.string "name_en"
     t.string "name_km"
     t.integer "visits_count", default: 0
+    t.string "viz_code"
     t.index ["lft"], name: "index_pages_on_lft"
     t.index ["rgt"], name: "index_pages_on_rgt"
   end
