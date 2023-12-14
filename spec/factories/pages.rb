@@ -15,6 +15,7 @@
 #  name_en        :string
 #  name_km        :string
 #  visits_count   :integer          default(0)
+#  viz_code       :string
 #
 FactoryBot.define do
   factory :page do

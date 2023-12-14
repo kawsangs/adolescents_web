@@ -10,6 +10,8 @@
 
     = f.input :parent_id, as: :hidden
 
+    .mb-3= f.input :code, label: t('shared.code'), input_html: {readonly: true}
+
     / Name
     .mb-3= f.input :name, label: t('shared.name')
 
