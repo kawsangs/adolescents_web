@@ -30,7 +30,7 @@ class AppUsersController < ApplicationController
 
     def app_user_query
       AppUser.filter(filter_params)
-             .includes(:visits, :characteristics)
+             .includes(:visits, :characteristics, :surveys)
              .order(sort_column + " " + sort_direction)
     end
 end
