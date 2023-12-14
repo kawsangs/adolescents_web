@@ -8,3 +8,4 @@ km:
     name: ឈ្មោះ
     find_by_code_or_name: ស្វែងរកតាមលេខកូដ ឬ ឈ្មោះ
     number_of_visit: ចំនួនទស្សនៈកិច្ច
+    viz_code: Viz code

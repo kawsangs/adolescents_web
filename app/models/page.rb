@@ -15,13 +15,18 @@
 #  name_en        :string
 #  name_km        :string
 #  visits_count   :integer          default(0)
+#  viz_code       :string
 #
 class Page < ApplicationRecord
   acts_as_nested_set
 
   has_many :visits
 
+  validates :code, presence: true
+
   before_validation :set_name_km
+  before_validation :set_viz_code
+  before_create :secure_code
 
   def self.filter(params)
     keyword = params[:keyword].to_s.downcase
@@ -34,5 +39,9 @@ class Page < ApplicationRecord
     def set_name_km
       self.name_en ||= name
       self.name_km ||= name
+    end
+
+    def set_viz_code
+      self.viz_code ||= code
     end
 end
