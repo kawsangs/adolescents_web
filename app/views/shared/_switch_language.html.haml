@@ -1,6 +1,6 @@
-%ul.navbar-nav.ms-auto.ms-md-0.me-3.me-lg-4{'data-controller' => 'topbar' }
-
-  %li.nav-item.dropdown
+%ul.navbar-nav.me-2{'data-controller' => 'topbar' }
+  / Switch language
+  %li.nav-item.dropdown.d-flex.align-items-center
     %a#localeDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button", "data-locale": I18n.locale}
       - locale = system_locales.select { |l| l[:code] == I18n.locale.to_s }.first
 
@@ -17,3 +17,30 @@
         - if index < system_locales.length - 1
           %li
             %hr.dropdown-divider
+
+  / User profile
+  %li.nav-item.dropdown
+    %a#navbarDropdown.nav-link{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button", style: 'display: flex; align-items: center;' }
+      .d-none.d-lg-inline
+        .d-flex.flex-column.align-items-center.me-1
+          %small= current_user.display_name
+          %small= t("user.#{current_user.role}")
+
+      .d-flex.align-items-center.justify-content-center.img-profile.rounded-circle.border{style: 'width: 2rem; height: 2rem;'}
+        %i.fas.fa-user.fa-fw
+
+    %ul.dropdown-menu.dropdown-menu-end{"aria-labelledby" => "navbarDropdown"}
+      %li
+        .dropdown-item.d-flex.align-items-center
+          %span.me-2
+            %i.fas.fa-user.fa-sm.fa-fw.text-muted
+          .d-flex.flex-column
+            %span= current_user.email
+            %small.text-muted= t("user.role") + ": " + t("user.#{current_user.role}")
+
+      .dropdown-divider
+
+      %li
+        %a.dropdown-item{ href: destroy_user_session_path, data: { turbo_method: :delete } }
+          %i.fas.fa-sign-out-alt.fa-sm.fa-fw.mr-2.text-muted
+          = t('shared.logout')

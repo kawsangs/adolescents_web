@@ -19,3 +19,6 @@ km:
     locale_km: ខ្មែរ
     locale_en: English
     last_sign_in_via: ចូលចុងក្រោយតាមរយៈ %{type}
+    primary_admin: អ្នកគ្រប់គ្រងប្រព័ន្ធ
+    admin: អ្នកគ្រប់គ្រង
+    staff: បុគ្គលិក
