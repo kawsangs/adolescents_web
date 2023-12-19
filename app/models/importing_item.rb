@@ -17,5 +17,6 @@ class ImportingItem < ApplicationRecord
   def itemable_attributes=(attributes)
     self.itemable ||= itemable_type.constantize.new
     self.itemable.assign_attributes(attributes)
+    self.itemable.save if self.itemable.persisted?
   end
 end
