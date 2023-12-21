@@ -17,8 +17,6 @@
     .line.flex-grow-1
 
   = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { method: :post, 'data-turbo': false }) do |f|
-    = f.error_notification
-
     .mb-3= f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" }
 
     .mb-3.form-actions

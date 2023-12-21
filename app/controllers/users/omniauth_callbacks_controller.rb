@@ -12,7 +12,7 @@ module Users
       @user = User.from_omniauth(request.env["omniauth.auth"])
 
       if @user.present? && @user.persisted?
-        @user.update_column(:sign_in_type, request.env["omniauth.auth"]["provider"])
+        @user.update_columns(sign_in_type: request.env["omniauth.auth"]["provider"], last_sign_in_at: Time.now.utc)
         flash[:notice] = I18n.t "devise.omniauth_callbacks.success", kind: @user.sign_in_type
 
         sign_in_and_redirect @user, event: :authentication

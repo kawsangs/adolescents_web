@@ -59,7 +59,6 @@ km:
       continue: បន្ត
       return_to_login: ត្រលប់ទៅការចូលគណនី
       send_otp_for_sign_in: ផ្ញើ OTP ដើម្បីចូលគណនី
-      invalid: "Invalid"
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
@@ -72,6 +71,7 @@ km:
     dont_receive_unlock_instruction: "តើអ្នកមិនបានទទួលការណែនាំអំពីការដោះសោទេឬ?"
     sign_in_with: "ចូលគណនីជាមួយ %{omniauth}"
     send_me_reset_pwd_instruction: 'សូមផ្ញើការណែនាំពាក្យសម្ងាត់ខ្ញុំឡើងវិញ'
+    please_check_error_below: Please check the error below
   errors:
     messages:
       already_confirmed: "was already confirmed, please try signing in"
