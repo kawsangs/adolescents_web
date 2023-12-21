@@ -8,4 +8,3 @@ class UserMailer < ApplicationMailer
     mail(to: user.email, subject: "One time sign in")
   end
 end
-

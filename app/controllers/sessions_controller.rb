@@ -36,6 +36,7 @@ class SessionsController < Devise::SessionsController
 
       redirect_to :root
     else
+      remove_notice
       @resource = resource_class.new(param_email)
       render :show
     end
@@ -56,6 +57,11 @@ class SessionsController < Devise::SessionsController
 
     def param_email
       params.require(:user).permit(:email)
+    end
+
+    def remove_notice
+      flash[:notice] = nil
+      flash[:alert] = nil
     end
 
     def set_sign_in_type

@@ -19,3 +19,19 @@ km:
     locale_km: ខ្មែរ
     locale_en: English
     last_sign_in_via: ចូលចុងក្រោយតាមរយៈ %{type}
+
+  activerecord:
+    attributes:
+      user:
+        otp_token: លេខកូដសុវត្ថិភាព
+        email: អ៊ីមែល
+    errors:
+      models:
+        user:
+          attributes:
+            otp_token:
+              blank: មិនអាចទទេរ
+              invalid: មិនត្រឹមត្រូវ
+              expired: ហួសសុពលភាពហើយសូមស្នើរសុំម្ដងទៀត
+            email:
+              not_found: មិនមាននៅក្នុងប្រព័ន្ធ

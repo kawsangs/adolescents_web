@@ -1,4 +1,5 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
+import $ from 'jquery';
 
 export default class extends Controller {
   connect() {
@@ -8,14 +9,43 @@ export default class extends Controller {
   }
 
   onSubmitForm() {
-    const form = document.getElementById("otp-form");
-    self = this;
-    form.addEventListener("submit", function (e) {
-      self.updateInput();
+    let self = this;
+    $("#otp-form").on('submit', function(e) {
+      if (!self.isValidOTP()) return e.preventDefault();
     })
   }
 
-  updateInput() {
+  isValidOTP() {
+    let otp = this.assignInputTokenValue();
+
+    if(!$.trim(otp)) {
+      console.log('!otp')
+      this.setError('មិនអាចទទេរ')
+      this.enableButtonSubmit();
+      return false;
+    }
+
+    if ($.trim(otp).length < 6) {
+      this.setError('លេខកូដត្រូវមាន6ខ្ទង់');
+      this.enableButtonSubmit();
+      return false;
+    }
+
+    this.setError('');
+    return true;
+  }
+
+  setError(error) {
+    $('.text-error').html(error);
+  }
+
+  enableButtonSubmit() {
+    setTimeout(() => {
+      $('.btn-submit').attr('disabled',false);
+    }, 100);
+  }
+
+  assignInputTokenValue() {
     const inputs = document.querySelectorAll("#otp-input input");
     let inputValue = Array.from(inputs).reduce(
       function (otp, input) {
@@ -25,6 +55,8 @@ export default class extends Controller {
       ""
     );
     document.querySelector("#otp-token").value = inputValue;
+
+    return inputValue;
   }
 
   initOtpInput() {

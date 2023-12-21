@@ -6,6 +6,9 @@ import Rails from '@rails/ujs'
 
 import "popper"
 import "bootstrap"
+import jquery from 'jquery'
+window.$ = jquery;
+window.jQuery = jquery;
 
 import "controllers"
 

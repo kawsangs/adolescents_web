@@ -1,7 +1,4 @@
 .text-center{'data-controller' => 'verify-otp'}
-  / Logo
-  %div= image_tag "system.png"
-
   / Title
   %h1= t('devise.sessions.enter_your_code')
 
@@ -26,10 +23,10 @@
         %div{style: 'margin: 0 auto'}
           #otp-input
             - 6.times.each do |i|
-              %input.input{type: "number", step: 1, min: 0, max: 9, autocomplete: 'no', pattern: '\d*'}
+              %input.input{type: "text", inputmode: "numeric", autocomplete: 'no', pattern: '\d*'}
 
           %div.text-start
-            %small.text-danger
+            %small.text-danger.text-error
               = resource.errors.full_messages.join('; ')
 
       / Valid time
@@ -37,7 +34,7 @@
         = "5:00"
 
       .mb-3.form-actions
-        = f.button :submit, t('devise.sessions.continue'), class: 'btn btn-primary w-100 mb-2'
+        = f.button :submit, t('devise.sessions.continue'), class: 'btn btn-primary w-100 mb-2 btn-submit'
 
   / Return to sign in
   %p.mt-5
