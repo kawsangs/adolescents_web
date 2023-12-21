@@ -57,4 +57,8 @@ class SessionsController < Devise::SessionsController
       flash[:notice] = nil
       flash[:alert] = nil
     end
+
+    def set_sign_in_type
+      resource.update_column(:sign_in_type, User::SYSTEM)
+    end
 end

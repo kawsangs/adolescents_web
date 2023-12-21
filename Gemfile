@@ -85,9 +85,6 @@ gem "sidekiq", "~> 7.1.3"
 # Client request
 gem "httparty", "~> 0.21.0"
 
-gem "sentry-ruby"
-gem "sentry-rails"
-
 # Write excel
 gem "caxlsx", "~> 3.2.0"
 gem "caxlsx_rails", "~> 0.6.3"
