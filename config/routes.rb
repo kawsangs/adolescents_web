@@ -5,16 +5,16 @@ Rails.application.routes.draw do
     controllers token_info: "token_info"
   end
 
-  devise_for :users, path: "/", controllers: { confirmations: "confirmations", omniauth_callbacks: "users/omniauth_callbacks", sessions: "sessions" }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  devise_for :users, path: "/", controllers: { omniauth_callbacks: "users/omniauth_callbacks", sessions: "sessions" }
+
+  devise_scope :user do
+    match "/verify_otp" => "sessions#verify_otp", via: :post
+    match "/verify_otp" => "sessions#show", via: :get
+  end
 
   # Defines the root path route ("/")
   root "app_users#index"
-
-  # https://github.com/plataformatec/devise/wiki/How-To:-Override-confirmations-so-users-can-pick-their-own-passwords-as-part-of-confirmation-activation
-  as :user do
-    match "/confirmation" => "confirmations#update", via: :put, as: :update_user_confirmation
-  end
 
   resources :users do
     member do
