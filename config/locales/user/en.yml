@@ -19,3 +19,15 @@ en:
     locale_km: ខ្មែរ
     locale_en: English
     last_sign_in_via: Last sign in via %{type}
+
+  activerecord:
+    attributes:
+      user:
+        otp_token: OTP code
+    errors:
+      models:
+        user:
+          attributes:
+            otp_token:
+              blank: cannot be blank
+              invalid: is invalid

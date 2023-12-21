@@ -2,22 +2,28 @@ module Users::OtpConcern
   extend ActiveSupport::Concern
 
   included do
+    OTP_LENGTH = 6
+
     def send_otp_instructions
       token = set_otp_token
       send_otp_instructions_notification(token)
       token
     end
 
-    OTP_LENGTH = 6
-
     def set_otp_token
-      token = SecureRandom.random_number(10**OTP_LENGTH).to_s.rjust(OTP_LENGTH, "0")
+      token = secure_token
 
       self.otp_token = token
       self.otp_sent_at = Time.now.utc
 
       save(validate: false)
       token
+    end
+
+    def secure_token
+      token = SecureRandom.random_number(10**OTP_LENGTH).to_s.rjust(OTP_LENGTH, "0")
+      return token unless self.class.exists?(otp_token: token)
+      secure_token
     end
 
     def send_otp_instructions_notification(token)

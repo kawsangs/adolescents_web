@@ -53,10 +53,10 @@ km:
       send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
       enter_your_code: "បញ្ចូលលេខកូដរបស់អ្នក"
       we_sent_code_to: "យើងបានផ្ញើលេខកូដសុវត្ថិភាពទៅកាន់អ៊ីមែល"
-      you_may_need_to_check: "<span class='text-muted'>%{email}</span>។ អ្នកត្រូវទៅពិនិត្យ"
-      your_junk_or_spam: "មើលថត Junk ឬ Spam របស់អ្នក។"
-      resend: បញ្ជូនម្ដងទៀត
-      continue: បន្ត
+      you_may_need_to_check: "<span class='text-muted'>%{email}</span>។ សូមពិនិត្យ"
+      your_junk_or_spam: "មើល Inbox(Junk ឬ Spam) របស់អ្នក។"
+      resend: ផ្ញើម្ដងទៀត
+      continue: ចូលគណនី
       return_to_login: ត្រលប់ទៅការចូលគណនី
       send_otp_for_sign_in: ផ្ញើ OTP ដើម្បីចូលគណនី
       invalid: "Invalid"
