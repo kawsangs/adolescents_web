@@ -27,6 +27,8 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  sign_in_type           :integer          default("system")
+#  otp_token              :string
+#  otp_sent_at            :datetime
 #
 FactoryBot.define do
   factory :user do

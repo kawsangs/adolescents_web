@@ -49,6 +49,17 @@ en:
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
+      no_token: "You can't access this page without coming from a otp email. If you do come from a otp email, please make sure you used the full URL provided."
+      send_instructions: "You will receive an email with instructions and link to sign in your account in a few minutes."
+      send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
+      enter_your_code: "Enter your code"
+      we_sent_code_to: "We sent a security code to"
+      you_may_need_to_check: "<span class='text-muted'>%{email}</span>. You may need to check"
+      your_junk_or_spam: "your Junk or Spam folder."
+      resend: Resend
+      continue: Continue
+      return_to_login: Return to login
+      send_otp_for_sign_in: Send OTP for sign in
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."

@@ -18,11 +18,7 @@
         %i.fas.fa-share-square
 
       / Copy confirm link
-      %div{'data-controller': "users"}
-        %input.confirm-link{ value: confirmation_url(user, confirmation_token: user.confirmation_token), 'data-users-target' => 'link', readonly: true }
-
-        %button.me-1{ class: "btn btn-circle btn-sm btn-outline-secondary me-1 btn-copy", data: { action: "click->users#copyConfirmationLink", 'bs-toggle': 'tooltip', 'bs-placement': 'top', label: t('shared.copied') }, title: t('user.copy_confirm_link')}
-          %i.far.fa-copy
+      = render "shared/buttons/copy_button", value: confirmation_url(user, confirmation_token: user.confirmation_token), tooltip_title: t('user.copy_confirm_link'), button_css_class: 'btn-outline-secondary btn-circle'
 
     / Deactivate / Activate
     - if policy(user).update? && user.confirmed?
