@@ -1,3 +1,5 @@
+require "sidekiq/web"
+
 Rails.application.routes.draw do
   devise_for :users, path: "/", controllers: { omniauth_callbacks: "users/omniauth_callbacks", sessions: "sessions" }
 
@@ -18,4 +20,13 @@ Rails.application.routes.draw do
   end
 
   resource :locale, only: [:update]
+
+  # Sidekiq
+  if Rails.env.production?
+    authenticate :user, ->(user) { user.primary_admin? } do
+      mount Sidekiq::Web => "/sidekiq"
+    end
+  else
+    mount Sidekiq::Web => "/sidekiq"
+  end
 end

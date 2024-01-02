@@ -6,7 +6,13 @@ module Users::OtpConcern
 
     def send_otp_instructions
       token = set_otp_token
-      send_otp_instructions_notification(token)
+
+      if Rails.env.production? || Rails.env.staging?
+        send_otp_instructions_notification_async
+      else
+        send_otp_instructions_notification
+      end
+
       token
     end
 
@@ -26,8 +32,8 @@ module Users::OtpConcern
       secure_token
     end
 
-    def send_otp_instructions_notification(token)
-      UserMailer.otp_instructions(self, token).deliver_now
+    def send_otp_instructions_notification
+      UserMailer.otp_instructions(self, otp_token).deliver_now
     end
 
     def otp_period_valid?
@@ -57,5 +63,10 @@ module Users::OtpConcern
         recoverable
       end
     end
+
+    private
+      def send_otp_instructions_notification_async
+        UserMailerJob.perform_async(id)
+      end
   end
 end

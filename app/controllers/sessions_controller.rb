@@ -10,6 +10,8 @@ class SessionsController < Devise::SessionsController
   def create
     self.resource = resource_class.send_otp_instructions(resource_params)
 
+    # Follow devise passwords_controller POST /resource/password
+    # Read more on https://github.com/heartcombo/devise/blob/main/app/controllers/devise/passwords_controller.rb#L18C8-L18C36
     if successfully_sent?(resource)
       @resource = resource_class.new(email: resource.email)
       set_flash_message(:notice, :send_instructions)
