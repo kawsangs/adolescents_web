@@ -95,6 +95,7 @@ GEM
       xpath (~> 3.2)
     childprocess (4.1.0)
     concurrent-ruby (1.1.10)
+    connection_pool (2.4.1)
     crass (1.0.6)
     database_cleaner-active_record (2.0.1)
       activerecord (>= 5.a)
@@ -259,6 +260,8 @@ GEM
     rake (13.0.6)
     recaptcha (5.10.0)
       json
+    redis-client (0.19.1)
+      connection_pool
     regexp_parser (2.5.0)
     reline (0.3.1)
       io-console (~> 0.5)
@@ -330,6 +333,11 @@ GEM
     sexp_processor (4.16.1)
     shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
+    sidekiq (7.2.0)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.14.0)
     simple_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -408,6 +416,7 @@ DEPENDENCIES
   sentry-rails
   sentry-ruby
   shoulda-matchers
+  sidekiq (~> 7.2.0)
   simple_form (~> 5.1.0)
   sprockets-rails
   stimulus-rails

@@ -1,0 +1,9 @@
+---
+:concurrency: 5
+production:
+  :concurrency: 20
+:queues:
+  - ["default", 1]
+  - ["high", 2]
+
+:max_retries: 15
