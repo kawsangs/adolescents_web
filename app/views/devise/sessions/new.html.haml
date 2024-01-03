@@ -16,19 +16,13 @@
     .or-label OR
     .line.flex-grow-1
 
-  = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { data: { turbo: false } }) do |f|
+  %div{'data-controller': 'sessions'}
+    = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { method: :post, 'data-turbo': false, id: 'session-form' }) do |f|
+      .mb-3
+        = f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email", class: 'input-email' }
 
-    .mb-3= f.input :email, required: false, autofocus: true, input_html: { autocomplete: "email" }
-
-    .mb-3= f.input :password, required: false, input_html: { autocomplete: "current-password" }
-
-    .mb-3= f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-
-    - unless Rails.env.development?
-      .mb-3= recaptcha_tags
-
-    .mb-3.actions.form-group
-      = f.submit t("devise.sign_in"), class: 'btn btn-primary w-100 mb-2'
+      .mb-3.form-actions
+        = f.button :submit, t('devise.sessions.send_otp_for_sign_in'), class: 'btn btn-primary w-100 mb-2 btn-submit'
 
   .text-end.mb-3
     .form-group
@@ -38,5 +32,5 @@
 
     .form-group
       %span.fs-xs
-        = t("sidebar.version") + ': '
-        = ENV['APP_VERSION'] || 'development'
+        = t("shared.version") + ': '
+        = ENV['APP_VERSION'] || 'dev'

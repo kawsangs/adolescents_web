@@ -1,0 +1,41 @@
+.text-center{'data-controller' => 'verify-otp'}
+  / Title
+  %h1= t('devise.sessions.enter_your_code')
+
+  / Description
+  %div.mt-3= t('devise.sessions.we_sent_code_to')
+  %div= t('devise.sessions.you_may_need_to_check', email: @resource.email).html_safe
+  %div= t('devise.sessions.your_junk_or_spam')
+
+  / Resend
+  = simple_form_for(@resource, as: resource_name, url: session_path(resource_name), html: { method: :post, 'data-turbo': false }) do |f|
+    = f.input :email, as: :hidden
+    = f.button :submit, t('devise.sessions.resend'), class: 'btn btn-link'
+
+  / OTP form
+  .my-3
+    = simple_form_for(@resource, as: resource_name, url: verify_otp_path(resource_name), html: { method: :post, 'data-turbo': false, id: 'otp-form' }) do |f|
+
+      = f.input :email, as: :hidden
+      = f.input :otp_token, as: :hidden, input_html: {id: 'otp-token'}
+
+      %div.d-flex
+        %div{style: 'margin: 0 auto'}
+          #otp-input
+            - 6.times.each do |i|
+              %input.input{type: "text", inputmode: "numeric", autocomplete: 'no', pattern: '\d*'}
+
+          %div.text-start
+            %small.text-danger.text-error
+              = resource.errors.full_messages.join('; ')
+
+      / Valid time
+      #countdown.my-3
+        = "5:00"
+
+      .mb-3.form-actions
+        = f.button :submit, t('devise.sessions.continue'), class: 'btn btn-primary w-100 mb-2 btn-submit'
+
+  / Return to sign in
+  %p.mt-5
+    = link_to t('devise.sessions.return_to_login'), new_session_path(resource_name)

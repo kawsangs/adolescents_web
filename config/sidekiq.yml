@@ -5,7 +5,7 @@ staging:
 production:
   :concurrency: 20
 :queues:
-  - ["mailers", 1]
   - ["default", 1]
+  - ["high", 2]
 
 :max_retries: 15

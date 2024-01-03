@@ -28,7 +28,7 @@
             %tr{class: ("disabled-bg" unless user.actived?)}
               %td= @pagy.from + index
               %td= user.email
-              %td= user.role.try(:titlecase)
+              %td= t("user.#{user.role}")
               %td.status{ class: user.status }
                 = t("user.#{user.status}")
               %td= timeago(user.created_at).html_safe
