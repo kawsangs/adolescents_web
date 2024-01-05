@@ -71,7 +71,7 @@ export default (function() {
       options.endDate = end;
     }
 
-    if ($('#daterange')) {
+    if (!!$('#daterange')) {
       $('#daterange').daterangepicker(options);
     }
   }

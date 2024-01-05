@@ -28,20 +28,22 @@
 #  updated_at             :datetime         not null
 #  gf_user_id             :integer
 #  sign_in_type           :integer          default("system")
+#  otp_token              :string
+#  otp_sent_at            :datetime
 #
 class User < ApplicationRecord
   acts_as_paranoid
 
   include Users::Filter
-  include Users::Confirmable
   include Users::GrafanaConcern
+  include Users::OtpConcern
 
   attr_accessor :skip_callback
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :confirmable, :lockable, :trackable,
-         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2, :facebook]
+         :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2, :facebook]
 
   enum role: {
     primary_admin: 1,
@@ -74,6 +76,8 @@ class User < ApplicationRecord
            foreign_key: :resource_owner_id,
            dependent: :delete_all # or :destroy if you need callbacks
 
+  before_create :assign_password
+
   def status
     return "archived" if deleted?
     return "locked" if access_locked?
@@ -90,4 +94,19 @@ class User < ApplicationRecord
   def self.facebook_login_enabled?
     ENV["FACEBOOK_LOGIN_ENABLED"] == "true"
   end
+
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
+
+  private
+    def assign_password
+      pwd = Devise.friendly_token
+      self.password = pwd
+      self.password_confirmation = pwd
+    end
+
+    def password_required?
+      false
+    end
 end

@@ -1,7 +1,7 @@
 .form-wrapper
   %h2 Forgot your password?
 
-  = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, "data-turbo": "false" }) do |f|
+  = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, 'data-turbo': false }) do |f|
     = f.error_notification
 
     .mb-3.form-inputs

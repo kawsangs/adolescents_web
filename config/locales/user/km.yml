@@ -22,3 +22,19 @@ km:
     primary_admin: អ្នកគ្រប់គ្រងប្រព័ន្ធ
     admin: អ្នកគ្រប់គ្រង
     staff: បុគ្គលិក
+
+  activerecord:
+    attributes:
+      user:
+        otp_token: លេខកូដសុវត្ថិភាព
+        email: អ៊ីមែល
+    errors:
+      models:
+        user:
+          attributes:
+            otp_token:
+              blank: មិនអាចទទេរ
+              invalid: មិនត្រឹមត្រូវ
+              expired: ហួសសុពលភាពហើយសូមស្នើរសុំម្ដងទៀត
+            email:
+              not_found: មិនមាននៅក្នុងប្រព័ន្ធ

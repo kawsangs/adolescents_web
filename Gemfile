@@ -79,9 +79,6 @@ gem "awesome_nested_set", "~> 3.5.0"
 # Tracking change
 gem "audited", "~> 5.3"
 
-# Background process
-gem "sidekiq", "~> 7.1.3"
-
 # Client request
 gem "httparty", "~> 0.21.0"
 
@@ -125,6 +122,12 @@ gem "ipaddress", "~> 0.8.3"
 
 # Protect the app from bad clients
 gem "rack-attack", "~> 6.7.0"
+
+gem "sentry-ruby"
+gem "sentry-rails"
+
+# Background process
+gem "sidekiq", "~> 7.2.0"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
