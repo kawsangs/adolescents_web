@@ -226,6 +226,8 @@ GEM
       activesupport (>= 3.0.0)
     racc (1.6.0)
     rack (2.2.4)
+    rack-attack (6.7.0)
+      rack (>= 1.0, < 4)
     rack-protection (2.2.2)
       rack
     rack-test (2.0.2)
@@ -406,6 +408,8 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   pundit (~> 2.2.0)
+  rack-attack (~> 6.7.0)
+  rack-test (~> 2.0.2)
   rails (~> 7.0.3, >= 7.0.3.1)
   recaptcha (~> 5.10.0)
   rspec-rails
