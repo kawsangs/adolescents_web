@@ -33,7 +33,7 @@ km:
         user:
           attributes:
             otp_token:
-              blank: មិនអាចទទេរ
+              blank: សូមបញ្ចូលលេខសម្ងាត់៦ខ្ទង់
               invalid: មិនត្រឹមត្រូវ
               expired: ហួសសុពលភាពហើយសូមស្នើរសុំម្ដងទៀត
             email:

@@ -20,7 +20,7 @@ export default class extends Controller {
 
     if(!$.trim(otp)) {
       console.log('!otp')
-      this.setError('មិនអាចទទេរ')
+      this.setError('សូមបញ្ចូលលេខសម្ងាត់៦ខ្ទង់')
       this.enableButtonSubmit();
       return false;
     }
