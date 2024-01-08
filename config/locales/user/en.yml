@@ -32,5 +32,5 @@ en:
         user:
           attributes:
             otp_token:
-              blank: cannot be blank
+              blank: Please enter a 6-digit password
               invalid: is invalid

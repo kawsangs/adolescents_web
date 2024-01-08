@@ -17,13 +17,13 @@ export default class extends Controller {
     const email = $(".input-email").val();
 
     if(!email) {
-      this.showError('មិនអាចទទេរ')
+      this.showError('សូមបញ្ចូលអ៊ីមែល');
       this.enableButtonSubmit();
       return false;
     }
 
     if (!this.validateEmail(email)) {
-      this.showError('មិនត្រឹមត្រូវ');
+      this.showError('អ៊ីមែលមិនត្រឹមត្រូវ');
       this.enableButtonSubmit();
       return false;
     }
