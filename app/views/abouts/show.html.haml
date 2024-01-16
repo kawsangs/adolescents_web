@@ -1,0 +1,31 @@
+#content.pb-2
+  .w-75.view-center
+    - unless signed_in?
+      = link_to 'Back', root_path, class: 'btn btn-link'
+
+    %nav.text-center.mb-4{ class: ('mt-3' if signed_in?) }
+      .container-fluid
+        %h3= "កម្មវិធី#{ENV['APP_NAME']}"
+
+    %p= "កម្មវិធីអ៊ែប “#{ENV['APP_NAME']}” ត្រូវបានផ្តួចផ្តើមឡើងដោយក្រុមប្រឹក្សាជាតិអភិវឌ្ឍន៍យុវជនកម្ពុជា និងក្រសួងអប់រំ យុវជន និងកីឡា ដែលគម្រោងនេះអនុវត្តដោយបណ្តាញទូរស័ព្ទជំនួយកុមារកម្ពុជា និងអ៊ែបវិស្វករ Kawsang Co., Ltd ដែលជាផលិតផលរួមគ្នាក្រោមកម្មវិធីដែលគាំទ្រដោយ មូលនិធិសហប្រជាជាតិសម្រាប់ប្រជាជន (UNFPA) និងរាជរដ្ឋាភិបាលជប៉ុន (Government of Japan)។"
+
+    %h5.text-center.my-3
+      %strong ផ្តួចផ្តើមផលិតដោយ / Initiated by
+
+    .d-flex.justify-content-center.mb-5
+      %div.mx-2= image_tag('system.png', class: 'small-logo')
+      %div= image_tag('system.png', class: 'small-logo')
+
+    %h5.text-center.my-3
+      %strong គាំទ្រថវិកាដោយ / Funded by
+
+    .d-flex.justify-content-center.mb-5
+      %div.mx-2= image_tag('system.png', class: 'small-logo')
+      %div= image_tag('system.png', class: 'small-logo')
+
+    %h5.text-center.my-3
+      %strong សហការអនុវត្តដោយ / Implemented By
+
+    .d-flex.justify-content-center.mb-5
+      %div.mx-2= image_tag('system.png', class: 'small-logo')
+      %div= image_tag('system.png', class: 'small-logo')

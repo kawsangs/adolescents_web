@@ -21,6 +21,10 @@ Rails.application.routes.draw do
 
   resource :locale, only: [:update]
 
+  resource :about, only: [:show]
+  get "/privacy-policy", to: "privacy_policies#show"
+  get "/terms-and-conditions", to: "terms_and_conditions#show"
+
   # Sidekiq
   if Rails.env.production?
     authenticate :user, ->(user) { user.primary_admin? } do

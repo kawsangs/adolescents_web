@@ -5,6 +5,6 @@ class UserMailer < ApplicationMailer
     @user = user
     @token = token
 
-    mail(to: user.email, subject: "One time sign in")
+    mail(to: user.email, subject: "#{ENV['APP_NAME']} - One time sign in")
   end
 end

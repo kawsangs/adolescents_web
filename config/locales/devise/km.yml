@@ -59,7 +59,8 @@ km:
       continue: ចូលគណនី
       return_to_login: ត្រលប់ទៅការចូលគណនី
       send_otp_for_sign_in: ផ្ញើ OTP ដើម្បីចូលគណនី
-      invalid: "Invalid"
+      invalid: មិនត្រឹមត្រូវ
+      sign_in_a_different_way: ចូលគណនីតាមរបៀបផ្សេងទៀត
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
