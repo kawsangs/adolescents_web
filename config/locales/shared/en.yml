@@ -26,3 +26,7 @@ en:
     copied: Copied
     email: Email
     version: Version
+    about: About
+    privacy: Privacy Policy
+    terms_and_conditions: Terms and Conditions
+    copyright: "© 2024 %{name}. All rights reserved."
