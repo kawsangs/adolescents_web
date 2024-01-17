@@ -11,6 +11,7 @@ require "support/factory_bot"
 require "database_cleaner/active_record"
 require "pundit/rspec"
 require "sidekiq/testing"
+require "rack/attack"
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are

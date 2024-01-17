@@ -28,9 +28,18 @@
     .form-group
       = render "devise/shared/links"
 
-      .mb-3= link_to t('about.about_us'), about_path, class: 'btn btn-link pr-0'
-
     .form-group
-      %span.fs-xs
+      %small.fs-xs
         = t("shared.version") + ': '
         = ENV['APP_VERSION'] || 'dev'
+
+  %div
+    = link_to t('shared.privacy'), '/privacy-policy', class: 'btn btn-link'
+    = link_to t('shared.terms_and_conditions'), '/terms-and-conditions', class: 'btn btn-link'
+    - if ENV['SUPPORT_EMAIL'].present?
+      = link_to "Support", "mailto: #{ENV['SUPPORT_EMAIL']}", class: 'btn btn-link'
+    = link_to t('shared.about'), about_path, class: 'btn btn-link'
+
+  .text-center
+    %small.text-muted
+      = t('shared.copyright', name: ENV['APP_NAME'])

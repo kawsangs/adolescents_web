@@ -99,3 +99,7 @@ en:
     edit_reason: Edit user reason
     new_reason: New user reason
     version: Version
+    about: About
+    privacy: Privacy Policy
+    terms_and_conditions: Terms and Conditions
+    copyright: "© 2024 %{name}. All rights reserved."
