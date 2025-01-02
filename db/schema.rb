@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_15_223535) do
+ActiveRecord::Schema[7.0].define(version: 2024_12_11_043033) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_15_223535) do
     t.uuid "characteristic_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["app_user_id", "characteristic_id"], name: "index_app_user_characteristics_on_app_user_id_and_char_id"
   end
 
   create_table "app_user_reasons", force: :cascade do |t|
@@ -550,6 +551,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_15_223535) do
     t.uuid "app_user_id"
     t.uuid "pageable_id"
     t.integer "pageable_type"
+    t.index ["visit_date"], name: "index_visits_on_visit_date"
   end
 
   create_table "working_days", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
