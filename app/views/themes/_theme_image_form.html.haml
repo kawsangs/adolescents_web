@@ -1,0 +1,25 @@
+- asset = f.object
+- editable = policy(@theme).enable_bg_image_edit?
+
+.d-flex.flex-column.image-parent
+  .image-wrapper-theme.position-relative
+    .d-flex.flex-column{class: ('pointer' if editable )}
+      .image-preview
+        %h6= asset_image_title(asset)
+        = image_tag asset.image_or_default, class: "preview-image _1x", id: "#{asset.platform}_#{asset.resolution}", 'data-default' => image_path('default_image.png')
+
+        - if editable
+          .btn-delete.pointer.position-relative{class: ('d-none' unless f.object.image.file), style: 'z-index: 1' }
+            %i.fas.fa-trash-alt.text-white
+
+      .text-danger._1x= f.object.errors.full_messages.to_sentence if f.object.errors[:image].present?
+
+    - if editable
+      = f.input :image, as: :file, label: false, wrapper_html: { class: 'file_wrapper' }, input_html: { class: 'file_avata pointer logo-input' }
+      = f.hidden_field :image_cache
+
+      .remove-logo-wrapper
+        = f.input :_destroy, as: :boolean, input_html: { class: 'checkbox-remove' }
+  - if editable
+    = f.hidden_field :platform
+    = f.hidden_field :resolution
