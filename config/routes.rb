@@ -90,6 +90,11 @@ Rails.application.routes.draw do
   resources :reason_importers
   resources :reasons
 
+  resources :themes do
+    put :publish, on: :member
+    delete :archive, on: :member
+  end
+
   get "/privacy-policy", to: "privacy_policies#show"
   get "/terms-and-conditions", to: "terms_and_conditions#show"
 

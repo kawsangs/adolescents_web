@@ -1,0 +1,25 @@
+- hint_content ||= ''
+%div{'data-controller': 'confirm-modal', 'data-confirm-modal-dom-id-value': "confirmModalArchive"}
+  #confirmModalArchive.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :tabindex => "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %h5.d-flex.align-items-center
+            %i.fas.fa-exclamation-triangle.text-danger
+            .modal-title.ms-2{'data-content': t('shared.confirm_archive', name: '_type_')}
+              / Message title to replace
+
+          %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+
+        - if hint_content.present?
+          .hint{ style: 'padding: 1rem' }
+            = hint_content
+
+        .modal-body{'data-content': t('shared.are_you_sure_to_archive', type: "_type_", name: '_name_')}
+          / Message body to replace
+
+        .modal-footer
+          %button.btn.btn-secondary{"data-bs-dismiss" => "modal", :type => "button"}= t('shared.cancel')
+
+          / Message url to replace
+          = button_to t('shared.yes_archive'), '#', method: :delete, class: 'btn btn-danger'
