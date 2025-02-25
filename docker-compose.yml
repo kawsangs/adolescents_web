@@ -12,7 +12,7 @@ services:
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
-      - 5432:5432
+      - 65432:5432
   web: &rails
     build:
       context: .
@@ -38,15 +38,15 @@ services:
   redis:
     image: redis:7.0.11
 
-  sidekiq:
-    <<: *rails
-    command: bundle exec sidekiq -C config/sidekiq.yml
-    ports: []
+  # sidekiq:
+  #   <<: *rails
+  #   command: bundle exec sidekiq -C config/sidekiq.yml
+  #   ports: []
 
-  ngrok:
-    image: wernight/ngrok
-    ports:
-      - 4040:4040
-    environment:
-      NGROK_PORT: 'web:3000'
-      NGROK_AUTH: update_it
+  # ngrok:
+  #   image: wernight/ngrok
+  #   ports:
+  #     - 4040:4040
+  #   environment:
+  #     NGROK_PORT: 'web:3000'
+  #     NGROK_AUTH: update_it

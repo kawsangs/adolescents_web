@@ -1,0 +1,6 @@
+= content_for :header_title_right_col do
+  .ms-1
+    .d-flex.justify-content-end
+      = render "shared/buttons/add_new_button", url: new_theme_path, name: t("theme.theme")
+      
+= render 'shared/header_title', title: t('sidebar.themes')

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_12_11_043033) do
+ActiveRecord::Schema[7.0].define(version: 2025_02_23_221611) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -42,6 +42,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_11_043033) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "app_user_themes", force: :cascade do |t|
+    t.uuid "app_user_id"
+    t.uuid "theme_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "app_users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "gender"
     t.integer "age"
@@ -56,6 +63,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_11_043033) do
     t.integer "education_level", default: 0
     t.string "uuid"
     t.datetime "deleted_at"
+  end
+
+  create_table "assets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.integer "platform"
+    t.string "resolution"
+    t.uuid "theme_id"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "audits", force: :cascade do |t|
@@ -279,6 +296,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_11_043033) do
     t.datetime "updated_at", null: false
     t.integer "platform", default: 1
     t.string "device_os"
+    t.boolean "active", default: true
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|
@@ -456,6 +474,23 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_11_043033) do
     t.string "telegram_bot_user_id"
     t.boolean "enabled", default: false
     t.boolean "active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "theme_settings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "key"
+    t.string "value"
+    t.uuid "theme_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "themes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.boolean "active", default: false
+    t.boolean "default", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

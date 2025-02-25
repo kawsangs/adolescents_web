@@ -68,4 +68,8 @@ module ApplicationHelper
     str += "</label>"
     str + "</div>"
   end
+
+  def asset_image_title(asset)
+    I18n.t("theme.image_title_#{asset.image_dimension}")
+  end
 end

@@ -1,0 +1,34 @@
+.container-fluid.px-4.themes
+  = render 'page_heading'
+  = render "shared/no_data", items: @themes
+
+  - if @themes.present?
+    = render "shared/pagination_title", objects: @themes
+
+    .table-responsive
+      %table.table.table-hover.pretty
+        %thead
+          %tr
+            %th #
+            %th= t('theme.name')
+            %th= t('theme.description')
+            %th= t('theme.active')
+            %th= t('theme.default')
+            %th= 'Number of theme asset'
+            %th
+        %tbody
+          - @themes.each_with_index do |theme, index|
+            %tr
+              %td= @pagy.from + index
+              %td
+                = link_to theme.name, theme_path(theme), class: 'btn btn-link'
+              %td= theme.description
+              %td= theme.active ? t('theme.active') : ''
+              %td= theme.default ? t('theme.default') : ''
+              %td= theme.assets.length
+              %td
+                .d-flex.justify-content-end
+                  = render "shared/buttons/edit_button", url: edit_theme_path(theme), object: theme
+                  = render 'shared/buttons/delete_button', object: theme,  message: { type: t('theme.theme'), name: theme.name, url: theme_path(theme) }
+
+= render "shared/modals/confirm_delete_modal"

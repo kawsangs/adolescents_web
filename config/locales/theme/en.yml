@@ -1,0 +1,21 @@
+en:
+  theme:
+    themes: Themes
+    theme: Theme
+    name: Name
+    description: Description
+    active: Active
+    default: Default
+    new_theme: New theme
+    edit_theme: Edit theme
+    image_title_ios_1x: 1x (375x812)
+    image_title_ios_2x: 2x (750x1624)
+    image_title_ios_3x: 3x (1125x2436)
+    image_title_android_mdpi: MDPI (320x480)
+    image_title_android_hdpi: HDPI (480x800)
+    image_title_android_xhdpi: XHDPI (720x1280)
+    image_title_android_xxhdpi: XXHDPI (1080x1920)
+    ios: iOS
+    android: Android
+    set_active: បើកដំណើរការ​ Theme?
+    open: Open
