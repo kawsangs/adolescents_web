@@ -2,6 +2,10 @@
   = simple_form_for @theme, html: {} do |f|
     .mb-3= f.input :name, label: t('theme.name')
     .mb-3= f.input :description, label: t('theme.description')
+    .mb-3= f.input :bg_color, label: t('theme.bg_color')
+    .mb-3= f.input :text_color, label: t('theme.text_color')
+    .mb-3= f.input :button_color, label: t('theme.button_color')
+    .mb-3= f.input :nav_bar_color, label: t('theme.nav_bar_color')
     .mb-3
       %label= t('theme.set_active')
       = f.input :active, label: t('theme.open'), input_html: {class: 'form-check-input', 'data-working-days-target': 'open', 'data-action': 'working-days#handleOpenSwitch'}, wrapper_html: { class: 'form-switch ps-0'}

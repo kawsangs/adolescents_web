@@ -16,15 +16,15 @@ class Asset < ApplicationRecord
   enum platform: MobileToken.platforms
 
   # Scope
-  scope :ios, -> { where(platform: 'ios') }
-  scope :android, -> { where(platform: 'android') }
+  scope :ios, -> { where(platform: "ios") }
+  scope :android, -> { where(platform: "android") }
 
   # Association
   belongs_to :theme
 
   # Validation
   validate :validate_image_dimensions
-  
+
   # File
   mount_uploader :image, AssetImageUploader
 

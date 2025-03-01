@@ -15,9 +15,9 @@ class ThemesController < ApplicationController
 
   def create
     @theme = authorize Theme.new(theme_params)
-    
+
     if @theme.save
-      redirect_to themes_url, notice: 'Theme created successfully!'
+      redirect_to themes_url, notice: "Theme created successfully!"
     else
       load_assets
       render :new, status: :unprocessable_entity
@@ -30,7 +30,7 @@ class ThemesController < ApplicationController
 
   def update
     if @theme.update(theme_params)
-      redirect_to themes_url, notice: 'Theme updated successfully!'
+      redirect_to themes_url, notice: "Theme updated successfully!"
     else
       load_assets
       render :edit, status: :unprocessable_entity
@@ -47,6 +47,7 @@ class ThemesController < ApplicationController
     def theme_params
       params.require(:theme).permit(
         :name, :description, :active, :default,
+        :bg_color, :text_color, :button_color, :nav_bar_color,
         assets_attributes: [:id, :image, :resolution, :platform, :_destroy]
       )
     end
@@ -57,21 +58,21 @@ class ThemesController < ApplicationController
 
     def filter_params
       params.permit(:name)
-    end  
+    end
 
     def load_assets
       dimensions = [
-        { platform: 'ios', resolution: '1x' },
-        { platform: 'ios', resolution: '2x' },
-        { platform: 'ios', resolution: '3x' },
-        { platform: 'android', resolution: 'mdpi' },
-        { platform: 'android', resolution: 'hdpi' },
-        { platform: 'android', resolution: 'xhdpi' },
-        { platform: 'android', resolution: 'xxhdpi' }
+        { platform: "ios", resolution: "1x" },
+        { platform: "ios", resolution: "2x" },
+        { platform: "ios", resolution: "3x" },
+        { platform: "android", resolution: "mdpi" },
+        { platform: "android", resolution: "hdpi" },
+        { platform: "android", resolution: "xhdpi" },
+        { platform: "android", resolution: "xxhdpi" }
       ]
 
       dimensions.each do |asset|
-        @theme.assets.detect { |a| a.platform == asset[:platform] && a.resolution == asset[:resolution] } || 
+        @theme.assets.detect { |a| a.platform == asset[:platform] && a.resolution == asset[:resolution] } ||
         @theme.assets.find_or_initialize_by(platform: asset[:platform], resolution: asset[:resolution])
       end
     end

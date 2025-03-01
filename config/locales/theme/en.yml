@@ -4,6 +4,10 @@ en:
     theme: Theme
     name: Name
     description: Description
+    bg_color: Background color
+    text_color: Text color
+    button_color: Button color
+    nav_bar_color: Nav bar color
     active: Active
     default: Default
     new_theme: New theme

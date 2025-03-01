@@ -6,7 +6,7 @@ class CreateAssets < ActiveRecord::Migration[7.0]
       t.string :resolution  # e.g., "1x", "2x", "3x", "mdpi", "hdpi", etc.
       t.uuid   :theme_id
       t.string :image
-      
+
       t.timestamps
     end
   end

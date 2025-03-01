@@ -10,6 +10,5 @@
 #
 FactoryBot.define do
   factory :app_user_theme do
-    
   end
 end

@@ -4,6 +4,10 @@ km:
     theme: Theme
     name: ឈ្មោះ
     description: បរិយាយ
+    bg_color: Background color
+    text_color: Text color
+    button_color: Button color
+    nav_bar_color: Nav bar color
     active: សកម្ម
     default: Default
     new_theme: Theme ថ្មី

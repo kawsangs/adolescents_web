@@ -3,7 +3,7 @@ class CreateAppUserThemes < ActiveRecord::Migration[7.0]
     create_table :app_user_themes do |t|
       t.uuid :app_user_id
       t.uuid :theme_id
-      
+
       t.timestamps
     end
   end

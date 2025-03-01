@@ -11,6 +11,5 @@
 #
 FactoryBot.define do
   factory :theme_setting do
-    
   end
 end
