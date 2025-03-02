@@ -16,5 +16,11 @@
 #
 FactoryBot.define do
   factory :theme do
+    name { FFaker::Name.name }
+    description { FFaker::Book.description }
+    bg_color { "#000" }
+    text_color { "#fff" }
+    button_color { "#fff" }
+    nav_bar_color { "#fff" }
   end
 end

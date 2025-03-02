@@ -15,10 +15,6 @@ class Asset < ApplicationRecord
   # Enum
   enum platform: MobileToken.platforms
 
-  # Scope
-  scope :ios, -> { where(platform: "ios") }
-  scope :android, -> { where(platform: "android") }
-
   # Association
   belongs_to :theme
 

@@ -478,14 +478,6 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_23_221611) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "theme_settings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "key"
-    t.string "value"
-    t.uuid "theme_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "themes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.text "description"

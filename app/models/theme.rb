@@ -15,19 +15,25 @@
 #  updated_at    :datetime         not null
 #
 class Theme < ApplicationRecord
-  has_many :theme_settings, dependent: :destroy
+  # Association
   has_many :assets, dependent: :destroy
   has_many :app_user_themes, dependent: :destroy
   has_many :app_users, through: :app_user_themes
 
+  # Validation
   validates :name, presence: true, uniqueness: true
   validates :bg_color, presence: true
   validates :text_color, presence: true
   validates :button_color, presence: true
   validates :nav_bar_color, presence: true
 
+  # Scope
+  scope :actives, -> { where(active: true) }
+
+  # Nested attribute
   accepts_nested_attributes_for :assets, allow_destroy: true, reject_if: ->(attributes) { attributes["image"].blank? }
 
+  # Class method
   def self.filter(params)
     name = params[:name].to_s.strip
     scope = all
