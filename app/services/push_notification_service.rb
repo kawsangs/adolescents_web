@@ -3,41 +3,63 @@
 require "googleauth"
 
 class PushNotificationService
-  attr_reader :detail, :success_count, :failure_count
+  attr_reader :detail, :success_count, :failure_count, :mobile_notification
 
-  def initialize
+  def initialize(mobile_notification)
     @success_count = 0
     @failure_count = 0
     @detail = {
       success: { ios: 0, android: 0 },
       failure: { ios: 0, android: 0 }
     }
+
+    @mobile_notification = mobile_notification
   end
 
-  def notify_all(mobile_tokens, mobile_notification)
+  def notify_all(mobile_tokens)
     mobile_tokens.each do |mobile_token|
-      notify(mobile_token, mobile_notification)
+      notify(mobile_token)
     end
 
     { detail:, success_count:, failure_count: }
   end
 
-  def notify(mobile_token, mobile_notification)
-    message = { 'token': mobile_token.token }.merge(mobile_notification.build_content)
-    res = fcm.send_v1(message)
+  def notify(mobile_token)
+    res = fcm.send_v1(build_message(mobile_token))
 
     if res[:status_code] == 200
-      @success_count += 1
-      @detail[:success][mobile_token.platform.to_sym] += 1
+      handle_success(res, mobile_token)
     else
-      @failure_count += 1
-      @detail[:failure][mobile_token.platform.to_sym] += 1
-
-      mobile_notification.mobile_notification_logs.create(mobile_token_id: mobile_token.id, failed_reason: res[:body])
+      handle_failure(res, mobile_token)
     end
   end
 
   private
+    def build_message(mobile_token)
+      { 'token': mobile_token.token }.merge(mobile_notification.build_content)
+    end
+
+    def handle_success(res, mobile_token)
+      @success_count += 1
+      @detail[:success][mobile_token.platform.to_sym] += 1
+    end
+
+    def handle_failure(res, mobile_token)
+      @failure_count += 1
+      @detail[:failure][mobile_token.platform.to_sym] += 1
+
+      mobile_notification.mobile_notification_logs.create(mobile_token_id: mobile_token.id, failed_reason: res[:body])
+      mobile_token.update(active: false) if inactive_token_status_codes.include?(res[:status_code].to_s)
+    end
+
+    def inactive_token_status_codes
+      [
+        "400", # Bad request, token: is invalid format - ex: token: "BLACKLISTED"
+        "403", # The FCM token belongs to a different Firebase project
+        "404", # The device token does not exist or the app is uninstall
+      ]
+    end
+
     def fcm
       @fcm ||= FCM.new(
         access_token,
