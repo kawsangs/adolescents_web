@@ -17,8 +17,6 @@
 class Theme < ApplicationRecord
   # Association
   has_many :assets, dependent: :destroy
-  has_many :app_user_themes, dependent: :destroy
-  has_many :app_users, through: :app_user_themes
 
   # Validation
   validates :name, presence: true, uniqueness: true

@@ -8,7 +8,7 @@ km:
     text_color: Text color
     button_color: Button color
     nav_bar_color: Nav bar color
-    active: សកម្ម
+    active: ចេញផ្សាយ
     default: Default
     new_theme: Theme ថ្មី
     edit_theme: កែតម្រូវ theme
@@ -21,5 +21,6 @@ km:
     image_title_android_xxhdpi: XXHDPI (1080x1920)
     ios: iOS
     android: Android
-    set_active: Set theme active?
+    set_active: បើកដំណើរការ​ Theme?
     open: បើក
+    num_of_bg_image: ចំនួនផ្ទៃ​រូបភាព

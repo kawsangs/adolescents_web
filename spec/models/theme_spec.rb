@@ -19,8 +19,6 @@ require "rails_helper"
 RSpec.describe Theme, type: :model do
   describe "associations" do
     it { should have_many(:assets).dependent(:destroy) }
-    it { should have_many(:app_user_themes).dependent(:destroy) }
-    it { should have_many(:app_users).through(:app_user_themes) }
   end
 
   describe "validations" do
@@ -46,7 +44,7 @@ RSpec.describe Theme, type: :model do
 
   describe "nested attributes" do
     it { should accept_nested_attributes_for(:assets).allow_destroy(true) }
-    
+
     it "rejects assets with blank image" do
       theme = Theme.new
       theme.assets_attributes = [{ image: "" }]
@@ -54,16 +52,16 @@ RSpec.describe Theme, type: :model do
     end
   end
 
-  describe '.filter' do
-    let!(:theme1) { create(:theme, name: 'Dark Theme') }
-    let!(:theme2) { create(:theme, name: 'Light Theme') }
+  describe ".filter" do
+    let!(:theme1) { create(:theme, name: "Dark Theme") }
+    let!(:theme2) { create(:theme, name: "Light Theme") }
 
-    it 'filters themes by name' do
-      expect(Theme.filter(name: 'Dark')).to include(theme1)
-      expect(Theme.filter(name: 'Dark')).not_to include(theme2)
+    it "filters themes by name" do
+      expect(Theme.filter(name: "Dark")).to include(theme1)
+      expect(Theme.filter(name: "Dark")).not_to include(theme2)
     end
 
-    it 'returns all themes if no filter is applied' do
+    it "returns all themes if no filter is applied" do
       expect(Theme.filter({})).to include(theme1, theme2)
     end
   end

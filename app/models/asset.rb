@@ -12,16 +12,12 @@
 #  updated_at :datetime         not null
 #
 class Asset < ApplicationRecord
-  # Enum
   enum platform: MobileToken.platforms
 
-  # Association
   belongs_to :theme
 
-  # Validation
   validate :validate_image_dimensions
 
-  # File
   mount_uploader :image, AssetImageUploader
 
   IMAGE_DIMENSIONS = {
@@ -34,7 +30,6 @@ class Asset < ApplicationRecord
     'android_xxhdpi': [1080, 1920]
   }
 
-  # Instant methods
   def image_or_default
     image_url || "default_image.png"
   end
@@ -43,8 +38,8 @@ class Asset < ApplicationRecord
     "#{platform}_#{resolution}"
   end
 
-  def expected_dimensions
-    IMAGE_DIMENSIONS[image_dimension.to_sym] || [nil, nil]
+  def css_class
+    ios? ? "_#{resolution}" : resolution
   end
 
   private
@@ -54,12 +49,21 @@ class Asset < ApplicationRecord
       required_width, required_height = expected_dimensions
       return if required_width.nil? || required_height.nil?
 
-      image_path = image.file.file
-      dimensions = MiniMagick::Image.open(image_path).dimensions
-      actual_width, actual_height = dimensions
+      actual_width, actual_height = actual_dimensions
+      return if actual_width == required_width && actual_height == required_height
 
-      if actual_width != required_width || actual_height != required_height
-        errors.add(:image, "must be #{required_width}x#{required_height}px, but uploaded image is #{actual_width}x#{actual_height}px")
-      end
+      errors.add(:image, "must be #{required_width}x#{required_height}px, but uploaded image is #{actual_width}x#{actual_height}px")
+    end
+
+    def expected_dimensions
+      IMAGE_DIMENSIONS[image_dimension.to_sym] || [nil, nil]
+    end
+
+    def actual_dimensions
+      return [nil, nil] if image.file.try(:file).nil?
+      image_path = image.file.file
+      MiniMagick::Image.open(image_path).dimensions
+    rescue MiniMagick::Error
+      [nil, nil]
     end
 end

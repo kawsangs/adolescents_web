@@ -1,5 +1,10 @@
 .container-fluid.px-4.themes
   = render 'page_heading'
+
+  %form.mb-2{ action: themes_path, method: 'get' }
+    .d-flex
+      .mb-2= render "shared/filters/filter_name"
+
   = render "shared/no_data", items: @themes
 
   - if @themes.present?
@@ -12,9 +17,9 @@
             %th #
             %th= t('theme.name')
             %th= t('theme.description')
-            %th= t('theme.active')
+            %th= t('theme.set_active')
             %th= t('theme.default')
-            %th= 'Number of theme asset'
+            %th= t('theme.num_of_bg_image')
             %th
         %tbody
           - @themes.each_with_index do |theme, index|

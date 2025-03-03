@@ -21,5 +21,6 @@ en:
     image_title_android_xxhdpi: XXHDPI (1080x1920)
     ios: iOS
     android: Android
-    set_active: បើកដំណើរការ​ Theme?
+    set_active: Set theme active?
     open: Open
+    num_of_bg_image: "# of Background image"

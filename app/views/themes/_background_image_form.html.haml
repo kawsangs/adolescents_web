@@ -5,12 +5,12 @@
       .image-preview
         %h6= asset_image_title(asset)
 
-        = image_tag asset.image_or_default, class: "preview-image x1", 'data-default' => image_path('default_image.png')
-        
+        = image_tag asset.image_or_default, class: "preview-image _1x", 'data-default' => image_path('default_image.png')
+
         .btn-delete.pointer.position-relative{class: ('d-none' unless f.object.image.file), style: 'z-index: 1' }
           %i.fas.fa-trash-alt.text-white
-      
-      .text-danger.x1= f.object.errors.full_messages.to_sentence if f.object.errors[:image].present?
+
+      .text-danger._1x= f.object.errors.full_messages.to_sentence if f.object.errors[:image].present?
 
     = f.input :image, as: :file, label: false, wrapper_html: { class: 'file_wrapper' }, input_html: { class: 'file_avata pointer logo-input' }
     = f.hidden_field :image_cache

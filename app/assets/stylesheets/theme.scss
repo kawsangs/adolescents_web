@@ -4,25 +4,25 @@
     margin: 0 auto;
     padding: 20px;
   }
-  
+
   .theme-detail h1 {
     margin-bottom: 20px;
   }
-  
+
   .platform-section {
     margin-bottom: 40px;
   }
-  
+
   .platform-section h3 {
     margin-bottom: 15px;
   }
-  
+
   .device-mockup {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
   }
-  
+
   .image-preview {
     border: 1px solid #ddd;
     padding: 10px;
@@ -30,32 +30,32 @@
     background-color: #f9f9f9;
     text-align: center;
   }
-  
+
   .image-preview h4 {
     margin-bottom: 10px;
   }
-  
+
   .preview-image {
     max-width: 100%;
     height: auto;
     border-radius: 4px;
   }
-  
+
   .actions {
     margin-top: 30px;
   }
-  
+
   .btn {
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 4px;
   }
-  
+
   .btn-secondary {
     background-color: #6c757d;
     color: white;
   }
-  
+
   .preview-image {
     max-width: 100%;
     height: auto;
@@ -64,38 +64,43 @@
     background-color: #f9f9f9;
     padding: 10px;
   }
-  
+
   .preview-image[src*="default_theme_image.png"] {
     opacity: 0.7; /* Make the default image slightly transparent */
   }
-  
-  .preview-image.x1, .x1 {
+
+  .preview-image._1x, .preview-image.mdpi, ._1x {
     max-width: 200px;
     max-height: 200px;
   }
-  
-  .preview-image.x2 {
+
+  .preview-image.hdpi {
+    max-width: 220px;
+    max-height: 220px;
+  }
+
+  .preview-image._2x, .preview-image.xhdpi {
     max-width: 250px;
-    max-height: 250px;  
+    max-height: 250px;
   }
-  
-  .preview-image.x3 {
+
+  .preview-image._3x, .preview-image.xxhdpi {
     max-width: 300px;
-    max-height: 300px;  
+    max-height: 300px;
   }
-  
+
   .image-wrapper-theme {
     position: relative;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-  
+
     img {
       max-width: 100%;
       max-height: 100%;
     }
-    
+
     .file_wrapper {
       position: absolute;
       top: 0;
@@ -104,18 +109,18 @@
       right: 0;
       margin-bottom: 0;
       opacity: 0;
-  
+
       .file_avata {
         height: 100%;
       }
     }
-  
+
     .btn-delete {
       text-align: center;
       background: rgba(0,0,0,0.5);
       padding: 2px;
     }
-  
+
     .remove-logo-wrapper {
       position: absolute;
       left: -100%;

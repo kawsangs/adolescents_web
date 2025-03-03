@@ -48,7 +48,7 @@ class ThemesController < ApplicationController
       params.require(:theme).permit(
         :name, :description, :active, :default,
         :bg_color, :text_color, :button_color, :nav_bar_color,
-        assets_attributes: [:id, :image, :resolution, :platform, :_destroy]
+        assets_attributes: [:id, :image, :resolution, :platform, :_destroy, :image_cache]
       )
     end
 

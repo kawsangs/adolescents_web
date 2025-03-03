@@ -6,7 +6,7 @@
 
       %h3= @theme.name
     %p= @theme.description
-    
+
     .theme-images.mt-3
       %p Background Images
 
@@ -14,37 +14,18 @@
       .platform-section
         %h5 iOS
         .device-mockup.iphone
-          %div
-            .image-preview
-              %h6 1x (375x812)
-              - ios_1x = @theme.assets.find_by(platform: "ios", resolution: "1x")
-              = image_tag ios_1x&.image&.url || asset_path('default_image.png'), class: "preview-image x1"
-          %div
-            .image-preview
-              %h6 2x (750x1624)
-              - ios_2x = @theme.assets.find_by(platform: "ios", resolution: "2x")
-              = image_tag ios_2x&.image&.url || asset_path('default_image.png'), class: "preview-image x2"
-          %div
-            .image-preview
-              %h6 3x (1125x2436)
-              - ios_3x = @theme.assets.find_by(platform: "ios", resolution: "3x")
-              = image_tag ios_3x&.image&.url || asset_path('default_image.png'), class: "preview-image x3"
+          - ios_assets(@theme.assets).each do |asset|
+            %div
+              .image-preview
+                %h6= asset_image_title(asset)
+                = image_tag asset.image_or_default, class: "preview-image #{asset.css_class}"
+
       / Android Images
       .platform-section
         %h3 Android
         .device-mockup.android
-          %div
-            .image-preview
-              %h6 MDPI (320x480)
-              - android_mdpi = @theme.assets.find_by(platform: "android", resolution: "mdpi")
-              = image_tag android_mdpi&.image&.url || asset_path('default_image.png'), class: "preview-image x1"
-          %div
-            .image-preview
-              %h6 XHDPI (720x1280)
-              - android_xhdpi = @theme.assets.find_by(platform: "android", resolution: "xhdpi")
-              = image_tag android_xhdpi&.image&.url || asset_path('default_image.png'), class: "preview-image x2"
-          %div
-            .image-preview
-              %h6 XXHDPI (1080x1920)
-              - android_xxhdpi = @theme.assets.find_by(platform: "android", resolution: "xxhdpi")
-              = image_tag android_xxhdpi&.image&.url || asset_path('default_image.png'), class: "preview-image x3"
+          - android_assets(@theme.assets).each do |asset|
+            %div
+              .image-preview
+                %h6= asset_image_title(asset)
+                = image_tag asset.image_or_default, class: "preview-image #{asset.css_class}"

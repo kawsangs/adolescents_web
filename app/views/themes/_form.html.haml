@@ -11,18 +11,18 @@
       = f.input :active, label: t('theme.open'), input_html: {class: 'form-check-input', 'data-working-days-target': 'open', 'data-action': 'working-days#handleOpenSwitch'}, wrapper_html: { class: 'form-switch ps-0'}
     .mb-3
       %h3 Theme Background Images
-      
+
       .platform-section
         %h5= t('theme.ios')
         .device-mockup
-          - ios_assets = f.object.assets.select{|asset| asset.platform == 'ios'}.sort_by! { |asset| %w(1x 2x 3x).index(asset.resolution) || 0 }
+          - ios_assets = ios_assets(f.object.assets)
           = f.fields_for :assets, ios_assets do |ff|
             = render 'background_image_form', f: ff
-      
+
       .platform-section
         %h5= t('theme.android')
         .device-mockup
-          - android_assets = f.object.assets.select{ |asset| asset.platform == 'android'}.sort_by! { |asset| %w(mdpi xhdpi xxhdpi).index(asset.resolution) || 0 }
+          - android_assets = android_assets(f.object.assets)
           = f.fields_for :assets, android_assets do |ff|
             = render 'background_image_form', f: ff
 

@@ -11,7 +11,7 @@ module Api
       end
 
       def show
-        theme = Theme.find_by(id: params[:id])
+        theme = Theme.actives.find(params[:id])
 
         render json: theme
       end
