@@ -1,0 +1,31 @@
+.preview-background.android
+  .card-box
+    .d-flex.align-items-center.px-2.top-bar
+      .me-2
+        %i.fas.fa-bars
+      .me-2
+        = image_tag 'logo_color.png', size: '18x18', class: 'rounded'
+      %div= ENV['APP_NAME']
+
+    - menu1 = mobile_menus.first
+    .preview-bg.p-3
+      .card
+        .d-flex
+          .m-1= image_tag menu1[:image], style: 'width: 80px;'
+          .m-2.small= menu1[:title]
+
+      - other_menu = mobile_menus[1..mobile_menus.length]
+      - 3.times.each do |i|
+        .d-flex.gap-3
+          - 2.times.each do |j|
+            .card.mt-3.text-center{style: 'width: 135px;'}
+              - menu = other_menu[i * 2 + j]
+              .m-1= image_tag menu[:image], style: 'width: 80px;'
+              .m-2.small= menu[:title]
+
+      .card.mt-2
+        .d-flex.justify-content-between.p-2
+          - mobile_tab_menus.each do |menu|
+            .d-flex.flex-column.text-center.small
+              %i{class: menu[:icon_class]}
+              %span.small= menu[:title]

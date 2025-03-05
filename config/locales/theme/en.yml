@@ -4,7 +4,8 @@ en:
     theme: Theme
     name: Name
     description: Description
-    bg_color: Background color
+    bg_color_primary: Background color(Primary)
+    bg_color_secondary: Background color(Secondary)
     text_color: Text color
     button_color: Button color
     nav_bar_color: Nav bar color

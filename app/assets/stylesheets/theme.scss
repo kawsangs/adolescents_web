@@ -131,4 +131,16 @@
     margin-left: 0;
     margin-right: 1em;
   }
+
+  .preview-background {
+    background-image: image-url('android.png');
+    padding: 44px 16px 4px;
+  }
+
+  .preview-bg {
+    background: linear-gradient(135deg, #ea33db, #1E40AF);
+  }
+  .top-bar {
+    height: 46px; background-color: rgb(38, 108, 222); color: #fff;
+  }
 }

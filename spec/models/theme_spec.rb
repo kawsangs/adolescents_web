@@ -2,17 +2,18 @@
 #
 # Table name: themes
 #
-#  id            :uuid             not null, primary key
-#  name          :string
-#  description   :text
-#  active        :boolean          default(FALSE)
-#  default       :boolean          default(FALSE)
-#  bg_color      :string
-#  text_color    :string
-#  button_color  :string
-#  nav_bar_color :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  id                 :uuid             not null, primary key
+#  name               :string
+#  description        :text
+#  active             :boolean          default(FALSE)
+#  default            :boolean          default(FALSE)
+#  bg_color_primary   :string
+#  bg_color_secondary :string
+#  text_color         :string
+#  button_color       :string
+#  nav_bar_color      :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
 #
 require "rails_helper"
 
@@ -26,7 +27,7 @@ RSpec.describe Theme, type: :model do
 
     it { should validate_presence_of(:name) }
     it { should validate_uniqueness_of(:name) }
-    it { should validate_presence_of(:bg_color) }
+    it { should validate_presence_of(:bg_color_primary) }
     it { should validate_presence_of(:text_color) }
     it { should validate_presence_of(:button_color) }
     it { should validate_presence_of(:nav_bar_color) }

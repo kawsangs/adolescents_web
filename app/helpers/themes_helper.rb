@@ -12,4 +12,25 @@ module ThemesHelper
     assets.select { |asset| asset.platform == "android" }
           .sort_by! { |asset| %w(mdpi hdpi xhdpi xxhdpi).index(asset.resolution) || 0 }
   end
+
+  def mobile_menus
+    [
+      { image: 'categories/reproduction_health.png', title: 'សុខភាពផ្លូវភេទនិងសុខភាពបន្តពូជ'},
+      { image: 'categories/understanding_gender.png', title: 'យេនឌ័រនិងនិន្នាការភេទ'},
+      { image: 'categories/drug_and_alcohol_prevention.png', title: 'ការបង្ការគ្រឿងញៀននិងគ្រឿងស្រវឹង'},
+      { image: 'categories/understanding_hiv.png', title: 'ការយល់ដឹងពីមេរោគអេដស៍និងជំងឺកាមរោគ'},
+      { image: 'categories/youth_migration.png', title: 'ចំណាកស្រុកយុវជន'},
+      { image: 'categories/clinic_and_examination_service.png', title: 'គ្លីនិកនិងសេវា'},
+      { image: 'categories/mental_support.png', title: 'សេវាគាំទ្រផ្លូវចិត្ត'}
+    ]
+  end
+
+  def mobile_tab_menus
+    [
+      { icon_class: 'fa-solid fa-house', title: 'ទំព័រដើម'},
+      { icon_class: 'fa-solid fa-circle-play', title: 'វីដេអូ'},
+      { icon_class: 'fa-solid fa-location-dot', title: 'គ្លីនិក'},
+      { icon_class: 'fa-solid fa-message', title: 'ជំនួយ'}
+    ]
+  end
 end
