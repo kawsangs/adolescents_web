@@ -8,7 +8,6 @@ class CreateThemes < ActiveRecord::Migration[7.0]
       t.string :bg_color_primary
       t.string :bg_color_secondary
       t.string :text_color
-      t.string :button_color
       t.string :nav_bar_color
       t.timestamps
     end

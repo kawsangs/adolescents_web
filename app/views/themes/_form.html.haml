@@ -3,10 +3,15 @@
     = simple_form_for @theme, html: {} do |f|
       .mb-3= f.input :name, label: t('theme.name')
       .mb-3= f.input :description, label: t('theme.description')
-      .mb-3= f.input :bg_color_primary, label: t('theme.bg_color_primary')
+      .mb-3
+        .d-flex
+          = f.label :bg_color_primary, t('theme.bg_color_primary')
+          = choose_color_tip
+
+        = f.input :bg_color_primary, label: false
+
       .mb-3= f.input :bg_color_secondary, label: t('theme.bg_color_secondary')
       .mb-3= f.input :text_color, label: t('theme.text_color')
-      .mb-3= f.input :button_color, label: t('theme.button_color')
       .mb-3= f.input :nav_bar_color, label: t('theme.nav_bar_color')
       .mb-3
         %label= t('theme.set_active')

@@ -144,3 +144,10 @@
     height: 46px; background-color: rgb(38, 108, 222); color: #fff;
   }
 }
+
+#themes-new, #themes-create,
+#themes-edit, #themes-update {
+  .popover {
+    min-width: 500px;
+  }
+}

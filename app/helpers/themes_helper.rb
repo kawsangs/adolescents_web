@@ -33,4 +33,33 @@ module ThemesHelper
       { icon_class: 'fa-solid fa-message', title: 'ជំនួយ'}
     ]
   end
+
+  def choose_color_tip
+    title = t('theme.tip.title')
+    content = %Q{
+      #{t('theme.tip.introduction')}
+      <ul>
+        <li>#{t('theme.tip.high_contrast')}</li>
+        <li>#{t('theme.tip.primary_and_secondary_color')}</li>
+        <li>#{t('theme.tip.check_standard')}</li>
+      </ul>
+
+      #{t('theme.tip.use_tool')}
+    }
+
+    %Q{
+      <a type="button"
+         title="#{title}"
+         data-bs-html="true"
+         data-bs-placement="right"
+         data-bs-trigger="focus"
+         data-bs-toggle="popover"
+         role="button"
+         tabindex="0"
+         class="popover-dismiss ms-2"
+         data-bs-content="#{content}">
+        #{t("shared.need_help")}
+      </a>
+    }.html_safe
+  end
 end

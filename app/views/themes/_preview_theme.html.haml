@@ -21,11 +21,11 @@
             .card.mt-3.text-center{style: 'width: 135px;'}
               - menu = other_menu[i * 2 + j]
               .m-1= image_tag menu[:image], style: 'width: 80px;'
-              .m-2.small= menu[:title]
+              .m-2.text-color.small= menu[:title]
 
       .card.mt-2
         .d-flex.justify-content-between.p-2
           - mobile_tab_menus.each do |menu|
             .d-flex.flex-column.text-center.small
               %i{class: menu[:icon_class]}
-              %span.small= menu[:title]
+              %span.text-color.small= menu[:title]

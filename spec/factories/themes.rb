@@ -10,7 +10,6 @@
 #  bg_color_primary   :string
 #  bg_color_secondary :string
 #  text_color         :string
-#  button_color       :string
 #  nav_bar_color      :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null

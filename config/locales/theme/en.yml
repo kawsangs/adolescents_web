@@ -25,3 +25,10 @@ en:
     set_active: Set theme active?
     open: Open
     num_of_bg_image: "# of Background image"
+    tip:
+      title: "Tip & Help: Choosing the Right Theme Contrast Colors"
+      introduction: "When assigning background, primary, secondary, and text colors for your theme, it's important to ensure good contrast for readability and accessibility. Here are some key tips:"
+      high_contrast: "<b>High Contrast for Readability:</b> Make sure text stands out against the background. Light text on a dark background or dark text on a light background works best."
+      primary_and_secondary_color: "<b>Primary & Secondary Colors:</b> Ensure your primary and secondary colors complement each other while maintaining enough contrast for clarity."
+      check_standard: "<b>Check Accessibility Standards:</b> Use contrast-checking tools to confirm that your color choices meet accessibility guidelines for visibility and usability."
+      use_tool: "Use this <a href='https://coolors.co/contrast-checker/000000-acc8e5' target='blank'>Contrast Checker</a><span> to test your selected colors and adjust them for the best results!</span>"
