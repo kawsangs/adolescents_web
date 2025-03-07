@@ -1,10 +1,15 @@
 - asset = f.object
 .d-flex.flex-column.image-parent
-  .image-wrapper-theme.position-relative
-    .d-flex.flex-column
-      .image-preview
-        %h6= asset_image_title(asset)
+  .d-flex
+    %h6= asset_image_title(asset)
 
+    %label.ms-3.pointer{class: ('d-none' if asset.new_record?)}
+      %input.btn-view{ type: 'checkbox', name: 'btn-view', value: asset.resolution}
+      View
+
+  .image-wrapper-theme.position-relative
+    .d-flex.flex-column.pointer
+      .image-preview
         = image_tag asset.image_or_default, class: "preview-image _1x", 'data-default' => image_path('default_image.png')
 
         .btn-delete.pointer.position-relative{class: ('d-none' unless f.object.image.file), style: 'z-index: 1' }

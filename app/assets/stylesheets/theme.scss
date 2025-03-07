@@ -139,7 +139,19 @@
 
   .preview-bg {
     background: linear-gradient(135deg, #ea33db, #1E40AF);
+    position: relative;
   }
+
+  #theme-bg {
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
   .top-bar {
     height: 46px; background-color: rgb(38, 108, 222); color: #fff;
   }

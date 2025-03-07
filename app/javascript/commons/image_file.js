@@ -4,9 +4,22 @@ export default (function() {
   }
 
   function init() {
-    console.log("init image file")
     onChangeLogoFile();
     onClickButtonDeleteLogo();
+    onClickBtnView();
+  }
+
+  function onClickBtnView() {
+    $('.btn-view').on('click', function(e) {
+      let themBgSrc = querySelectorInParent(e.target, 'img.preview-image').attr('src');
+      let url = this.checked ? `url('${themBgSrc}')` : 'none';
+
+      setPreviewTheme(url);
+    })
+  }
+
+  function setPreviewTheme(url) {
+    $('#theme-bg').css({'background-image': url});
   }
 
   function onClickButtonDeleteLogo() {
@@ -18,15 +31,27 @@ export default (function() {
       hideDeleteButton(this);
       setCheckRemoveAvatar(this);
       removeErrorMessage(this);
+      hideButtonView(this);
     })
   }
 
   function onChangeLogoFile() {
     $(".image-parent input").change(function() {
       readURL(this);
+      showButtonView(this);
       showButtonDelete(this);
       setUncheckRemoveAvatar(this);
     });
+  }
+
+  function showButtonView(dom) {
+    let btnView = querySelectorInParent(dom, '.btn-view');
+    btnView.removeClass('d-none');
+  }
+
+  function hideButtonView(dom) {
+    let btnView = querySelectorInParent(dom, '.btn-view');
+    btnView.addClass('d-none');
   }
 
   function setCheckRemoveAvatar(dom) {
@@ -57,8 +82,6 @@ export default (function() {
     }
   }
 
-  
-
   function showButtonDelete(dom) {
     let btnDelete = querySelectorInParent(dom, '.btn-delete');
     btnDelete.removeClass('d-none');
@@ -76,6 +99,6 @@ export default (function() {
 
   function querySelectorInParent(dom, selector) {
     return $(dom).parents('.image-parent').find(selector);
-  }  
-  
+  }
+
 })();
