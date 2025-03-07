@@ -1,14 +1,14 @@
 .preview-background.android
   .card-box
-    .d-flex.align-items-center.px-2.top-bar
+    .d-flex.align-items-center.px-2.top-bar.primary-bg-color{style: "margin-bottom: 1px;"}
       .me-2
         %i.fas.fa-bars
       .me-2
         = image_tag 'logo_color.png', size: '18x18', class: 'rounded'
-      %div= ENV['APP_NAME']
+      %div.primary-text-color= ENV['APP_NAME']
 
     - menu1 = mobile_menus.first
-    .preview-bg.p-3
+    .preview-bg.p-3.secondary-text-color
       .card
         .d-flex
           .m-1= image_tag menu1[:image], style: 'width: 80px;'
@@ -21,11 +21,11 @@
             .card.mt-3.text-center{style: 'width: 135px;'}
               - menu = other_menu[i * 2 + j]
               .m-1= image_tag menu[:image], style: 'width: 80px;'
-              .m-2.text-color.small= menu[:title]
+              .m-2.small= menu[:title]
 
       .card.mt-2
         .d-flex.justify-content-between.p-2
-          - mobile_tab_menus.each do |menu|
-            .d-flex.flex-column.text-center.small
+          - mobile_tab_menus.each_with_index do |menu, index|
+            .d-flex.flex-column.text-center.small{class: (index.zero? ? 'secondary-color' : 'primary-color')}
               %i{class: menu[:icon_class]}
-              %span.text-color.small= menu[:title]
+              %span.small= menu[:title]

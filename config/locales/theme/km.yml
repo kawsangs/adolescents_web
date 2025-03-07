@@ -4,11 +4,10 @@ km:
     theme: Theme
     name: ឈ្មោះ
     description: បរិយាយ
-    bg_color_primary: Background color(Primary)
-    bg_color_secondary: Background color(Secondary)
-    text_color: Text color
-    button_color: Button color
-    nav_bar_color: Nav bar color
+    primary_color: Primary color
+    secondary_color: Secondary color
+    primary_text_color: Primary text color
+    secondary_text_color: Secondary text color
     active: ចេញផ្សាយ
     default: Default
     new_theme: Theme ថ្មី

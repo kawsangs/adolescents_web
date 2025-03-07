@@ -1,9 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
-import imageFile from 'commons/image_file';
-import "bootstrap";
-
-import $ from "jquery";
 import "jquery-minicolors";
+import imageFile from 'commons/image_file';
 
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('[data-bs-toggle="popover"]').forEach((popover) => {
@@ -16,38 +13,52 @@ export default class extends Controller {
     let self = this;
     imageFile.init();
     this.initPreviewTheme();
-    this.initializeMinicolors('#theme_bg_color_primary', self.onChangeBgPrimaryColor);
-    this.initializeMinicolors('#theme_bg_color_secondary', self.onChangeBgSecondaryColor);
-    this.initializeMinicolors('#theme_text_color', self.onChangeTextColor);
-    this.initializeMinicolors('#theme_nav_bar_color');
+    this.initializeMinicolors('#theme_primary_color', self.onChangeBgPrimaryColor);
+    this.initializeMinicolors('#theme_secondary_color', self.onChangeBgSecondaryColor);
+    this.initializeMinicolors('#theme_primary_text_color', self.onChangePrimaryTextColor);
+    this.initializeMinicolors('#theme_secondary_text_color', self.onChangeSecondaryTextColor);
   }
 
-  onChangeTextColor(value, opacity) {
-    // Todo: but need confirmation
+  onChangePrimaryTextColor(value, opacity) {
+    $('.primary-text-color').css({color: value});
+  }
+
+  onChangeSecondaryTextColor(value, opacity) {
+    $('.secondary-text-color').css({color: value});
   }
 
   onChangeBgPrimaryColor(value, opacity) {
     let primaryColor = value;
-    let secondaryColor = $('#theme_bg_color_secondary').val() || primaryColor;
-    let bgColor = `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`
+    let secondaryColor = $('#theme_secondary_color').val() || primaryColor;
+    let bgColor = `linear-gradient(135deg, ${secondaryColor}, ${primaryColor})`;
 
+    $('.primary-bg-color').css({background: primaryColor});
+    $('.primary-color').css({color: primaryColor});
     $('.preview-bg').css({background: bgColor});
   }
 
   onChangeBgSecondaryColor(value, opacity) {
     let secondaryColor =  value;
-    let primaryColor = $('#theme_bg_color_primary').val() || secondaryColor;
-    let bgColor = `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`
+    let primaryColor = $('#theme_primary_color').val() || secondaryColor;
+    let bgColor = `linear-gradient(135deg, ${secondaryColor}, ${primaryColor})`;
 
+    $('.secondary-color').css({color: secondaryColor});
     $('.preview-bg').css({background: bgColor});
   }
 
   initPreviewTheme() {
-    let primaryColor = $('#theme_bg_color_primary').val() || '#ea33db';
-    let secondaryColor = $('#theme_bg_color_secondary').val() || '#1E40AF';
-    let bgColor = `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`
+    let primaryColor = $('#theme_primary_color').val() || '#1E40AF';
+    let secondaryColor = $('#theme_secondary_color').val() || '#ea33db';
+    let bgColor = `linear-gradient(135deg, ${secondaryColor}, ${primaryColor})`;
+    let primaryTextColor = $('#theme_primary_text_color').val() || '#fff';
+    let secondaryTextColor = $('#theme_secondary_text_color').val() || 'rgb(33, 37, 41)';
 
     $('.preview-bg').css({background: bgColor});
+    $('.primary-color').css({color: primaryColor});
+    $('.primary-bg-color').css({background: primaryColor});
+    $('.secondary-color').css({color: secondaryColor});
+    $('.primary-text-color').css({color: primaryTextColor});
+    $('.secondary-text-color').css({color: secondaryTextColor});
   }
 
   initializeMinicolors(domId, callback) {

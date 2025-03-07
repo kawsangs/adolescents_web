@@ -5,14 +5,13 @@
       .mb-3= f.input :description, label: t('theme.description')
       .mb-3
         .d-flex
-          = f.label :bg_color_primary, t('theme.bg_color_primary')
+          = f.label :primary_color, "#{t('theme.primary_color')} <abbr title='required'>*</abbr>".html_safe
+
           = choose_color_tip
-
-        = f.input :bg_color_primary, label: false
-
-      .mb-3= f.input :bg_color_secondary, label: t('theme.bg_color_secondary')
-      .mb-3= f.input :text_color, label: t('theme.text_color')
-      .mb-3= f.input :nav_bar_color, label: t('theme.nav_bar_color')
+        = f.input :primary_color, label: false
+      .mb-3= f.input :secondary_color, label: t('theme.secondary_color')
+      .mb-3= f.input :primary_text_color, label: t('theme.primary_text_color')
+      .mb-3= f.input :secondary_text_color, label: t('theme.secondary_text_color')
       .mb-3
         %label= t('theme.set_active')
         = f.input :active, label: t('theme.open'), input_html: {class: 'form-check-input', 'data-working-days-target': 'open', 'data-action': 'working-days#handleOpenSwitch'}, wrapper_html: { class: 'form-switch ps-0'}

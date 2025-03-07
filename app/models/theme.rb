@@ -2,17 +2,17 @@
 #
 # Table name: themes
 #
-#  id                 :uuid             not null, primary key
-#  name               :string
-#  description        :text
-#  active             :boolean          default(FALSE)
-#  default            :boolean          default(FALSE)
-#  bg_color_primary   :string
-#  bg_color_secondary :string
-#  text_color         :string
-#  nav_bar_color      :string
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
+#  id                   :uuid             not null, primary key
+#  name                 :string
+#  description          :text
+#  active               :boolean          default(FALSE)
+#  default              :boolean          default(FALSE)
+#  primary_color        :string
+#  secondary_color      :string
+#  text_primary_color   :string
+#  text_secondary_color :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
 #
 class Theme < ApplicationRecord
   # Association
@@ -20,9 +20,10 @@ class Theme < ApplicationRecord
 
   # Validation
   validates :name, presence: true, uniqueness: true
-  validates :bg_color_primary, presence: true
-  validates :text_color, presence: true
-  validates :nav_bar_color, presence: true
+  validates :primary_color, presence: true
+  validates :secondary_color, presence: true
+  validates :primary_text_color, presence: true
+  validates :secondary_text_color, presence: true
 
   # Scope
   scope :actives, -> { where(active: true) }

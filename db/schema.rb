@@ -476,10 +476,10 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_23_221611) do
     t.text "description"
     t.boolean "active", default: false
     t.boolean "default", default: false
-    t.string "bg_color_primary"
-    t.string "bg_color_secondary"
-    t.string "text_color"
-    t.string "nav_bar_color"
+    t.string "primary_color"
+    t.string "secondary_color"
+    t.string "primary_text_color"
+    t.string "secondary_text_color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

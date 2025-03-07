@@ -2,17 +2,17 @@
 #
 # Table name: themes
 #
-#  id                 :uuid             not null, primary key
-#  name               :string
-#  description        :text
-#  active             :boolean          default(FALSE)
-#  default            :boolean          default(FALSE)
-#  bg_color_primary   :string
-#  bg_color_secondary :string
-#  text_color         :string
-#  nav_bar_color      :string
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
+#  id                   :uuid             not null, primary key
+#  name                 :string
+#  description          :text
+#  active               :boolean          default(FALSE)
+#  default              :boolean          default(FALSE)
+#  primary_color        :string
+#  secondary_color      :string
+#  primary_text_color   :string
+#  secondary_text_color :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
 #
 require "rails_helper"
 
@@ -26,9 +26,10 @@ RSpec.describe Theme, type: :model do
 
     it { should validate_presence_of(:name) }
     it { should validate_uniqueness_of(:name) }
-    it { should validate_presence_of(:bg_color_primary) }
-    it { should validate_presence_of(:text_color) }
-    it { should validate_presence_of(:nav_bar_color) }
+    it { should validate_presence_of(:primary_color) }
+    it { should validate_presence_of(:secondary_color) }
+    it { should validate_presence_of(:primary_text_color) }
+    it { should validate_presence_of(:secondary_text_color) }
   end
 
   describe "scopes" do

@@ -2,17 +2,17 @@
 #
 # Table name: themes
 #
-#  id                 :uuid             not null, primary key
-#  name               :string
-#  description        :text
-#  active             :boolean          default(FALSE)
-#  default            :boolean          default(FALSE)
-#  bg_color_primary   :string
-#  bg_color_secondary :string
-#  text_color         :string
-#  nav_bar_color      :string
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
+#  id                   :uuid             not null, primary key
+#  name                 :string
+#  description          :text
+#  active               :boolean          default(FALSE)
+#  default              :boolean          default(FALSE)
+#  primary_color        :string
+#  secondary_color      :string
+#  primary_text_color   :string
+#  secondary_text_color :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
 #
 class ThemeSerializer < ActiveModel::Serializer
   attributes :id, :name, :bg_color_primary, :bg_color_secondary,
