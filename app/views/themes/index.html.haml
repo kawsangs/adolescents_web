@@ -26,7 +26,7 @@
             %tr
               %td= @pagy.from + index
               %td
-                = link_to theme.name, theme_path(theme), class: 'btn btn-link'
+                = link_to theme.name, edit_theme_path(theme), class: 'btn btn-link'
               %td= theme.description
               %td= theme.active ? t('theme.active') : ''
               %td= theme.default ? t('theme.default') : ''

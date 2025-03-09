@@ -13,6 +13,23 @@ module ThemesHelper
           .sort_by! { |asset| %w(mdpi hdpi xhdpi xxhdpi).index(asset.resolution) || 0 }
   end
 
+  def resolutions
+    {
+      android: [
+        ['mdpi', 'android_mdpi'],
+        ['hdpi', 'android_hdpi'],
+        ['xhdpi', 'android_xhdpi'],
+        ['xxhdpi', 'android_xxhdpi']
+      ],
+
+      ios: [
+        ['1x', 'ios_1x'],
+        ['2x', 'ios_2x'],
+        ['3x', 'ios_3x']
+      ]
+    }
+  end
+
   def mobile_menus
     [
       { image: 'categories/reproduction_health.png', title: 'សុខភាពផ្លូវភេទនិងសុខភាពបន្តពូជ'},

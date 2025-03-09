@@ -19,17 +19,17 @@
         %h3 Theme Background Images
 
         .platform-section
-          %h5= t('theme.ios')
-          .device-mockup
-            - ios_assets = ios_assets(f.object.assets)
-            = f.fields_for :assets, ios_assets do |ff|
-              = render 'theme_image_form', f: ff
-
-        .platform-section
           %h5= t('theme.android')
           .device-mockup
             - android_assets = android_assets(f.object.assets)
             = f.fields_for :assets, android_assets do |ff|
+              = render 'theme_image_form', f: ff
+
+        .platform-section
+          %h5= t('theme.ios')
+          .device-mockup
+            - ios_assets = ios_assets(f.object.assets)
+            = f.fields_for :assets, ios_assets do |ff|
               = render 'theme_image_form', f: ff
 
       .actions

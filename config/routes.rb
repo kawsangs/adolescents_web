@@ -90,7 +90,7 @@ Rails.application.routes.draw do
   resources :reason_importers
   resources :reasons
 
-  resources :themes
+  resources :themes, only: [:index, :new, :edit, :destroy]
 
   get "/privacy-policy", to: "privacy_policies#show"
   get "/terms-and-conditions", to: "terms_and_conditions#show"

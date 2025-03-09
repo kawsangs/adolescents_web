@@ -1,32 +1,44 @@
-.preview-background.android{style: 'position: fixed; right: 20px; top: 80px;'}
-  .card-box
-    .d-flex.align-items-center.px-2.top-bar.primary-bg-color{style: "margin-bottom: 1px;"}
-      .me-2
-        %i.fas.fa-bars
-      .me-2
-        = image_tag 'logo_color.png', size: '18x18', class: 'rounded'
-      %div.primary-text-color= ENV['APP_NAME']
+%div{style: 'position: fixed; right: 20px; top: 80px;'}
+  .d-flex
+    %ul.nav.nav-tabs.flex-grow-1
+      %li.nav-item
+        %a.nav-link.platform.active{ role: 'button' }= t("theme.android")
 
-    - menu1 = mobile_menus.first
-    .preview-bg.p-3.secondary-text-color
-      #theme-bg
-      .card
-        .d-flex
-          .m-1= image_tag menu1[:image], style: 'width: 80px;'
-          .m-2.small= menu1[:title]
+      %li.nav-item
+        %a.nav-link.platform{ role: 'button' }= t("theme.ios")
 
-      - other_menu = mobile_menus[1..mobile_menus.length]
-      - 3.times.each do |i|
-        .d-flex.gap-3
-          - 2.times.each do |j|
-            .card.mt-3.text-center{style: 'width: 135px;'}
-              - menu = other_menu[i * 2 + j]
-              .m-1= image_tag menu[:image], style: 'width: 80px;'
-              .m-2.small= menu[:title]
+    %div
+      = select_tag :resolution, options_for_select(resolutions[:android]), class: 'form-select', id: 'resolution-select', data: {resolutions: resolutions}
 
-      .card.mt-2
-        .d-flex.justify-content-between.p-2
-          - mobile_tab_menus.each_with_index do |menu, index|
-            .d-flex.flex-column.text-center.small{class: (index.zero? ? 'secondary-color' : 'primary-color')}
-              %i{class: menu[:icon_class]}
-              %span.small= menu[:title]
+  .preview-background.android
+    .card-box
+      .d-flex.align-items-center.px-2.top-bar.primary-bg-color{style: "margin-bottom: 1px;"}
+        .me-2
+          %i.fas.fa-bars
+        .me-2
+          = image_tag 'logo_color.png', size: '18x18', class: 'rounded'
+        %div.primary-text-color= ENV['APP_NAME']
+
+      - menu1 = mobile_menus.first
+      .preview-bg.p-3.secondary-text-color
+        #theme-bg
+        .card
+          .d-flex
+            .m-1= image_tag menu1[:image], style: 'width: 80px;'
+            .m-2.small= menu1[:title]
+
+        - other_menu = mobile_menus[1..mobile_menus.length]
+        - 3.times.each do |i|
+          .d-flex.gap-3
+            - 2.times.each do |j|
+              .card.mt-3.text-center{style: 'width: 135px;'}
+                - menu = other_menu[i * 2 + j]
+                .m-1= image_tag menu[:image], style: 'width: 80px;'
+                .m-2.small= menu[:title]
+
+        .card.mt-2
+          .d-flex.justify-content-between.p-2
+            - mobile_tab_menus.each_with_index do |menu, index|
+              .d-flex.flex-column.text-center.small{class: (index.zero? ? 'secondary-color' : 'primary-color')}
+                %i{class: menu[:icon_class]}
+                %span.small= menu[:title]

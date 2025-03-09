@@ -1,11 +1,8 @@
 class ThemesController < ApplicationController
-  before_action :authorize_theme, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_theme, only: [:edit, :update, :destroy]
 
   def index
     @pagy, @themes = pagy(policy_scope(Theme.filter(filter_params)))
-  end
-
-  def show
   end
 
   def new
