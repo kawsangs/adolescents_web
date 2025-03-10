@@ -65,10 +65,6 @@
     padding: 10px;
   }
 
-  .preview-image[src*="default_theme_image.png"] {
-    opacity: 0.7; /* Make the default image slightly transparent */
-  }
-
   .preview-image._1x, .preview-image.mdpi, ._1x {
     max-width: 200px;
     max-height: 200px;
@@ -132,9 +128,14 @@
     margin-right: 1em;
   }
 
-  .preview-background {
+  .preview-background.android {
     background-image: image-url('android.png');
     padding: 44px 16px 4px;
+  }
+
+  .preview-background.ios {
+    background-image: image-url('ios.png');
+    padding: 60px 19px 4px;
   }
 
   .preview-bg {

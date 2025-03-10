@@ -39,6 +39,8 @@ export default class extends Controller {
       $("#resolution-select").html(options.map(res => `<option value="${res[1]}">${res[0]}</option>`).join(""));
 
       self.setPreviewThemeBgImage();
+      $('.preview-background').removeClass('android ios');
+      $('.preview-background').addClass($(this).html().toLowerCase());
     });
   }
 

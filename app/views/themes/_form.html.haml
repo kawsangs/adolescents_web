@@ -1,17 +1,35 @@
 .d-flex.mobile-notifications-form.flex-md-row.flex-column-reverse{'data-controller' => 'themes'}
   .flex-1.me-md-4
     = simple_form_for @theme, html: {} do |f|
-      .mb-3= f.input :name, label: t('theme.name')
+      .mb-3
+        .d-flex
+          = f.label :name, "#{t('theme.name')} <abbr title='required'>*</abbr>".html_safe, class: 'flex-grow-1'
+          = create_theme_tip
+        = f.input :name, label: false
+
       .mb-3= f.input :description, label: t('theme.description')
       .mb-3
         .d-flex
           = f.label :primary_color, "#{t('theme.primary_color')} <abbr title='required'>*</abbr>".html_safe
-
-          = choose_color_tip
+          = primary_color_tip
         = f.input :primary_color, label: false
-      .mb-3= f.input :secondary_color, label: t('theme.secondary_color')
-      .mb-3= f.input :primary_text_color, label: t('theme.primary_text_color')
-      .mb-3= f.input :secondary_text_color, label: t('theme.secondary_text_color')
+
+      .mb-3
+        .d-flex
+          = f.label :secondary_color, "#{t('theme.secondary_color')} <abbr title='required'>*</abbr>".html_safe
+          = secondary_color_tip
+        = f.input :secondary_color, label: false
+
+      .mb-3
+        .d-flex
+          = f.label :primary_text_color, "#{t('theme.primary_text_color')} <abbr title='required'>*</abbr>".html_safe
+          = primary_text_color_tip
+        = f.input :primary_text_color, label: false
+      .mb-3
+        .d-flex
+          = f.label :secondary_text_color, "#{t('theme.secondary_text_color')} <abbr title='required'>*</abbr>".html_safe
+          = secondary_text_color_tip
+        = f.input :secondary_text_color, label: false
       .mb-3
         %label= t('theme.set_active')
         = f.input :active, label: t('theme.open'), input_html: {class: 'form-check-input', 'data-working-days-target': 'open', 'data-action': 'working-days#handleOpenSwitch'}, wrapper_html: { class: 'form-switch ps-0'}
