@@ -123,6 +123,15 @@ module ThemesHelper
     render_popover(nil, content)
   end
 
+  def set_active_theme_tip
+    content = %Q{
+      <strong class="text-dark">#{t('theme.set_active')}</strong>
+      <p>Set the theme as "active" to publish it. Once active, the theme will be available for the mobile app to retrieve via API. Only active themes are returned by the API, ensuring unpublished themes remain hidden.</p>
+    }
+
+    render_popover(nil, content)
+  end
+
   def render_popover(title, content)
     %Q{
       <a type="button" title="#{title}" data-bs-html="true" data-bs-placement="right" data-bs-trigger="focus" data-bs-toggle="popover" role="button" tabindex="0" class="popover-dismiss ms-2" data-bs-content='#{sanitize(content)}'>

@@ -15,9 +15,9 @@
 #  updated_at           :datetime         not null
 #
 class ThemeSerializer < ActiveModel::Serializer
-  attributes :id, :name, :bg_color_primary, :bg_color_secondary,
-             :text_color, :button_color, :nav_bar_color,
-             :updated_at, :created_at, :assets
+  attributes :id, :name, :primary_color, :secondary_color,
+             :primary_text_color, :secondary_text_color,
+             :updated_at, :assets
   def assets
     assets = object.assets.group_by(&:platform)
 

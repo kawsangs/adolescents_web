@@ -1,8 +1,24 @@
 class ThemesController < ApplicationController
   before_action :authorize_theme, only: [:edit, :update, :destroy]
+  helper_method :filter_params
 
   def index
-    @pagy, @themes = pagy(policy_scope(Theme.filter(filter_params)))
+    respond_to do |format|
+      format.html {
+        @pagy, @themes = pagy(query_themes)
+      }
+
+      format.json {
+        @themes = query_themes.defaults
+
+        if @themes.length > Settings.max_download_record
+          flash[:alert] = t("shared.file_size_is_too_big", max_record: Settings.max_download_record)
+          redirect_to themes_url
+        else
+          render json: @themes
+        end
+      }
+    end
   end
 
   def new
@@ -72,5 +88,9 @@ class ThemesController < ApplicationController
         @theme.assets.detect { |a| a.platform == asset[:platform] && a.resolution == asset[:resolution] } ||
         @theme.assets.find_or_initialize_by(platform: asset[:platform], resolution: asset[:resolution])
       end
+    end
+
+    def query_themes
+      authorize policy_scope(Theme.filter(filter_params))
     end
 end

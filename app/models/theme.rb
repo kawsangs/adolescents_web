@@ -27,6 +27,7 @@ class Theme < ApplicationRecord
 
   # Scope
   scope :actives, -> { where(active: true) }
+  scope :defaults, -> { where(default: true) }
 
   # Nested attribute
   accepts_nested_attributes_for :assets, allow_destroy: true, reject_if: ->(attributes) { attributes["image"].blank? }
