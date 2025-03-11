@@ -2,11 +2,6 @@
   .flex-1.me-md-4
     = simple_form_for @theme, html: {} do |f|
       .mb-3
-        %label
-          = t('theme.set_active')
-          = set_active_theme_tip
-        = f.input :active, label: t('theme.open'), input_html: {class: 'form-check-input', 'data-working-days-target': 'open', 'data-action': 'working-days#handleOpenSwitch'}, wrapper_html: { class: 'form-switch ps-0'}
-      .mb-3
         .d-flex
           = f.label :name, "#{t('theme.name')} <abbr title='required'>*</abbr>".html_safe, class: 'flex-grow-1'
           = create_theme_tip

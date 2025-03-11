@@ -1,0 +1,20 @@
+%div{'data-controller': 'topic-index'}
+  #confirmModalPublish.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :tabindex => "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %h5#exampleModalLabel.modal-title{'data-content': t('shared.confirm_publish', name: '_type_')}
+            = t('shared.confirm_publish', name: 'Theme')
+
+          %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+
+        .hint{ style: 'padding: 1rem' }
+          Set the theme to 'publish' to make it live. Once published, the theme will be accessible for the mobile app to retrieve through the API. Only themes marked as published are returned by the API, keeping unpublished themes hidden.
+
+        .modal-body{'data-content': t('shared.are_you_sure_to_publish', type: "_type_", name: '_name_')}
+
+        .modal-footer
+          %button.btn.btn-secondary{"data-bs-dismiss" => "modal", :type => "button"}= t('shared.cancel')
+
+          / Message url to replace
+          = button_to t('shared.yes_publish'), '#', method: :put, class: 'btn btn-warning'

@@ -2,7 +2,7 @@ module Api
   module V1
     class ThemesController < ApiController
       def index
-        pagy, themes = pagy(Theme.actives.includes(:assets))
+        pagy, themes = pagy(Theme.published.includes(:assets))
 
         render json: {
           pagy: pagy.vars,
@@ -11,7 +11,7 @@ module Api
       end
 
       def show
-        theme = Theme.actives.find(params[:id])
+        theme = Theme.published.find(params[:id])
 
         render json: theme
       end

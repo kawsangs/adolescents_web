@@ -5,16 +5,27 @@
 #  id                   :uuid             not null, primary key
 #  name                 :string
 #  description          :text
-#  active               :boolean          default(FALSE)
+#  status               :integer          default("draft")
 #  default              :boolean          default(FALSE)
 #  primary_color        :string
 #  secondary_color      :string
-#  text_primary_color   :string
-#  text_secondary_color :string
+#  primary_text_color   :string
+#  secondary_text_color :string
+#  published_at         :datetime
+#  deleted_at           :datetime
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #
 class Theme < ApplicationRecord
+  # Enum
+  enum status: {
+    draft: 0,
+    published: 1
+  }
+
+  # Soft delete
+  acts_as_paranoid
+
   # Association
   has_many :assets, dependent: :destroy
 
@@ -26,8 +37,8 @@ class Theme < ApplicationRecord
   validates :secondary_text_color, presence: true
 
   # Scope
-  scope :actives, -> { where(active: true) }
-  scope :defaults, -> { where(default: true) }
+  scope :published, -> { where(status: :published) }
+  scope :defaults, -> { where(default: true) } # for built-in theme
 
   # Nested attribute
   accepts_nested_attributes_for :assets, allow_destroy: true, reject_if: ->(attributes) { attributes["image"].blank? }
@@ -38,5 +49,10 @@ class Theme < ApplicationRecord
     scope = all
     scope = scope.where("name LIKE ?", "%#{name}%") if name.present?
     scope
+  end
+
+  # Instant method
+  def publish
+    update(published_at: Time.now, status: 'published')
   end
 end

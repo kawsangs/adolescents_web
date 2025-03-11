@@ -17,8 +17,8 @@
             %th #
             %th= t('theme.name')
             %th= t('theme.description')
-            %th= t('theme.set_active')
-            %th= t('theme.default')
+            %th= t('theme.status')
+            %th= t('theme.category')
             %th= t('theme.num_of_bg_image')
             %th
         %tbody
@@ -28,12 +28,18 @@
               %td
                 = link_to theme.name, edit_theme_path(theme), class: 'btn btn-link'
               %td= theme.description
-              %td= theme.active ? t('theme.active') : ''
-              %td= theme.default ? t('theme.default') : ''
+              %td= theme.status
+              %td= theme.default ? t('theme.built_in') : ''
               %td= theme.assets.length
               %td
                 .d-flex.justify-content-end
+                  - if policy(theme).publish?
+                    %span.me-1{ data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top' }, title: t('shared.publish') }
+                      %button.btn.btn-circle.btn-sm.btn-outline-success{ "data-bs-target" => "#confirmModalPublish", "data-bs-toggle" => "modal", "data-bs-message" => { type: t('theme.theme'), name: theme.name, url: publish_theme_path(theme)}, :type => "button" }
+                        %i.fa-solid.fa-file-export
+
                   = render "shared/buttons/edit_button", url: edit_theme_path(theme), object: theme
                   = render 'shared/buttons/delete_button', object: theme,  message: { type: t('theme.theme'), name: theme.name, url: theme_path(theme) }
 
 = render "shared/modals/confirm_delete_modal"
+= render "confirm_publish_modal"

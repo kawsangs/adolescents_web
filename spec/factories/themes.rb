@@ -5,12 +5,14 @@
 #  id                   :uuid             not null, primary key
 #  name                 :string
 #  description          :text
-#  active               :boolean          default(FALSE)
+#  status               :integer          default("draft")
 #  default              :boolean          default(FALSE)
 #  primary_color        :string
 #  secondary_color      :string
 #  primary_text_color   :string
 #  secondary_text_color :string
+#  published_at         :datetime
+#  deleted_at           :datetime
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #

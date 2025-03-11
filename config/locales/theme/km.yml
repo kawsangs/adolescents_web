@@ -9,7 +9,9 @@ km:
     primary_text_color: Primary text color
     secondary_text_color: Secondary text color
     active: ចេញផ្សាយ
-    default: Default
+    status: ស្ថានភាព
+    category: ប្រភេទ
+    built_in: មានស្រាប់ក្នុងប្រព័ន្ធ
     new_theme: Theme ថ្មី
     edit_theme: កែតម្រូវ theme
     image_title_ios_1x: 1x (375x812)
@@ -31,3 +33,4 @@ km:
       primary_and_secondary_color: "<b>Primary & Secondary Colors:</b> Ensure your primary and secondary colors complement each other while maintaining enough contrast for clarity."
       check_standard: "<b>Check Accessibility Standards:</b> Use contrast-checking tools to confirm that your color choices meet accessibility guidelines for visibility and usability."
       use_tool: "Use this <a href='https://coolors.co/contrast-checker/000000-acc8e5' target='blank'>Contrast Checker</a><span> to test your selected colors and adjust them for the best results!</span>"
+    need_help: ជំនួយក្នុងការជ្រើសរើស​ពណ៌

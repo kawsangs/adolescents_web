@@ -66,7 +66,8 @@ module ThemesHelper
 
     %Q{
       <a type="button" title="#{title}" data-bs-html="true" data-bs-placement="right" data-bs-trigger="focus" data-bs-toggle="popover" role="button" tabindex="0" class="popover-dismiss ms-2" data-bs-content="#{content}">
-        #{t("shared.need_help")}
+        <i class='fa-solid fa-circle-question'></i>
+        #{t("theme.need_help")}
       </a>
     }.html_safe
   end
@@ -118,15 +119,6 @@ module ThemesHelper
         <li>Applied to <strong>subtitles</strong>, <strong>captions</strong>, or <strong>placeholders</strong> for softer contrast where needed.</li>
         <li>Additional use: Colors <strong>inactive tab labels</strong> for subtle differentiation.</li>
       </ul>
-    }
-
-    render_popover(nil, content)
-  end
-
-  def set_active_theme_tip
-    content = %Q{
-      <strong class="text-dark">#{t('theme.set_active')}</strong>
-      <p>Set the theme as "active" to publish it. Once active, the theme will be available for the mobile app to retrieve via API. Only active themes are returned by the API, ensuring unpublished themes remain hidden.</p>
     }
 
     render_popover(nil, content)

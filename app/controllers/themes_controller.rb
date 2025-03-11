@@ -1,5 +1,5 @@
 class ThemesController < ApplicationController
-  before_action :authorize_theme, only: [:edit, :update, :destroy]
+  before_action :authorize_theme, only: [:edit, :update, :destroy, :publish]
   helper_method :filter_params
 
   def index
@@ -56,11 +56,16 @@ class ThemesController < ApplicationController
     redirect_to themes_url
   end
 
+  def publish
+    @theme.publish
+
+    redirect_to themes_url, notice: "Theme #{@theme.name} is published successfully."
+  end
+
   private
     def theme_params
       params.require(:theme).permit(
-        :name, :description, :active, :default,
-        :primary_color, :secondary_color, :primary_text_color, :secondary_text_color,
+        :name, :description, :primary_color, :secondary_color, :primary_text_color, :secondary_text_color,
         assets_attributes: [:id, :image, :resolution, :platform, :_destroy, :image_cache]
       )
     end

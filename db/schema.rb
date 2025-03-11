@@ -474,12 +474,14 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_23_221611) do
   create_table "themes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.boolean "active", default: false
+    t.integer "status", default: 0
     t.boolean "default", default: false
     t.string "primary_color"
     t.string "secondary_color"
     t.string "primary_text_color"
     t.string "secondary_text_color"
+    t.datetime "published_at"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
