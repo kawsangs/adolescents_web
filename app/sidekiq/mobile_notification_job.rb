@@ -3,15 +3,27 @@ class MobileNotificationJob
 
   def perform(notification_id)
     @notification = MobileNotification.find_by(id: notification_id)
+    return unless @notification
 
-    mobile_tokens = MobileToken.filter(platform: @notification.platform)
-    res = PushNotificationService.new.notify_all(mobile_tokens, @notification)
-
-    @notification.update_columns(
-      success_count: res[:success_count],
-      failure_count: res[:failure_count],
-      status: :delivered,
-      detail: res[:detail]
-    )
+    push_notifications
+    update_notification
   end
+
+  private
+    def mobile_tokens
+      MobileToken.filter(platform: @notification.platform).actives
+    end
+
+    def push_notifications
+      @result = PushNotificationService.new(@notification).notify_all(mobile_tokens)
+    end
+
+    def update_notification
+      @notification.update_columns(
+        success_count: @result[:success_count],
+        failure_count: @result[:failure_count],
+        status: :delivered,
+        detail: @result[:detail]
+      )
+    end
 end

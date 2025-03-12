@@ -11,6 +11,7 @@
 #  updated_at  :datetime         not null
 #  platform    :integer          default("android")
 #  device_os   :string
+#  active      :boolean          default(TRUE)
 #
 class MobileToken < ApplicationRecord
   # Association
@@ -21,6 +22,9 @@ class MobileToken < ApplicationRecord
   validates :device_id, presence: true
   validates :device_type, presence: true
   validates :app_version, presence: true
+
+  # Scope
+  scope :actives, -> { where(active: true) }
 
   # Enum
   enum platform: {

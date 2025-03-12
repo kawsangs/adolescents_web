@@ -35,7 +35,7 @@ Rack::Attack.throttle("req/ip", limit: ENV.fetch("THROTTLE_REQUEST_LIMIT") { 5 }
   req.ip
 end
 
-Rack::Attack.throttled_response = lambda do |env|
+Rack::Attack.throttled_responder = lambda do |env|
   # Using 503 because it may make attacker think that they have successfully
   # DOSed the site. Rack::Attack returns 429 for throttling by default
   [ 503, {}, ["Internal Server Error"]]
