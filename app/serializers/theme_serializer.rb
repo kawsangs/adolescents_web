@@ -4,7 +4,6 @@
 #
 #  id                   :uuid             not null, primary key
 #  name                 :string
-#  description          :text
 #  status               :integer          default("draft")
 #  default              :boolean          default(FALSE)
 #  primary_color        :string
@@ -17,7 +16,7 @@
 #  updated_at           :datetime         not null
 #
 class ThemeSerializer < ActiveModel::Serializer
-  attributes :id, :name, :primary_color, :secondary_color,
+  attributes :id, :name, :default, :status, :primary_color, :secondary_color,
              :primary_text_color, :secondary_text_color,
              :updated_at, :assets
   def assets
@@ -27,6 +26,10 @@ class ThemeSerializer < ActiveModel::Serializer
       ios: format_assets(assets["ios"]),
       android: format_assets(assets["android"])
     }
+  end
+
+  def updated_at
+    object.updated_at.to_i
   end
 
   private

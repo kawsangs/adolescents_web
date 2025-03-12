@@ -4,7 +4,6 @@
 #
 #  id                   :uuid             not null, primary key
 #  name                 :string
-#  description          :text
 #  status               :integer          default("draft")
 #  default              :boolean          default(FALSE)
 #  primary_color        :string
@@ -48,11 +47,12 @@ class Theme < ApplicationRecord
     name = params[:name].to_s.strip
     scope = all
     scope = scope.where("name LIKE ?", "%#{name}%") if name.present?
+    scope = scope.where("updated_at > ?", Time.at(params[:updated_at])) if params[:updated_at].present?
     scope
   end
 
   # Instant method
   def publish
-    update(published_at: Time.now, status: 'published')
+    update(published_at: Time.now, status: "published")
   end
 end

@@ -16,7 +16,6 @@
           %tr
             %th #
             %th= t('theme.name')
-            %th= t('theme.description')
             %th= t('theme.status')
             %th= t('theme.category')
             %th= t('theme.num_of_bg_image')
@@ -25,10 +24,9 @@
           - @themes.each_with_index do |theme, index|
             %tr
               %td= @pagy.from + index
+              %td= link_to theme.name, edit_theme_path(theme), class: 'btn btn-link'
               %td
-                = link_to theme.name, edit_theme_path(theme), class: 'btn btn-link'
-              %td= theme.description
-              %td= theme.status
+                %span= theme.status
               %td= theme.default ? t('theme.built_in') : ''
               %td= theme.assets.length
               %td

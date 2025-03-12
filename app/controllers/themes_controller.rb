@@ -65,7 +65,7 @@ class ThemesController < ApplicationController
   private
     def theme_params
       params.require(:theme).permit(
-        :name, :description, :primary_color, :secondary_color, :primary_text_color, :secondary_text_color,
+        :name, :primary_color, :secondary_color, :primary_text_color, :secondary_text_color,
         assets_attributes: [:id, :image, :resolution, :platform, :_destroy, :image_cache]
       )
     end

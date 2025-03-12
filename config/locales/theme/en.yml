@@ -34,3 +34,4 @@ en:
       check_standard: "<b>Check Accessibility Standards:</b> Use contrast-checking tools to confirm that your color choices meet accessibility guidelines for visibility and usability."
       use_tool: "Use this <a href='https://coolors.co/contrast-checker/000000-acc8e5' target='blank'>Contrast Checker</a><span> to test your selected colors and adjust them for the best results!</span>"
     need_help: Need help for theming
+    download_json: "Download JSON: Only built-in theme"

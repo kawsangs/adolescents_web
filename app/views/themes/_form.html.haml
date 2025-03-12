@@ -6,7 +6,6 @@
           = f.label :name, "#{t('theme.name')} <abbr title='required'>*</abbr>".html_safe, class: 'flex-grow-1'
           = create_theme_tip
         = f.input :name, label: false
-      .mb-3= f.input :description, label: t('theme.description')
       .mb-3
         .d-flex
           = f.label :primary_color, "#{t('theme.primary_color')} <abbr title='required'>*</abbr>".html_safe

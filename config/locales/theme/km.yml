@@ -34,3 +34,4 @@ km:
       check_standard: "<b>Check Accessibility Standards:</b> Use contrast-checking tools to confirm that your color choices meet accessibility guidelines for visibility and usability."
       use_tool: "Use this <a href='https://coolors.co/contrast-checker/000000-acc8e5' target='blank'>Contrast Checker</a><span> to test your selected colors and adjust them for the best results!</span>"
     need_help: ជំនួយក្នុងការជ្រើសរើស​ពណ៌
+    download_json: "ទាញយកជា JSON: សម្រាប់ Theme ដែលមានស្រាប់ក្នុងប្រព័ន្ធ​"

@@ -473,7 +473,6 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_23_221611) do
 
   create_table "themes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
-    t.text "description"
     t.integer "status", default: 0
     t.boolean "default", default: false
     t.string "primary_color"

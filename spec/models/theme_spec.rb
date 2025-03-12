@@ -4,7 +4,6 @@
 #
 #  id                   :uuid             not null, primary key
 #  name                 :string
-#  description          :text
 #  status               :integer          default("draft")
 #  default              :boolean          default(FALSE)
 #  primary_color        :string
@@ -19,52 +18,137 @@
 require "rails_helper"
 
 RSpec.describe Theme, type: :model do
-  describe "associations" do
-    it { should have_many(:assets).dependent(:destroy) }
+  # Enum
+  describe "enums" do
+    it { is_expected.to define_enum_for(:status).with_values(draft: 0, published: 1) }
   end
 
-  describe "validations" do
-    let(:theme) { build(:theme) }
+  # Soft Delete
+  describe "soft delete with acts_as_paranoid" do
+    let(:theme) { create(:theme) }
 
-    it { should validate_presence_of(:name) }
-    it { should validate_uniqueness_of(:name) }
-    it { should validate_presence_of(:primary_color) }
-    it { should validate_presence_of(:secondary_color) }
-    it { should validate_presence_of(:primary_text_color) }
-    it { should validate_presence_of(:secondary_text_color) }
-  end
+    it "soft deletes the theme" do
+      theme
+      expect { theme.destroy }.to change { Theme.count }.by(-1)
+      expect(Theme.with_deleted.find(theme.id).deleted_at).to be_present
+    end
 
-  describe "scopes" do
-    let!(:active_theme) { create(:theme, active: true) }
-    let!(:inactive_theme) { create(:theme, active: false) }
-
-    it "returns active themes" do
-      expect(Theme.actives).to include(active_theme)
-      expect(Theme.actives).not_to include(inactive_theme)
+    it "restores a soft-deleted theme" do
+      theme.destroy
+      expect { theme.restore }.to change { Theme.count }.by(1)
+      expect(theme.reload.deleted_at).to be_nil
     end
   end
 
-  describe "nested attributes" do
+  # Association
+  describe "associations" do
+    it { is_expected.to have_many(:assets).dependent(:destroy) }
+  end
+
+  # Validation
+  describe "validations" do
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_uniqueness_of(:name) }
+    it { is_expected.to validate_presence_of(:primary_color) }
+    it { is_expected.to validate_presence_of(:secondary_color) }
+    it { is_expected.to validate_presence_of(:primary_text_color) }
+    it { is_expected.to validate_presence_of(:secondary_text_color) }
+  end
+
+  # Scope
+  describe "scopes" do
+    let!(:published_theme) { create(:theme, :published) }
+    let!(:draft_theme) { create(:theme) }
+    let!(:default_theme) { create(:theme, :default) }
+    let!(:non_default_theme) { create(:theme) }
+
+    describe ".published" do
+      it "returns only published themes" do
+        expect(Theme.published).to include(published_theme)
+        expect(Theme.published).not_to include(draft_theme)
+      end
+    end
+
+    describe ".defaults" do
+      it "returns only default themes" do
+        expect(Theme.defaults).to include(default_theme)
+        expect(Theme.defaults).not_to include(non_default_theme)
+      end
+    end
+  end
+
+  # Nested Attributes
+  describe "nested attributes for assets" do
     it { should accept_nested_attributes_for(:assets).allow_destroy(true) }
 
-    it "rejects assets with blank image" do
-      theme = Theme.new
-      theme.assets_attributes = [{ image: "" }]
-      expect(theme.assets).to be_empty
+    let(:theme) { build(:theme) }
+
+    context "with invalid asset attributes (blank image)" do
+      it "rejects the asset" do
+        theme.attributes = { assets_attributes: [{ image: nil }] }
+        expect { theme.save }.not_to change { Asset.count }
+        expect(theme.assets).to be_empty
+      end
+    end
+
+    context "with _destroy flag" do
+      let(:theme_with_asset) { create(:theme, :with_assets) }
+
+      it "destroys the asset" do
+        expect {
+          theme_with_asset.update(assets_attributes: [{ id: theme_with_asset.assets.first.id, _destroy: true }])
+        }.to change { theme_with_asset.assets.count }.by(-1)
+      end
     end
   end
 
+  # Class Method
   describe ".filter" do
-    let!(:theme1) { create(:theme, name: "Dark Theme") }
-    let!(:theme2) { create(:theme, name: "Light Theme") }
+    let!(:theme1) { create(:theme, name: "Dark Theme", updated_at: Time.at(1640995200)) } # Jan 1, 2022
+    let!(:theme2) { create(:theme, name: "Light Theme", updated_at: Time.now) }
 
-    it "filters themes by name" do
-      expect(Theme.filter(name: "Dark")).to include(theme1)
-      expect(Theme.filter(name: "Dark")).not_to include(theme2)
+    context "with name filter" do
+      it "filters themes by name" do
+        result = Theme.filter(name: "Dark")
+        expect(result).to include(theme1)
+        expect(result).not_to include(theme2)
+      end
     end
 
-    it "returns all themes if no filter is applied" do
-      expect(Theme.filter({})).to include(theme1, theme2)
+    context "with updated_at filter" do
+      it "filters themes by updated_at" do
+        result = Theme.filter(updated_at: 1640995200)
+        expect(result).to include(theme2)
+        expect(result).not_to include(theme1)
+      end
+    end
+
+    context "with both filters" do
+      it "applies both name and updated_at filters" do
+        create(:theme, name: "Dark Mode", updated_at: Time.now) # Matches both
+        result = Theme.filter(name: "Dark", updated_at: 1640995200)
+        expect(result.map(&:name)).to include("Dark Mode")
+        expect(result.map(&:name)).not_to include("Dark Theme")
+      end
+    end
+
+    context "with no filters" do
+      it "returns all themes" do
+        result = Theme.filter({})
+        expect(result).to include(theme1, theme2)
+      end
+    end
+  end
+
+  # Instance Method
+  describe "#publish" do
+    let(:theme) { create(:theme) }
+
+    it "publishes the theme" do
+      expect {
+        theme.publish
+      }.to change { theme.reload.status }.from("draft").to("published")
+       .and change { theme.published_at }.from(nil).to(be_within(1.second).of(Time.now))
     end
   end
 end
