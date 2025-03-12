@@ -13,8 +13,11 @@ km:
     created_at: កាលបរិច្ឆេទបង្កើត
     updated_at: កាលបរិច្ឆេទ update
     are_you_sure_to_delete: តើអ្នកប្រាកដជាលុប%{type} <b>%{name}</b> នេះមែនទេ?
+    are_you_sure_to_archive: តើអ្នកប្រាកដជា Archive %{type} <b>%{name}</b> នេះមែនទេ?
     yes_delete: បាទ/ចាស, លុប!
-    confirm_delete: បញ្ជាក់ការលុបការ %{name}
+    yes_archive: បាទ/ចាស, Archive!
+    confirm_delete: បញ្ជាក់ការលុប %{name}
+    confirm_archive: បញ្ជាក់ការ​ Archive %{name}
     restore: ស្តារឡើងវិញ
     archive: Archive
     activate: បើកដំណើរការគណនី

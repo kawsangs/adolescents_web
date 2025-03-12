@@ -35,3 +35,5 @@ km:
       use_tool: "Use this <a href='https://coolors.co/contrast-checker/000000-acc8e5' target='blank'>Contrast Checker</a><span> to test your selected colors and adjust them for the best results!</span>"
     need_help: ជំនួយក្នុងការជ្រើសរើស​ពណ៌
     download_json: "ទាញយកជា JSON: សម្រាប់ Theme ដែលមានស្រាប់ក្នុងប្រព័ន្ធ​"
+    cannot_archive: មិនអាច archive បានទេ​ព្រោះជា theme​​ ដែលមានស្រាប់ក្នុងប្រព័ន្ធ
+    confirm_archive_hint: Archive មានន័យថាវាមិនត្រូវបានលុបចេញពីប្រព័ន្ធទេ ប៉ុន្តែអ្នកប្រើប្រាស់មិនអាចមើល ឬកែសម្រួលវាបានទេ ហើយវានឹងមិនត្រូវបានរួមបញ្ចូលនៅក្នុងការឆ្លើយតបរបស់ API ទេ។

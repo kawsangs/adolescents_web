@@ -8,15 +8,33 @@ class ThemePolicy < ApplicationPolicy
   end
 
   def update?
-    create?
+    create? && (!record.published? || record.default?)
+  end
+
+  def edit?
+    user.primary_admin? || user.admin?
   end
 
   def destroy?
-    create?
+    create? && !record.published? && !record.default?
   end
 
   def publish?
     update? && record.draft?
+  end
+
+  def disable_edit?
+    return false if record.new_record?
+
+    record.default? || record.published?
+  end
+
+  def enable_bg_image_edit?
+    record.new_record? || record.default? || record.draft?
+  end
+
+  def archive?
+    record.published? && !record.default?
   end
 
   class Scope < Scope

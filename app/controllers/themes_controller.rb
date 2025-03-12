@@ -1,5 +1,5 @@
 class ThemesController < ApplicationController
-  before_action :authorize_theme, only: [:edit, :update, :destroy, :publish]
+  before_action :authorize_theme, only: [:edit, :update, :destroy, :publish, :archive]
   helper_method :filter_params
 
   def index
@@ -62,12 +62,24 @@ class ThemesController < ApplicationController
     redirect_to themes_url, notice: "Theme #{@theme.name} is published successfully."
   end
 
+  def archive
+    @theme.destroy
+
+    redirect_to themes_url, notice: "Theme #{@theme.name} is archived successfully."
+  end
+
   private
     def theme_params
-      params.require(:theme).permit(
-        :name, :primary_color, :secondary_color, :primary_text_color, :secondary_text_color,
-        assets_attributes: [:id, :image, :resolution, :platform, :_destroy, :image_cache]
-      )
+      if @theme&.default?
+        params.require(:theme).permit(
+          assets_attributes: [:id, :image, :resolution, :platform, :_destroy, :image_cache]
+        )
+      else
+        params.require(:theme).permit(
+          :name, :primary_color, :secondary_color, :primary_text_color, :secondary_text_color,
+          assets_attributes: [:id, :image, :resolution, :platform, :_destroy, :image_cache]
+        )
+      end
     end
 
     def authorize_theme
@@ -96,6 +108,6 @@ class ThemesController < ApplicationController
     end
 
     def query_themes
-      authorize policy_scope(Theme.filter(filter_params))
+      authorize policy_scope(Theme.filter(filter_params).order(:created_at))
     end
 end

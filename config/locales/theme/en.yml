@@ -35,3 +35,5 @@ en:
       use_tool: "Use this <a href='https://coolors.co/contrast-checker/000000-acc8e5' target='blank'>Contrast Checker</a><span> to test your selected colors and adjust them for the best results!</span>"
     need_help: Need help for theming
     download_json: "Download JSON: Only built-in theme"
+    cannot_archive: Cannot archive as it is build-in theme
+    confirm_archive_hint: "Archiving a theme means it is not deleted from the system, but users cannot see or edit it, and it will not be included in API responses."

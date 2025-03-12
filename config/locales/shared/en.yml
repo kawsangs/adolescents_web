@@ -13,8 +13,11 @@ en:
     created_at: Created at
     updated_at: Updated at
     are_you_sure_to_delete: Are you sure to delete the %{type} <b>%{name}</b>?
+    are_you_sure_to_arhive: Are you sure to arhive the %{type} <b>%{name}</b>?
     yes_delete: Yes, Delete!
+    yes_archive: Yes, Archive!
     confirm_delete: Confirm delete %{name}
+    confirm_archive: Confirm archive %{name}
     restore: Restore
     archive: Archive
     activate: Activate

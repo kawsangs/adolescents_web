@@ -36,8 +36,19 @@
                       %button.btn.btn-circle.btn-sm.btn-outline-success{ "data-bs-target" => "#confirmModalPublish", "data-bs-toggle" => "modal", "data-bs-message" => { type: t('theme.theme'), name: theme.name, url: publish_theme_path(theme)}, :type => "button" }
                         %i.fa-solid.fa-file-export
 
-                  = render "shared/buttons/edit_button", url: edit_theme_path(theme), object: theme
-                  = render 'shared/buttons/delete_button', object: theme,  message: { type: t('theme.theme'), name: theme.name, url: theme_path(theme) }
+                  = render "edit_button", theme: theme
+
+                  - if policy(theme).destroy?
+                    = render 'shared/buttons/delete_button', object: theme,  message: { type: t('theme.theme'), name: theme.name, url: theme_path(theme) }
+                  - elsif policy(theme).archive?
+                    %span{ data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top' }, title: t('shared.archive') }
+                      %button.btn.btn-circle.btn-sm.btn-outline-danger{ "data-bs-target" => "#confirmModalArchive", "data-bs-toggle" => "modal", "data-bs-message" => { type: t('theme.theme'), name: theme.name, url: archive_theme_path(theme) }, :type => "button" }
+                        %i.fas.fa-box-archive
+                  - else
+                    %span{ data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top' }, title: t('theme.cannot_archive') }
+                      %button.btn.btn-circle.btn-sm.btn-outline-danger{ type: 'button', disabled: true }
+                        %i.fas.fa-box-archive
 
 = render "shared/modals/confirm_delete_modal"
+= render "confirm_archive_modal"
 = render "confirm_publish_modal"

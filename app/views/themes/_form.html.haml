@@ -5,27 +5,27 @@
         .d-flex
           = f.label :name, "#{t('theme.name')} <abbr title='required'>*</abbr>".html_safe, class: 'flex-grow-1'
           = create_theme_tip
-        = f.input :name, label: false
+        = f.input :name, label: false, disabled: policy(@theme).disable_edit?
       .mb-3
         .d-flex
           = f.label :primary_color, "#{t('theme.primary_color')} <abbr title='required'>*</abbr>".html_safe
           = primary_color_tip
-        = f.input :primary_color, label: false
+        = f.input :primary_color, label: false, disabled: policy(@theme).disable_edit?
       .mb-3
         .d-flex
           = f.label :secondary_color, "#{t('theme.secondary_color')} <abbr title='required'>*</abbr>".html_safe
           = secondary_color_tip
-        = f.input :secondary_color, label: false
+        = f.input :secondary_color, label: false, disabled: policy(@theme).disable_edit?
       .mb-3
         .d-flex
           = f.label :primary_text_color, "#{t('theme.primary_text_color')} <abbr title='required'>*</abbr>".html_safe
           = primary_text_color_tip
-        = f.input :primary_text_color, label: false
+        = f.input :primary_text_color, label: false, disabled: policy(@theme).disable_edit?
       .mb-3
         .d-flex
           = f.label :secondary_text_color, "#{t('theme.secondary_text_color')} <abbr title='required'>*</abbr>".html_safe
           = secondary_text_color_tip
-        = f.input :secondary_text_color, label: false
+        = f.input :secondary_text_color, label: false, disabled: policy(@theme).disable_edit?
 
       .mb-3
         %h3 Theme Background Images
@@ -46,7 +46,7 @@
 
       .actions
         = link_to t('shared.cancel'), themes_path, class: 'btn btn-secondary me-1'
-        = f.submit t('shared.save'), class: 'btn btn-primary'
+        = f.submit t('shared.save'), class: 'btn btn-primary', disabled: !policy(@theme).enable_bg_image_edit?
 
   / Preview
   %div{style: 'width: 390px'}
