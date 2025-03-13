@@ -70,24 +70,24 @@ class ThemesController < ApplicationController
 
   private
     def theme_params
-      if @theme&.default?
-        params.require(:theme).permit(
-          assets_attributes: [:id, :image, :resolution, :platform, :_destroy, :image_cache]
-        )
-      else
-        params.require(:theme).permit(
-          :name, :primary_color, :secondary_color, :primary_text_color, :secondary_text_color,
-          assets_attributes: [:id, :image, :resolution, :platform, :_destroy, :image_cache]
-        )
-      end
+      return default_theme_params if @theme&.default?
+
+      params.require(:theme).permit(
+        :name, :primary_color, :secondary_color, :primary_text_color, :secondary_text_color,
+        assets_attributes: assets_attributes
+      )
+    end
+
+    def default_theme_params
+      params.require(:theme).permit( assets_attributes: assets_attributes )
+    end
+
+    def assets_attributes
+      [:id, :image, :resolution, :platform, :_destroy, :image_cache]
     end
 
     def authorize_theme
       @theme = authorize Theme.find(params[:id])
-    end
-
-    def filter_params
-      params.permit(:name)
     end
 
     def load_assets
@@ -109,5 +109,9 @@ class ThemesController < ApplicationController
 
     def query_themes
       authorize policy_scope(Theme.filter(filter_params).order(:created_at))
+    end
+
+    def filter_params
+      params.permit(:name)
     end
 end

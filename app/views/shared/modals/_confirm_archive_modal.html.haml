@@ -1,16 +1,19 @@
-%div{'data-controller': 'theme-index'}
+- hint_content ||= ''
+%div{'data-controller': 'confirm-modal', 'data-confirm-modal-dom-id-value': "confirmModalArchive"}
   #confirmModalArchive.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :tabindex => "-1"}
     .modal-dialog
       .modal-content
         .modal-header
-          %h5#exampleModalLabel.modal-title{'data-content': t('shared.confirm_archive', name: '_type_')}
+          %h5.d-flex.align-items-center
             %i.fas.fa-exclamation-triangle.text-danger
-            / Message title to replace
+            .modal-title.ms-2{'data-content': t('shared.confirm_archive', name: '_type_')}
+              / Message title to replace
 
           %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
 
-        .hint{ style: 'padding: 1rem' }
-          = t('theme.confirm_archive_hint')
+        - if hint_content.present?
+          .hint{ style: 'padding: 1rem' }
+            = hint_content
 
         .modal-body{'data-content': t('shared.are_you_sure_to_archive', type: "_type_", name: '_name_')}
           / Message body to replace

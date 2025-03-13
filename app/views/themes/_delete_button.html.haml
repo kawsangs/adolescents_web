@@ -1,0 +1,11 @@
+- if policy(theme).destroy?
+  = render 'shared/buttons/delete_button', object: theme,  message: { type: t('theme.theme'), name: theme.name, url: theme_path(theme) }
+- elsif policy(theme).archive?
+  %span{ data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top' }, title: t('shared.archive') }
+    - message = { type: t('theme.theme'), name: theme.name, url: archive_theme_path(theme) }
+    %button.btn.btn-circle.btn-sm.btn-outline-danger{ "data-bs-target": "#confirmModalArchive", "data-bs-toggle": "modal", "data-bs-message": message, type: "button" }
+      %i.fas.fa-box-archive
+- else
+  %span{ data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top' }, title: t('theme.cannot_archive') }
+    %button.btn.btn-circle.btn-sm.btn-outline-danger{ type: 'button', disabled: true }
+      %i.fas.fa-box-archive

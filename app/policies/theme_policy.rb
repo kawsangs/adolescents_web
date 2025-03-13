@@ -23,6 +23,11 @@ class ThemePolicy < ApplicationPolicy
     update? && record.draft?
   end
 
+  def archive?
+    record.published? && !record.default?
+  end
+
+  # For view checking
   def disable_edit?
     return false if record.new_record?
 
@@ -31,10 +36,6 @@ class ThemePolicy < ApplicationPolicy
 
   def enable_bg_image_edit?
     record.new_record? || record.default? || record.draft?
-  end
-
-  def archive?
-    record.published? && !record.default?
   end
 
   class Scope < Scope

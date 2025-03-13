@@ -34,6 +34,9 @@ km:
       check_standard: "<b>Check Accessibility Standards:</b> Use contrast-checking tools to confirm that your color choices meet accessibility guidelines for visibility and usability."
       use_tool: "Use this <a href='https://coolors.co/contrast-checker/000000-acc8e5' target='blank'>Contrast Checker</a><span> to test your selected colors and adjust them for the best results!</span>"
     need_help: ជំនួយក្នុងការជ្រើសរើស​ពណ៌
-    download_json: "ទាញយកជា JSON: សម្រាប់ Theme ដែលមានស្រាប់ក្នុងប្រព័ន្ធ​"
+    download_json: "ទាញយកជា JSON: សម្រាប់តែ Built-in Theme ដែលបានកំណត់ដោយប្រព័ន្ធ​"
     cannot_archive: មិនអាច archive បានទេ​ព្រោះជា theme​​ ដែលមានស្រាប់ក្នុងប្រព័ន្ធ
-    confirm_archive_hint: Archive មានន័យថាវាមិនត្រូវបានលុបចេញពីប្រព័ន្ធទេ ប៉ុន្តែអ្នកប្រើប្រាស់មិនអាចមើល ឬកែសម្រួលវាបានទេ ហើយវានឹងមិនត្រូវបានរួមបញ្ចូលនៅក្នុងការឆ្លើយតបរបស់ API ទេ។
+    confirm_archive_hint: Archive មានន័យថាវាមិនត្រូវបានលុបចេញពីប្រព័ន្ធទេ ប៉ុន្តែអ្នកប្រើប្រាស់មិនអាចមើល ឬកែសម្រួលវាបានទេ ហើយវានឹងមិនត្រូវបានរួមបញ្ចូលនៅក្នុងការឆ្លើយតបរបស់ API ឡើយ។
+    confirm_publish_hint: នៅពេល Theme ណាមួយត្រូវបានកំណត់អោយចេញផ្សាយ កម្មវិធីទូរស័ព្ទអាចទាញយកវាតាមរយៈ API។
+    cannot_edit: មិន​អាច​កែ​សម្រួល​បាន​ទេ ព្រោះ​វា​ត្រូវ​បាន​ចេញផ្សាយ​រួច​ហើយ!
+    cannot_edit_built_in_theme: 'Theme ដែលមានស្រាប់ក្នុងប្រព័ន្ធគឺអ្នកអាចកែសម្រួលបានតែរូបភាពរបស់​ Theme​ តែប៉ុណ្ណោះ'
