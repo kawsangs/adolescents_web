@@ -19,6 +19,7 @@
             %th= t('theme.status')
             %th= t('theme.category')
             %th= t('theme.num_of_bg_image')
+            %th= t('shared.updated_at')
             %th
         %tbody
           - @themes.each_with_index do |theme, index|
@@ -26,9 +27,11 @@
               %td= @pagy.from + index
               %td= link_to theme.name, edit_theme_path(theme), class: 'btn btn-link'
               %td
-                %span= theme.status
-              %td= theme.default ? t('theme.built_in') : ''
+                %span.badge-outline{class: (theme.published? ? 'badge-outline-success' : 'badge-outline-dark')}= theme.status
+              %td
+                = t('theme.built_in') if theme.default?
               %td= theme.assets.length
+              %td= timeago(theme.updated_at, type: 'datetime').html_safe
               %td
                 .d-flex.justify-content-end
                   - if policy(theme).publish?

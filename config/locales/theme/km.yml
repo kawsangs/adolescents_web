@@ -4,10 +4,10 @@ km:
     theme: Theme
     name: ឈ្មោះ
     description: បរិយាយ
-    primary_color: Primary color
-    secondary_color: Secondary color
-    primary_text_color: Primary text color
-    secondary_text_color: Secondary text color
+    primary_color: ពណ៌ចម្បង (Primary color)
+    secondary_color: ពណ៌បន្ទាប់បន្សំ (Secondary color)
+    primary_text_color: ពណ៌អត្ថបទចម្បង (Primary text color)
+    secondary_text_color: ពណ៌អត្ថបទបន្ទាប់បន្សំ (Secondary text color)
     active: ចេញផ្សាយ
     status: ស្ថានភាព
     category: ប្រភេទ
@@ -27,12 +27,12 @@ km:
     open: បើក
     num_of_bg_image: ចំនួនផ្ទៃ​រូបភាព
     tip:
-      title: "Tip & Help: Choosing the Right Theme Contrast Colors"
-      introduction: "When assigning background, primary, secondary, and text colors for your theme, it's important to ensure good contrast for readability and accessibility. Here are some key tips:"
-      high_contrast: "<b>High Contrast for Readability:</b> Make sure text stands out against the background. Light text on a dark background or dark text on a light background works best."
-      primary_and_secondary_color: "<b>Primary & Secondary Colors:</b> Ensure your primary and secondary colors complement each other while maintaining enough contrast for clarity."
-      check_standard: "<b>Check Accessibility Standards:</b> Use contrast-checking tools to confirm that your color choices meet accessibility guidelines for visibility and usability."
-      use_tool: "Use this <a href='https://coolors.co/contrast-checker/000000-acc8e5' target='blank'>Contrast Checker</a><span> to test your selected colors and adjust them for the best results!</span>"
+      title: "ព័ត៌មានជំនួយ៖ ការជ្រើសរើសពណ៌ Theme អោយត្រឹមត្រូវ។"
+      introduction: "នៅពេលកំណត់ពណ៌ផ្ទៃខាងក្រោយ ពណ៌ចម្បង ពណ៌បន្ទាប់បន្សំ និងពណ៌អត្ថបទសម្រាប់រូបរាងរបស់អ្នក វាជារឿងសំខាន់ដើម្បីធានាបាននូវកម្រិតពណ៌ដ៏ល្អសម្រាប់ភាពងាយស្រួលនៃការអាន។ នេះគឺជាគន្លឹះសំខាន់ៗមួយចំនួន៖"
+      high_contrast: "<b>កម្រិតពណ៌ខ្ពស់(High Contrast) សម្រាប់ភាពអាចអានបាន៖</b> សូមប្រាកដថាអត្ថបទមានភាពលេចធ្លោប្រឆាំងនឹងផ្ទៃខាងក្រោយ។ អត្ថបទស្រាលនៅលើផ្ទៃខាងក្រោយងងឹត ឬអត្ថបទងងឹតនៅលើផ្ទៃខាងក្រោយស្រាលគឺល្អបំផុត។"
+      primary_and_secondary_color: "<b>ពណ៌ចម្បង និងបន្ទាប់បន្សំ៖</b> ត្រូវប្រាកដថាពណ៌ចម្បង និងពណ៌បន្ទាប់បន្សំរបស់អ្នកបំពេញគ្នាទៅវិញទៅមក ខណៈពេលដែលរក្សាកម្រិតពណ៌គ្រប់គ្រាន់សម្រាប់ភាពច្បាស់លាស់។"
+      check_standard: "<b>ពិនិត្យមើលស្តង់ដារភាពងាយស្រួល៖</b> ប្រើឧបករណ៍ពិនិត្យកម្រិតពណ៌ ដើម្បីបញ្ជាក់ថាជម្រើសពណ៌របស់អ្នកបំពេញតាមគោលការណ៍ណែនាំភាពងាយស្រួលសម្រាប់ភាពមើលឃើញ និងលទ្ធភាពប្រើប្រាស់។"
+      use_tool: "ប្រើគេហទំព័រ <a href='https://coolors.co/contrast-checker/000000-acc8e5' target='blank'>Contrast Checker</a><span> នេះដើម្បីសាកល្បងពណ៌ដែលអ្នកបានជ្រើសរើស ហើយកែតម្រូវវាដើម្បីទទួលបានលទ្ធផលល្អបំផុត!</span>"
     need_help: ជំនួយក្នុងការជ្រើសរើស​ពណ៌
     download_json: "ទាញយកជា JSON: សម្រាប់តែ Built-in Theme ដែលបានកំណត់ដោយប្រព័ន្ធ​"
     cannot_archive: មិនអាច archive បានទេ​ព្រោះជា theme​​ ដែលមានស្រាប់ក្នុងប្រព័ន្ធ
@@ -40,3 +40,23 @@ km:
     confirm_publish_hint: នៅពេល Theme ណាមួយត្រូវបានកំណត់អោយចេញផ្សាយ កម្មវិធីទូរស័ព្ទអាចទាញយកវាតាមរយៈ API។
     cannot_edit: មិន​អាច​កែ​សម្រួល​បាន​ទេ ព្រោះ​វា​ត្រូវ​បាន​ចេញផ្សាយ​រួច​ហើយ!
     cannot_edit_built_in_theme: 'Theme ដែលមានស្រាប់ក្នុងប្រព័ន្ធគឺអ្នកអាចកែសម្រួលបានតែរូបភាពរបស់​ Theme​ តែប៉ុណ្ណោះ'
+    theme_bg_images: រូបភាពផ្ទៃខាងក្រោយ (Background Images)
+    primary_color_tip:
+      use_as_background_color: "ប្រើជា <strong>ពណ៌ផ្ទៃខាងក្រោយ</strong> ដើម្បីបង្កើតអត្តសញ្ញាណស្នូលរបស់កម្មវិធី។"
+      apply_to_navbar_color: "កំណត់ <strong>ពណ៌របាររបស់កម្មវិធីអ៊ែប</strong> (ឧ. <code>bg-primary</code>) ដើម្បីបង្កើតពណ៌ចំណងជើង។"
+      set_button_color: 'កំណត់ <strong>ពណ៌ប៊ូតុង</strong> (ឧ. <code>btn-primary</code> សម្រាប់ "បញ្ជូន," "រក្សាទុក" ឬ "បន្ទាប់")។'
+      additional_tip: "ការប្រើប្រាស់បន្ថែម៖ រំលេច <strong>ពណ៌ពេលស្ថិតក្នុងប្រអប់វាយបញ្ចូល</strong> ឬ <strong>ស្ថានភាពសកម្មណាមួយ</strong> (ឧ. <code>border-primary</code> នៅលើ Menu Tab ដែលបានជ្រើសរើស)។"
+    secondary_color_tip:
+      utilized_as_second_linear_bg: 'ប្រើជា <strong>ពណ៌ទីពីរនៃផ្ទៃខាងក្រោយដែលលាយចូលគ្នា</strong> ក្នុងពណ៌ជម្រាល <code>linear-gradient(135deg, ${secondaryColor}, ${primaryColor})</code>។'
+      mark_active_menu: សម្គាល់ <strong>ធាតុម៉ឺនុយសកម្ម</strong> ឧ. <code>active</code> class ជាមួយនឹង <code>bg-secondary</code>) ដើម្បីបង្ហាញការជ្រើសរើសបច្ចុប្បន្ន។
+      additional_use: "ការប្រើប្រាស់បន្ថែម៖ អនុវត្តចំពោះ <strong>accent borders</strong> (ឧ. <code>border-secondary</code>) ឬ <strong>hover effects</strong> នៅលើធាតុផ្សេងៗ។"
+    primary_text_color_tip:
+      define_text_color_on_navbar: កំណត់ <strong>ពណ៌អត្ថបទនៅលើរបារ</strong> (ឧ. <code>text-light</code> ឬ <code>text-dark</code> អាស្រ័យលើកម្រិតពណ៌) សម្រាប់ភាពងាយអានខ្ពស់ធៀបនឹងផ្ទៃខាងក្រោយពណ៌ចម្បង។
+      use_for_headings: ប្រើសម្រាប់ <strong>ចំណងជើង</strong> ឬ <strong>អត្ថបទដែលសង្កត់ធ្ងន់</strong> (ឧ. <code>h1</code>, <code>h2</code>) នៅទូទាំងកម្មវិធី ដើម្បីរក្សាឋានានុក្រម និងការផ្តោតអារម្មណ៍។
+    secondary_text_color_tip:
+      set_paragraph_text_color: "កំណត់ <strong>ពណ៌អត្ថបទកថាខណ្ឌ</strong> នៅលើផ្ទៃខាងក្រោយដែលមានពណ៌ស (ឧ. #6c757d ឬងងឹតជាងនេះ) សម្រាប់ខ្លឹមសារទូទៅ ដើម្បីធានាបានថាអាចអានបាន។"
+      apply_to_sub_title_color: អនុវត្តចំពោះ <strong>ចំណងជើងរង</strong> <strong>ចំណងជើង</strong> ឬ <strong>placeholders</strong> សម្រាប់កម្រិតពណ៌កាន់តែទន់ទៅតាមតម្រូវការ។
+      additional_use: "ការប្រើប្រាស់បន្ថែម៖ ពណ៌ <strong>ស្លាកផ្ទាំងអសកម្ម</strong> ដើម្បីអោយមើលឃើញពណ៌ខុសគ្នា។"
+    bg_image_tip:
+      how_to_use: រូបភាពនេះប្រើជា <strong>ផ្ទៃខាងក្រោយនិងគ្របពីលើ</strong> Background Color ខាងលើ។ វាត្រូវបានរចនាឡើងដើម្បី <strong>សម្របខ្លួនយ៉ាងរលូន</strong> នៅលើវេទិកាផ្សេងៗ រួមទាំង <strong>Android និង iOS</strong> និងគាំទ្រ <strong>ដំណោះស្រាយច្រើន</strong> ដើម្បីធានាបាននូវ <strong>គុណភាពបង្ហាញល្អបំផុត</strong>។ នេះរួមបញ្ចូលទំហំដូចជា <code>1x</code>, <code>2x</code> និង <code>3x</code>សម្រាប់​ iOS ក៏ដូចជា <code>MDPI</code>, <code>HDPI</code>, <code>XHDPI</code>, និង <code>XXHDPI</code> សម្រាប់ Android ដើម្បី​គាំទ្រទៅឧបករណ៍ដ៏ច្រើន និងលក្ខណៈពិសេសអេក្រង់។
+      user_update_bg_image: សម្រាប់ Theme ដែលមានស្រាប់ក្នុងប្រព័ន្ធ<code>(Built-in theme)</code> អ្នកប្រើប្រាស់អាច<strong>កែសម្រួលរូបភាពទាំងនេះ</strong> ប៉ុន្តែមិនអាចកែប្រែ<strong>ពណ៌ផ្ទៃខាងក្រោយខាងលើបានទេ</strong>។ ម្យ៉ាងទៀ​ ការ​កែ​សម្រួល​រូបភាព​ផ្ទៃ​ខាង​ក្រោយ​ត្រូវ​បាន​អនុញ្ញាត​តែ​នៅ​ពេល​ដែល Theme ស្ថិត​នៅ​ក្នុង​ទម្រង់​ព្រាង​<code>(draft)</code> ប៉ុណ្ណោះ</strong>។

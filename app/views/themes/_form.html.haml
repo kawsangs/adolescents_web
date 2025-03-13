@@ -27,8 +27,10 @@
           = secondary_text_color_tip
         = f.input :secondary_text_color, label: false, disabled: policy(@theme).disable_edit?
 
-      .mb-3
-        %h3 Theme Background Images
+      .mb-3.mt-4
+        .d-flex
+          %h4= t('theme.theme_bg_images')
+          = theme_background_image_tip
 
         .platform-section
           %h5= t('theme.android')

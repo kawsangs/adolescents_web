@@ -153,3 +153,67 @@
     min-width: 500px;
   }
 }
+
+#themes-index {
+  /* Custom Badge Style with Outline (Bootstrap 5 Inspired) */
+.badge-outline {
+  display: inline-block;
+  padding: 0.35em 0.65em; /* Matches Bootstrap 5 badge padding */
+  font-size: 0.75em; /* Smaller font size like Bootstrap badges */
+  font-weight: 700; /* Bold text */
+  line-height: 1; /* Tight line height */
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.375rem; /* Bootstrap 5 default border-radius */
+}
+
+/* Outline Variants (e.g., primary, secondary, success, etc.) */
+.badge-outline-primary {
+  color: #0d6efd; /* Bootstrap 5 primary color */
+  border: 1px solid #0d6efd;
+  background-color: transparent;
+}
+
+.badge-outline-secondary {
+  color: #6c757d; /* Bootstrap 5 secondary color */
+  border: 1px solid #6c757d;
+  background-color: transparent;
+}
+
+.badge-outline-success {
+  color: #198754; /* Bootstrap 5 success color */
+  border: 1px solid #198754;
+  background-color: transparent;
+}
+
+.badge-outline-danger {
+  color: #dc3545; /* Bootstrap 5 danger color */
+  border: 1px solid #dc3545;
+  background-color: transparent;
+}
+
+.badge-outline-warning {
+  color: #ffc107; /* Bootstrap 5 warning color */
+  border: 1px solid #ffc107;
+  background-color: transparent;
+}
+
+.badge-outline-info {
+  color: #0dcaf0; /* Bootstrap 5 info color */
+  border: 1px solid #0dcaf0;
+  background-color: transparent;
+}
+
+.badge-outline-light {
+  color: #f8f9fa; /* Bootstrap 5 light color */
+  border: 1px solid #f8f9fa;
+  background-color: transparent;
+}
+
+.badge-outline-dark {
+  color: #212529; /* Bootstrap 5 dark color */
+  border: 1px solid #212529;
+  background-color: transparent;
+}
+}
