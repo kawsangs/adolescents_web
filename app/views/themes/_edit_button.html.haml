@@ -1,0 +1,10 @@
+- if theme.default? && (current_user.admin? ||current_user.primary_admin?)
+  = link_to edit_theme_path(theme), class: "btn btn-circle btn-sm btn-outline-warning me-1", data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top'}, title: t('theme.cannot_edit_built_in_theme') do
+    %i.fas.fa-pen
+- elsif policy(theme).update?
+  = link_to edit_theme_path(theme), class: "btn btn-circle btn-sm btn-outline-warning me-1", data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top'}, title: t('shared.edit') do
+    %i.fas.fa-pen
+- else
+  %span{ data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top' }, title: t('theme.cannot_edit') }
+    %button.btn.btn-circle.btn-sm.btn-outline-warning.me-1{ type: 'button', disabled: true }
+      %i.fas.fa-pen

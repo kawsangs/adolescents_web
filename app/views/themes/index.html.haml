@@ -1,0 +1,47 @@
+.container-fluid.px-4.themes
+  = render 'page_heading'
+
+  %form.mb-2{ action: themes_path, method: 'get' }
+    .d-flex
+      .mb-2= render "shared/filters/filter_name"
+
+  = render "shared/no_data", items: @themes
+
+  - if @themes.present?
+    = render "shared/pagination_title", objects: @themes
+
+    .table-responsive
+      %table.table.table-hover.pretty
+        %thead
+          %tr
+            %th #
+            %th= t('theme.name')
+            %th= t('theme.status')
+            %th= t('theme.category')
+            %th= t('theme.num_of_bg_image')
+            %th= t('shared.updated_at')
+            %th
+        %tbody
+          - @themes.each_with_index do |theme, index|
+            %tr
+              %td= @pagy.from + index
+              %td= link_to theme.name, edit_theme_path(theme), class: 'btn btn-link'
+              %td
+                %span.badge-outline{class: (theme.published? ? 'badge-outline-success' : 'badge-outline-dark')}= theme.status
+              %td
+                = t('theme.built_in') if theme.default?
+              %td= theme.assets.length
+              %td= timeago(theme.updated_at, type: 'datetime').html_safe
+              %td
+                .d-flex.justify-content-end
+                  - if policy(theme).publish?
+                    %span.me-1{ data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top' }, title: t('shared.publish') }
+                      %button.btn.btn-circle.btn-sm.btn-outline-success{ "data-bs-target" => "#confirmModalPublish", "data-bs-toggle" => "modal", "data-bs-message" => { type: t('theme.theme'), name: theme.name, url: publish_theme_path(theme)}, :type => "button" }
+                        %i.fa-solid.fa-file-export
+
+                  = render "edit_button", theme: theme
+                  = render "delete_button", theme: theme
+
+= render "shared/modals/confirm_delete_modal"
+= render "shared/modals/confirm_archive_modal", hint_content: t('theme.confirm_archive_hint')
+= render "shared/modals/confirm_publish_modal", hint_content: t('theme.confirm_publish_hint')

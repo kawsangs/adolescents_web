@@ -1,0 +1,16 @@
+= content_for :header_title_right_col do
+  .ms-1
+    .d-flex.justify-content-end
+      = render "shared/buttons/add_new_button", url: new_theme_path, name: t("theme.theme")
+
+      %button.btn.btn-sm.ms-1{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :type => "button"}
+        %i.fa-solid.fa-ellipsis-vertical
+
+      %ul.dropdown-menu.dropdown-menu-end
+        - if current_user.primary_admin?
+          %li
+            %a.dropdown-item{ href: themes_path(filter_params.merge(format: :json)), target: '_blank' }
+              %i.fa-solid.fa-download
+              %span= t('theme.download_json')
+
+= render 'shared/header_title', title: t('sidebar.themes')

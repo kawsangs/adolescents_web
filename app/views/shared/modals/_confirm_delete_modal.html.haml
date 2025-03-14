@@ -1,11 +1,12 @@
-%div{'data-controller': 'confirm-delete'}
+%div{'data-controller': 'confirm-modal', 'data-confirm-modal-dom-id-value': "confirmModal"}
   #confirmModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :tabindex => "-1"}
     .modal-dialog
       .modal-content
         .modal-header
-          %h5#exampleModalLabel.modal-title{'data-content': t('shared.confirm_delete', name: '_type_')}
+          %h5.d-flex.align-items-center
             %i.fas.fa-exclamation-triangle.text-danger
-            / Message title to replace
+            .modal-title.ms-2{'data-content': t('shared.confirm_delete', name: '_type_')}
+              / Message title to replace
 
           %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
 

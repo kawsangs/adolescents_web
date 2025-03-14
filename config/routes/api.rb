@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       resources :surveys, only: [:create]
       resources :survey_answers, only: [:update]
       resources :reasons, only: [:index]
+      resources :themes, only: [:index, :show]
 
       get "*path" => "api#routing_error"
     end

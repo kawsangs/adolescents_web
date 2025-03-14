@@ -10,6 +10,7 @@ module Samples
       ::Samples::Visit.new.load
       ::Samples::Topic.new.load
       ::Samples::Survey.new.load
+      ::Samples::Theme.new.load
     end
 
     def load_references

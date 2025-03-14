@@ -21,6 +21,8 @@ pin "bootstrap-select", to: "https://ga.jspm.io/npm:bootstrap-select@1.14.0-beta
 pin "@yaireo/tagify", to: "https://ga.jspm.io/npm:@yaireo/tagify@4.16.4/dist/tagify.min.js", preload: true
 pin "nouislider", to: "https://ga.jspm.io/npm:nouislider@15.6.1/dist/nouislider.js", preload: true
 
+pin "jquery-minicolors", to: "https://ga.jspm.io/npm:jquery-minicolors@2.1.10/jquery.minicolors.js", preload: true
+
 # Typeahead
 pin "typeahead", to: "https://ga.jspm.io/npm:typeahead@0.2.2/typeahead.js", preload: true
 pin "dom", to: "https://ga.jspm.io/npm:dom@0.0.2/index.js", preload: true
