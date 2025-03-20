@@ -38,18 +38,13 @@ class Theme < ApplicationRecord
   # Scope
   scope :published, -> { where(status: :published) }
   scope :defaults, -> { where(default: true) } # for built-in theme
+  scope :by_name, ->(name) { where("name ILIKE ?", "%#{name.strip}%") if name.present? }
+  scope :from_date, ->(timestamp) do
+    where("updated_at > ?", Time.zone.at(timestamp.to_i)).order(updated_at: :asc) if timestamp.to_i.positive?
+  end
 
   # Nested attribute
   accepts_nested_attributes_for :assets, allow_destroy: true, reject_if: ->(attributes) { attributes["image"].blank? }
-
-  # Class method
-  def self.filter(params)
-    name = params[:name].to_s.strip
-    scope = all
-    scope = scope.where("name LIKE ?", "%#{name}%") if name.present?
-    scope = scope.where("updated_at > ?", Time.at(params[:updated_at])) if params[:updated_at].present?
-    scope
-  end
 
   # Instant method
   def publish

@@ -17,7 +17,7 @@
 #
 class ThemeSerializer < ActiveModel::Serializer
   attributes :id, :name, :default, :status, :primary_color, :secondary_color,
-             :primary_text_color, :secondary_text_color,
+             :primary_text_color, :secondary_text_color, :timezone,
              :updated_at, :assets
   def assets
     assets = object.assets.group_by(&:platform)
@@ -26,6 +26,10 @@ class ThemeSerializer < ActiveModel::Serializer
       ios: format_assets(assets["ios"]),
       android: format_assets(assets["android"])
     }
+  end
+
+  def timezone
+    Time.zone.to_s
   end
 
   def updated_at

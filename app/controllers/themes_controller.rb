@@ -1,6 +1,5 @@
 class ThemesController < ApplicationController
   before_action :authorize_theme, only: [:edit, :update, :destroy, :publish, :archive]
-  helper_method :filter_params
 
   def index
     respond_to do |format|
@@ -108,10 +107,6 @@ class ThemesController < ApplicationController
     end
 
     def query_themes
-      authorize policy_scope(Theme.filter(filter_params).order(:created_at))
-    end
-
-    def filter_params
-      params.permit(:name)
+      authorize policy_scope(Theme.by_name(params[:name]).order(:created_at))
     end
 end

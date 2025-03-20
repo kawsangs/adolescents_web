@@ -62,6 +62,10 @@ module Api
         def render_errors(e)
           render json: e, status: e.status and return
         end
+
+        def render_error(message, status)
+          render json: { error: message }, status: status
+        end
     end
   end
 end
