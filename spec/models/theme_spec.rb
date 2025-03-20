@@ -1,20 +1,3 @@
-# == Schema Information
-#
-# Table name: themes
-#
-#  id                   :uuid             not null, primary key
-#  name                 :string
-#  status               :integer          default("draft")
-#  default              :boolean          default(FALSE)
-#  primary_color        :string
-#  secondary_color      :string
-#  primary_text_color   :string
-#  secondary_text_color :string
-#  published_at         :datetime
-#  deleted_at           :datetime
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#
 require "rails_helper"
 
 RSpec.describe Theme, type: :model do
@@ -55,12 +38,29 @@ RSpec.describe Theme, type: :model do
     it { is_expected.to validate_presence_of(:secondary_text_color) }
   end
 
-  # Scope
+  # Nested Attributes
+  describe "nested attributes" do
+    it "accepts nested attributes for assets" do
+      expect(Theme.new).to respond_to(:assets_attributes=)
+    end
+
+    it "rejects assets with blank image" do
+      theme = build(:theme, assets_attributes: [{ image: nil }])
+      expect(theme.assets).to be_empty
+    end
+
+    it "allows destroying assets" do
+      theme = create(:theme, :with_assets)
+      expect {
+        theme.update(assets_attributes: [{ id: theme.assets.first.id, _destroy: true }])
+      }.to change { theme.assets.count }.by(-1)
+    end
+  end
+
   describe "scopes" do
-    let!(:published_theme) { create(:theme, :published) }
-    let!(:draft_theme) { create(:theme) }
-    let!(:default_theme) { create(:theme, :default) }
-    let!(:non_default_theme) { create(:theme) }
+    let!(:draft_theme) { create(:theme, status: :draft) }
+    let!(:published_theme) { create(:theme, status: :published) }
+    let!(:default_theme) { create(:theme, default: true) }
 
     describe ".published" do
       it "returns only published themes" do
@@ -72,70 +72,35 @@ RSpec.describe Theme, type: :model do
     describe ".defaults" do
       it "returns only default themes" do
         expect(Theme.defaults).to include(default_theme)
-        expect(Theme.defaults).not_to include(non_default_theme)
-      end
-    end
-  end
-
-  # Nested Attributes
-  describe "nested attributes for assets" do
-    it { should accept_nested_attributes_for(:assets).allow_destroy(true) }
-
-    let(:theme) { build(:theme) }
-
-    context "with invalid asset attributes (blank image)" do
-      it "rejects the asset" do
-        theme.attributes = { assets_attributes: [{ image: nil }] }
-        expect { theme.save }.not_to change { Asset.count }
-        expect(theme.assets).to be_empty
+        expect(Theme.defaults).not_to include(draft_theme)
       end
     end
 
-    context "with _destroy flag" do
-      let(:theme_with_asset) { create(:theme, :with_assets) }
+    describe ".by_name" do
+      let!(:theme1) { create(:theme, name: "Dark Theme") }
+      let!(:theme2) { create(:theme, name: "Light Theme") }
 
-      it "destroys the asset" do
-        expect {
-          theme_with_asset.update(assets_attributes: [{ id: theme_with_asset.assets.first.id, _destroy: true }])
-        }.to change { theme_with_asset.assets.count }.by(-1)
-      end
-    end
-  end
-
-  # Class Method
-  describe ".filter" do
-    let!(:theme1) { create(:theme, name: "Dark Theme", updated_at: Time.at(1640995200)) } # Jan 1, 2022
-    let!(:theme2) { create(:theme, name: "Light Theme", updated_at: Time.now) }
-
-    context "with name filter" do
-      it "filters themes by name" do
-        result = Theme.filter(name: "Dark")
-        expect(result).to include(theme1)
-        expect(result).not_to include(theme2)
+      it "finds themes by name case-insensitively" do
+        expect(Theme.by_name("dark")).to include(theme1)
+        expect(Theme.by_name("THEME")).to include(theme1, theme2)
+        expect(Theme.by_name("")).not_to be_empty
+        expect(Theme.by_name(nil)).not_to be_empty
       end
     end
 
-    context "with updated_at filter" do
-      it "filters themes by updated_at" do
-        result = Theme.filter(updated_at: 1640995200)
-        expect(result).to include(theme2)
-        expect(result).not_to include(theme1)
-      end
-    end
+    describe ".from_date" do
+      let!(:old_theme) { create(:theme, updated_at: 2.days.ago) }
+      let!(:new_theme) { create(:theme, updated_at: 1.hour.ago) }
 
-    context "with both filters" do
-      it "applies both name and updated_at filters" do
-        create(:theme, name: "Dark Mode", updated_at: Time.now) # Matches both
-        result = Theme.filter(name: "Dark", updated_at: 1640995200)
-        expect(result.map(&:name)).to include("Dark Mode")
-        expect(result.map(&:name)).not_to include("Dark Theme")
-      end
-    end
+      it "returns themes updated after timestamp" do
+        timestamp = 1.day.ago.to_i
 
-    context "with no filters" do
-      it "returns all themes" do
-        result = Theme.filter({})
-        expect(result).to include(theme1, theme2)
+        expect(Theme.from_date(timestamp)).to include(new_theme)
+        expect(Theme.from_date(timestamp)).not_to include(old_theme)
+      end
+
+      it "returns all when timestamp is 0" do
+        expect(Theme.from_date(0).length).to eq(5)
       end
     end
   end

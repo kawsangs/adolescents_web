@@ -9,7 +9,7 @@
       %ul.dropdown-menu.dropdown-menu-end
         - if current_user.primary_admin?
           %li
-            %a.dropdown-item{ href: themes_path(filter_params.merge(format: :json)), target: '_blank' }
+            %a.dropdown-item{ href: themes_path(format: :json), target: '_blank' }
               %i.fa-solid.fa-download
               %span= t('theme.download_json')
 

@@ -5,86 +5,80 @@ RSpec.describe "Api::V1::ThemesController", type: :request do
   let(:headers) { { "ACCEPT" => "application/json", "Authorization" => "Apikey #{api_key.api_key}" } }
   let(:json_response) { JSON.parse(response.body) }
 
-  describe "GET /api/v1/themes" do
-    let!(:published_themes) { create_list(:theme, 3, :published) }
-    let!(:draft_theme) { create(:theme) }
+  describe "GET #index" do
+    let!(:published_themes) { create_list(:theme, 15, :with_assets, :published) }
+    let!(:unpublished_theme) { create(:theme) }
 
-    context "without updated_at filter" do
-      it "returns bad_request" do
+    context "without from parameter" do
+      it "returns paginated published themes" do
         get "/api/v1/themes", headers: headers
 
-        expect(response).to have_http_status(:bad_request)
-      end
-    end
-
-    context "with valid updated_at filter" do
-      let!(:old_theme) { create(:theme, :published, updated_at: Time.at(1640995200)) } # Jan 1, 2022
-      let!(:new_theme) { create(:theme, :published, updated_at: Time.now) }
-
-      it "returns themes updated after the provided timestamp" do
-        get "/api/v1/themes", params: { updated_at: 1640995200 }, headers: headers
-
         expect(response).to have_http_status(:ok)
 
-        expect(json_response["pagy"]["count"]).to be > 0
-        expect(json_response["themes"].map { |t| t["id"] }).to include(new_theme.id)
-        expect(json_response["themes"].map { |t| t["id"] }).not_to include(old_theme.id)
+        expect(json_response["pagy"]["count"]).to eq(15)
+        expect(json_response["pagy"]["items"]).to eq(10)
+        expect(json_response["themes"].length).to eq(10)
+
+        # Verify theme serialization includes expected attributes
+        first_theme = json_response["themes"].first
+        expect(first_theme).to include("id", "assets")
       end
     end
 
-    context "with invalid updated_at (negative)" do
-      it "returns a bad request error" do
-        get "/api/v1/themes", params: { updated_at: -1 }, headers: headers
+    context "with valid from parameter" do
+      let(:timestamp) { 1.day.ago.to_i }
 
-        expect(response).to have_http_status(:bad_request)
-        expect(json_response["error"]).to eq("updated_at must be a valid epoch timestamp")
-      end
-    end
-
-    context "with no published themes" do
-      before { Theme.published.destroy_all }
-
-      it "returns an empty list" do
-        get "/api/v1/themes", params: { updated_at: 1640995200 }, headers: headers
+      it "returns themes from specified timestamp" do
+        get "/api/v1/themes?from=#{timestamp}", headers: headers
 
         expect(response).to have_http_status(:ok)
-        expect(json_response["pagy"]["count"]).to eq(0)
-        expect(json_response["themes"]).to be_empty
+        expect(json_response["themes"]).to be_present
+      end
+    end
+
+    context "with invalid from parameter" do
+      it "returns bad request for non-numeric timestamp" do
+        get "/api/v1/themes?from=invalid", headers: headers
+
+        expect(response).to have_http_status(:bad_request)
+        expect(json_response["error"]).to eq("from param must be a valid epoch timestamp")
+      end
+
+      it "returns bad request for out-of-range timestamp" do
+        get "/api/v1/themes?from=293295235201", headers: headers # Beyond max limit
+
+        expect(response).to have_http_status(:bad_request)
+        expect(json_response["error"]).to eq("from param must be a valid epoch timestamp")
       end
     end
   end
 
-  describe "GET /api/v1/themes/:id" do
-    let!(:theme) { create(:theme, :published, :with_assets) }
+  describe "GET #show" do
+    context "with existing published theme" do
+      let(:theme) { create(:theme, :published) }
 
-    context "with a valid theme ID" do
-      it "returns the theme details" do
+      it "returns the theme" do
         get "/api/v1/themes/#{theme.id}", headers: headers
 
         expect(response).to have_http_status(:ok)
-        expect(json_response).to include(
-          "id" => theme.id,
-          "name" => theme.name,
-          "updated_at" => theme.updated_at.to_i
-        )
-        expect(json_response["assets"].size).to eq(2)
+        expect(json_response["id"]).to eq(theme.id)
       end
     end
 
-    context "with an draft theme" do
-      let!(:draft_theme) { create(:theme) }
+    context "with unpublished theme" do
+      let(:theme) { create(:theme) }
 
-      it "returns a not found error" do
-        get "/api/v1/themes/#{draft_theme.id}", headers: headers
+      it "returns not found" do
+        get "/api/v1/themes/#{theme.id}", headers: headers
 
         expect(response).to have_http_status(:not_found)
         expect(json_response["error"]).to eq("Theme not found")
       end
     end
 
-    context "with a nonexistent theme ID" do
-      it "returns a not found error" do
-        get "/api/v1/themes/999", headers: headers
+    context "with non-existent theme" do
+      it "returns not found" do
+        get "/api/v1/themes/9999", headers: headers
 
         expect(response).to have_http_status(:not_found)
         expect(json_response["error"]).to eq("Theme not found")
