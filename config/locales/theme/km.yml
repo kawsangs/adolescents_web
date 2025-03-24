@@ -3,7 +3,7 @@ km:
     themes: Themes
     theme: Theme
     name: ឈ្មោះ
-    description: បរិយាយ
+    name_with_max_length: ឈ្មោះ (អតិបរិមា 15តួ)
     primary_color: ពណ៌ចម្បង (Primary color)
     secondary_color: ពណ៌បន្ទាប់បន្សំ (Secondary color)
     primary_text_color: ពណ៌អត្ថបទចម្បង (Primary text color)

@@ -3,7 +3,7 @@ en:
     themes: Themes
     theme: Theme
     name: Name
-    description: Description
+    name_with_max_length: Name (maximum 15 characters)
     primary_color: Primary color
     secondary_color: Secondary color
     primary_text_color: Primary text color
