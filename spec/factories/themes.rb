@@ -17,7 +17,7 @@
 #
 FactoryBot.define do
   factory :theme do
-    name { FFaker::Name.name }
+    name { FFaker::Name.name[0..14] }
     primary_color { "#000" }
     secondary_color { "#fff" }
     primary_text_color { "#000" }

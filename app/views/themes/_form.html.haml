@@ -3,9 +3,9 @@
     = simple_form_for @theme, html: {} do |f|
       .mb-3
         .d-flex
-          = f.label :name, "#{t('theme.name')} <abbr title='required'>*</abbr>".html_safe, class: 'flex-grow-1'
+          = f.label :name, "#{t('theme.name_with_max_length')} <abbr title='required'>*</abbr>".html_safe, class: 'flex-grow-1'
           = create_theme_tip
-        = f.input :name, label: false, disabled: policy(@theme).disable_edit?
+        = f.input :name, label: false, disabled: policy(@theme).disable_edit?, maxlength: 15
       .mb-3
         .d-flex
           = f.label :primary_color, "#{t('theme.primary_color')} <abbr title='required'>*</abbr>".html_safe
