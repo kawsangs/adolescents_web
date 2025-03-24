@@ -111,7 +111,7 @@ gem "googleauth", "1.2.0"
 gem "fcm", "~> 1.0.8"
 
 # File upload
-gem "carrierwave",    "~> 2.2.5"
+gem "carrierwave",    "~> 2.2.6"
 gem "fog-aws",        "~> 3.15.0"
 
 gem "rails-settings-cached", "~> 2.8"
@@ -127,7 +127,7 @@ gem "sentry-ruby"
 gem "sentry-rails"
 
 # Background process
-gem "sidekiq", "~> 7.2.0"
+gem "sidekiq", "~> 7.2.4"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
