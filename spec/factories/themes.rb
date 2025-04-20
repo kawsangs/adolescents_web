@@ -2,26 +2,22 @@
 #
 # Table name: themes
 #
-#  id                   :uuid             not null, primary key
-#  name                 :string
-#  status               :integer          default("draft")
-#  default              :boolean          default(FALSE)
-#  primary_color        :string
-#  secondary_color      :string
-#  primary_text_color   :string
-#  secondary_text_color :string
-#  published_at         :datetime
-#  deleted_at           :datetime
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
+#  id              :uuid             not null, primary key
+#  name            :string
+#  status          :integer          default("draft")
+#  default         :boolean          default(FALSE)
+#  primary_color   :string
+#  secondary_color :string
+#  published_at    :datetime
+#  deleted_at      :datetime
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 FactoryBot.define do
   factory :theme do
     name { FFaker::Name.name[0..14] }
     primary_color { "#000" }
     secondary_color { "#fff" }
-    primary_text_color { "#000" }
-    secondary_text_color { "#fff" }
     status  { :draft }
     default { false }
     updated_at { Time.now }

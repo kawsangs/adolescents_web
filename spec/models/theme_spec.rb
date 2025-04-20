@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: themes
+#
+#  id              :uuid             not null, primary key
+#  name            :string
+#  status          :integer          default("draft")
+#  default         :boolean          default(FALSE)
+#  primary_color   :string
+#  secondary_color :string
+#  published_at    :datetime
+#  deleted_at      :datetime
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
 require "rails_helper"
 
 RSpec.describe Theme, type: :model do
@@ -35,8 +50,6 @@ RSpec.describe Theme, type: :model do
     it { is_expected.to validate_length_of(:name).is_at_most(15) }
     it { is_expected.to validate_presence_of(:primary_color) }
     it { is_expected.to validate_presence_of(:secondary_color) }
-    it { is_expected.to validate_presence_of(:primary_text_color) }
-    it { is_expected.to validate_presence_of(:secondary_text_color) }
   end
 
   # Nested Attributes

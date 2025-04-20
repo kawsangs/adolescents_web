@@ -133,7 +133,6 @@
   }
 
   #theme-bg {
-    background-repeat: no-repeat;
     background-size: 100%;
     position: absolute;
     top: 0;
@@ -143,7 +142,8 @@
   }
 
   .top-bar {
-    height: 46px; background-color: rgb(38, 108, 222); color: #fff;
+    height: 46px;
+    color: #fff;
   }
 }
 

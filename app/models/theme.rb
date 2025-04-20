@@ -2,18 +2,16 @@
 #
 # Table name: themes
 #
-#  id                   :uuid             not null, primary key
-#  name                 :string
-#  status               :integer          default("draft")
-#  default              :boolean          default(FALSE)
-#  primary_color        :string
-#  secondary_color      :string
-#  primary_text_color   :string
-#  secondary_text_color :string
-#  published_at         :datetime
-#  deleted_at           :datetime
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
+#  id              :uuid             not null, primary key
+#  name            :string
+#  status          :integer          default("draft")
+#  default         :boolean          default(FALSE)
+#  primary_color   :string
+#  secondary_color :string
+#  published_at    :datetime
+#  deleted_at      :datetime
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 class Theme < ApplicationRecord
   # Enum
@@ -32,8 +30,6 @@ class Theme < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: { maximum: 15 }
   validates :primary_color, presence: true
   validates :secondary_color, presence: true
-  validates :primary_text_color, presence: true
-  validates :secondary_text_color, presence: true
 
   # Scope
   scope :published, -> { where(status: :published) }

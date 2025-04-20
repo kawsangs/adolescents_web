@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_02_23_220120) do
+ActiveRecord::Schema[7.0].define(version: 2025_04_20_074207) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -52,7 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_23_220120) do
     t.datetime "updated_at", null: false
     t.datetime "last_accessed_at"
     t.integer "platform", default: 1
-    t.integer "occupation"
+    t.integer "occupation", default: 0
     t.integer "education_level", default: 0
     t.string "uuid"
     t.datetime "deleted_at"
@@ -477,8 +477,6 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_23_220120) do
     t.boolean "default", default: false
     t.string "primary_color"
     t.string "secondary_color"
-    t.string "primary_text_color"
-    t.string "secondary_text_color"
     t.datetime "published_at"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false

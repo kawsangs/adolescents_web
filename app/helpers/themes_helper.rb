@@ -99,31 +99,6 @@ module ThemesHelper
     render_popover(nil, content)
   end
 
-  def primary_text_color_tip
-    content = %Q{
-      <h5 class="text-dark">#{t('theme.primary_text_color')}</h5>
-      <ul class="ps-3 mt-2">
-        <li>#{t('theme.primary_text_color_tip.define_text_color_on_navbar')}</li>
-        <li>#{t('theme.primary_text_color_tip.use_for_headings')}</li>
-      </ul>
-    }
-
-    render_popover(nil, content)
-  end
-
-  def secondary_text_color_tip
-    content = %Q{
-      <h5 class="text-dark">#{t('theme.secondary_text_color')}</h5>
-      <ul class="ps-3 mt-2">
-        <li>#{t('theme.secondary_text_color_tip.set_paragraph_text_color')}</li>
-        <li>#{t('theme.secondary_text_color_tip.apply_to_sub_title_color')}</li>
-        <li>#{t('theme.secondary_text_color_tip.additional_use')}</li>
-      </ul>
-    }
-
-    render_popover(nil, content)
-  end
-
   def theme_background_image_tip
     content = %Q{
       <h5 class="text-dark">#{t('theme.theme_bg_images')}</h5>

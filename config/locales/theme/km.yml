@@ -6,8 +6,6 @@ km:
     name_with_max_length: ឈ្មោះ (អតិបរិមា 15តួ)
     primary_color: ពណ៌ចម្បង (Primary color)
     secondary_color: ពណ៌បន្ទាប់បន្សំ (Secondary color)
-    primary_text_color: ពណ៌អត្ថបទចម្បង (Primary text color)
-    secondary_text_color: ពណ៌អត្ថបទបន្ទាប់បន្សំ (Secondary text color)
     active: ចេញផ្សាយ
     status: ស្ថានភាព
     category: ប្រភេទ
@@ -50,13 +48,6 @@ km:
       utilized_as_second_linear_bg: 'ប្រើជា <strong>ពណ៌ទីពីរនៃផ្ទៃខាងក្រោយដែលលាយចូលគ្នា</strong> ក្នុងពណ៌ជម្រាល <code>linear-gradient(135deg, ${secondaryColor}, ${primaryColor})</code>។'
       mark_active_menu: សម្គាល់ <strong>ធាតុម៉ឺនុយសកម្ម</strong> ឧ. <code>active</code> class ជាមួយនឹង <code>bg-secondary</code>) ដើម្បីបង្ហាញការជ្រើសរើសបច្ចុប្បន្ន។
       additional_use: "ការប្រើប្រាស់បន្ថែម៖ អនុវត្តចំពោះ <strong>accent borders</strong> (ឧ. <code>border-secondary</code>) ឬ <strong>hover effects</strong> នៅលើធាតុផ្សេងៗ។"
-    primary_text_color_tip:
-      define_text_color_on_navbar: កំណត់ <strong>ពណ៌អត្ថបទនៅលើរបារ</strong> (ឧ. <code>text-light</code> ឬ <code>text-dark</code> អាស្រ័យលើកម្រិតពណ៌) សម្រាប់ភាពងាយអានខ្ពស់ធៀបនឹងផ្ទៃខាងក្រោយពណ៌ចម្បង។
-      use_for_headings: ប្រើសម្រាប់ <strong>ចំណងជើង</strong> ឬ <strong>អត្ថបទដែលសង្កត់ធ្ងន់</strong> (ឧ. <code>h1</code>, <code>h2</code>) នៅទូទាំងកម្មវិធី ដើម្បីរក្សាឋានានុក្រម និងការផ្តោតអារម្មណ៍។
-    secondary_text_color_tip:
-      set_paragraph_text_color: "កំណត់ <strong>ពណ៌អត្ថបទកថាខណ្ឌ</strong> នៅលើផ្ទៃខាងក្រោយដែលមានពណ៌ស (ឧ. #6c757d ឬងងឹតជាងនេះ) សម្រាប់ខ្លឹមសារទូទៅ ដើម្បីធានាបានថាអាចអានបាន។"
-      apply_to_sub_title_color: អនុវត្តចំពោះ <strong>ចំណងជើងរង</strong> <strong>ចំណងជើង</strong> ឬ <strong>placeholders</strong> សម្រាប់កម្រិតពណ៌កាន់តែទន់ទៅតាមតម្រូវការ។
-      additional_use: "ការប្រើប្រាស់បន្ថែម៖ ពណ៌ <strong>ស្លាកផ្ទាំងអសកម្ម</strong> ដើម្បីអោយមើលឃើញពណ៌ខុសគ្នា។"
     bg_image_tip:
       how_to_use: រូបភាពនេះប្រើជា <strong>ផ្ទៃខាងក្រោយនិងគ្របពីលើ</strong> Background Color ខាងលើ។ វាត្រូវបានរចនាឡើងដើម្បី <strong>សម្របខ្លួនយ៉ាងរលូន</strong> នៅលើវេទិកាផ្សេងៗ រួមទាំង <strong>Android និង iOS</strong> និងគាំទ្រ <strong>ដំណោះស្រាយច្រើន</strong> ដើម្បីធានាបាននូវ <strong>គុណភាពបង្ហាញល្អបំផុត</strong>។ នេះរួមបញ្ចូលទំហំដូចជា <code>1x</code>, <code>2x</code> និង <code>3x</code>សម្រាប់​ iOS ក៏ដូចជា <code>MDPI</code>, <code>HDPI</code>, <code>XHDPI</code>, និង <code>XXHDPI</code> សម្រាប់ Android ដើម្បី​គាំទ្រទៅឧបករណ៍ដ៏ច្រើន និងលក្ខណៈពិសេសអេក្រង់។
       user_update_bg_image: សម្រាប់ Theme ដែលមានស្រាប់ក្នុងប្រព័ន្ធ<code>(Built-in theme)</code> អ្នកប្រើប្រាស់អាច<strong>កែសម្រួលរូបភាពទាំងនេះ</strong> ប៉ុន្តែមិនអាចកែប្រែ<strong>ពណ៌ផ្ទៃខាងក្រោយខាងលើបានទេ</strong>។ ម្យ៉ាងទៀ​ ការ​កែ​សម្រួល​រូបភាព​ផ្ទៃ​ខាង​ក្រោយ​ត្រូវ​បាន​អនុញ្ញាត​តែ​នៅ​ពេល​ដែល Theme ស្ថិត​នៅ​ក្នុង​ទម្រង់​ព្រាង​<code>(draft)</code> ប៉ុណ្ណោះ</strong>។

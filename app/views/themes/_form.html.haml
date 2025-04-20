@@ -16,16 +16,6 @@
           = f.label :secondary_color, "#{t('theme.secondary_color')} <abbr title='required'>*</abbr>".html_safe
           = secondary_color_tip
         = f.input :secondary_color, label: false, disabled: policy(@theme).disable_edit?
-      .mb-3
-        .d-flex
-          = f.label :primary_text_color, "#{t('theme.primary_text_color')} <abbr title='required'>*</abbr>".html_safe
-          = primary_text_color_tip
-        = f.input :primary_text_color, label: false, disabled: policy(@theme).disable_edit?
-      .mb-3
-        .d-flex
-          = f.label :secondary_text_color, "#{t('theme.secondary_text_color')} <abbr title='required'>*</abbr>".html_safe
-          = secondary_text_color_tip
-        = f.input :secondary_text_color, label: false, disabled: policy(@theme).disable_edit?
 
       .mb-3.mt-4
         .d-flex
