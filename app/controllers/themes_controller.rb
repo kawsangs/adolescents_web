@@ -72,7 +72,7 @@ class ThemesController < ApplicationController
       return default_theme_params if @theme&.default?
 
       params.require(:theme).permit(
-        :name, :primary_color, :secondary_color, :primary_text_color, :secondary_text_color,
+        :name, :primary_color, :secondary_color,
         assets_attributes:
       )
     end

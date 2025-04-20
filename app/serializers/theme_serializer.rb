@@ -2,23 +2,20 @@
 #
 # Table name: themes
 #
-#  id                   :uuid             not null, primary key
-#  name                 :string
-#  status               :integer          default("draft")
-#  default              :boolean          default(FALSE)
-#  primary_color        :string
-#  secondary_color      :string
-#  primary_text_color   :string
-#  secondary_text_color :string
-#  published_at         :datetime
-#  deleted_at           :datetime
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
+#  id              :uuid             not null, primary key
+#  name            :string
+#  status          :integer          default("draft")
+#  default         :boolean          default(FALSE)
+#  primary_color   :string
+#  secondary_color :string
+#  published_at    :datetime
+#  deleted_at      :datetime
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 class ThemeSerializer < ActiveModel::Serializer
   attributes :id, :name, :default, :status, :primary_color, :secondary_color,
-             :primary_text_color, :secondary_text_color, :timezone,
-             :updated_at, :assets
+             :timezone, :updated_at, :assets
   def assets
     assets = object.assets.group_by(&:platform)
 

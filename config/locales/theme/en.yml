@@ -6,8 +6,6 @@ en:
     name_with_max_length: Name (maximum 15 characters)
     primary_color: Primary color
     secondary_color: Secondary color
-    primary_text_color: Primary text color
-    secondary_text_color: Secondary text color
     active: Active
     status: Status
     category: Category
@@ -50,13 +48,6 @@ en:
       utilized_as_second_linear_bg: Utilized as the <strong>second linear background</strong> in a gradient, styled as <code>linear-gradient(135deg, ${secondaryColor}, ${primaryColor})</code>.
       mark_active_menu: Marks the <strong>active menu item</strong> in a tab menu (e.g., <code>active</code> class with <code>bg-secondary</code>) to indicate the current selection.
       additional_use: "Additional use: Applied to <strong>accent borders</strong> (e.g., <code>border-secondary</code> on card outlines) or <strong>hover effects</strong> on interactive elements."
-    primary_text_color_tip:
-      define_text_color_on_navbar: Defines the <strong>text color on the navbar</strong> (e.g., <code>text-light</code> or <code>text-dark</code> depending on contrast) for high readability against the primary color background.
-      use_for_headings: Used for <strong>headings</strong> or <strong>emphasized text</strong> (e.g., <code>h1</code>, <code>h2</code>) throughout the app to maintain hierarchy and focus.
-    secondary_text_color_tip:
-      set_paragraph_text_color: "Sets the <strong>paragraph text color</strong> on white backgrounds (e.g., #6c757d or darker) for general content to ensure readability."
-      apply_to_sub_title_color: Applied to <strong>subtitles</strong>, <strong>captions</strong>, or <strong>placeholders</strong> for softer contrast where needed.
-      additional_use: "Additional use: Colors <strong>inactive tab labels</strong> for subtle differentiation."
     bg_image_tip:
       how_to_use: This image serves as the <strong>top-layer background</strong>, overlaying the <strong>solid background color</strong> beneath it when the theme is applied. It is designed to <strong>adapt seamlessly</strong> across various platforms, including <strong>Android and iOS</strong>, and supports <strong>multiple resolutions</strong> to ensure <strong>optimal display quality</strong>. This includes sizes such as <code>1x</code>, <code>2x</code>, and <code>3x</code>, as well as densities like <code>MDPI</code>, <code>HDPI</code>, <code>XHDPI</code>, and <code>XXHDPI</code> for a wide range of devices and screen specifications.
       user_update_bg_image: Users can <strong>edit the built-in theme’s background image</strong>, though the <strong>background color cannot be modified</strong>. Editing of the background image is permitted <strong>only when the theme is in draft mode</strong>.

@@ -10,9 +10,7 @@ module Samples
           default: data[1],
           status: data[2],
           primary_color: data[3],
-          secondary_color: data[4],
-          primary_text_color: data[5],
-          secondary_text_color: data[6]
+          secondary_color: data[4]
         )
       end
     end
