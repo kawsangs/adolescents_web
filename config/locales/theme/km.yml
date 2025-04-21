@@ -51,3 +51,5 @@ km:
     bg_image_tip:
       how_to_use: រូបភាពនេះប្រើជា <strong>ផ្ទៃខាងក្រោយនិងគ្របពីលើ</strong> Background Color ខាងលើ។ វាត្រូវបានរចនាឡើងដើម្បី <strong>សម្របខ្លួនយ៉ាងរលូន</strong> នៅលើវេទិកាផ្សេងៗ រួមទាំង <strong>Android និង iOS</strong> និងគាំទ្រ <strong>ដំណោះស្រាយច្រើន</strong> ដើម្បីធានាបាននូវ <strong>គុណភាពបង្ហាញល្អបំផុត</strong>។ នេះរួមបញ្ចូលទំហំដូចជា <code>1x</code>, <code>2x</code> និង <code>3x</code>សម្រាប់​ iOS ក៏ដូចជា <code>MDPI</code>, <code>HDPI</code>, <code>XHDPI</code>, និង <code>XXHDPI</code> សម្រាប់ Android ដើម្បី​គាំទ្រទៅឧបករណ៍ដ៏ច្រើន និងលក្ខណៈពិសេសអេក្រង់។
       user_update_bg_image: សម្រាប់ Theme ដែលមានស្រាប់ក្នុងប្រព័ន្ធ<code>(Built-in theme)</code> អ្នកប្រើប្រាស់អាច<strong>កែសម្រួលរូបភាពទាំងនេះ</strong> ប៉ុន្តែមិនអាចកែប្រែ<strong>ពណ៌ផ្ទៃខាងក្រោយខាងលើបានទេ</strong>។ ម្យ៉ាងទៀ​ ការ​កែ​សម្រួល​រូបភាព​ផ្ទៃ​ខាង​ក្រោយ​ត្រូវ​បាន​អនុញ្ញាត​តែ​នៅ​ពេល​ដែល Theme ស្ថិត​នៅ​ក្នុង​ទម្រង់​ព្រាង​<code>(draft)</code> ប៉ុណ្ណោះ</strong>។
+    num_of_uniq_users: "ចំនួនអ្នកប្រើប្រាស់"
+    num_of_uses: "ចំនួនប្រើប្រាស់"

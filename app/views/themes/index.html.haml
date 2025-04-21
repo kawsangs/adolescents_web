@@ -20,6 +20,8 @@
             %th= t('theme.category')
             %th= t('theme.num_of_bg_image')
             %th= t('shared.updated_at')
+            %th= t('theme.num_of_uniq_users')
+            %th= t('theme.num_of_uses')
             %th
         %tbody
           - @themes.each_with_index do |theme, index|
@@ -32,6 +34,8 @@
                 = t('theme.built_in') if theme.default?
               %td= theme.assets.length
               %td= timeago(theme.updated_at, type: 'datetime').html_safe
+              %td= theme.theme_usages.pluck(:app_user_id).uniq.length
+              %td= theme.theme_usages.length
               %td
                 .d-flex.justify-content-end
                   - if policy(theme).publish?

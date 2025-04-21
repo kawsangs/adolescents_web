@@ -27,6 +27,9 @@ RSpec.describe AppUser, type: :model do
   it { is_expected.to have_many(:app_user_characteristics) }
   it { is_expected.to have_many(:characteristics).through(:app_user_characteristics) }
 
+  it { is_expected.to have_many(:theme_usages) }
+  it { is_expected.to have_many(:themes).through(:theme_usages) }
+
   describe "#anonymous?" do
     it "returns true" do
       subject.age = -1

@@ -25,6 +25,8 @@ class Theme < ApplicationRecord
 
   # Association
   has_many :assets, dependent: :destroy
+  has_many :theme_usages
+  has_many :app_users, through: :theme_usages
 
   # Validation
   validates :name, presence: true, uniqueness: true, length: { maximum: 15 }
