@@ -49,7 +49,7 @@ RSpec.describe Theme, type: :model do
   describe "validations" do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_uniqueness_of(:name) }
-    it { is_expected.to validate_length_of(:name).is_at_most(15) }
+    it { is_expected.to validate_length_of(:name).is_at_most(32) }
     it { is_expected.to validate_presence_of(:primary_color) }
     it { is_expected.to validate_presence_of(:secondary_color) }
   end

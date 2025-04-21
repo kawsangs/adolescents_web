@@ -3,7 +3,7 @@ km:
     themes: Themes
     theme: Theme
     name: ឈ្មោះ
-    name_with_max_length: ឈ្មោះ (អតិបរិមា 15តួ)
+    name_with_max_length: ឈ្មោះ (អតិបរិមា 32តួ)
     primary_color: ពណ៌ចម្បង (Primary color)
     secondary_color: ពណ៌បន្ទាប់បន្សំ (Secondary color)
     active: ចេញផ្សាយ
@@ -53,3 +53,5 @@ km:
       user_update_bg_image: សម្រាប់ Theme ដែលមានស្រាប់ក្នុងប្រព័ន្ធ<code>(Built-in theme)</code> អ្នកប្រើប្រាស់អាច<strong>កែសម្រួលរូបភាពទាំងនេះ</strong> ប៉ុន្តែមិនអាចកែប្រែ<strong>ពណ៌ផ្ទៃខាងក្រោយខាងលើបានទេ</strong>។ ម្យ៉ាងទៀ​ ការ​កែ​សម្រួល​រូបភាព​ផ្ទៃ​ខាង​ក្រោយ​ត្រូវ​បាន​អនុញ្ញាត​តែ​នៅ​ពេល​ដែល Theme ស្ថិត​នៅ​ក្នុង​ទម្រង់​ព្រាង​<code>(draft)</code> ប៉ុណ្ណោះ</strong>។
     num_of_uniq_users: "ចំនួនអ្នកប្រើប្រាស់"
     num_of_uses: "ចំនួនប្រើប្រាស់"
+    name_tip:
+      separate_line_by_space: "ចុះបន្ទាត់ដោយសញ្ញាដកឃ្លា"

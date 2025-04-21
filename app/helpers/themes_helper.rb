@@ -51,6 +51,17 @@ module ThemesHelper
     ]
   end
 
+  def theme_name_tip
+    content = %Q{
+      <h5 class="text-dark">#{t('theme.name_with_max_length')}</h5>
+      <ul class="ps-3 mt-2">
+        <li>#{t('theme.name_tip.separate_line_by_space')}</li>
+      </ul>
+    }
+
+    render_popover(nil, content)
+  end
+
   def create_theme_tip
     title = t("theme.tip.title")
     content = %Q{
