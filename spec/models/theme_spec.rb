@@ -41,6 +41,8 @@ RSpec.describe Theme, type: :model do
   # Association
   describe "associations" do
     it { is_expected.to have_many(:assets).dependent(:destroy) }
+    it { is_expected.to have_many(:theme_usages) }
+    it { is_expected.to have_many(:app_users).through(:theme_usages) }
   end
 
   # Validation

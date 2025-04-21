@@ -72,6 +72,9 @@ class AppUser < ApplicationRecord
   has_one  :app_user_reason
   has_one  :reason, through: :app_user_reason
 
+  has_many :theme_usages
+  has_many :themes, through: :theme_usages
+
   # Callback
   before_create :set_last_accessed_at
   before_validation :set_province_id

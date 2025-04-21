@@ -4,7 +4,7 @@ class ThemesController < ApplicationController
   def index
     respond_to do |format|
       format.html {
-        @pagy, @themes = pagy(query_themes)
+        @pagy, @themes = pagy(query_themes.includes(:theme_usages, :assets))
       }
 
       format.json {
