@@ -3,7 +3,7 @@ en:
     themes: Themes
     theme: Theme
     name: Name
-    name_with_max_length: Name (maximum 15 characters)
+    name_with_max_length: Name (max 32 characters)
     primary_color: Primary color
     secondary_color: Secondary color
     active: Active
@@ -53,3 +53,5 @@ en:
       user_update_bg_image: Users can <strong>edit the built-in theme’s background image</strong>, though the <strong>background color cannot be modified</strong>. Editing of the background image is permitted <strong>only when the theme is in draft mode</strong>.
     num_of_uniq_users: "# Unique Users"
     num_of_uses: "# Uses"
+    name_tip:
+      separate_line_by_space: "Separate line by space"

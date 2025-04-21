@@ -29,7 +29,7 @@ class Theme < ApplicationRecord
   has_many :app_users, through: :theme_usages
 
   # Validation
-  validates :name, presence: true, uniqueness: true, length: { maximum: 15 }
+  validates :name, presence: true, uniqueness: true, length: { maximum: 32 }
   validates :primary_color, presence: true
   validates :secondary_color, presence: true
 
