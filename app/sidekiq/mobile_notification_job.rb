@@ -11,7 +11,7 @@ class MobileNotificationJob
 
   private
     def mobile_tokens
-      MobileToken.filter(platform: @notification.platform).actives
+      MobileToken.filter(platform: @notification.platform, app_versions: @notification.app_versions).actives
     end
 
     def push_notifications

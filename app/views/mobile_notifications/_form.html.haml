@@ -1,4 +1,4 @@
-.d-flex.mobile-notifications-form.flex-md-row.flex-column-reverse{'data-controller': 'mobile-notifiations'}
+.d-flex.mobile-notifications-form.flex-md-row.flex-column-reverse{'data-controller': 'mobile-notifications'}
   .flex-1.me-md-4
     = simple_form_for @mobile_notification do |f|
       / Title
@@ -8,10 +8,10 @@
           = "(#{t('mobile_notification.max_title')})"
           %abbr.text-danger{title: 'required'} *
 
-        = f.input :title, label: false, input_html: { maxlength: 100, 'data-action': 'mobile-notifiations#updateTitle' }
+        = f.input :title, label: false, input_html: { maxlength: 100, 'data-action': 'mobile-notifications#updateTitle' }
 
         .text-end.small
-          %span.title-count{'data-mobile-notifiations-target': 'titleCount'} 0
+          %span.title-count{'data-mobile-notifications-target': 'titleCount'} 0
           %span /
           %span 100
 
@@ -22,18 +22,26 @@
           = "(#{t('mobile_notification.max_body')})"
           %abbr.text-danger{title: 'required'} *
 
-        = f.input :body, label: false, input_html: { maxlength: 255, 'data-action': 'mobile-notifiations#updateBody' }
+        = f.input :body, label: false, input_html: { maxlength: 255, 'data-action': 'mobile-notifications#updateBody' }
 
         .text-end.small
-          %span.body-count{'data-mobile-notifiations-target': 'bodyCount'} 0
+          %span.body-count{'data-mobile-notifications-target': 'bodyCount'} 0
           %span /
           %span 255
 
       / Platform
-      .mb-3
-        = f.input :platform, collection: MobileToken::PLATFORMS, label: t('shared.platform'), include_blank: true, input_html: {class: 'selectpicker', "data-none-selected-text" => t('visit.any_platform')}
+      .mb-4
+        = f.input :platform, collection: MobileToken::PLATFORMS, label: t('shared.platform'), include_blank: true, input_html: {class: 'selectpicker', "data-none-selected-text" => t('visit.any_platform'), 'data-mobile-notifications-target': 'platform', 'data-action': 'mobile-notifications#toggleAppVersion'}
 
-      .mb-3
+      .mb-4.filter-input.tooltips.w-100#appVersion{ 'data-bs-toggle' => 'tooltip', class: ('d-none' unless f.object.platform.present?) }
+        %label
+          = t('mobile_notification.app_version')
+          %span
+            = t("mobile_notification.#{f.object.platform}") if f.object.platform.present?
+
+        = select_tag 'mobile_notification[app_versions][]', options_for_select(@app_versions, f.object.app_versions), multiple: true, "data-live-search" => "true", "data-count-selected-text" => "{0} #{t('mobile_notification.app_version_selected')}", "data-selected-text-format" => "count > 5", "data-none-selected-text" => t('mobile_notification.any_version'), class: 'selectpicker form-control'
+
+      .mb-4
         %label
           = t("mobile_notification.questionnaire_to_be_used")
           %small= link_to "(#{t('mobile_notification.view_all_survey_form')})", survey_forms_path, class: 'text-primary', target: '_blank'
@@ -41,7 +49,7 @@
         = f.input :topic_id, collection: Topics::SurveyForm.all.map{|f| ["#{f.name} (#{f.status})", f.id]}, label: false, include_blank: true, input_html: {class: 'selectpicker', "data-none-selected-text" => t('shared.please_select')}
 
       / Schedule date
-      .mb-3
+      .mb-4
         %label= t('mobile_notification.schedule_date')
 
         #schedule_date.input-group.date{"data-target-input" => "nearest"}
@@ -54,7 +62,7 @@
       / Action
       .actions.text-right
         = link_to t('shared.cancel'), mobile_notifications_url, class: 'btn btn-secondary me-1'
-        = f.submit t('mobile_notification.push_notification'), class: 'btn btn-primary', 'data-action': 'mobile-notifiations#submit'
+        = f.submit t('mobile_notification.push_notification'), class: 'btn btn-primary', 'data-action': 'mobile-notifications#submit'
 
   / Preview
   %div
@@ -66,5 +74,5 @@
           .flex-1.small= ENV["APP_NAME"]
 
         .text-wrapper.mt-2
-          .title.text-truncate{'data-mobile-notifiations-target': 'title'}
-          .text-body.text-truncate{'data-mobile-notifiations-target': 'body'}
+          .title.text-truncate{'data-mobile-notifications-target': 'title'}
+          .text-body.text-truncate{'data-mobile-notifications-target': 'body'}
