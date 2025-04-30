@@ -33,7 +33,7 @@ class MobileToken < ApplicationRecord
   }
 
   # Constant
-  PLATFORMS = [["Android", "android"], ["iOs", "ios"]]
+  PLATFORMS = [["Android", "android"], ["iOS", "ios"]]
 
   # Class methods
   def self.filter(params = {})

@@ -18,6 +18,7 @@
             %th= t('mobile_notification.notification_text')
             %th= t('form.questionnaire')
             %th= t('mobile_notification.platform')
+            %th= t('mobile_notification.app_version')
             %th= t('shared.created_at')
             %th= t('mobile_notification.schedule_date')
             %th= t('shared.description')
@@ -33,6 +34,7 @@
               %td
                 = link_to notification.survey_form_name, survey_form_path(notification.survey_form), class: 'text-primary', remote: true if notification.survey_form.present?
               %td= platform_icon(notification.platform).html_safe
+              %td= notification.app_versions.present? ? notification.app_versions.join(', ') : t('mobile_notification.all_version')
               %td= timeago(notification.created_at).html_safe
               %td= notification.schedule_date.future? ? l(notification.schedule_date, format: :long) : timeago(notification.schedule_date, 'datetime').html_safe
 

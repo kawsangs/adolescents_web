@@ -5,6 +5,7 @@ class MobileNotificationsController < ApplicationController
 
   def new
     @mobile_notification = authorize MobileNotification.new
+    load_app_versions
   end
 
   def create
@@ -13,6 +14,7 @@ class MobileNotificationsController < ApplicationController
     if @mobile_notification.save
       redirect_to mobile_notifications_url
     else
+      load_app_versions
       render :new
     end
   end
@@ -27,11 +29,15 @@ class MobileNotificationsController < ApplicationController
   private
     def notification_params
       params.require(:mobile_notification).permit(
-        :id, :title, :body, :platform, :schedule_date, :topic_id
+        :id, :title, :body, :platform, :schedule_date, :topic_id, app_versions: []
       ).merge(creator_id: current_user.id)
     end
 
     def filter_params
       params.permit(:title, :start_date, :end_date, :topic_id)
+    end
+
+    def load_app_versions
+      @app_versions = MobileToken.pluck(:app_version).uniq.sort_by { |v| Gem::Version.new(v) }.reverse
     end
 end

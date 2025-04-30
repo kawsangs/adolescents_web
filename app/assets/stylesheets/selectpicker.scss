@@ -22,3 +22,7 @@
 .dropdown-item.active, .dropdown-item:active {
   background-color: rgba(0,0,0,0.05);
 }
+
+.dropdown-menu.show {
+  z-index: 1040;
+}

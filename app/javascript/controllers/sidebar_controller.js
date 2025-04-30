@@ -8,7 +8,7 @@ export default class extends Controller {
   _initShowCollapse() {
     let element = $(".sb-sidenav-menu-nested .nav-link.active")
 
-    if (!!element) {
+    if (!!element && element.offset()) {
       element.parents(".collapse").addClass('show')
 
       $('.sb-sidenav-menu').animate({

@@ -33,3 +33,6 @@ en:
     view_all_survey_form: View all survey forms
     any_survey_form: Any survey form
     notify_to: Notify to
+    app_version_selected: app version selected
+    ios: iOS
+    android: Android

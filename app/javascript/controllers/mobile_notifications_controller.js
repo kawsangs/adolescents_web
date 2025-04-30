@@ -15,6 +15,20 @@ export default class extends Controller {
     this.picker = new tempusDominus.TempusDominus(document.getElementById('schedule_date'), options);
   }
 
+  toggleAppVersion(event) {
+    const selectElement = event.target;
+    const appVersionContainer = document.getElementById('appVersion');
+    const appVersionTitle = appVersionContainer.querySelector('label span');
+
+    if (selectElement.value) {
+      appVersionTitle.textContent = selectElement.options[selectElement.selectedIndex].text;
+      appVersionContainer.classList.remove('d-none');
+    } else {
+      appVersionContainer.classList.add('d-none');
+      $('#appVersion select').selectpicker('val', []);
+    }
+  }
+
   updateTitle(e) {
     this.titleTarget.innerHTML = e.target.value;
     this.titleCountTarget.innerHTML = e.target.value.length;

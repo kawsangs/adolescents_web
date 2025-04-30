@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe MobileNotificationJob, type: :job do
   let(:notification) { create(:mobile_notification) }
-  let(:mobile_tokens) { create_list(:mobile_token, 3, platform: notification.platform, active: true) }
+  let(:mobile_tokens) { create_list(:mobile_token, 3, platform: notification.platform, app_version: '2.0.0', active: true) }
   let(:push_notification_service) { PushNotificationService.new(notification) }
   let(:result) { { success_count: 2, failure_count: 1, detail: "Some detail" } }
 
@@ -45,12 +45,33 @@ RSpec.describe MobileNotificationJob, type: :job do
   end
 
   describe "#mobile_tokens" do
-    it "returns active mobile tokens for the notification platform" do
-      job = described_class.new
+    let(:job) { described_class.new }
+
+    before do
       job.instance_variable_set(:@notification, notification)
+    end
+
+    it "returns active mobile tokens for the notification platform" do
       mobile_tokens.first.update(active: false)
 
       expect(job.send(:mobile_tokens).count).to eq(2)
+    end
+
+    context 'when there are matching app_version and active 2 tokens' do
+      it "returns mobile tokens with the correct platform and app versions" do
+        mobile_tokens.first.update(active: false)
+        notification.update(app_versions: ['2.0.0'])
+
+        expect(job.send(:mobile_tokens).count).to eq(2)
+      end
+    end
+
+    context 'when there are no matching app_version' do
+      it "returns mobile tokens with the correct platform and app versions" do
+        notification.update(app_versions: ['1.0.0'])
+
+        expect(job.send(:mobile_tokens).count).to eq(0)
+      end
     end
   end
 
