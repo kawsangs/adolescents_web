@@ -123,9 +123,6 @@ gem "ipaddress", "~> 0.8.3"
 # Protect the app from bad clients
 gem "rack-attack", "~> 6.7.0"
 
-gem "sentry-ruby"
-gem "sentry-rails"
-
 # Background process
 gem "sidekiq", "~> 7.2.4"
 
