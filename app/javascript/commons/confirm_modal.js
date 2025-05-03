@@ -13,11 +13,13 @@ export default (function() {
       var name = button.getAttribute('data-bs-message-name')
       var url = button.getAttribute('data-bs-message-url')
 
-      let title = modalTitle.getAttribute('data-content').replace(/_type_/, type)
-      let body = modalBody.getAttribute('data-content').replace(/_name_/, name).replace(/_type_/, type)
+      // Replace the title and body content with the data content attributes
+      const elements = modal.querySelectorAll('[data-content]');
+      elements.forEach(element => {
+        const newContent = element.getAttribute('data-content').replace(/_name_/, name).replace(/_type_/, type);
+        element.innerHTML = newContent;
+      });
 
-      modalTitle.innerHTML = title
-      modalBody.innerHTML = body
       modal.querySelector('form').setAttribute('action', url)
     })
   }

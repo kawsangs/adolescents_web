@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SurveyFormsController < ApplicationController
-  before_action :authorize_form, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_form, only: [:show, :edit, :update, :destroy, :make_a_copy]
 
   def index
     @pagy, @forms = pagy(policy_scope(Topics::SurveyForm.filter(filter_params).includes(:questions, :mobile_notifications)))
@@ -20,7 +20,8 @@ class SurveyFormsController < ApplicationController
     if @form.save
       redirect_to survey_forms_url
     else
-      render :new
+      flash.now[:alert] = "Failed to create the form."
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -31,7 +32,8 @@ class SurveyFormsController < ApplicationController
     if @form.update(form_params)
       redirect_to survey_forms_url
     else
-      render :edit
+      flash.now[:alert] = "Failed to update the form."
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -39,6 +41,14 @@ class SurveyFormsController < ApplicationController
     @form.destroy
 
     redirect_to survey_forms_url
+  end
+
+  def make_a_copy
+    if @new_form = @form.deep_copy
+      redirect_to edit_survey_form_url(@new_form), notice: "Form copied successfully."
+    else
+      redirect_to survey_forms_url, alert: "Failed to copy the form."
+    end
   end
 
   private

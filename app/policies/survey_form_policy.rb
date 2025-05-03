@@ -17,6 +17,10 @@ class SurveyFormPolicy < ApplicationPolicy
     update?
   end
 
+  def make_a_copy?
+    create?
+  end
+
   class Scope < Scope
     def resolve
       scope.all

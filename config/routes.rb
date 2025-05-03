@@ -85,7 +85,9 @@ Rails.application.routes.draw do
   end
   resources :chat_groups, only: [:index]
 
-  resources :survey_forms
+  resources :survey_forms do
+    post :make_a_copy, on: :member
+  end
 
   resources :reason_importers
   resources :reasons

@@ -1,0 +1,11 @@
+km:
+  activerecord:
+    errors:
+      messages:
+        blank: ត្រូវតែបំពេញ
+
+    attributes:
+      theme:
+        name: ឈ្មោះ Theme
+        primary_color: ពណ៌ចម្បង
+        secondary_color: ពណ៌បន្ទាប់បន្សំ
