@@ -30,7 +30,7 @@ export default (function() {
   }
 
   function reassignValueWithComma(input) {
-    if (input.val().length) {
+    if (!!input.val() && input.val().length) {
       let transformValue = JSON.parse(input.val()).map(x => x.value);
       input.val(`${transformValue.join(',')}`);
     }

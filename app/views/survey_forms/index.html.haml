@@ -42,12 +42,17 @@
             %td= form_status_html(form).html_safe
             %td
               .d-flex.justify-content-end
+                %span.me-1{ data: { 'bs-toggle': 'tooltip', 'bs-placement': 'top' }, title: t('shared.make_a_copy') }
+                  %button.btn.btn-circle.btn-sm.btn-outline-info{ "data-bs-target" => "#confirmCopyModal", "data-bs-message" => { type: t('form.survey_form'), name: form.name, url: make_a_copy_survey_form_path(form) }, "data-bs-toggle" => "modal", :type => "button" }
+                    %i.far.fa-copy
+
                 = render "shared/buttons/edit_button", url: edit_survey_form_path(form), object: form
 
-                = render 'shared/buttons/delete_button', object: form,  message: { type: t('form.your_story'), name: form.name, url: survey_form_path(form) }
+                = render 'shared/buttons/delete_button', object: form,  message: { type: t('form.survey_form'), name: form.name, url: survey_form_path(form) }
 
                 - if !policy(form).destroy?
                   = render "shared/buttons/delete_disable_button"
 
 = render "shared/modals/confirm_delete_modal"
+= render "shared/modals/confirm_copy_modal"
 = render 'form_detail_modal'

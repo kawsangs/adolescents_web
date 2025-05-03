@@ -1,0 +1,22 @@
+- confirm_title ||= t('shared.confirm_to_copy', name: '_type_')
+- confirm_body ||= t('shared.are_you_sure_to_copy', type: '_type_', name: '_name_')
+
+%div{'data-controller': 'confirm-modal', 'data-confirm-modal-dom-id-value': "confirmCopyModal"}
+  #confirmCopyModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :tabindex => "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %h5.modal-title
+            %i.fas.fa-exclamation-triangle.text-warning
+            %span.title{'data-content': confirm_title}
+
+          %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+
+        .modal-body.text-left
+          %div{'data-content': confirm_body}
+          %div.mt-3{'data-content': t('shared.copy_details', type: '_type_', details: 'form, questions, options, audio, and tags')}
+
+        .modal-footer
+          %button.btn.btn-secondary{"data-bs-dismiss" => "modal", :type => "button"}= t("shared.cancel")
+
+          = button_to t('shared._yes'), '#', method: :post, class: 'btn btn-primary'

@@ -1,0 +1,11 @@
+en:
+  activerecord:
+    errors:
+      messages:
+        blank: can't be blank
+
+    attributes:
+      theme:
+        name: Theme name
+        primary_color: Primary color
+        secondary_color: Secondary color

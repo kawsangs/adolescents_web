@@ -103,3 +103,7 @@ km:
     new_reason: ហេតុផលស្នើរលុបថ្មី
     version: ជំនាន់
     need_help: ត្រូវការជំនួយ?
+    make_a_copy: ចម្លងថ្មី
+    confirm_to_copy: បញ្ជាក់ការចម្លង %{name}
+    are_you_sure_to_copy: តើអ្នកប្រាកដជាចម្លង %{type} <b>"%{name}"</b> នេះមែនទេ?
+    copy_details: "ការចម្លងនេះនឹងចម្លងព័ត៌មានលម្អិតទាំងអស់នៃ %{type} នេះរួមមាន: %{details}"

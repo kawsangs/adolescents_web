@@ -9,7 +9,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ThemeUsage, type: :model do
   # Association tests
@@ -33,10 +33,12 @@ RSpec.describe ThemeUsage, type: :model do
   end
 
   describe "with invalid attributes" do
+    before { I18n.locale = :en }
+
     it "is invalid without applied_at" do
       theme_usage = build(:theme_usage, applied_at: nil)
       expect(theme_usage).not_to be_valid
-      expect(theme_usage.errors[:applied_at]).to include("can't be blank")
+      expect(theme_usage.errors[:applied_at]).to include(I18n.t("errors.messages.blank"))
     end
   end
 end
