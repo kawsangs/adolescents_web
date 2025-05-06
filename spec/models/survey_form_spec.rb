@@ -1,6 +1,22 @@
 require "rails_helper"
 
 RSpec.describe Topics::SurveyForm, type: :model do
+  # Test inheritance
+  it { is_expected.to be_a(::Topic) }
+
+  # Test Associations
+  describe 'associations' do
+    it { is_expected.to have_many(:mobile_notifications).with_foreign_key(:topic_id) }
+    it { is_expected.to have_many(:questions).through(:sections) }
+    it { is_expected.to have_many(:surveys).class_name('Survey').with_foreign_key(:topic_id) }
+  end
+
+  describe '.policy_class' do
+    it 'returns SurveyFormPolicy' do
+      expect(described_class.policy_class).to eq(SurveyFormPolicy)
+    end
+  end
+
   describe "#deep_copy" do
     let(:survey) do
       create(:survey_form, name_en: "Test Survey", name_km: "សាកល្បង", code: "TS", tag_list: ["survey", "test"])

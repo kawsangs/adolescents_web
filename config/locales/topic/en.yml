@@ -51,3 +51,4 @@ en:
     add_option: + Add option
     add_question: + Add question
     option_icon_hint: The icon file(*.png, and 80px x 80px)
+    number_of_participation: "# of participation"

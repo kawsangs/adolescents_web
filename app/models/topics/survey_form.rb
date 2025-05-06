@@ -19,6 +19,7 @@ module Topics
     # Association
     has_many :mobile_notifications, foreign_key: :topic_id
     has_many :questions, through: :sections
+    has_many :surveys, class_name: 'Survey', foreign_key: 'topic_id'
 
     # Validation
     validates_associated :sections

@@ -3,7 +3,7 @@ module Samples
     def load
       ::Survey.create(
         app_user:,
-        topic:,
+        survey_form: survey_form,
         quizzed_at: rand(1..5).days.ago,
         survey_answers_attributes:
       )
@@ -14,12 +14,12 @@ module Samples
         @app_user ||= ::AppUser.all.sample
       end
 
-      def topic
+      def survey_form
         @topic ||= ::Topics::SurveyForm.all.sample
       end
 
       def survey_answers_attributes
-        topic.questions.map do |question|
+        survey_form.questions.map do |question|
           option = question.options.sample
 
           {
