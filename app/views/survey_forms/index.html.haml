@@ -24,6 +24,7 @@
           %th= t('form.name_en')
           %th= t('form.number_of_question')
           %th= t('form.number_of_notification')
+          %th= t('form.number_of_participation')
           %th= t('shared.tags')
           %th= t('shared.description')
           %th= t('shared.status')
@@ -37,6 +38,8 @@
             %td= form.questions.length
             %td
               = link_to form.mobile_notifications.length, mobile_notifications_path(topic_id: form.id), class: 'text-primary' if form.mobile_notifications.length.positive?
+            %td
+              = form.surveys.count if form.surveys.any?
             %td= form.tag_list
             %td= form.description
             %td= form_status_html(form).html_safe

@@ -51,3 +51,4 @@ km:
     add_option: + បន្ថែមជម្រើស
     add_question: + បន្ថែមសំណួរ
     option_icon_hint: រូបតំណាង(*.png, and 80px x 80px)
+    number_of_participation: "# ចំនួននៃការចូលរួម"

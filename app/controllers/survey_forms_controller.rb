@@ -4,7 +4,7 @@ class SurveyFormsController < ApplicationController
   before_action :authorize_form, only: [:show, :edit, :update, :destroy, :make_a_copy]
 
   def index
-    @pagy, @forms = pagy(policy_scope(Topics::SurveyForm.filter(filter_params).includes(:questions, :mobile_notifications)))
+    @pagy, @forms = pagy(policy_scope(Topics::SurveyForm.filter(filter_params).includes(:questions, :mobile_notifications, :surveys)))
   end
 
   def show
