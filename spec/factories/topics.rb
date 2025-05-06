@@ -21,12 +21,16 @@ FactoryBot.define do
     type    { Topics::FaqForm }
 
     trait :published do
-      published_at { Time.now }
+      published_at { Time.current }
     end
   end
 
   factory :survey_form, class: "Topics::SurveyForm" do
     name_km { FFaker::Name.name }
     name_en { FFaker::Name.name }
+
+    trait :published do
+      published_at { Time.current }
+    end
   end
 end
