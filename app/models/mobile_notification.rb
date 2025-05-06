@@ -50,8 +50,21 @@ class MobileNotification < ApplicationRecord
     {
       data: { payload: { topic_id:, mobile_notification_id: id }.to_json },
       notification: { title:, body: },
-      apns: { payload: { aps: { "content-available": 1 } } },
-      android: { "priority": "high" }
+      apns: {
+        payload: {
+          aps: {
+            "content-available": 1,
+            "sound": "youthhealth.aiff"
+          }
+        }
+      },
+      android: {
+        "priority": "high",
+        "notification": {
+          "sound": "youthhealth",
+          "channelId": "youthhealth"
+        }
+      }
     }
   end
 
