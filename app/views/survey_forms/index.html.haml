@@ -39,7 +39,7 @@
             %td
               = link_to form.mobile_notifications.length, mobile_notifications_path(topic_id: form.id), class: 'text-primary' if form.mobile_notifications.length.positive?
             %td
-              = form.surveys.count if form.surveys.any?
+              = link_to form.surveys.count, survey_form_surveys_path(form), class: 'text-primary' if form.surveys.any?
             %td= form.tag_list
             %td= form.description
             %td= form_status_html(form).html_safe

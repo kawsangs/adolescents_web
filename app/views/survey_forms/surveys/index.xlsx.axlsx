@@ -1,0 +1,10 @@
+wb = xlsx_package.workbook
+worksheet_name = "survey_#{@survey_form.name}"[0..30]
+wb.add_worksheet(name: worksheet_name) do |sheet|
+  sheet.add_row build_survey_header(@survey_form)
+
+  @surveys.each do |survey|
+    row = build_survey_row(survey, @survey_form)
+    sheet.add_row row, types: row.length.times.map { |t| :string }
+  end
+end

@@ -107,3 +107,4 @@ en:
     confirm_to_copy: Confirm to copy %{name}
     are_you_sure_to_copy: Are you sure to copy the %{type} <b>%{name}</b>?
     copy_details: "This will copy all the details of this %{type} including: %{details}"
+    download_csv: Download CSV

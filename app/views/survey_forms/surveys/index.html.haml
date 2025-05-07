@@ -1,0 +1,53 @@
+.container-fluid.px-4{'data-controller' => 'surveys'}
+  -# Header
+  = render "shared/headers/page_heading", title: "#{t('form.survey')}: #{@survey_form.name}" do
+    = render "shared/buttons/back_button", url: survey_forms_path
+
+    %button.btn.btn-sm.ms-1{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :type => "button"}
+      %i.fa-solid.fa-ellipsis-vertical
+
+    %ul.dropdown-menu.dropdown-menu-end
+      - if current_user.primary_admin?
+        %li
+          %a.dropdown-item{ href: survey_form_surveys_path(@survey_form, filter_params.merge(format: :xlsx)), target: '_blank' }
+            %i.fa-regular.fa-file-excel
+            %span= t('shared.download_excel')
+
+          %a.dropdown-item{ href: survey_form_surveys_path(@survey_form, filter_params.merge(format: :csv)), target: '_blank' }
+            %i.fa-solid.fa-file-csv
+            %span= t('shared.download_csv')
+
+  -# Filters
+  .d-flex.mb-3
+    %form.flex-grow-1.d-flex{ action: survey_form_surveys_path(@survey_form), method: 'get'}
+      = render 'shared/filters/filter_date', placeholder: t('form.search_by_submitted_at')
+      .ms-2
+        = render "shared/buttons/search_button"
+
+  = render "shared/no_data", items: @surveys
+
+  - if @surveys.present?
+    .mt-2= render "shared/pagination_title", objects: @surveys
+
+    .table-responsive
+      %table.table.table-hover
+        %thead
+          %tr
+            %th #
+            - @survey_form.questions.each do |question|
+              %th{'data-bs-toggle' => 'tooltip', title: question.name }
+                = question.name[0..10]
+                - if question.name.length > 10
+                  %span{ title: question.name }= "..."
+
+            %th= t('form.quizzed_at')
+            %th= t('form.submitted_at')
+
+        %tbody
+          - @surveys.each_with_index do |survey, index|
+            %tr
+              %td= @pagy.from + index
+              - @survey_form.questions.each do |question|
+                %td= survey.survey_answers_for(question.id).value
+              %td= timeago(survey.quizzed_at, type: 'datetime').html_safe
+              %td= timeago(survey.created_at, type: 'datetime').html_safe

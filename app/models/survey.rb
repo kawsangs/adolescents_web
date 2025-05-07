@@ -20,4 +20,15 @@ class Survey < ApplicationRecord
   has_many :survey_answers, dependent: :destroy
 
   accepts_nested_attributes_for :survey_answers, allow_destroy: true
+
+  def survey_answers_for(question_id)
+    survey_answers.find { |answer| answer.question_id == question_id }
+  end
+
+  def self.filter(params = {})
+    scope = all
+    scope = scope.where("created_at BETWEEN ? AND ?", DateTime.parse(params[:start_date]).beginning_of_day, DateTime.parse(params[:end_date]).end_of_day) if params[:start_date].present? && params[:end_date].present?
+    scope = scope.where(topic_id: params[:survey_form_id]) if params[:survey_form_id].present?
+    scope
+  end
 end
