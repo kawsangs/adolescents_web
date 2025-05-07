@@ -5,14 +5,14 @@ RSpec.describe Topics::SurveyForm, type: :model do
   it { is_expected.to be_a(::Topic) }
 
   # Test Associations
-  describe 'associations' do
+  describe "associations" do
     it { is_expected.to have_many(:mobile_notifications).with_foreign_key(:topic_id) }
     it { is_expected.to have_many(:questions).through(:sections) }
-    it { is_expected.to have_many(:surveys).class_name('Survey').with_foreign_key(:topic_id) }
+    it { is_expected.to have_many(:surveys).class_name("Survey").with_foreign_key(:topic_id) }
   end
 
-  describe '.policy_class' do
-    it 'returns SurveyFormPolicy' do
+  describe ".policy_class" do
+    it "returns SurveyFormPolicy" do
       expect(described_class.policy_class).to eq(SurveyFormPolicy)
     end
   end

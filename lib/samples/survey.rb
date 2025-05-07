@@ -3,7 +3,7 @@ module Samples
     def load
       ::Survey.create(
         app_user:,
-        survey_form: survey_form,
+        topic_id: survey_form.id,
         quizzed_at: rand(1..5).days.ago,
         survey_answers_attributes:
       )
@@ -15,7 +15,7 @@ module Samples
       end
 
       def survey_form
-        @topic ||= ::Topics::SurveyForm.all.sample
+        @survey_form ||= ::Topics::SurveyForm.published.sample
       end
 
       def survey_answers_attributes

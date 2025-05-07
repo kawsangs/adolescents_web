@@ -52,3 +52,6 @@ en:
     add_question: + Add question
     option_icon_hint: The icon file(*.png, and 80px x 80px)
     number_of_participation: "# of participation"
+    quizzed_at: Quizzed at
+    submitted_at: Submitted at
+    search_by_submitted_at: Search by submitted at

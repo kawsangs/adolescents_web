@@ -87,6 +87,7 @@ Rails.application.routes.draw do
 
   resources :survey_forms do
     post :make_a_copy, on: :member
+    resources :surveys, only: [:index], module: :survey_forms
   end
 
   resources :reason_importers

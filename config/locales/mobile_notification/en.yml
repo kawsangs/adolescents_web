@@ -9,7 +9,7 @@ en:
     max_body: max 255 characters
     push_notification: Push Notification
     description: "Success: %{success_count}; Failure: %{failure_count}"
-    app_version: App version number
+    app_version: App version
     any_version: Any version
     versions_selected: versions selected
     all_version: All version

@@ -52,3 +52,6 @@ km:
     add_question: + បន្ថែមសំណួរ
     option_icon_hint: រូបតំណាង(*.png, and 80px x 80px)
     number_of_participation: "# ចំនួននៃការចូលរួម"
+    quizzed_at: កាលបរិច្ឆេទដែលបានស្ទង់មតិ
+    submitted_at: កាលបរិច្ឆេទដែលបានដាក់ស្នើ
+    search_by_submitted_at: ស្វែងរកដោយកាលបរិច្ឆេទដែលបានដាក់ស្នើ
