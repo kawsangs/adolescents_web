@@ -33,7 +33,7 @@ module SurveyForms
       end
 
       def query_surveys
-        authorize policy_scope(Survey.filter(filter_params).includes(:survey_answers))
+        authorize policy_scope(Survey.filter(filter_params).includes(survey_answers: :option))
       end
 
       def paginate_surveys
