@@ -21,13 +21,13 @@ module SurveysHelper
     row = [
       user.id[0..7],
       user.gender || "annonymous",
-      user.age,
+      (user.age unless user.anonymous?),
       (user.province["name_#{I18n.locale}"] unless user.anonymous?),
       t("app_user.#{user.occupation}"),
       t("app_user.#{user.education_level}"),
       user.characteristics.map(&:"name_#{I18n.locale}").join(", ")
     ]
-    row.concat survey_form.questions.map { |question| survey.survey_answers_for(question.id).value }
+    row.concat survey_form.questions.map { |question| survey.survey_answers_for(question.id).option_name }
     row.concat [survey.created_at, survey.quizzed_at]
     row
   end

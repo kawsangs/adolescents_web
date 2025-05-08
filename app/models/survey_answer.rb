@@ -19,6 +19,8 @@ class SurveyAnswer < ApplicationRecord
   belongs_to :question
   belongs_to :option, optional: true
 
+  delegate :name, :value, to: :option, prefix: true, allow_nil: true
+
   # Callback
   after_create :notify_telegram_groups
 

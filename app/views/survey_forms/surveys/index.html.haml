@@ -48,6 +48,6 @@
             %tr
               %td= @pagy.from + index
               - @survey_form.questions.each do |question|
-                %td= survey.survey_answers_for(question.id).value
+                %td= survey.survey_answers_for(question.id).option_name
               %td= timeago(survey.quizzed_at, type: 'datetime').html_safe
               %td= timeago(survey.created_at, type: 'datetime').html_safe
