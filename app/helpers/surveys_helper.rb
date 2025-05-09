@@ -10,9 +10,9 @@ module SurveysHelper
   end
 
   def build_survey_header(survey_form)
-    user_headers = %w[_id _gender _age _province _occupation _education_level _characteristic]
+    user_headers = %w[id gender age province occupation educationlevel characteristic]
     question_headers = survey_form.questions.map(&:name)
-    time_headers = %w[_submission_time _quizzed_time]
+    time_headers = %w[submission_time quizzed_time]
     user_headers + question_headers + time_headers
   end
 

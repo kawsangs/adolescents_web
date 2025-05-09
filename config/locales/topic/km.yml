@@ -55,3 +55,4 @@ km:
     quizzed_at: កាលបរិច្ឆេទដែលបានស្ទង់មតិ
     submitted_at: កាលបរិច្ឆេទដែលបានដាក់ស្នើ
     search_by_submitted_at: ស្វែងរកដោយកាលបរិច្ឆេទដែលបានដាក់ស្នើ
+    total_unique_users: ចំនួនអ្នកចូលរួមសរុប

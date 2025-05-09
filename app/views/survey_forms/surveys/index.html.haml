@@ -27,7 +27,9 @@
   = render "shared/no_data", items: @surveys
 
   - if @surveys.present?
-    .mt-2= render "shared/pagination_title", objects: @surveys
+    .mt-2
+      = render "shared/pagination_title", objects: @surveys do
+        %span= "(#{t('form.total_unique_users')}: <b>#{number_with_delimiter(@total_uniq_users)}</b>)".html_safe
 
     .table-responsive
       %table.table.table-hover

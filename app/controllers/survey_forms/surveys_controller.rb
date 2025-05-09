@@ -11,7 +11,10 @@ module SurveyForms
       @surveys = query_surveys
 
       respond_to do |format|
-        format.html { paginate_surveys }
+        format.html {
+          @total_uniq_users = Survey.filter(filter_params).pluck(:app_user_id).uniq.count
+          paginate_surveys
+        }
         format.xlsx {
           @surveys = @surveys.includes(app_user: :characteristics)
           export_xlsx
