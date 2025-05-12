@@ -17,7 +17,7 @@ class PushNotificationService
   end
 
   def notify_all(mobile_tokens)
-    mobile_tokens.each do |mobile_token|
+    mobile_tokens.find_each do |mobile_token|
       notify(mobile_token)
     end
 
